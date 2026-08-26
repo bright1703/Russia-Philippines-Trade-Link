@@ -79,10 +79,21 @@
     .section-intro .eyebrow { grid-column: 1 / -1; }
     h2 { margin-bottom: 0; font-size: clamp(41px, 5vw, 61px); font-weight: 500; }
     .section-intro > p:last-child { max-width: 405px; margin: 0 0 3px; color: var(--ink-soft); font-size: 14px; }
-    .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
-    .product-card { min-height: 285px; padding: 25px 22px 22px 0; border-right: 1px solid var(--line); }
-    .product-card + .product-card { padding-left: 22px; }
-    .product-card:last-child { border-right: 0; }
+    .opportunity-filters { display: flex; flex-wrap: wrap; gap: 8px; margin: -26px 0 43px; }
+    .filter-button { padding: 8px 12px; border: 1px solid #c7d9d0; background: transparent; color: #71877e; font: inherit; font-size: 10px; cursor: pointer; }
+    .filter-button:hover, .filter-button.is-active { border-color: var(--green); background: var(--green); color: #fff; }
+    .opportunity-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+    .opportunity-card { min-height: 390px; padding: 25px 24px 25px 0; border-right: 1px solid var(--line); }
+    .opportunity-card:nth-child(3n + 2), .opportunity-card:nth-child(3n + 3) { padding-left: 24px; }
+    .opportunity-card:nth-child(3n) { border-right: 0; }
+    .opportunity-card:nth-child(n + 4) { border-top: 1px solid var(--line); }
+    .opportunity-card.is-hidden { display: none; }
+    .opportunity-card h3 { min-height: 48px; margin: 20px 0 13px; font-family: var(--serif); font-size: 23px; font-weight: 400; line-height: 1.05; }
+    .opportunity-card p { min-height: 105px; margin-bottom: 16px; color: var(--ink-soft); font-size: 12px; line-height: 1.45; }
+    .opportunity-meta { display: grid; gap: 8px; margin: 0 0 19px; color: #688077; font-size: 10px; line-height: 1.4; }
+    .opportunity-meta strong { color: var(--ink); font-size: 10px; font-weight: 700; }
+    .opportunity-meta span { display: block; }
+    .disclaimer-strip { margin-top: 37px; padding: 17px 20px; border-left: 2px solid var(--accent); background: #f0eee6; color: #6d8279; font-size: 11px; line-height: 1.45; }
     .card-number, .step-number { color: #9bb2a8; font-size: 10px; font-weight: 700; letter-spacing: .1em; }
     .product-card h3 { min-height: 45px; margin: 20px 0 15px; font-family: var(--serif); font-size: 22px; font-weight: 400; line-height: 1.05; }
     .product-card p { min-height: 91px; margin-bottom: 18px; color: var(--ink-soft); font-size: 12px; line-height: 1.45; }
@@ -131,10 +142,11 @@
       .hero::after { width: 100%; height: 46%; top: auto; bottom: 0; clip-path: polygon(22% 0, 100% 0, 100% 100%, 0 100%); }
       .hero-copy { padding-top: 54px; }
       .hero-panel { justify-self: center; margin: 0; }
-      .product-grid { grid-template-columns: repeat(2, 1fr); }
-      .product-card:nth-child(2) { border-right: 0; }
-      .product-card:nth-child(n+3) { border-top: 1px solid var(--line); }
-      .product-card:nth-child(3) { padding-left: 0; }
+      .opportunity-grid { grid-template-columns: repeat(2, 1fr); }
+      .opportunity-card:nth-child(3n + 2), .opportunity-card:nth-child(3n + 3) { padding-left: 0; }
+      .opportunity-card:nth-child(3n) { border-right: 1px solid var(--line); }
+      .opportunity-card:nth-child(2n) { padding-left: 24px; border-right: 0; }
+      .opportunity-card:nth-child(n + 3) { border-top: 1px solid var(--line); }
       .dark-section { grid-template-columns: 1fr; gap: 50px; }
       .split-section { grid-template-columns: 1fr; gap: 42px; }
     }
@@ -156,6 +168,10 @@
       .section-intro .eyebrow { margin-bottom: 0; }
       .product-card { min-height: 0; padding-bottom: 26px; }
       .product-card p { min-height: 0; }
+      .opportunity-grid { grid-template-columns: 1fr; }
+      .opportunity-card, .opportunity-card:nth-child(2n), .opportunity-card:nth-child(3n + 2), .opportunity-card:nth-child(3n + 3) { min-height: 0; padding: 25px 0; border-right: 0; border-top: 1px solid var(--line); }
+      .opportunity-card:first-child { border-top: 0; }
+      .opportunity-card p { min-height: 0; }
       .dark-section, .contact-section { padding: 72px 18px; }
       .steps-grid { gap: 30px 18px; }
       .site-footer { display: grid; gap: 14px; }
@@ -177,7 +193,7 @@
 
   <header class="site-header">
     <a class="brand" href="#top"><span class="brand-mark"><svg class="icon"><use href="#earth"></use></svg></span><span>Russia–Philippines<br><b>Trade Link</b></span></a>
-    <nav class="nav-links"><a href="#products">Products</a><a href="#how-it-works">How it works</a><a href="#suppliers">For suppliers</a><a class="nav-cta" href="#contact">Send an inquiry <svg class="icon"><use href="#arrow"></use></svg></a></nav>
+    <nav class="nav-links"><a href="#products">Supplier opportunities</a><a href="#how-it-works">How it works</a><a href="#suppliers">For suppliers</a><a class="nav-cta" href="#contact">Send an inquiry <svg class="icon"><use href="#arrow"></use></svg></a></nav>
   </header>
 
   <main>
@@ -194,12 +210,15 @@
 
     <section class="trust-strip"><span>For Philippine importers</span><i></i><span>For distributors</span><i></i><span>For industrial buyers</span><i></i><span>For Primorsky Krai suppliers</span></section>
 
-    <section class="section products-section" id="products"><div class="section-intro"><p class="eyebrow">CURRENT FOCUS</p><h2>Product areas with<br><em>real supply potential.</em></h2><p>We do not publish a generic marketplace catalogue. Each opportunity is connected to a real manufacturer and checked before commercial details are shared.</p></div><div class="product-grid">
-      <article class="product-card"><div class="card-number">01</div><h3>Food ingredients</h3><p>Flour, oats, cereals, vegetable oils, honey and confectionery products for importers, distributors, bakeries and food manufacturers.</p><div class="tag-list"><span>Flour</span><span>Oats</span><span>Oil</span><span>Honey</span></div><a href="#contact" class="card-link">Request supplier details <svg class="icon"><use href="#arrow"></use></svg></a></article>
-      <article class="product-card"><div class="card-number">02</div><h3>Agriculture &amp; fertilizers</h3><p>Organic and mineral agricultural inputs for distributors, farms and commercial growers. Product documentation is reviewed case by case.</p><div class="tag-list"><span>Fertilizers</span><span>Soil inputs</span><span>Farm supply</span></div><a href="#contact" class="card-link">Request supplier details <svg class="icon"><use href="#arrow"></use></svg></a></article>
-      <article class="product-card"><div class="card-number">03</div><h3>Industrial supply</h3><p>Industrial equipment, special machinery, vehicles, packaging materials and other products sourced from manufacturers in Russia’s Far East.</p><div class="tag-list"><span>Equipment</span><span>Machinery</span><span>Packaging</span></div><a href="#contact" class="card-link">Request supplier details <svg class="icon"><use href="#arrow"></use></svg></a></article>
-      <article class="product-card"><div class="card-number">04</div><h3>Meat &amp; prepared foods</h3><p>Selected shelf-stable and frozen food opportunities, subject to Philippine import eligibility, exporter accreditation and buyer requirements.</p><div class="tag-list"><span>Frozen foods</span><span>Processed meat</span><span>B2B supply</span></div><a href="#contact" class="card-link">Request supplier details <svg class="icon"><use href="#arrow"></use></svg></a></article>
-    </div></section>
+    <section class="section products-section" id="products"><div class="section-intro"><p class="eyebrow">SUPPLIER OPPORTUNITIES</p><h2>Specific directions with<br><em>a practical next step.</em></h2><p>These are selected supplier opportunities from Primorsky Krai and the Russian Far East. Details, documents, pricing and delivery terms are confirmed separately for each inquiry.</p></div><div class="opportunity-filters" aria-label="Filter supplier opportunities"><button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">All opportunities</button><button class="filter-button" type="button" data-filter="food" aria-pressed="false">Food</button><button class="filter-button" type="button" data-filter="agriculture" aria-pressed="false">Agriculture &amp; fertilizers</button><button class="filter-button" type="button" data-filter="packaging" aria-pressed="false">Packaging</button><button class="filter-button" type="button" data-filter="equipment" aria-pressed="false">Vehicles &amp; equipment</button></div><div class="opportunity-grid">
+      <article class="opportunity-card" data-categories="food agriculture"><div class="card-number">01 / FOOD &amp; AGRICULTURE</div><h3>Agro-Export DV</h3><p>Food ingredients and agricultural raw materials, including wheat flour, oat flakes and vegetable oils such as sunflower oil. Other products are considered when a supplier offer is confirmed.</p><div class="opportunity-meta"><span><strong>Potential buyers</strong> Food importers, distributors, bakeries, noodle and food manufacturers, HoReCa suppliers and retail distributors.</span></div><div class="tag-list"><span>Wheat flour</span><span>Oat flakes</span><span>Vegetable oils</span></div><a href="#contact" class="card-link">Request supplier details <svg class="icon"><use href="#arrow"></use></svg></a></article>
+      <article class="opportunity-card" data-categories="agriculture"><div class="card-number">02 / AGRICULTURE</div><h3>Gigantin Bio</h3><p>Organic agricultural fertilizer and agricultural input from Ussuriysk Poultry Factory. The export direction has been considered; packaging options and product specifications are available upon request.</p><div class="opportunity-meta"><span><strong>Potential buyers</strong> Agricultural distributors and commercial growers.</span><span>Documents and specifications are reviewed for each inquiry.</span></div><div class="tag-list"><span>Organic input</span><span>Packaging options</span></div><a href="#contact" class="card-link">Request supplier details <svg class="icon"><use href="#arrow"></use></svg></a></article>
+      <article class="opportunity-card" data-categories="agriculture"><div class="card-number">03 / AGRICULTURE</div><h3>Biotorf</h3><p>Agricultural soil improvement product and related fertilizer or agricultural input for farms and distributors, including companies working with degraded or saline soils.</p><div class="opportunity-meta"><span><strong>Potential buyers</strong> Fertilizer importers, agricultural distributors and commercial farms.</span><span>Results may vary and require independent verification under local conditions.</span></div><div class="tag-list"><span>Soil improvement</span><span>Farm input</span></div><a href="#contact" class="card-link">Request supplier details <svg class="icon"><use href="#arrow"></use></svg></a></article>
+      <article class="opportunity-card" data-categories="food"><div class="card-number">04 / FOOD</div><h3>TD VIK</h3><p>Sausages, meat delicacies, frozen meat products and prepared food products for food importers, meat distributors, retail chains, HoReCa suppliers and foodservice companies.</p><div class="opportunity-meta"><span><strong>Supply review</strong> Subject to Philippine import eligibility, exporter accreditation, sanitary and veterinary requirements, English labelling and the local importer’s FDA requirements.</span></div><div class="tag-list"><span>Sausages</span><span>Frozen meat</span><span>Prepared foods</span></div><a href="#contact" class="card-link">Request supplier details <svg class="icon"><use href="#arrow"></use></svg></a></article>
+      <article class="opportunity-card" data-categories="food"><div class="card-number">05 / FOOD</div><h3>Honey &amp; confectionery</h3><p>Honey, marshmallow, marmalade, mead and other confectionery products from Primorsky Krai producers Omiya and Primorsky Honey, where supplier confirmation is available.</p><div class="opportunity-meta"><span><strong>Potential buyers</strong> Food importers, specialty food distributors, retail chains, premium food channels, restaurants and HoReCa.</span></div><div class="tag-list"><span>Honey</span><span>Marshmallow</span><span>Marmalade</span></div><a href="#contact" class="card-link">Request supplier details <svg class="icon"><use href="#arrow"></use></svg></a></article>
+      <article class="opportunity-card" data-categories="packaging"><div class="card-number">06 / PACKAGING</div><h3>Ussuriysk Cardboard Factory</h3><p>Fluting paper, testliner paper and packaging paper materials for corrugated packaging manufacturers, paper converters, industrial packaging companies and importers.</p><div class="opportunity-meta"><span><strong>Available on request</strong> Grades, weights, minimum lots and prices are provided after the buyer’s requirements are understood.</span></div><div class="tag-list"><span>Fluting paper</span><span>Testliner</span><span>Packaging paper</span></div><a href="#contact" class="card-link">Request supplier details <svg class="icon"><use href="#arrow"></use></svg></a></article>
+      <article class="opportunity-card" data-categories="equipment"><div class="card-number">07 / EQUIPMENT</div><h3>Vehicles &amp; industrial equipment</h3><p>Possible supply and partnership opportunities involving Sollers / UAZ commercial vehicles, CBU, SKD and CKD formats, special machinery, industrial equipment and crane equipment from Primorsky Crane Plant.</p><div class="opportunity-meta"><span><strong>Scope</strong> Service, spare parts, local support concepts and LPG-related solutions are considered only where a specific supplier and product are confirmed.</span><span>Technical and commercial verification is required.</span></div><div class="tag-list"><span>Commercial vehicles</span><span>Special machinery</span><span>Crane equipment</span></div><a href="#contact" class="card-link">Request supplier details <svg class="icon"><use href="#arrow"></use></svg></a></article>
+    </div><div class="disclaimer-strip">This website presents selected supplier opportunities from Primorsky Krai and the Russian Far East. Product availability, import eligibility, documentation, pricing and delivery terms are confirmed separately for each inquiry.</div></section>
 
     <section class="dark-section" id="how-it-works"><div class="dark-intro"><p class="eyebrow eyebrow-light">A PRACTICAL START</p><h2>From a product request<br>to a serious conversation.</h2><p>The first goal is not to promise a deal. It is to find out whether the product, documentation, price and market fit make a deal worth discussing.</p></div><div class="steps-grid">
       <div class="step"><span class="step-number">01</span><h3>Send an inquiry</h3><p>Tell us what product, volume and supply format you are looking for.</p></div><div class="step"><span class="step-number">02</span><h3>Supplier matching</h3><p>We identify a suitable manufacturer from Primorsky Krai and request current information.</p></div><div class="step"><span class="step-number">03</span><h3>Document check</h3><p>We clarify specifications, export documents, packaging, pricing basis and market requirements.</p></div><div class="step"><span class="step-number">04</span><h3>Direct negotiation</h3><p>The buyer and supplier discuss commercial terms, samples, logistics and a possible trial shipment.</p></div>
@@ -207,9 +226,27 @@
 
     <section class="section split-section" id="suppliers"><div class="split-label"><span class="icon-box"><svg class="icon"><use href="#handshake"></use></svg></span><span>FOR RUSSIAN SUPPLIERS</span></div><div class="split-content"><h2>Looking toward<br><em>the Philippine market?</em></h2><p>We help manufacturers from Primorsky Krai understand whether their product is worth testing in the Philippines and identify relevant local buyers.</p><div class="check-list"><span><svg class="icon"><use href="#check"></use></svg> Initial market orientation</span><span><svg class="icon"><use href="#check"></use></svg> Search for importers and distributors</span><span><svg class="icon"><use href="#check"></use></svg> First contact and business matching</span></div><a class="button button-outline" href="mailto:rus.import.ph@gmail.com">For supplier inquiries <svg class="icon"><use href="#mail"></use></svg></a></div></section>
 
-    <section class="contact-section" id="contact"><div class="contact-copy"><p class="eyebrow">START A CONVERSATION</p><h2>Have a product<br><em>in mind?</em></h2><p>Send the basic details. We will assess what information is needed and whether a suitable supplier can be identified.</p><div class="contact-details"><a href="mailto:rus.import.ph@gmail.com"><svg class="icon"><use href="#mail"></use></svg> rus.import.ph@gmail.com</a><a href="https://wa.me/639215884430"><svg class="icon"><use href="#message"></use></svg> WhatsApp business inquiries</a><span><svg class="icon"><use href="#pin"></use></svg> Republic of the Philippines</span></div></div><form class="inquiry-form" action="mailto:rus.import.ph@gmail.com" method="post" enctype="text/plain"><label>Company name<input name="Company" placeholder="Your company"></label><label>Contact person<input name="Contact" placeholder="Your name"></label><label>Product or category<input name="Product" placeholder="What are you looking for?"></label><label>Message<textarea name="Message" rows="4" placeholder="Volume, packaging, delivery point or any other details"></textarea></label><button class="button button-primary" type="submit">Send inquiry <svg class="icon"><use href="#arrow"></use></svg></button><small>By sending an inquiry, you agree that we may use the information to respond to your business request.</small></form></section>
+    <section class="contact-section" id="contact"><div class="contact-copy"><p class="eyebrow">START A CONVERSATION</p><h2>Have a product<br><em>in mind?</em></h2><p>Send the basic details. We will assess what information is needed and whether a suitable supplier can be identified.</p><div class="contact-details"><a href="mailto:rus.import.ph@gmail.com"><svg class="icon"><use href="#mail"></use></svg> rus.import.ph@gmail.com</a><a href="https://wa.me/639215884430"><svg class="icon"><use href="#message"></use></svg> WhatsApp business inquiries</a><span><svg class="icon"><use href="#pin"></use></svg> Republic of the Philippines</span></div></div><form class="inquiry-form" action="mailto:rus.import.ph@gmail.com" method="post" enctype="text/plain"><label>Company name<input name="Company" placeholder="Your company" required></label><label>Contact person<input name="Contact" placeholder="Your name" required></label><label>Product or category<input name="Product" placeholder="What are you looking for?" required></label><label>Required volume<input name="Volume" placeholder="Estimated volume or frequency"></label><label>Message<textarea name="Message" rows="4" placeholder="Packaging, delivery point or any other details"></textarea></label><button class="button button-primary" type="submit">Send inquiry <svg class="icon"><use href="#arrow"></use></svg></button><small>By sending an inquiry, you agree that we may use the information to respond to your business request.</small></form></section>
   </main>
 
-  <footer class="site-footer"><div class="footer-brand"><span class="brand-mark"><svg class="icon"><use href="#earth"></use></svg></span><span>Russia–Philippines <b>Trade Link</b></span></div><p>Independent B2B trade platform and contact point. This website is not an official website of the Government of Primorsky Krai or the Russian Federation.</p><span>© 2026</span></footer>
+  <footer class="site-footer"><div class="footer-brand"><span class="brand-mark"><svg class="icon"><use href="#earth"></use></svg></span><span>Russia–Philippines <b>Trade Link</b></span></div><p>Russia–Philippines Trade Link is an independent B2B trade platform and contact point. It is not an official website of the Government of Primorsky Krai or the Russian Federation.</p><span>© 2026</span></footer>
+  <script>
+    (() => {
+      const buttons = [...document.querySelectorAll('[data-filter]')];
+      const cards = [...document.querySelectorAll('.opportunity-card')];
+      buttons.forEach((button) => button.addEventListener('click', () => {
+        const filter = button.dataset.filter;
+        buttons.forEach((item) => {
+          const active = item === button;
+          item.classList.toggle('is-active', active);
+          item.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+        cards.forEach((card) => {
+          const categories = card.dataset.categories.split(' ');
+          card.classList.toggle('is-hidden', filter !== 'all' && !categories.includes(filter));
+        });
+      }));
+    })();
+  </script>
 </body>
 </html>
