@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bright1703.github.io/Russia-Philippines-Trade-Link/sitemap.xml
+Sitemap: https://rusphiltrade.com/sitemap.xml
