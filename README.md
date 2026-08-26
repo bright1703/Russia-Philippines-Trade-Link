@@ -2,7 +2,7 @@
 
 Independent B2B trade platform and contact point connecting Philippine importers and distributors with selected supplier opportunities from Primorsky Krai and the Russian Far East.
 
-Live site: [bright1703.github.io/Russia-Philippines-Trade-Link](https://bright1703.github.io/Russia-Philippines-Trade-Link/)
+Live site: [rusphiltrade.com](https://rusphiltrade.com/)
 
 The page presents supplier opportunities across food, agriculture and fertilizers, packaging, vehicles and industrial equipment. Product availability, import eligibility, documentation, pricing and delivery terms are confirmed separately for each inquiry.
 
