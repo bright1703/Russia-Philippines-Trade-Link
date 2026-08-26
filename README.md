@@ -14,4 +14,4 @@ Open `index.html` directly in a browser, or serve the directory with any static 
 python -m http.server 8000
 ```
 
-The inquiry form keeps the `mailto:rus.import.ph@gmail.com` behavior. The WhatsApp link points to the business contact shown on the published page.
+The buyer inquiry and counterparty check forms submit to Formspree with an inline success or error state. Direct email, WhatsApp and Viber links remain available as alternative contact channels.
