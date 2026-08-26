@@ -168,6 +168,32 @@
     .exporter-accent { margin: 24px 0 15px; padding: 15px 18px; border-left: 2px solid var(--accent); background: #f0eee6; color: var(--ink); font-family: var(--serif); font-size: 17px; line-height: 1.32; }
     .exporter-note { max-width: 620px; margin-bottom: 26px; color: #84968e; font-size: 10px; line-height: 1.5; }
     .exporter-cta { min-height: 49px; padding-left: 21px; padding-right: 21px; }
+    .due-diligence-section { width: 100%; margin: 0; padding: 102px max(36px, calc((100vw - 1180px) / 2)); background: #edf4ef; }
+    .due-diligence-inner { width: min(1180px, 100%); margin: 0 auto; display: grid; grid-template-columns: .92fr 1.08fr; gap: 82px; align-items: start; }
+    .due-diligence-copy h2 { max-width: 630px; margin-bottom: 27px; font-size: clamp(41px, 4.7vw, 60px); line-height: 1.02; }
+    .due-lead { max-width: 600px; margin-bottom: 27px; color: var(--ink-soft); font-size: 16px; line-height: 1.55; }
+    .due-diligence-copy h3 { margin: 31px 0 14px; color: var(--ink); font-family: var(--serif); font-size: 22px; font-weight: 400; }
+    .due-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 11px 18px; margin: 0; padding: 0; list-style: none; color: #5f786e; font-size: 12px; line-height: 1.4; }
+    .due-list li { display: flex; align-items: flex-start; gap: 9px; }
+    .due-list .icon { flex: 0 0 15px; width: 15px; margin-top: 1px; color: var(--green); }
+    .due-accent { margin: 27px 0 0; padding: 17px 20px; border-left: 2px solid var(--accent); background: #f0eee6; color: var(--ink); font-family: var(--serif); font-size: 17px; line-height: 1.35; }
+    .due-result { margin-top: 25px; color: #607970; font-size: 12px; line-height: 1.5; }
+    .due-result strong { display: block; margin-bottom: 5px; color: var(--ink); font-family: var(--serif); font-size: 19px; font-weight: 400; }
+    .due-note { max-width: 620px; margin: 23px 0 0; color: #82958c; font-size: 10px; line-height: 1.5; }
+    .due-diligence-panel { padding: 30px 31px 27px; border: 1px solid #cbdcd3; background: rgba(251,250,246,.78); }
+    .due-form { display: grid; gap: 16px; }
+    .due-form h3 { margin: 0 0 3px; color: var(--ink); font-family: var(--serif); font-size: 26px; font-weight: 400; }
+    .due-form-intro { margin: 0 0 6px; color: #71877e; font-size: 12px; line-height: 1.45; }
+    .due-form label { display: grid; gap: 7px; color: #56736b; font-size: 12px; }
+    .due-form input, .due-form textarea { width: 100%; padding: 10px 0; border: 0; border-bottom: 1px solid #b9ccc3; outline: none; background: transparent; color: var(--ink); font: inherit; font-size: 13px; resize: vertical; }
+    .due-form input:focus, .due-form textarea:focus, .inquiry-form select:focus { border-color: var(--green); }
+    .due-form input::placeholder, .due-form textarea::placeholder { color: #9cafa7; }
+    .due-form .button { justify-self: start; margin-top: 7px; }
+    .due-form small { color: #7e9289; font-size: 10px; line-height: 1.45; }
+    .due-sources { margin-top: 27px; padding-top: 22px; border-top: 1px solid #cbdcd3; color: #6d8379; font-size: 11px; line-height: 1.45; }
+    .due-sources strong { display: block; margin-bottom: 9px; color: var(--ink); font-family: var(--serif); font-size: 18px; font-weight: 400; }
+    .due-sources ul { display: grid; gap: 6px; margin: 0; padding-left: 17px; }
+    .due-sources p { margin: 13px 0 0; color: #84968e; font-size: 10px; }
     .contact-section { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; padding: 98px max(36px, calc((100vw - 1180px) / 2)); background: var(--mint); }
     .contact-copy h2 { margin-bottom: 25px; }
     .contact-copy > p { max-width: 415px; color: var(--ink-soft); font-size: 14px; }
@@ -177,8 +203,8 @@
     .contact-details .icon { width: 16px; }
     .inquiry-form { display: grid; gap: 17px; align-content: start; }
     .inquiry-form label { display: grid; gap: 7px; color: #56736b; font-size: 12px; }
-    .inquiry-form input, .inquiry-form textarea { width: 100%; padding: 10px 0; border: 0; border-bottom: 1px solid #b9ccc3; outline: none; background: transparent; color: var(--ink); font: inherit; font-size: 13px; resize: vertical; }
-    .inquiry-form input:focus, .inquiry-form textarea:focus { border-color: var(--green); }
+    .inquiry-form input, .inquiry-form textarea, .inquiry-form select { width: 100%; padding: 10px 0; border: 0; border-bottom: 1px solid #b9ccc3; outline: none; background: transparent; color: var(--ink); font: inherit; font-size: 13px; resize: vertical; }
+    .inquiry-form input:focus, .inquiry-form textarea:focus, .inquiry-form select:focus { border-color: var(--green); }
     .inquiry-form input::placeholder, .inquiry-form textarea::placeholder { color: #9cafa7; }
     .inquiry-form .button { justify-self: start; margin-top: 10px; }
     .inquiry-form small { color: #56736b; font-size: 11px; line-height: 1.4; }
@@ -200,6 +226,7 @@
       .opportunity-card:nth-child(n + 3) { border-top: 1px solid var(--line); }
       .dark-section { grid-template-columns: 1fr; gap: 50px; }
       .split-section { grid-template-columns: 1fr; gap: 42px; }
+      .due-diligence-inner { grid-template-columns: 1fr; gap: 48px; }
     }
     @media (max-width: 640px) {
       .wrap, .section, .site-footer, .site-header, .hero { width: min(100% - 36px, 1180px); }
@@ -228,6 +255,9 @@
       .exporter-section .split-content > p { font-size: 14px; }
       .exporter-accent { font-size: 16px; }
       .dark-section, .contact-section { padding: 72px 18px; }
+      .due-diligence-section { padding: 72px 18px; }
+      .due-list { grid-template-columns: 1fr; }
+      .due-diligence-panel { padding: 25px 20px 23px; }
       .steps-grid { gap: 30px 18px; }
       .site-footer { display: grid; gap: 14px; }
     }
@@ -248,7 +278,7 @@
 
   <header class="site-header">
     <a class="brand" href="#top"><span class="brand-mark"><svg class="icon"><use href="#earth"></use></svg></span><span>Russia–Philippines<br><b>Trade Link</b></span></a>
-    <nav class="nav-links"><a href="#products">Supplier opportunities</a><a href="#how-it-works">How it works</a><a href="#suppliers">Для российских поставщиков</a><a class="nav-cta" href="#contact">Send an inquiry <svg class="icon"><use href="#arrow"></use></svg></a></nav>
+    <nav class="nav-links"><a href="#products">Supplier opportunities</a><a href="#due-diligence">Due diligence</a><a href="#how-it-works">How it works</a><a href="#suppliers">Для российских поставщиков</a><a class="nav-cta" href="#contact">Send an inquiry <svg class="icon"><use href="#arrow"></use></svg></a></nav>
   </header>
 
   <main>
@@ -264,6 +294,8 @@
     </section>
 
     <section class="trust-strip"><span>For Philippine importers</span><i></i><span>For distributors</span><i></i><span>For industrial buyers</span><i></i><span>For Primorsky Krai suppliers</span></section>
+
+    <section class="due-diligence-section" id="due-diligence"><div class="due-diligence-inner"><div class="due-diligence-copy"><p class="eyebrow">FOR PHILIPPINE IMPORTERS &amp; BUSINESS PARTNERS</p><h2>Planning to sign a contract with a Russian supplier?</h2><p class="due-lead">Before starting cooperation, Philippine companies can request an independent background review of a Russian supplier or business partner.</p><p class="due-lead">We help collect and analyse publicly available information about the company, including its registration status, business history, legal disputes, bankruptcy indicators, enforcement proceedings and other available signs of counterparty reliability.</p><div class="due-accent">The review can be requested not only for suppliers presented through Russia–Philippines Trade Link, but also for a Russian company independently selected by the Philippine buyer.</div><h3>What the review may cover</h3><ul class="due-list"><li><svg class="icon"><use href="#check"></use></svg><span>Company registration and current legal status</span></li><li><svg class="icon"><use href="#check"></use></svg><span>Founders, directors and ownership information where publicly available</span></li><li><svg class="icon"><use href="#check"></use></svg><span>Company operating history and basic business profile</span></li><li><svg class="icon"><use href="#check"></use></svg><span>Arbitration and court cases</span></li><li><svg class="icon"><use href="#check"></use></svg><span>Bankruptcy and enforcement information</span></li><li><svg class="icon"><use href="#check"></use></svg><span>Signs of liquidation, reorganisation or suspended activity</span></li><li><svg class="icon"><use href="#check"></use></svg><span>Public financial and business-risk indicators</span></li><li><svg class="icon"><use href="#check"></use></svg><span>Available export experience and product information</span></li><li><svg class="icon"><use href="#check"></use></svg><span>Comparison of the supplier’s declared information with available public records</span></li></ul><div class="due-result"><strong>What you receive</strong>The client receives a structured background summary with identified risk factors, open questions and practical points to clarify before signing a contract or making an advance payment.</div><p class="due-note">This is an independent information review based on available public and legally accessible sources. It is not a government certificate, legal opinion, audit or guarantee of future performance. Findings are framed as risk indicators, information gaps and points requiring additional verification.</p></div><div class="due-diligence-panel"><form id="due-diligence-form" class="due-form" action="mailto:rus.import.ph@gmail.com" method="get"><h3>Request a Counterparty Check</h3><p class="due-form-intro">Tell us which Russian company you are considering and what you need to clarify before cooperation.</p><label for="due-company">Philippine company name<input id="due-company" name="Philippine company name" autocomplete="organization" placeholder="Your company" required></label><label for="due-contact">Contact person<input id="due-contact" name="Contact person" autocomplete="name" placeholder="Your name" required></label><label for="due-russian-company">Russian company to be checked<input id="due-russian-company" name="Russian company to be checked" placeholder="Company name" required></label><label for="due-details">Company website or registration details<input id="due-details" name="Company website or registration details" placeholder="Website, INN or other details"></label><label for="due-purpose">Purpose of cooperation<textarea id="due-purpose" name="Purpose of cooperation" rows="3" placeholder="What are you planning to buy or discuss?"></textarea></label><label for="due-questions">Additional questions<textarea id="due-questions" name="Additional questions" rows="3" placeholder="What would you like us to clarify?"></textarea></label><button class="button button-primary" type="submit">Request a Counterparty Check <svg class="icon"><use href="#arrow"></use></svg></button><small>We review publicly available and legally accessible information only. We do not promise access to closed databases, bank information or confidential law-enforcement data.</small></form><div class="due-sources"><strong>Possible public sources may include</strong><ul><li>Russian state registration and tax records</li><li>Public court and arbitration records</li><li>Bankruptcy and enforcement databases</li><li>Public corporate and business databases, including SPARK or SBIS where access is available</li><li>Company websites, official documents and open business information</li><li>Other legally accessible public sources</li></ul><p>Reports avoid categorical conclusions such as “fraudulent company”. They identify available signals, open questions and matters that may require enhanced due diligence or independent legal and financial verification.</p></div></div></div></section>
 
     <section class="section products-section" id="products"><div class="section-intro"><p class="eyebrow">SUPPLIER OPPORTUNITIES</p><h2>Specific directions with<br><em>a practical next step.</em></h2><p>These are selected supplier opportunities from Primorsky Krai and the Russian Far East. Details, documents, pricing and delivery terms are confirmed separately for each inquiry.</p></div><div class="opportunity-filters" aria-label="Filter supplier opportunities"><button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">All opportunities</button><button class="filter-button" type="button" data-filter="food" aria-pressed="false">Food</button><button class="filter-button" type="button" data-filter="agriculture" aria-pressed="false">Agriculture &amp; fertilizers</button><button class="filter-button" type="button" data-filter="packaging" aria-pressed="false">Packaging</button><button class="filter-button" type="button" data-filter="equipment" aria-pressed="false">Vehicles &amp; equipment</button></div><div class="opportunity-grid">
       <article class="opportunity-card" data-categories="food agriculture"><div class="card-number">01 / FOOD &amp; AGRICULTURE</div><h3>Agro-Export DV</h3><p>Food ingredients and agricultural raw materials, including wheat flour, oat flakes and vegetable oils such as sunflower oil. Other products are considered when a supplier offer is confirmed.</p><div class="opportunity-meta"><span><strong>Potential buyers</strong> Food importers, distributors, bakeries, noodle and food manufacturers, HoReCa suppliers and retail distributors.</span></div><div class="tag-list"><span>Wheat flour</span><span>Oat flakes</span><span>Vegetable oils</span></div><a href="#contact" class="card-link">Request supplier details <svg class="icon"><use href="#arrow"></use></svg></a></article>
@@ -281,7 +313,7 @@
 
     <section class="section split-section exporter-section" id="suppliers"><div class="split-label"><span class="icon-box"><svg class="icon"><use href="#handshake"></use></svg></span><span>ДЛЯ РОССИЙСКИХ ПОСТАВЩИКОВ</span></div><div class="split-content"><h2>Хотите понять,<br><em>есть ли у вашего товара покупатель на Филиппинах?</em></h2><p>Не выходите на новый рынок вслепую. Поможем оценить, кому на Филиппинах может быть нужен ваш товар, определить подходящие сегменты и найти потенциальных импортёров, дистрибьюторов и промышленных потребителей.</p><div class="exporter-benefits"><div class="exporter-benefit"><span class="icon-box"><svg class="icon"><use href="#check"></use></svg></span><span>Проверим, для каких покупателей и отраслей может подойти ваша продукция</span></div><div class="exporter-benefit"><span class="icon-box"><svg class="icon"><use href="#check"></use></svg></span><span>Подберём потенциальных импортёров и дистрибьюторов под конкретный товар</span></div><div class="exporter-benefit"><span class="icon-box"><svg class="icon"><use href="#check"></use></svg></span><span>Поможем подготовить первое обращение и организовать деловой контакт</span></div><div class="exporter-benefit"><span class="icon-box"><svg class="icon"><use href="#check"></use></svg></span><span>Объясним, какие документы, упаковка и условия поставки потребуются на следующем этапе</span></div></div><div class="exporter-accent">Ваша задача — предоставить информацию о товаре. Наша задача — помочь понять, кому его предлагать на Филиппинах и с чего начать переговоры.</div><p class="exporter-note">Мы не обещаем автоматическую продажу или заключение контракта. Сначала проверяется рыночный потенциал товара, требования к его ввозу и наличие подходящих потенциальных покупателей.</p><a class="button button-primary exporter-cta" href="mailto:rus.import.ph@gmail.com">Представить товар для оценки <svg class="icon"><use href="#arrow"></use></svg></a></div></section>
 
-    <section class="contact-section" id="contact"><div class="contact-copy"><p class="eyebrow">START A CONVERSATION</p><h2>Have a product<br><em>in mind?</em></h2><p>Send the basic details. We will assess what information is needed and whether a suitable supplier can be identified.</p><div class="contact-details"><a href="mailto:rus.import.ph@gmail.com"><svg class="icon" aria-hidden="true"><use href="#mail"></use></svg> rus.import.ph@gmail.com</a><a href="https://wa.me/639215884430"><svg class="icon" aria-hidden="true"><use href="#message"></use></svg> WhatsApp business inquiries</a><span><svg class="icon" aria-hidden="true"><use href="#pin"></use></svg> Republic of the Philippines</span></div></div><form id="inquiry-form" class="inquiry-form" action="mailto:rus.import.ph@gmail.com" method="get" aria-describedby="inquiry-consent"><label for="company">Company name<input id="company" name="Company" autocomplete="organization" placeholder="Your company" required></label><label for="contact">Contact person<input id="contact" name="Contact" autocomplete="name" placeholder="Your name" required></label><label for="product">Product or category<input id="product" name="Product" autocomplete="off" placeholder="What are you looking for?" required></label><label for="volume">Required volume<input id="volume" name="Volume" autocomplete="off" placeholder="Estimated volume or frequency"></label><label for="message">Message<textarea id="message" name="Message" rows="4" placeholder="Packaging, delivery point or any other details"></textarea></label><button class="button button-primary" type="submit">Send inquiry <svg class="icon" aria-hidden="true"><use href="#arrow"></use></svg></button><small id="inquiry-consent">By sending an inquiry, you agree that we may use the information to respond to your business request.</small></form></section>
+    <section class="contact-section" id="contact"><div class="contact-copy"><p class="eyebrow">START A CONVERSATION</p><h2>Have a product<br><em>in mind?</em></h2><p>Send the basic details. We will assess what information is needed and whether a suitable supplier can be identified.</p><div class="contact-details"><a href="mailto:rus.import.ph@gmail.com"><svg class="icon" aria-hidden="true"><use href="#mail"></use></svg> rus.import.ph@gmail.com</a><a href="https://wa.me/639215884430"><svg class="icon" aria-hidden="true"><use href="#message"></use></svg> WhatsApp business inquiries</a><span><svg class="icon" aria-hidden="true"><use href="#pin"></use></svg> Republic of the Philippines</span></div></div><form id="inquiry-form" class="inquiry-form" action="mailto:rus.import.ph@gmail.com" method="get" aria-describedby="inquiry-consent"><label for="inquiry-type">Inquiry type<select id="inquiry-type" name="Inquiry type" required><option value="">Select an inquiry type</option><option>Product sourcing</option><option>Supplier introduction</option><option>Russian counterparty check</option><option>Other business inquiry</option></select></label><label for="company">Company name<input id="company" name="Company" autocomplete="organization" placeholder="Your company" required></label><label for="contact">Contact person<input id="contact" name="Contact" autocomplete="name" placeholder="Your name" required></label><label for="product">Product or category<input id="product" name="Product" autocomplete="off" placeholder="What are you looking for?" required></label><label for="volume">Required volume<input id="volume" name="Volume" autocomplete="off" placeholder="Estimated volume or frequency"></label><label for="message">Message<textarea id="message" name="Message" rows="4" placeholder="Packaging, delivery point or any other details"></textarea></label><button class="button button-primary" type="submit">Send inquiry <svg class="icon" aria-hidden="true"><use href="#arrow"></use></svg></button><small id="inquiry-consent">By sending an inquiry, you agree that we may use the information to respond to your business request.</small></form></section>
   </main>
 
   <footer class="site-footer"><div class="footer-brand"><span class="brand-mark"><svg class="icon"><use href="#earth"></use></svg></span><span>Russia–Philippines <b>Trade Link</b></span></div><p>Russia–Philippines Trade Link is an independent B2B trade platform and contact point. It is not an official website of the Government of Primorsky Krai or the Russian Federation.</p><span>© 2026</span></footer>
@@ -307,6 +339,7 @@
         event.preventDefault();
         const values = Object.fromEntries(new FormData(inquiryForm).entries());
         const body = [
+          `Inquiry type: ${values['Inquiry type'] || ''}`,
           `Company: ${values.Company || ''}`,
           `Contact: ${values.Contact || ''}`,
           `Product or category: ${values.Product || ''}`,
@@ -314,7 +347,7 @@
           '',
           `Message: ${values.Message || ''}`
         ].join('\n');
-        const subject = `Supplier inquiry: ${values.Product || 'new request'}`;
+        const subject = `${values['Inquiry type'] || 'Business inquiry'}: ${values.Product || 'new request'}`;
         window.location.href = `mailto:rus.import.ph@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       });
     })();
