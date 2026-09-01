@@ -1,0 +1,15 @@
+{
+  "$comment": "Последний обработанный message_id по каждому каналу. null = канал ещё не обработан (первый запуск возьмёт последние 7 дней). Обновляется только после успешного построения дайджеста.",
+  "channels": {
+    "Russia_Philippines_trade": { "last_message_id": null, "last_checked_utc": null },
+    "exportprim": { "last_message_id": null, "last_checked_utc": null },
+    "ams_primorsky": { "last_message_id": null, "last_checked_utc": null },
+    "rustorgpred": { "last_message_id": null, "last_checked_utc": null },
+    "rusexportnews": { "last_message_id": null, "last_checked_utc": null },
+    "mcxae": { "last_message_id": null, "last_checked_utc": null },
+    "fsvps_official": { "last_message_id": null, "last_checked_utc": null },
+    "mcx_ru": { "last_message_id": null, "last_checked_utc": null },
+    "customs_rf": { "last_message_id": null, "last_checked_utc": null },
+    "Russian_Embassy_in_Philippines": { "last_message_id": null, "last_checked_utc": null }
+  }
+}

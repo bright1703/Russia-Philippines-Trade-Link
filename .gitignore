@@ -2,3 +2,9 @@ work/
 outputs/
 .DS_Store
 Thumbs.db
+
+# Telegram monitoring (trade-agent/telegram) — секреты и промежуточный буфер
+trade-agent/telegram/.env
+trade-agent/telegram/.raw/
+__pycache__/
+*.pyc
