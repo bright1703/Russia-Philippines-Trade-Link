@@ -69,7 +69,6 @@ class AnthropicProvider:
         payload = {
             "model": model,
             "max_tokens": max_tokens,
-            "temperature": temperature,
             "system": system,
             "messages": [{"role": "user", "content": user}],
         }

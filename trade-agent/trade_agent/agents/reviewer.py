@@ -148,7 +148,9 @@ class Reviewer:
             raw = self.llm.complete(
                 SYSTEM_PROMPT, self._build_prompt(analysis, signal, item),
                 model=getattr(self.llm, "model_deep", None) or None,
-                max_tokens=1200,
+                # Рецензент должен вернуть закрытый JSON даже при длинном
+                # списке проблем. Обрезанный JSON нельзя публиковать.
+                max_tokens=1800,
             )
         except LLMUnavailable as exc:
             LOG.warning("Reviewer недоступен (%s) — вывод не подтверждён", exc)

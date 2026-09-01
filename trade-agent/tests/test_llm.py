@@ -21,8 +21,10 @@ class _Response:
 class _Session:
     def __init__(self, response):
         self.response = response
+        self.kwargs = None
 
     def post(self, *args, **kwargs):
+        self.kwargs = kwargs
         return self.response
 
 
@@ -32,3 +34,11 @@ def test_anthropic_malformed_success_response_is_llm_error(payload):
     provider.session = _Session(_Response(payload))
     with pytest.raises(LLMError):
         provider.complete("system", "user", "model", 100, 0.0, 1)
+
+
+def test_anthropic_request_omits_deprecated_temperature():
+    provider = AnthropicProvider("test-key")
+    session = _Session(_Response({"content": [], "usage": {}}))
+    provider.session = session
+    provider.complete("system", "user", "model", 100, 0.0, 1)
+    assert "temperature" not in session.kwargs["json"]

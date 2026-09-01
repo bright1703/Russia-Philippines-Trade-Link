@@ -28,10 +28,8 @@ sudo -u tradeagent cp -r /opt/trade-agent/repo/trade-agent/. /opt/trade-agent/
 Если репозиторий разворачивается целиком, достаточно, чтобы рабочим каталогом
 был каталог `trade-agent` — именно из него запускаются команды `python -m`.
 
-Проверьте, что рядом с пакетом перенесен каталог `telegram/` из основного
-репозитория. В архиве Trade Agent этого каталога нет. Без экспортных файлов
-Telegram источник остается выключенным. После проверки read-only модуля
-включите `enabled: true` для источника `telegram` в `sources.yml`.
+Для прямого режима Telethon нужны API ID, API hash и уже авторизованная
+сессия. Каталог `telegram/` нужен только старому экспортному режиму.
 
 ## 4. Виртуальное окружение
 
@@ -106,6 +104,10 @@ sudo -u tradeagent .venv/bin/python -m trade_agent.fetch --days 7 -v
 sudo -u tradeagent .venv/bin/python -m trade_agent.process --limit 50 -v
 sudo -u tradeagent .venv/bin/python -m trade_agent.digest
 cat digest/latest.md
+sudo -u tradeagent .venv/bin/python -m trade_agent.notify
+
+# единый запуск вместо трех отдельных команд
+sudo -u tradeagent .venv/bin/python -m trade_agent.run_pipeline
 ```
 
 ## 8. Профили компаний

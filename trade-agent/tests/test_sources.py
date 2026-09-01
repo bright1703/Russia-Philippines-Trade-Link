@@ -197,7 +197,9 @@ def test_all_web_sources_are_disabled_by_default():
     assert all(not c.get("enabled") for c in web)
 
 
-def test_enabled_sources_are_only_tenders_by_default():
+def test_enabled_sources_are_tenders_and_read_only_telegram_by_default():
     _, configs = load_source_configs(PROJECT / "sources.yml")
     enabled = {c["id"] for c in configs if c.get("enabled")}
-    assert enabled == {"tenders"}
+    assert enabled == {"tenders", "telegram"}
+    telegram = next(c for c in configs if c["id"] == "telegram")
+    assert telegram["mode"] == "telethon"

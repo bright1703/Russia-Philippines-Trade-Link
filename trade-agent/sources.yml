@@ -26,13 +26,21 @@ sources:
   - id: telegram
     name: Telegram-каналы (read-only)
     adapter: telegram
-    # В основном репозитории пока нет каталога telegram/ и экспортов.
-    # Включить после переноса существующего read-only модуля.
-    enabled: false
-    mode: export            # export | telethon | off
+    enabled: true
+    mode: telethon           # export | telethon | off
     # export_dir: telegram
     export_globs: ["**/*.jsonl", "**/*.json"]
-    # channels: ["@example"]   # только для режима telethon
+    channels:
+      - Russia_Philippines_trade
+      - exportprim
+      - ams_primorsky
+      - rustorgpred
+      - rusexportnews
+      - mcxae
+      - fsvps_official
+      - mcx_ru
+      - customs_rf
+      - Russian_Embassy_in_Philippines
     limit: 200
 
   # --- официальные ведомства -------------------------------------------

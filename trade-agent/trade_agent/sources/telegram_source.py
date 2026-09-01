@@ -197,7 +197,10 @@ class TelegramSource(SourceAdapter):
         result = SourceResult(source_id=self.source_id)
         api_id = os.environ.get("TELEGRAM_API_ID", "")
         api_hash = os.environ.get("TELEGRAM_API_HASH", "")
-        session = os.environ.get("TELEGRAM_SESSION", "")
+        # Поддерживаем оба имени. Старый read-only модуль использует
+        # TELEGRAM_SESSION_STRING, новый конвейер — TELEGRAM_SESSION.
+        session = (os.environ.get("TELEGRAM_SESSION", "")
+                   or os.environ.get("TELEGRAM_SESSION_STRING", ""))
         channels = self.config.get("channels") or []
         if not (api_id and api_hash and session and channels):
             result.error = ("Telethon-режим не настроен: нужны TELEGRAM_API_ID, "
@@ -205,6 +208,7 @@ class TelegramSource(SourceAdapter):
             return result
         try:
             from telethon.sync import TelegramClient  # noqa: WPS433
+            from telethon.sessions import StringSession  # noqa: WPS433
         except ImportError:
             result.error = "Telethon не установлен — используйте режим export"
             return result
@@ -214,7 +218,11 @@ class TelegramSource(SourceAdapter):
         try:
             # Клиент создаётся только для чтения уже существующей сессии.
             # Никакого процесса авторизации здесь нет и быть не должно.
-            client = ReadOnlyTelegram(TelegramClient(session, int(api_id), api_hash))
+            # Session string нельзя передавать как обычный путь к .session.
+            # Иначе Telethon пытается открыть SQLite-файл с длинным именем.
+            client = ReadOnlyTelegram(
+                TelegramClient(StringSession(session), int(api_id), api_hash)
+            )
             client.connect()
             if not client.is_user_authorized():
                 result.error = ("Telegram-сессия не авторизована. "

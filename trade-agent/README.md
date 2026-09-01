@@ -30,7 +30,9 @@ cp .env.example .env          # заполнить ANTHROPIC_API_KEY и токе
 python -m trade_agent.fetch     # собрать сырьё
 python -m trade_agent.process   # Scout → Analyst → Reviewer → Radar
 python -m trade_agent.digest    # сформировать дайджест
-python -m trade_agent.bot       # Telegram-бот доставки (по желанию)
+python -m trade_agent.bot       # команды /latest и /health
+python -m trade_agent.notify    # отправить последний дайджест в личный чат
+python -m trade_agent.run_pipeline  # полный утренний прогон
 ```
 
 Проверка без сети и без ключей:
@@ -66,7 +68,7 @@ trade-agent/
     companies/            чтение профилей и импорт каталога
     utils/                хэши, повторы, логирование, HTTP
   tenders/                существующий тендерный модуль (работает и отдельно)
-  telegram/               внешний модуль сбора Telegram, нужен при переносе
+  telegram/               необязательные экспорты и локальные credentials
   brain/                  человекочитаемая база знаний (Markdown)
   digest/                 latest.md и архив дайджестов
   deploy/                 systemd unit-файлы и пример crontab
@@ -80,9 +82,10 @@ trade-agent/
 О том, почему пакет называется `trade_agent`, а каталог — `trade-agent`,
 см. ARCHITECTURE.md, раздел «Именование модулей».
 
-Каталог `telegram/` не входит в этот пакет. Его нужно перенести из основного
-репозитория отдельно. Пока экспортные файлы не появились в `telegram/`,
-источник Telegram завершится частичным сбоем и не будет собирать данные.
+Для прямого read-only сбора используются `TELEGRAM_API_ID`,
+`TELEGRAM_API_HASH` и уже авторизованная `TELEGRAM_SESSION_STRING` или
+`TELEGRAM_SESSION`. Каталог `telegram/` нужен только для старого экспортного
+режима.
 
 ## Документация
 
@@ -106,8 +109,8 @@ trade-agent/
 
 **Ни один веб-источник не включён.** Наличие класса адаптера не делает
 источник рабочим: каждый адаптер нужно проверить на живой странице
-отдельно. По умолчанию включен только `tenders`. Telegram включается после
-переноса каталога `telegram/` и его экспортных файлов из основного репозитория.
+отдельно. Для полного прогона по умолчанию используется Telegram. Источник
+`tenders` можно добавить после проверки сетевого доступа к его сайтам.
 
 ## Ключевые правила безопасности
 
