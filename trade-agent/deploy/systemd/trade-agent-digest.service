@@ -1,0 +1,22 @@
+[Unit]
+Description=Trade Agent — дайджест
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=tradeagent
+WorkingDirectory=/opt/trade-agent
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/trade-agent/.venv/bin/python -m trade_agent.digest
+TimeoutStartSec=1800
+Nice=10
+# безопасность
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/trade-agent/data /opt/trade-agent/logs /opt/trade-agent/digest /opt/trade-agent/tenders
+
+[Install]
+WantedBy=multi-user.target

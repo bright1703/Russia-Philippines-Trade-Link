@@ -1,0 +1,15 @@
+# Production-зависимости Trade Agent Intelligence.
+# pytest здесь намеренно НЕТ — тестовые зависимости в requirements-dev.txt.
+#
+# Воспроизводимая установка:
+#   pip install -r requirements.txt -c constraints.txt
+#
+requests>=2.31,<3
+beautifulsoup4>=4.12,<5
+python-dateutil>=2.8,<3
+PyYAML>=6.0,<7
+pypdf>=3.17,<6
+
+# Опционально: только для режима telegram.mode=telethon в sources.yml.
+# Устанавливать вручную, в базовый набор не входит.
+# telethon>=1.34,<2

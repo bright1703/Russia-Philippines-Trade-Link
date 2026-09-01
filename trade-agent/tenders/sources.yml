@@ -1,0 +1,180 @@
+# Конфигурация источников тендерного радара.
+# Добавление нового источника не требует изменения основной логики:
+# достаточно описать его здесь и указать существующий adapter.
+#
+# adapter:
+#   generic_html  — универсальный парсер списков объявлений по CSS-селекторам
+#   philgeps      — специальный адаптер портала госзакупок PhilGEPS
+#
+# Все селекторы необязательны: если они не заданы или не сработали,
+# generic_html переходит на эвристический режим (поиск ссылок с
+# закупочными ключевыми словами внутри области контента).
+
+defaults:
+  request_timeout: 30          # секунд на запрос
+  retries: 2                   # повторные попытки при сетевой ошибке
+  retry_backoff: 3.0           # секунд, множится на номер попытки
+  rate_limit_delay: 2.5        # пауза между запросами к одному хосту
+  user_agent: "RPTL-TenderRadar/1.0 (public procurement monitoring; contact: trade-agent)"
+  max_items_per_source: 60
+  max_detail_pages: 20
+  respect_robots: true
+
+sources:
+  - id: philgeps
+    name: PhilGEPS
+    url: https://notices.philgeps.gov.ph/
+    enabled: true
+    priority: 5
+    type: procurement_portal
+    adapter: philgeps
+    check_every_hours: 24
+    language: en
+    allowed_statuses: [open, closing_soon, urgent]
+    notes: >
+      Официальный портал государственных закупок Филиппин.
+      Публичный поиск отдаётся SPA-приложением; адаптер пробует
+      открытые JSON-эндпоинты и при неудаче честно сообщает об ошибке,
+      не блокируя остальные источники.
+    api_candidates:
+      - https://notices.philgeps.gov.ph/api/opportunities/search
+      - https://notices.philgeps.gov.ph/api/notices/search
+    detail_url_template: "https://notices.philgeps.gov.ph/GEPSNONPILOT/Tender/SplashBidNoticeAbstractUI.aspx?refid={notice_id}"
+
+  - id: da_bid_opportunities
+    name: Department of Agriculture
+    url: https://www.da.gov.ph/transparency/bid-opportunities/
+    enabled: true
+    priority: 5
+    type: official_html
+    adapter: generic_html
+    check_every_hours: 24
+    language: en
+    allowed_statuses: [open, closing_soon, urgent]
+    default_agency: Department of Agriculture
+    default_category: agriculture
+    selectors:
+      container: ".entry-content, .post-content, main, #content"
+      item: "li, tr, p, article"
+      link: "a"
+      title: "a"
+    follow_detail: true
+
+  - id: bfar_bids
+    name: BFAR
+    url: https://www.bfar.da.gov.ph/transparency/bids-and-awards/
+    enabled: true
+    priority: 5
+    type: official_html
+    adapter: generic_html
+    check_every_hours: 24
+    language: en
+    allowed_statuses: [open, closing_soon, urgent]
+    default_agency: Bureau of Fisheries and Aquatic Resources
+    default_category: fisheries
+    selectors:
+      container: ".entry-content, .post-content, main, #content"
+      item: "li, tr, p, article"
+      link: "a"
+      title: "a"
+    follow_detail: true
+
+  - id: doe_transparency
+    name: Department of Energy
+    url: https://doe.gov.ph/articles/group/reports-transparency
+    enabled: true
+    priority: 4
+    type: official_html
+    adapter: generic_html
+    check_every_hours: 24
+    language: en
+    allowed_statuses: [open, closing_soon, urgent]
+    default_agency: Department of Energy
+    default_category: energy
+    selectors:
+      container: ".view-content, .region-content, main, #content"
+      item: "div.views-row, li, tr, article"
+      link: "a"
+      title: "a"
+    follow_detail: true
+
+  - id: nfa_bids
+    name: National Food Authority
+    url: https://nfaweb.nfa.gov.ph/
+    enabled: true
+    priority: 4
+    type: official_html
+    adapter: generic_html
+    check_every_hours: 24
+    language: en
+    allowed_statuses: [open, closing_soon, urgent]
+    default_agency: National Food Authority
+    default_category: food
+    selectors:
+      container: "main, #content, body"
+      item: "li, tr, div.card, article"
+      link: "a"
+      title: "a"
+    follow_detail: true
+
+  # --- Второй этап: заготовки, выключены по умолчанию ---------------------
+  - id: dti
+    name: Department of Trade and Industry
+    url: https://www.dti.gov.ph/transparency/bids-and-awards/
+    enabled: false
+    priority: 3
+    type: official_html
+    adapter: generic_html
+    default_agency: Department of Trade and Industry
+
+  - id: boi
+    name: Board of Investments
+    url: https://boi.gov.ph/
+    enabled: false
+    priority: 3
+    type: official_html
+    adapter: generic_html
+    default_agency: Board of Investments
+
+  - id: ppa
+    name: Philippine Ports Authority
+    url: https://www.ppa.com.ph/bids-and-awards
+    enabled: false
+    priority: 4
+    type: official_html
+    adapter: generic_html
+    default_agency: Philippine Ports Authority
+    default_category: ports
+
+  - id: dpwh
+    name: Department of Public Works and Highways
+    url: https://www.dpwh.gov.ph/dpwh/business/procurement
+    enabled: false
+    priority: 3
+    type: official_html
+    adapter: generic_html
+    default_agency: Department of Public Works and Highways
+
+  - id: dotr
+    name: Department of Transportation
+    url: https://dotr.gov.ph/transparency-seal.html
+    enabled: false
+    priority: 3
+    type: official_html
+    adapter: generic_html
+    default_agency: Department of Transportation
+
+  # Facebook — только ранние сигналы, подтверждение обязательно.
+  # В первой версии выключен: без авторизации и без cookies.
+  - id: fb_early_signals
+    name: Facebook (early signals)
+    url: ""
+    enabled: false
+    priority: 1
+    type: early_signal
+    adapter: generic_html
+    requires_confirmation: true
+    notes: >
+      Ранние сигналы (анонсы закупок, инвестпроектов, потребностей ведомств).
+      Не является тендерным источником. Любая находка помечается как
+      unconfirmed и должна быть подтверждена на PhilGEPS или сайте ведомства.

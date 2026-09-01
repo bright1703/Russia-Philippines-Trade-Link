@@ -1,0 +1,248 @@
+# Профили направлений, потенциально интересных компаниям Приморского края.
+#
+# Поля профиля:
+#   id, name          — идентификатор и название направления
+#   keywords          — ключевые слова (нижний регистр, ищутся как слова/подстроки)
+#   strong_keywords   — слова, дающие повышенный вес (прямое попадание)
+#   exclude_keywords  — слова, при которых профиль не применяется
+#   company_types     — типы российских компаний, которым это направление подходит
+#   base_weight       — базовый коэффициент релевантности (0.0 – 1.0)
+
+meta:
+  region: Приморский край
+  country_of_origin: Russia
+  target_market: Philippines
+
+profiles:
+  - id: seafood
+    name: Рыба и морепродукты
+    base_weight: 1.0
+    keywords:
+      - seafood
+      - fish
+      - fishery
+      - fisheries
+      - shrimp
+      - prawn
+      - tuna
+      - salmon
+      - squid
+      - crab
+      - marine
+      - aquaculture
+      - mariculture
+      - cold storage
+      - coldstorage
+      - ice plant
+      - frozen food
+      - frozen fish
+      - fishmeal
+      - fishing gear
+      - fishing vessel
+      - refrigerated
+      - blast freezer
+    strong_keywords:
+      - seafood
+      - frozen fish
+      - salmon
+      - tuna
+      - cold storage
+      - aquaculture
+      - fisheries
+    exclude_keywords:
+      - fishing tournament
+      - fish sanctuary signage
+      - t-shirt
+      - souvenir
+    company_types:
+      - Рыбодобывающие и рыбоперерабатывающие компании Приморья
+      - Экспортёры мороженой рыбы и морепродуктов
+      - Поставщики холодильного оборудования и льдогенераторов
+
+  - id: food_agri
+    name: Пищевая продукция и сельское хозяйство
+    base_weight: 0.95
+    keywords:
+      - food supply
+      - foodstuff
+      - rice
+      - wheat
+      - flour
+      - corn
+      - soybean
+      - meat
+      - pork
+      - beef
+      - poultry
+      - chicken
+      - vegetables
+      - fertilizer
+      - feed
+      - animal feed
+      - grain
+      - agricultural machinery
+      - farm machinery
+      - tractor
+      - milling
+      - sugar
+      - cooking oil
+      - milk
+      - dairy
+    strong_keywords:
+      - wheat
+      - flour
+      - fertilizer
+      - grain
+      - agricultural machinery
+      - feed
+      - food supply
+    exclude_keywords:
+      - catering services
+      - meals for
+      - snacks for
+      - food packs for distribution
+      - seedlings
+      - disposal of
+      - empty sacks
+      - empty grain sacks
+      - scrap materials
+    company_types:
+      - Зернотрейдеры и мукомольные предприятия
+      - Производители минеральных удобрений
+      - Поставщики сельхозтехники и запчастей
+      - Мясопереработка ДФО
+
+  - id: logistics
+    name: Логистика и порты
+    base_weight: 0.9
+    keywords:
+      - cargo
+      - freight
+      - shipping
+      - vessel charter
+      - container
+      - warehouse
+      - warehousing
+      - cold chain
+      - trucking
+      - hauling
+      - transport
+      - transportation services
+      - port
+      - terminal
+      - logistics
+      - customs
+      - stevedoring
+      - forwarding
+      - reefer
+    strong_keywords:
+      - freight
+      - shipping
+      - cold chain
+      - container
+      - port
+      - logistics
+    exclude_keywords:
+      - transport allowance
+      - shuttle service for employees
+      - vehicle rental for seminar
+    company_types:
+      - Морские перевозчики и линейные агенты Владивостока
+      - Экспедиторы и таможенные представители
+      - Операторы холодовой цепи и складов
+
+  - id: equipment
+    name: Оборудование и промышленность
+    base_weight: 0.85
+    keywords:
+      - machinery
+      - equipment
+      - generator
+      - genset
+      - pump
+      - engine
+      - spare parts
+      - construction equipment
+      - industrial equipment
+      - repair
+      - maintenance
+      - compressor
+      - boiler
+      - transformer
+      - welding
+      - steel
+      - pipe
+      - electrical equipment
+      - laboratory equipment
+    strong_keywords:
+      - machinery
+      - generator
+      - industrial equipment
+      - spare parts
+      - construction equipment
+    exclude_keywords:
+      - office equipment
+      - computer equipment
+      - printer
+      - photocopier
+      - ink cartridge
+      - furniture
+      - janitorial
+    company_types:
+      - Машиностроительные заводы Приморья и ДФО
+      - Поставщики судового и энергетического оборудования
+      - Сервисные и ремонтные предприятия
+
+  - id: energy_fuel
+    name: Энергетика и топливо
+    base_weight: 0.8
+    keywords:
+      - coal
+      - petroleum
+      - diesel
+      - fuel
+      - lubricant
+      - lpg
+      - power plant
+      - electrification
+      - solar
+      - energy supply
+      - turbine
+      - power generation
+    strong_keywords:
+      - coal
+      - fuel
+      - petroleum
+      - power plant
+    exclude_keywords:
+      - fuel allowance
+      - gasoline for service vehicle
+    company_types:
+      - Угольные экспортёры и трейдеры
+      - Поставщики нефтепродуктов
+      - Энергетическое машиностроение
+
+  - id: timber_materials
+    name: Лес и строительные материалы
+    base_weight: 0.75
+    keywords:
+      - lumber
+      - timber
+      - plywood
+      - wood
+      - cement
+      - construction materials
+      - roofing
+      - reinforcing steel
+      - rebar
+    strong_keywords:
+      - lumber
+      - timber
+      - plywood
+      - construction materials
+    exclude_keywords:
+      - tree planting
+      - wooden plaque
+    company_types:
+      - Лесоэкспортёры Приморского края
+      - Производители пиломатериалов и фанеры

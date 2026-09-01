@@ -1,0 +1,10 @@
+[Unit]
+Description=Trade Agent — обработка агентами по расписанию
+
+[Timer]
+OnCalendar=*-*-* 06:00:00
+Persistent=true
+RandomizedDelaySec=300
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,22 @@
+# Зафиксированные версии, на которых реально проходят тесты.
+# Проверено: 2026-09-01, Python 3.11.15.
+# Установка: pip install -r requirements.txt -c constraints.txt
+#
+# --- production ---
+requests==2.33.1
+beautifulsoup4==4.14.3
+python-dateutil==2.9.0.post0
+PyYAML==6.0.3
+pypdf==3.17.4
+certifi==2026.4.22
+charset-normalizer==3.4.7
+idna==3.13
+urllib3==2.6.3
+soupsieve==2.8.3
+six==1.17.0
+typing-extensions==4.15.0
+# --- только для тестов (requirements-dev.txt) ---
+pytest==9.1.1
+iniconfig==2.3.0
+packaging==26.1
+pluggy==1.6.0

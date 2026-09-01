@@ -1,0 +1,131 @@
+# Источники Trade Agent Intelligence.
+# Тендерный модуль и Telegram подключаются как обычные источники.
+# Веб-источники добавляются одной записью; для нестандартного сайта
+# создаётся отдельный класс в trade_agent/sources/web/.
+
+defaults:
+  timeout: 30
+  retries: 3
+  retry_backoff: 3
+  rate_limit_delay: 2
+  respect_robots: true
+  max_items: 40
+  follow_detail: false
+  max_detail_pages: 8
+
+sources:
+  # --- уже работающие модули -------------------------------------------
+  - id: tenders
+    name: Тендерный радар (PhilGEPS, DA, BFAR, DOE, NFA)
+    adapter: tenders
+    enabled: true
+    topic: tenders
+    # path: подставляется из настроек (trade-agent/tenders)
+    # fixtures_dir: tenders/tests/fixtures   # офлайн-режим
+
+  - id: telegram
+    name: Telegram-каналы (read-only)
+    adapter: telegram
+    # В основном репозитории пока нет каталога telegram/ и экспортов.
+    # Включить после переноса существующего read-only модуля.
+    enabled: false
+    mode: export            # export | telethon | off
+    # export_dir: telegram
+    export_globs: ["**/*.jsonl", "**/*.json"]
+    # channels: ["@example"]   # только для режима telethon
+    limit: 200
+
+  # --- официальные ведомства -------------------------------------------
+  - id: dti
+    name: Department of Trade and Industry
+    adapter: web_html
+    enabled: false
+    url: https://www.dti.gov.ph/news/
+    agency: DTI
+    topic: trade_policy
+    container_selector: "main, .entry-content, #content"
+
+  - id: da
+    name: Department of Agriculture
+    adapter: web_html
+    enabled: false
+    url: https://www.da.gov.ph/category/news/
+    agency: DA
+    topic: agriculture
+    container_selector: "main, .entry-content, #content"
+
+  - id: bai
+    name: Bureau of Animal Industry
+    adapter: web_html
+    enabled: false
+    url: https://www.bai.gov.ph/
+    agency: BAI
+    topic: meat_import
+    container_selector: "main, #content"
+
+  - id: bfar
+    name: Bureau of Fisheries and Aquatic Resources
+    adapter: web_html
+    enabled: false
+    url: https://www.bfar.da.gov.ph/news/
+    agency: BFAR
+    topic: fisheries
+    container_selector: "main, .entry-content, #content"
+
+  - id: fpa
+    name: Fertilizer and Pesticide Authority
+    adapter: web_html
+    enabled: false
+    url: https://fpa.da.gov.ph/
+    agency: FPA
+    topic: fertilizer
+    container_selector: "main, #content"
+
+  - id: psa
+    name: Philippine Statistics Authority
+    adapter: web_html
+    enabled: false
+    url: https://psa.gov.ph/statistics/trade
+    agency: PSA
+    topic: trade_statistics
+    container_selector: "main, #content"
+
+  - id: tariff_commission
+    name: Philippine Tariff Commission
+    adapter: web_html
+    enabled: false
+    url: https://www.tariffcommission.gov.ph/
+    agency: Tariff Commission
+    topic: tariffs
+    container_selector: "main, #content"
+
+  - id: boc
+    name: Bureau of Customs
+    adapter: web_html
+    enabled: false
+    url: https://customs.gov.ph/category/customs-memorandum-order/
+    agency: BOC
+    topic: customs
+    container_selector: "main, .entry-content, #content"
+
+  # --- ассоциации, пресс-релизы, СМИ ------------------------------------
+  - id: assoc_meat
+    name: Отраслевые ассоциации (мясо, корма)
+    adapter: web_html
+    enabled: false
+    url: ""
+    topic: associations
+
+  - id: press_releases
+    name: Официальные пресс-релизы (RSS)
+    adapter: web_rss
+    enabled: false
+    url: ""
+    topic: press
+
+  - id: media_business
+    name: Профильные СМИ (RSS)
+    adapter: web_rss
+    enabled: false
+    url: ""
+    topic: media

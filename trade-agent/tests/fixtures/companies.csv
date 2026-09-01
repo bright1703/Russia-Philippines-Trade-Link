@@ -1,0 +1,4 @@
+name,slug,products,hs_codes,categories,export_experience,status,regulators,next_step
+Тестовый мясокомбинат,test-meat,"свинина;pork;субпродукты","0203;0206",MEAT,есть поставки в Азию,профиль тестовый,BAI,подтвердить аккредитацию
+Тестовый агрохим,test-fert,"карбамид;urea;NPK","3102;3105",FERTILIZER,нет,профиль тестовый,FPA,найти локального дистрибьютора
+Тестовый логист,test-log,"контейнерные перевозки;cold chain","",LOGISTICS,есть,профиль тестовый,,оценить маршрут

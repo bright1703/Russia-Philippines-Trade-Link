@@ -1,0 +1,21 @@
+[Unit]
+Description=Trade Agent — Telegram Bot (доставка результатов)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=tradeagent
+WorkingDirectory=/opt/trade-agent
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/trade-agent/.venv/bin/python -m trade_agent.bot
+Restart=on-failure
+RestartSec=15
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/trade-agent/data /opt/trade-agent/logs
+
+[Install]
+WantedBy=multi-user.target
