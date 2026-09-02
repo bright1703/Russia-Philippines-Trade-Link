@@ -1,6 +1,7 @@
 from trade_agent.alerts import detect_mandatory_policy_alert
 from trade_agent.companies.catalog import normalize_catalog_row
-from trade_agent.models import Company, RawItem
+from trade_agent.digest import DigestBuilder
+from trade_agent.models import Company, RawItem, Signal
 
 
 def test_catalog_row_keeps_source_and_extracts_products_and_hs_codes():
@@ -63,3 +64,20 @@ def test_policy_article_without_product_match_is_not_forced():
         source="dti", source_type="web",
     )
     assert detect_mandatory_policy_alert(item, [company]) is None
+
+
+def test_mandatory_signal_reaches_digest_even_before_review(settings, db):
+    item_id, _ = db.upsert_raw_item(RawItem(
+        source="dti", source_type="web", title="DTI changes marine engine duties",
+        raw_text="The Philippines removed duties for marine engines.",
+        source_url="https://example.test/alert", hash="mandatory-alert-hash",
+    ))
+    db.upsert_signal(Signal(
+        raw_item_id=item_id, category="REGULATION", relevance_score=5,
+        reason="ОБЯЗАТЕЛЬНЫЙ ТОВАРНЫЙ ТРИГГЕР", matched_products=["marine engines"],
+        must_alert=True,
+    ))
+    builder = DigestBuilder(db, settings)
+    digest = builder.build(builder.collect(3650), 3650)
+    assert "DTI changes marine engine duties" in digest
+    assert "Обязательный товарный триггер" in digest
