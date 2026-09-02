@@ -1,6 +1,6 @@
 import pytest
 
-from trade_agent.notify import send_latest, target_chat_ids
+from trade_agent.notify import format_digest_posts, send_latest, target_chat_ids
 
 
 class _Bot:
@@ -42,3 +42,30 @@ def test_send_latest_sends_to_allowed_chats(settings, tmp_path, monkeypatch):
     monkeypatch.setattr("trade_agent.notify.TelegramBot", lambda s: fake)
     assert send_latest(settings, path) == 1
     assert fake.sent == [(22, "news")]
+
+
+def test_format_digest_posts_makes_separate_news_posts():
+    digest = """# Trade Agent — ежедневный дайджест
+
+Дата: 2026-09-02
+Период: последние 1 дн.
+Новых сигналов: 2 | Проверенных выводов: 2 | Совпадений с компаниями: 1
+
+## Возможности
+
+### Экспорт мяса на Филиппины
+
+- Компания: Пример
+- Ссылка: https://example.com/news
+
+## Наблюдать
+
+- [LOGISTICS 4/5] Приморские производители — https://t.me/example/1
+"""
+    posts = format_digest_posts(digest)
+    assert len(posts) == 3
+    assert posts[0].startswith("🗞 Trade Agent")
+    assert "💼 Возможность" in posts[1]
+    assert "https://example.com/news" in posts[1]
+    assert posts[2].startswith("👀 Наблюдать")
+    assert "https://t.me/example/1" in posts[2]
