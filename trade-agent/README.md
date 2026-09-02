@@ -25,7 +25,7 @@ python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt -c constraints.txt      # production
 # для разработки и тестов:
 # pip install -r requirements-dev.txt -c constraints.txt
-cp .env.example .env          # заполнить ANTHROPIC_API_KEY и токен бота
+cp .env.example .env          # заполнить DEEPSEEK_API_KEY и токен бота
 
 python -m trade_agent.fetch     # собрать сырьё
 python -m trade_agent.process   # Scout → Analyst → Reviewer → Radar
@@ -34,6 +34,17 @@ python -m trade_agent.bot       # команды /latest и /health
 python -m trade_agent.notify    # отправить последний дайджест в личный чат
 python -m trade_agent.run_pipeline  # полный утренний прогон
 ```
+
+## Модели
+
+В рабочем режиме используется официальный DeepSeek API через Anthropic-
+совместимый интерфейс. Scout работает на `deepseek-v4-flash` без глубокого
+рассуждения и быстро отбрасывает шум. Analyst и Reviewer работают на
+`deepseek-v4-pro` с включённым рассуждением. Ответы ограничены отдельными
+лимитами агентов: Scout — 600 токенов, Analyst — 2600, Reviewer — 1800.
+
+Для переключения провайдера задаются `LLM_PROVIDER`, ключ соответствующего
+провайдера и модели. Ключи не логируются и не отправляются в промпт.
 
 Проверка без сети и без ключей:
 
@@ -101,7 +112,7 @@ trade-agent/
 
 | Проверено локально на фикстурах и моках | НЕ проверялось |
 |---|---|
-| сбор из `tenders` и Telegram-выгрузок | реальный Anthropic API |
+| сбор из `tenders` и Telegram-выгрузок | реальный DeepSeek API |
 | нормализация, дедупликация, БД | реальный Telegram Bot и Telethon |
 | Scout / Analyst / Reviewer на мок-ответах | живая вёрстка сайтов ведомств |
 | Opportunity Radar (детерминирован) | systemd на живом сервере |

@@ -17,7 +17,7 @@ PACKAGE_DIR = Path(__file__).resolve().parent
 PROJECT_DIR = PACKAGE_DIR.parent
 
 SECRET_KEYS = (
-    "ANTHROPIC_API_KEY", "OPENAI_API_KEY", "TELEGRAM_BOT_TOKEN",
+    "ANTHROPIC_API_KEY", "DEEPSEEK_API_KEY", "OPENAI_API_KEY", "TELEGRAM_BOT_TOKEN",
     "TELEGRAM_API_ID", "TELEGRAM_API_HASH", "TELEGRAM_SESSION",
 )
 
@@ -73,6 +73,10 @@ class LLMSettings:
     base_url: str = "https://api.anthropic.com"
     model_fast: str = "claude-haiku-4-5-20251001"     # Scout — дешёвая сортировка
     model_deep: str = "claude-sonnet-5"               # Analyst / Reviewer
+    # Для DeepSeek рассуждение задаётся явно по роли. Для Anthropic None
+    # сохраняет прежнее поведение без дополнительного поля thinking.
+    thinking_fast: Optional[bool] = None
+    thinking_deep: Optional[bool] = None
     max_input_chars: int = 24000
     max_output_tokens: int = 2000
     timeout: float = 90.0
@@ -145,6 +149,8 @@ class Settings:
             "llm_configured": self.llm.configured,
             "llm_model_fast": self.llm.model_fast,
             "llm_model_deep": self.llm.model_deep,
+            "llm_thinking_fast": self.llm.thinking_fast,
+            "llm_thinking_deep": self.llm.thinking_deep,
             "bot_configured": self.bot.configured,
             "allowed_users": len(self.bot.allowed_user_ids),
             "allowed_chats": len(self.bot.allowed_chat_ids),
@@ -164,6 +170,21 @@ def _allowed_ids(name: str = "TELEGRAM_ALLOWED_USER_ID") -> tuple[int, ...]:
 def load_settings(project_dir: Optional[Path] = None) -> Settings:
     load_dotenv()
     base = Path(project_dir).resolve() if project_dir else PROJECT_DIR
+    provider_name = (os.environ.get("LLM_PROVIDER", "anthropic") or "anthropic").strip().lower()
+    api_key_name = "DEEPSEEK_API_KEY" if provider_name == "deepseek" else "ANTHROPIC_API_KEY"
+    base_url_name = "DEEPSEEK_BASE_URL" if provider_name == "deepseek" else "ANTHROPIC_BASE_URL"
+    default_base_url = (
+        "https://api.deepseek.com/anthropic"
+        if provider_name == "deepseek" else "https://api.anthropic.com"
+    )
+    default_model_fast = (
+        "deepseek-v4-flash" if provider_name == "deepseek"
+        else "claude-haiku-4-5-20251001"
+    )
+    default_model_deep = (
+        "deepseek-v4-pro" if provider_name == "deepseek"
+        else "claude-sonnet-5"
+    )
     settings = Settings(
         project_dir=base,
         db_path=Path(os.environ.get("TRADE_AGENT_DB") or (base / "data" / "trade_agent.db")),
@@ -182,11 +203,17 @@ def load_settings(project_dir: Optional[Path] = None) -> Settings:
         fetch_days=_int("FETCH_DAYS", 7),
         dry_run=_bool("TRADE_AGENT_DRY_RUN", False),
         llm=LLMSettings(
-            provider=os.environ.get("LLM_PROVIDER", "anthropic"),
-            api_key=os.environ.get("ANTHROPIC_API_KEY", ""),
-            base_url=os.environ.get("ANTHROPIC_BASE_URL", "https://api.anthropic.com"),
-            model_fast=os.environ.get("LLM_MODEL_FAST", "claude-haiku-4-5-20251001"),
-            model_deep=os.environ.get("LLM_MODEL_DEEP", "claude-sonnet-5"),
+            provider=provider_name,
+            api_key=os.environ.get(api_key_name, ""),
+            base_url=os.environ.get(base_url_name, default_base_url),
+            model_fast=os.environ.get("LLM_MODEL_FAST", default_model_fast),
+            model_deep=os.environ.get("LLM_MODEL_DEEP", default_model_deep),
+            thinking_fast=(
+                _bool("LLM_THINKING_FAST") if provider_name == "deepseek" else None
+            ),
+            thinking_deep=(
+                _bool("LLM_THINKING_DEEP", True) if provider_name == "deepseek" else None
+            ),
             max_input_chars=_int("LLM_MAX_INPUT_CHARS", 24000),
             max_output_tokens=_int("LLM_MAX_OUTPUT_TOKENS", 2000),
             timeout=_float("LLM_TIMEOUT", 90.0),

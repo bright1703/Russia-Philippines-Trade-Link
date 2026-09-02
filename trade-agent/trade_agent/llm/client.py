@@ -11,6 +11,7 @@
 from __future__ import annotations
 
 import json
+import inspect
 import logging
 import re
 import time
@@ -47,7 +48,8 @@ class LLMProvider(Protocol):
     name: str
 
     def complete(self, system: str, user: str, model: str, max_tokens: int,
-                 temperature: float, timeout: float) -> LLMResponse: ...
+                 temperature: float, timeout: float,
+                 thinking: Optional[bool] = None) -> LLMResponse: ...
 
 
 class AnthropicProvider:
@@ -65,13 +67,16 @@ class AnthropicProvider:
         self.session = requests.Session()
 
     def complete(self, system: str, user: str, model: str, max_tokens: int,
-                 temperature: float, timeout: float) -> LLMResponse:
+                 temperature: float, timeout: float,
+                 thinking: Optional[bool] = None) -> LLMResponse:
         payload = {
             "model": model,
             "max_tokens": max_tokens,
             "system": system,
             "messages": [{"role": "user", "content": user}],
         }
+        if thinking is not None:
+            payload["thinking"] = {"type": "enabled" if thinking else "disabled"}
         headers = {
             "x-api-key": self._api_key,
             "anthropic-version": self.version,
@@ -133,8 +138,10 @@ class MockProvider:
         self.calls: list[dict[str, Any]] = []
 
     def complete(self, system: str, user: str, model: str, max_tokens: int,
-                 temperature: float, timeout: float) -> LLMResponse:
-        self.calls.append({"system": system, "user": user, "model": model})
+                 temperature: float, timeout: float,
+                 thinking: Optional[bool] = None) -> LLMResponse:
+        self.calls.append({"system": system, "user": user, "model": model,
+                           "thinking": thinking})
         if self.handler is not None:
             text = self.handler(system, user)
         elif self.responses:
@@ -145,7 +152,21 @@ class MockProvider:
                            input_tokens=len(user) // 4, output_tokens=len(text) // 4)
 
 
-PROVIDERS: dict[str, Any] = {"anthropic": AnthropicProvider, "mock": MockProvider}
+class DeepSeekProvider(AnthropicProvider):
+    """DeepSeek через официальный Anthropic-совместимый Messages API."""
+
+    name = "deepseek"
+
+    def __init__(self, api_key: str,
+                 base_url: str = "https://api.deepseek.com/anthropic"):
+        super().__init__(api_key, base_url=base_url)
+
+
+PROVIDERS: dict[str, Any] = {
+    "anthropic": AnthropicProvider,
+    "deepseek": DeepSeekProvider,
+    "mock": MockProvider,
+}
 
 
 _FENCE_RE = re.compile(r"```(?:json)?\s*(.*?)```", re.S)
@@ -190,7 +211,9 @@ class LLMClient:
                  max_output_tokens: int = 2000, timeout: float = 90.0,
                  retries: int = 3, backoff: float = 4.0,
                  max_calls_per_run: int = 200, log_usage: bool = True,
-                 model_fast: str = "", model_deep: str = ""):
+                 model_fast: str = "", model_deep: str = "",
+                 thinking_fast: Optional[bool] = None,
+                 thinking_deep: Optional[bool] = None):
         self.provider = provider
         self.max_input_chars = max_input_chars
         self.max_output_tokens = max_output_tokens
@@ -201,6 +224,8 @@ class LLMClient:
         self.log_usage = log_usage
         self.model_fast = model_fast
         self.model_deep = model_deep
+        self.thinking_fast = thinking_fast
+        self.thinking_deep = thinking_deep
         self.calls = 0
         self.input_tokens = 0
         self.output_tokens = 0
@@ -220,6 +245,7 @@ class LLMClient:
 
     def complete(self, system: str, user: str, *, model: Optional[str] = None,
                  max_tokens: Optional[int] = None, temperature: float = 0.0,
+                 thinking: Optional[bool] = None,
                  sleep: Any = time.sleep) -> LLMResponse:
         if self.provider is None:
             raise LLMUnavailable("LLM-провайдер не настроен")
@@ -231,15 +257,34 @@ class LLMClient:
             user[: self.max_input_chars] + "\n\n[...текст обрезан по лимиту запроса...]"
         )
         chosen = model or self.model_deep or self.model_fast
+        if thinking is None:
+            if chosen == self.model_fast:
+                thinking = self.thinking_fast
+            elif chosen == self.model_deep:
+                thinking = self.thinking_deep
         last: Optional[BaseException] = None
 
         for attempt in range(1, self.retries + 1):
             try:
-                response = self.provider.complete(
-                    system, prompt, chosen,
-                    max_tokens or self.max_output_tokens,
+                provider_args = (
+                    system, prompt, chosen, max_tokens or self.max_output_tokens,
                     temperature, self.timeout,
                 )
+                # Сохраняем совместимость с тестовыми и внешними провайдерами,
+                # которые реализовали старый интерфейс без thinking.
+                try:
+                    provider_params = inspect.signature(self.provider.complete).parameters
+                    supports_thinking = (
+                        "thinking" in provider_params or
+                        any(p.kind == inspect.Parameter.VAR_KEYWORD
+                            for p in provider_params.values())
+                    )
+                except (TypeError, ValueError):
+                    supports_thinking = True
+                if thinking is not None and supports_thinking:
+                    response = self.provider.complete(*provider_args, thinking=thinking)
+                else:
+                    response = self.provider.complete(*provider_args)
                 self.calls += 1
                 self.input_tokens += response.input_tokens
                 self.output_tokens += response.output_tokens
@@ -275,7 +320,7 @@ def build_client(settings: Any, provider: Optional[Any] = None) -> LLMClient:
         factory = PROVIDERS.get(llm.provider)
         if factory is None:
             LOG.error("неизвестный LLM-провайдер: %s", llm.provider)
-        elif llm.provider == "anthropic":
+        elif llm.provider in ("anthropic", "deepseek"):
             try:
                 provider = factory(llm.api_key, llm.base_url)
             except LLMUnavailable as exc:
@@ -294,4 +339,6 @@ def build_client(settings: Any, provider: Optional[Any] = None) -> LLMClient:
         log_usage=llm.log_usage,
         model_fast=llm.model_fast,
         model_deep=llm.model_deep,
+        thinking_fast=llm.thinking_fast,
+        thinking_deep=llm.thinking_deep,
     )

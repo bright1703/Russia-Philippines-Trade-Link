@@ -54,7 +54,12 @@ sudo chmod 600 /opt/trade-agent/.env
 Заполнить как минимум:
 
 ```
-ANTHROPIC_API_KEY=sk-ant-...
+DEEPSEEK_API_KEY=sk-...
+LLM_PROVIDER=deepseek
+LLM_MODEL_FAST=deepseek-v4-flash
+LLM_MODEL_DEEP=deepseek-v4-pro
+LLM_THINKING_FAST=false
+LLM_THINKING_DEEP=true
 TELEGRAM_BOT_TOKEN=123456:AA...
 TELEGRAM_ALLOWED_USER_ID=123456789
 # Необязательно: дополнительное ограничение по чатам.
@@ -172,7 +177,7 @@ sudo tar czf /root/trade-agent-brain-$(date +%F).tar.gz -C /opt/trade-agent brai
 | Симптом | Что смотреть |
 |---|---|
 | нет новых материалов | `journalctl -u trade-agent-fetch`, раздел ошибок в `runs` |
-| очередь растёт | не задан `ANTHROPIC_API_KEY` или исчерпан лимит вызовов |
+| очередь растёт | не задан `DEEPSEEK_API_KEY` или исчерпан лимит вызовов |
 | бот молчит | `TELEGRAM_ALLOWED_USER_ID` не совпадает с вашим id |
 | дайджест пустой | пороги слишком высокие, снизьте `DIGEST_MIN_CONFIDENCE` |
 | код возврата 1 у process | есть отложенные или неподтверждённые сигналы — это норма при недоступной модели |
