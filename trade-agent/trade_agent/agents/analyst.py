@@ -96,8 +96,9 @@ class Analyst:
                 SYSTEM_PROMPT, user,
                 model=getattr(self.llm, "model_deep", None) or None,
                 # Аналитическая записка содержит несколько полей. Для
-                # Claude 5 лимит 1800 иногда обрезает JSON на середине.
-                max_tokens=2600,
+                # Для reasoning-моделей лимит включает внутреннее рассуждение.
+                # 2600 иногда обрезает итоговый JSON на середине.
+                max_tokens=4000,
             )
         except LLMUnavailable as exc:
             LOG.warning("Analyst: модель недоступна (%s), сигнал %s остаётся в очереди",
