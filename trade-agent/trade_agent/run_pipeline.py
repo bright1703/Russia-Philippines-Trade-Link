@@ -35,6 +35,12 @@ def run(settings, *, days: Optional[int] = None, limit: int = 100,
             LOG.error("дайджест создан, но доставка не выполнена: %s", exc)
             result["notify"] = {"status": "error", "error": str(exc)}
 
+    process_needs_attention = any(
+        int(result["process"].get(name, 0) or 0) > 0
+        for name in ("deferred", "review_retry", "review_failed", "needs_review")
+    )
+    if process_needs_attention and result["process"].get("status") == "ok":
+        result["process"]["status"] = "partial"
     failed = any(value.get("status") in ("error", "partial")
                  for value in result.values() if isinstance(value, dict))
     if result["notify"].get("status") == "error":

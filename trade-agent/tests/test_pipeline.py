@@ -12,6 +12,7 @@ from helpers import FIXTURES, json_response
 from trade_agent import digest as digest_module
 from trade_agent import fetch as fetch_module
 from trade_agent import process as process_module
+from trade_agent import run_pipeline as pipeline_module
 from trade_agent.agents import taxonomy
 from trade_agent.companies.import_companies import import_from_file
 from trade_agent.db import Database
@@ -140,3 +141,27 @@ def test_llm_outage_keeps_material_in_queue(settings, monkeypatch):
     # остаётся в очереди и будет обработано при следующем запуске.
     assert stats["queue"] == stats["deferred"]
     assert stats["queue"] + stats["dropped"] == queue_before
+
+
+def test_pipeline_marks_partial_when_processing_is_deferred(monkeypatch, settings):
+    monkeypatch.setattr(
+        pipeline_module,
+        "run_fetch",
+        lambda *args, **kwargs: {"status": "ok"},
+    )
+    monkeypatch.setattr(
+        pipeline_module,
+        "run_process",
+        lambda *args, **kwargs: {"status": "ok", "deferred": 2},
+    )
+    monkeypatch.setattr(
+        pipeline_module,
+        "run_digest",
+        lambda *args, **kwargs: {"status": "ok"},
+    )
+    monkeypatch.setattr(pipeline_module, "send_latest", lambda *args, **kwargs: 1)
+
+    result = pipeline_module.run(settings)
+
+    assert result["process"]["status"] == "partial"
+    assert result["status"] == "partial"
