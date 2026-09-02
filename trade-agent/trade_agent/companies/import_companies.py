@@ -9,9 +9,10 @@
     python -m trade_agent.companies.import_companies catalog.json --write-profiles
 
 Ожидаемые колонки (все необязательные, кроме name):
-    name, slug, website, products, hs_codes, categories, export_experience,
-    documents, status, restrictions, potential_buyers, regulators,
-    history, next_step, region
+    name, slug, website, description, inn, products, product_aliases,
+    hs_codes, categories, export_countries, industry, source_name, source_row,
+    data_quality, export_experience, documents, status, restrictions,
+    potential_buyers, regulators, history, next_step, region
 
 Списки в CSV разделяются запятой или точкой с запятой внутри ячейки.
 """
@@ -34,9 +35,20 @@ PROFILE_TEMPLATE = """---
 name: {name}
 slug: {slug}
 website: {website}
+description: {description}
+inn: {inn}
 products: {products}
+product_aliases: {product_aliases}
 hs_codes: {hs_codes}
 categories: {categories}
+export_countries: {export_countries}
+industry: {industry}
+source_name: {source_name}
+source_row: {source_row}
+data_quality: {data_quality}
+contact_name: {contact_name}
+address: {address}
+contacts: {contacts}
 export_experience: {export_experience}
 documents: {documents}
 status: {status}
@@ -78,13 +90,32 @@ def _rows(path: Path) -> Iterable[dict[str, Any]]:
 
 
 def row_to_company(row: dict[str, Any]) -> Optional[Company]:
-    name = str(row.get("name") or row.get("Название") or "").strip()
+    name = str(row.get("name") or row.get("Название") or
+               row.get("Название компании") or "").strip()
     if not name:
         return None
+    description = str(row.get("description") or row.get("Описание компании") or "").strip()
+    products = row.get("products") or row.get("Продукция") or []
+    hs_codes = row.get("hs_codes") or row.get("Перечень товаров/услуг с кодами ТН ВЭД") or []
+    countries = row.get("export_countries") or row.get("Страны экспорта") or []
+    industry = str(row.get("industry") or row.get("Отрасль экспорта") or "").strip()
+    source_row = row.get("source_row") or row.get("№ п/п") or 0
+    try:
+        source_row = int(source_row or 0)
+    except (TypeError, ValueError):
+        source_row = 0
     company = Company(
         slug=str(row.get("slug") or slugify(name)),
         name=name,
         website=str(row.get("website") or "").strip(),
+        description=description,
+        inn=str(row.get("inn") or row.get("ИНН") or "").strip(),
+        industry=industry,
+        contact_name=str(row.get("contact_name") or row.get("ФИО руководителя") or "").strip(),
+        address=str(row.get("address") or row.get("Юридический и фактический адрес") or "").strip(),
+        contacts=str(row.get("contacts") or row.get("Контакты") or "").strip(),
+        source_name=str(row.get("source_name") or "").strip(),
+        source_row=source_row,
         export_experience=str(row.get("export_experience") or "").strip(),
         status=str(row.get("status") or "").strip(),
         history=str(row.get("history") or "").strip(),
@@ -92,7 +123,18 @@ def row_to_company(row: dict[str, Any]) -> Optional[Company]:
         region=str(row.get("region") or "Приморский край").strip(),
     )
     for field_name in LIST_FIELDS:
-        setattr(company, field_name, _as_list(row.get(field_name)))
+        value = row.get(field_name)
+        if field_name == "products":
+            value = products
+        elif field_name == "hs_codes":
+            value = hs_codes
+        elif field_name == "export_countries":
+            value = countries
+        setattr(company, field_name, _as_list(value))
+    if not company.export_experience and company.export_countries:
+        company.export_experience = ", ".join(company.export_countries)
+    if not company.history:
+        company.history = description
     return company
 
 
@@ -109,9 +151,17 @@ def write_profile(company: Company, brain_dir: Path, overwrite: bool = False) ->
     text = PROFILE_TEMPLATE.format(
         name=_yaml_string(company.name), slug=_yaml_string(company.slug),
         website=_yaml_string(company.website),
+        description=_yaml_string(company.description), inn=_yaml_string(company.inn),
         products=json.dumps(company.products, ensure_ascii=False),
+        product_aliases=json.dumps(company.product_aliases, ensure_ascii=False),
         hs_codes=json.dumps(company.hs_codes, ensure_ascii=False),
         categories=json.dumps(company.categories, ensure_ascii=False),
+        export_countries=json.dumps(company.export_countries, ensure_ascii=False),
+        industry=_yaml_string(company.industry),
+        source_name=_yaml_string(company.source_name), source_row=company.source_row,
+        data_quality=json.dumps(company.data_quality, ensure_ascii=False),
+        contact_name=_yaml_string(company.contact_name),
+        address=_yaml_string(company.address), contacts=_yaml_string(company.contacts),
         export_experience=_yaml_string(company.export_experience),
         documents=json.dumps(company.documents, ensure_ascii=False),
         status=_yaml_string(company.status),

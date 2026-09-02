@@ -97,8 +97,10 @@ class Signal:
     reason: str = ""
     companies_matched: list[str] = field(default_factory=list)
     hs_codes: list[str] = field(default_factory=list)
+    matched_products: list[str] = field(default_factory=list)
     geography: str = ""
     needs_deep_analysis: bool = False
+    must_alert: bool = False
     status: str = SIGNAL_NEW
     review_attempts: int = 0       # сколько раз пытались получить рецензию
     last_error: str = ""           # код последней ошибки конвейера
@@ -127,7 +129,9 @@ class Signal:
         row = asdict(self)
         row["companies_matched"] = _json(self.companies_matched)
         row["hs_codes"] = _json(self.hs_codes)
+        row["matched_products"] = _json(self.matched_products)
         row["needs_deep_analysis"] = int(self.needs_deep_analysis)
+        row["must_alert"] = int(self.must_alert)
         row.pop("id", None)
         return row
 
@@ -136,7 +140,9 @@ class Signal:
         data = dict(row)
         data["companies_matched"] = _unjson(data.get("companies_matched"), [])
         data["hs_codes"] = _unjson(data.get("hs_codes"), [])
+        data["matched_products"] = _unjson(data.get("matched_products"), [])
         data["needs_deep_analysis"] = bool(data.get("needs_deep_analysis"))
+        data["must_alert"] = bool(data.get("must_alert"))
         data["review_attempts"] = int(data.get("review_attempts") or 0)
         data.setdefault("last_error", "")
         if data.get("last_error") is None:
@@ -226,8 +232,19 @@ class Company:
     name: str = ""
     website: str = ""
     products: list[str] = field(default_factory=list)
+    product_aliases: list[str] = field(default_factory=list)
     hs_codes: list[str] = field(default_factory=list)
     categories: list[str] = field(default_factory=list)
+    description: str = ""
+    inn: str = ""
+    export_countries: list[str] = field(default_factory=list)
+    industry: str = ""
+    contact_name: str = ""
+    address: str = ""
+    contacts: str = ""
+    source_name: str = ""
+    source_row: int = 0
+    data_quality: list[str] = field(default_factory=list)
     export_experience: str = ""
     documents: list[str] = field(default_factory=list)
     status: str = ""
@@ -242,8 +259,8 @@ class Company:
 
     def to_row(self) -> dict[str, Any]:
         row = asdict(self)
-        for key in ("products", "hs_codes", "categories", "documents",
-                    "restrictions", "potential_buyers", "regulators"):
+        for key in ("products", "product_aliases", "hs_codes", "categories", "export_countries", "documents",
+                    "restrictions", "potential_buyers", "regulators", "data_quality"):
             row[key] = _json(getattr(self, key))
         row.pop("id", None)
         return row
@@ -251,9 +268,20 @@ class Company:
     @staticmethod
     def from_row(row: Any) -> "Company":
         data = dict(row)
-        for key in ("products", "hs_codes", "categories", "documents",
-                    "restrictions", "potential_buyers", "regulators"):
+        for key in ("products", "product_aliases", "hs_codes", "categories", "export_countries", "documents",
+                    "restrictions", "potential_buyers", "regulators", "data_quality"):
             data[key] = _unjson(data.get(key), [])
+        data.setdefault("product_aliases", [])
+        data.setdefault("description", "")
+        data.setdefault("inn", "")
+        data.setdefault("export_countries", [])
+        data.setdefault("industry", "")
+        data.setdefault("contact_name", "")
+        data.setdefault("address", "")
+        data.setdefault("contacts", "")
+        data.setdefault("source_name", "")
+        data.setdefault("source_row", 0)
+        data.setdefault("data_quality", [])
         return Company(**data)
 
 

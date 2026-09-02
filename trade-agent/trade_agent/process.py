@@ -19,7 +19,8 @@ import sys
 import time
 from typing import Any, Optional
 
-from .agents import Analyst, Reviewer, Scout
+from .agents import Analyst, Reviewer, Scout, ScoutResult
+from .alerts import detect_mandatory_policy_alert
 from .companies.loader import sync_companies
 from .config import load_settings
 from .exit_codes import EXIT_CRITICAL, EXIT_OK, EXIT_PARTIAL
@@ -67,7 +68,12 @@ def run(settings: Any, limit: int = 100, stage: str = "all",
             for item in db.raw_items_without_signal(limit):
                 counters["scouted"] += 1
                 log.processed += 1
-                result = scout.evaluate(item)
+                forced_signal = detect_mandatory_policy_alert(item, companies)
+                if forced_signal is not None:
+                    LOG.info("обязательный товарный триггер: %s", item.title[:120])
+                    result = ScoutResult(signal=forced_signal)
+                else:
+                    result = scout.evaluate(item)
                 if result.deferred:
                     counters["deferred"] += 1
                     continue                      # остаётся в очереди

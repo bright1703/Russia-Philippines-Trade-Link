@@ -120,7 +120,8 @@ def match_signal(signal: Signal, item: Optional[RawItem], company: Company) -> M
         reasons.append(f"категория сигнала {signal.category} входит в профиль компании")
 
     product_hits = 0
-    for product in company.products:
+    product_values = list(dict.fromkeys([*company.product_aliases, *company.products]))
+    for product in product_values:
         token = str(product).strip().lower()
         if len(token) >= 4 and token in text:
             product_hits += 1
@@ -128,6 +129,12 @@ def match_signal(signal: Signal, item: Optional[RawItem], company: Company) -> M
             if product_hits >= 3:
                 break
     raw += product_hits * W_PRODUCT
+
+    if signal.matched_products:
+        matched_text = " ".join(signal.matched_products).lower()
+        if any(alias.lower() in matched_text for alias in company.product_aliases):
+            raw += W_PRODUCT
+            reasons.append("товар совпал с обязательным триггером каталога")
 
     # Косвенная связь: подсказки HS по категории сигнала.
     if not hs_score:

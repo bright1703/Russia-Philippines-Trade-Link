@@ -67,6 +67,8 @@ class DigestBuilder:
     def _is_urgent(self, signal: Signal, item: Optional[RawItem]) -> bool:
         if item is None:
             return False
+        if signal.must_alert:
+            return True
         if item.source_type == "tender":
             meta = item.meta or {}
             if meta.get("status") in ("cancelled", "awarded"):
@@ -101,7 +103,10 @@ class DigestBuilder:
 
         # Неподтверждённые сигналы (rejected / failed / needs_review) в обычный
         # дайджест не попадают — только в статистику раздела «Исключено».
-        kept = [s for s in signals if not s.unverified and s.relevance_score > 0]
+        mandatory = [s for s in signals
+                     if s.must_alert and s.status != SIGNAL_REJECTED]
+        kept = [s for s in signals
+                if not s.unverified and s.relevance_score > 0 and not s.must_alert]
         dropped = [s for s in signals if s.status == SIGNAL_REJECTED or s.relevance_score == 0]
         unverified = [s for s in signals
                       if s.unverified and s.status != SIGNAL_REJECTED]
@@ -111,7 +116,8 @@ class DigestBuilder:
 
         shown: set[int] = set()
 
-        urgent = [s for s in kept if self._is_urgent(s, raw.get(int(s.id or 0)))]
+        urgent = mandatory + [s for s in kept
+                              if self._is_urgent(s, raw.get(int(s.id or 0)))]
         urgent.sort(key=lambda s: -s.relevance_score)
         urgent = urgent[:cap]
         shown.update(int(s.id or 0) for s in urgent)
@@ -275,6 +281,14 @@ class DigestBuilder:
                 if notes:
                     lines.append("- Допуск: " + "; ".join(notes[:3]))
         lines.append(f"- Категория: {signal.category}, оценка Scout: {signal.relevance_score}/5")
+        if signal.must_alert:
+            lines.append("- Обязательный товарный триггер: новость выведена из-за "
+                         "совпадения товара и регуляторного изменения")
+            if signal.status != "analyzed":
+                lines.append("- Статус проверки: требуется подтвердить детали по "
+                             "оригинальному источнику")
+        if signal.matched_products:
+            lines.append("- Совпавшие товары: " + ", ".join(signal.matched_products[:8]))
         if signal.hs_codes:
             lines.append(f"- Предполагаемые HS: {', '.join(signal.hs_codes[:6])}")
         lines.append(f"- Почему отобрано: {truncate(signal.reason, 300)}")

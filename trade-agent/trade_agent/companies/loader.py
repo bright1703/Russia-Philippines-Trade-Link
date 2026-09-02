@@ -21,8 +21,9 @@ LOG = logging.getLogger("trade_agent.companies")
 
 FRONT_MATTER_RE = re.compile(r"^---\s*\n(.*?)\n---\s*\n?(.*)$", re.S)
 
-LIST_FIELDS = ("products", "hs_codes", "categories", "documents",
-               "restrictions", "potential_buyers", "regulators")
+LIST_FIELDS = ("products", "product_aliases", "hs_codes", "categories",
+               "export_countries", "documents", "restrictions",
+               "potential_buyers", "regulators", "data_quality")
 
 
 def _as_list(value: Any) -> list[str]:
@@ -57,6 +58,14 @@ def parse_profile_markdown(text: str, path: Optional[Path] = None) -> Optional[C
         slug=str(meta.get("slug") or slugify(str(meta["name"]))),
         name=str(meta["name"]).strip(),
         website=str(meta.get("website") or "").strip(),
+        description=str(meta.get("description") or body[:4000]).strip(),
+        inn=str(meta.get("inn") or "").strip(),
+        industry=str(meta.get("industry") or "").strip(),
+        contact_name=str(meta.get("contact_name") or "").strip(),
+        address=str(meta.get("address") or "").strip(),
+        contacts=str(meta.get("contacts") or "").strip(),
+        source_name=str(meta.get("source_name") or "").strip(),
+        source_row=int(meta.get("source_row") or 0),
         export_experience=str(meta.get("export_experience") or "").strip(),
         status=str(meta.get("status") or "").strip(),
         history=str(meta.get("history") or body[:2000]).strip(),
