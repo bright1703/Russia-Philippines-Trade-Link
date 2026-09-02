@@ -132,6 +132,7 @@ class TelegramBot:
         command = command.split("@")[0]
         handlers = {
             "/status": self.cmd_status,
+            "/health": self.cmd_status,
             "/latest": self.cmd_latest,
             "/companies": self.cmd_companies,
             "/opportunities": self.cmd_opportunities,

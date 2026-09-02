@@ -260,3 +260,9 @@ def test_status_command_works_offline(settings):
     text = _bot(settings, session).handle("/status")
     assert "Состояние системы" in text
     assert settings.bot.token not in text
+
+
+def test_health_command_is_status_alias(settings):
+    session = _FakeSession()
+    text = _bot(settings, session).handle("/health")
+    assert "Состояние системы" in text
