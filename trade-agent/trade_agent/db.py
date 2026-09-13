@@ -104,7 +104,14 @@ CREATE TABLE IF NOT EXISTS reviews (
     confidence       REAL DEFAULT 0,
     error            TEXT DEFAULT '',
     retryable        INTEGER DEFAULT 0,
-    created_at       TEXT NOT NULL
+    created_at       TEXT NOT NULL,
+    role             TEXT DEFAULT 'reviewer',
+    model            TEXT DEFAULT '',
+    provider         TEXT DEFAULT '',
+    stop_reason      TEXT DEFAULT '',
+    response_chars   INTEGER DEFAULT 0,
+    input_tokens     INTEGER DEFAULT 0,
+    output_tokens    INTEGER DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS companies (
@@ -274,6 +281,13 @@ class Database:
     MIGRATIONS = (
         ("reviews", "error", "TEXT DEFAULT ''"),
         ("reviews", "retryable", "INTEGER DEFAULT 0"),
+        ("reviews", "role", "TEXT DEFAULT 'reviewer'"),
+        ("reviews", "model", "TEXT DEFAULT ''"),
+        ("reviews", "provider", "TEXT DEFAULT ''"),
+        ("reviews", "stop_reason", "TEXT DEFAULT ''"),
+        ("reviews", "response_chars", "INTEGER DEFAULT 0"),
+        ("reviews", "input_tokens", "INTEGER DEFAULT 0"),
+        ("reviews", "output_tokens", "INTEGER DEFAULT 0"),
         ("signals", "review_attempts", "INTEGER DEFAULT 0"),
         ("signals", "last_error", "TEXT DEFAULT ''"),
         ("signals", "matched_products", "TEXT"),
@@ -528,6 +542,7 @@ class Database:
                 "problems": row["r_problems"], "corrected_fields": row["r_corrected"],
                 "confidence": row["r_confidence"], "created_at": row["r_created"],
             })
+            # Диагностические поля здесь не нужны: выпуск их не показывает.
             result.append((analysis, review))
         return result
 
@@ -684,6 +699,33 @@ class Database:
             "SELECT COUNT(*) c FROM runs WHERE stage = ? AND started_at >= ?",
             (stage, since)).fetchone()
         return int(row["c"]) if row else 0
+
+    def review_failures(self, limit: int = 20) -> list[dict[str, Any]]:
+        """
+        Сводка несостоявшихся рецензий по безопасным диагностическим полям.
+
+        Нужна, чтобы разбирать reviewer_empty_response и
+        reviewer_invalid_response по данным, а не наугад увеличивать лимит
+        ответа. Секретов и текста промпта здесь нет.
+        """
+        rows = self.conn.execute(
+            "SELECT error, model, provider, stop_reason, COUNT(*) AS count, "
+            "       AVG(response_chars) AS avg_chars, AVG(output_tokens) AS avg_out "
+            "FROM reviews WHERE verdict = 'FAILED' AND COALESCE(error, '') != '' "
+            "GROUP BY error, model, provider, stop_reason "
+            "ORDER BY count DESC LIMIT ?", (limit,)).fetchall()
+        return [
+            {
+                "error": row["error"],
+                "model": row["model"] or "не записана",
+                "provider": row["provider"] or "не записан",
+                "stop_reason": row["stop_reason"] or "не записана",
+                "count": int(row["count"]),
+                "avg_response_chars": round(float(row["avg_chars"] or 0), 1),
+                "avg_output_tokens": round(float(row["avg_out"] or 0), 1),
+            }
+            for row in rows
+        ]
 
     def signals_needing_attention(self, limit: int = 20) -> list[Signal]:
         rows = self.conn.execute(

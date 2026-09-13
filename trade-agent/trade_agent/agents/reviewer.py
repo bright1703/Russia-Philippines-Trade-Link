@@ -162,25 +162,30 @@ class Reviewer:
                                 problems, retryable=True)
 
         if not (raw.text or "").strip():
-            LOG.warning("Reviewer вернул пустой ответ")
+            # Пустой ответ и обрыв по лимиту выглядят одинаково, а чинятся
+            # по-разному: записываем причину остановки и расход токенов.
+            LOG.warning("Reviewer вернул пустой ответ (stop_reason=%s, out=%d)",
+                        raw.stop_reason or "не указана", raw.output_tokens)
             return self._failed(analysis, REVIEW_ERROR_EMPTY, "пустой ответ модели",
-                                problems, retryable=True)
+                                problems, retryable=True, response=raw)
 
         try:
             data = extract_json(raw.text)
         except LLMError as exc:
-            LOG.warning("Reviewer: ответ не разобран как JSON: %s", exc)
+            LOG.warning("Reviewer: ответ не разобран как JSON: %s (stop_reason=%s, %d симв.)",
+                        exc, raw.stop_reason or "не указана", len(raw.text or ""))
             return self._failed(analysis, REVIEW_ERROR_INVALID, str(exc),
-                                problems, retryable=True)
+                                problems, retryable=True, response=raw)
         if not isinstance(data, dict):
             return self._failed(analysis, REVIEW_ERROR_INVALID, "ответ не является объектом",
-                                problems, retryable=True)
+                                problems, retryable=True, response=raw)
 
         verdict = str(data.get("verdict", "")).strip().upper()
         if verdict not in (VERDICT_PASS, VERDICT_REVISE, VERDICT_REJECT):
             LOG.warning("Reviewer вернул неизвестный вердикт %r", data.get("verdict"))
             return self._failed(analysis, REVIEW_ERROR_UNKNOWN_VERDICT,
-                                f"вердикт {data.get('verdict')!r}", problems, retryable=False)
+                                f"вердикт {data.get('verdict')!r}", problems,
+                                retryable=False, response=raw)
 
         llm_problems = as_str_list(data.get("problems"), max_items=10, item_limit=500)
         corrected = data.get("corrected_fields")
@@ -200,10 +205,12 @@ class Reviewer:
             confidence=as_float(data.get("confidence"), 0.5),
             error="",
             retryable=False,
+            **self._diagnostics(raw),
         )
 
     def _failed(self, analysis: Analysis, code: str, detail: str,
-                problems: list[str], retryable: bool) -> Review:
+                problems: list[str], retryable: bool,
+                response: Optional[Any] = None) -> Review:
         """Единая точка формирования вердикта FAILED."""
         return Review(
             analysis_id=int(analysis.id or 0),
@@ -213,7 +220,28 @@ class Reviewer:
             confidence=0.0,
             error=code,
             retryable=retryable,
+            **self._diagnostics(response),
         )
+
+    @staticmethod
+    def _diagnostics(response: Optional[Any]) -> dict[str, Any]:
+        """
+        Безопасные диагностические поля ответа модели.
+
+        Ни промпт, ни текст источника, ни ключи сюда не попадают —
+        только роль, модель, причина остановки и объёмы.
+        """
+        if response is None:
+            return {"role": "reviewer"}
+        return {
+            "role": "reviewer",
+            "model": str(getattr(response, "model", "") or ""),
+            "provider": str(getattr(response, "provider", "") or ""),
+            "stop_reason": str(getattr(response, "stop_reason", "") or ""),
+            "response_chars": len(getattr(response, "text", "") or ""),
+            "input_tokens": int(getattr(response, "input_tokens", 0) or 0),
+            "output_tokens": int(getattr(response, "output_tokens", 0) or 0),
+        }
 
     def _build_prompt(self, analysis: Analysis, signal: Signal, item: RawItem) -> str:
         return (

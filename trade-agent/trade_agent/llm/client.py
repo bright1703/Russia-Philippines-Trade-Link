@@ -41,6 +41,10 @@ class LLMResponse:
     provider: str = ""
     input_tokens: int = 0
     output_tokens: int = 0
+    # Почему модель остановилась: end_turn, max_tokens и подобное.
+    # Нужно для разбора пустых ответов: обрыв по лимиту и отказ модели
+    # выглядят одинаково пустыми, но чинятся по-разному.
+    stop_reason: str = ""
     raw: dict[str, Any] = field(default_factory=dict)
 
 
@@ -117,6 +121,7 @@ class AnthropicProvider:
             provider=self.name,
             input_tokens=int(usage.get("input_tokens") or 0),
             output_tokens=int(usage.get("output_tokens") or 0),
+            stop_reason=str(data.get("stop_reason") or ""),
             raw=data,
         )
 

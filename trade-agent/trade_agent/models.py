@@ -296,6 +296,20 @@ class Review:
     retryable: bool = False    # можно ли повторить попытку позже
     created_at: str = field(default_factory=utcnow)
 
+    # --- диагностика без секретов -----------------------------------------
+    # Причина пустых и неразобранных ответов модели в аудите установлена
+    # не была, а увеличивать лимит наугад — не исправление. Здесь
+    # сохраняется то, по чему причину можно установить: роль, модель,
+    # причина остановки, длина итогового текста и расход токенов.
+    # Ни промпт, ни ключи, ни текст источника сюда не попадают.
+    role: str = "reviewer"
+    model: str = ""
+    provider: str = ""
+    stop_reason: str = ""
+    response_chars: int = 0
+    input_tokens: int = 0
+    output_tokens: int = 0
+
     @property
     def approved(self) -> bool:
         return self.verdict == VERDICT_PASS

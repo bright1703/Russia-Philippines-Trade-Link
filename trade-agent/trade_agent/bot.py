@@ -198,6 +198,7 @@ class TelegramBot:
             stats = db.stats()
             runs = db.recent_runs(5)
             sources = db.all_source_states()
+            review_failures = db.review_failures(5)
             issue = db.latest_issue("built")
             deliveries = db.deliveries_for_issue(int(issue.id)) if issue else []
             pending = db.signals_needing_attention(10)
@@ -237,6 +238,14 @@ class TelegramBot:
             for signal in pending[:5]:
                 lines.append(f"  #{signal.id} {signal.status}: "
                              f"{signal.last_error or 'причина не записана'}")
+        if review_failures:
+            lines.append("- сбои рецензии (модель, причина остановки, объём ответа):")
+            for row in review_failures:
+                lines.append(
+                    f"  {row['error']} ×{row['count']}: {row['model']}, "
+                    f"stop_reason={row['stop_reason']}, "
+                    f"в среднем {row['avg_response_chars']} симв. / "
+                    f"{row['avg_output_tokens']} токенов")
 
         lines += ["", "Выпуск:"]
         if issue is None:

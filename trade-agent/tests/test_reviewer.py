@@ -180,3 +180,68 @@ def test_revise_without_problems_gets_explicit_reason(settings):
     review = Reviewer(mock_llm(json_response({"verdict": "REVISE", "problems": []})),
                       settings).review(analysis, signal, item, companies)
     assert review.verdict == "REVISE" and review.problems
+
+
+# --- диагностика сбоев модели ----------------------------------------------
+def test_failed_review_records_safe_diagnostics(settings):
+    """
+    Пустой ответ модели сохраняется вместе с причиной остановки.
+
+    Причина ошибок reviewer_empty_response в аудите установлена не была,
+    а увеличивать лимит наугад — не исправление. Диагностика нужна, чтобы
+    разбирать их по данным. Промпт и ключи в неё не попадают.
+    """
+    from trade_agent.llm import LLMClient, LLMResponse
+
+    class _Empty:
+        name = "mock"
+
+        def complete(self, system, user, model, max_tokens, temperature, timeout):
+            return LLMResponse(text="   ", model="deep-1", provider="mock",
+                               input_tokens=900, output_tokens=4000,
+                               stop_reason="max_tokens")
+
+    analysis, signal, item, companies = _fixture()
+    llm = LLMClient(_Empty(), model_fast="fast", model_deep="deep-1")
+    review = Reviewer(llm, settings).review(analysis, signal, item, companies)
+
+    assert review.verdict == "FAILED"
+    assert review.error == "reviewer_empty_response"
+    assert review.stop_reason == "max_tokens"
+    assert review.output_tokens == 4000
+    assert review.response_chars == 3
+    assert review.model == "deep-1"
+    assert review.role == "reviewer"
+
+
+def test_review_failures_summary_groups_by_cause(db, settings):
+    """Сводка сбоев рецензии считается по сохранённым полям, а не по догадкам."""
+    from trade_agent.models import Review
+    from trade_agent.utils import content_hash
+
+    raw = RawItem(source="bai", source_type="web", title="t", raw_text="x")
+    raw.hash = content_hash(raw.source, raw.external_id, raw.title, raw.raw_text)
+    raw_id, _ = db.upsert_raw_item(raw)
+    signal_id, _ = db.upsert_signal(Signal(raw_item_id=raw_id, relevance_score=4))
+
+    for revision in range(3):
+        analysis = Analysis(signal_id=signal_id, summary="s", revision=revision)
+        analysis_id = db.insert_analysis(analysis)
+        db.insert_review(Review(analysis_id=analysis_id, verdict="FAILED",
+                                error="reviewer_empty_response", model="deep-1",
+                                provider="mock", stop_reason="max_tokens",
+                                response_chars=0, output_tokens=4000))
+    analysis = Analysis(signal_id=signal_id, summary="s", revision=9)
+    analysis_id = db.insert_analysis(analysis)
+    db.insert_review(Review(analysis_id=analysis_id, verdict="FAILED",
+                            error="reviewer_invalid_response", model="deep-1",
+                            provider="mock", stop_reason="end_turn",
+                            response_chars=120, output_tokens=200))
+
+    summary = db.review_failures(10)
+    assert summary[0]["error"] == "reviewer_empty_response"
+    assert summary[0]["count"] == 3
+    assert summary[0]["stop_reason"] == "max_tokens"
+    assert summary[0]["avg_output_tokens"] == 4000.0
+    assert {row["error"] for row in summary} == {
+        "reviewer_empty_response", "reviewer_invalid_response"}
