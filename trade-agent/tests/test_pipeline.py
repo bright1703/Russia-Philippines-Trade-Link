@@ -104,15 +104,20 @@ def test_digest_is_written(pipeline):
     assert latest.exists()
     text = latest.read_text("utf-8")
     assert "# Trade Agent" in text
-    for heading in ("## Срочно", "## Возможности", "## Тендеры", "## Исключено"):
-        assert heading in text
+    # Пустые секции в выпуск не попадают, поэтому проверяем шапку и то,
+    # что выпуск содержит хотя бы один из блоков направления.
+    assert "Период:" in text and "Охват сбора:" in text
+    assert any(heading in text for heading in
+               ("## Приморье → Филиппины", "## Филиппины → РФ", "## Наблюдать"))
     assert digest_stats["errors"] == 0
 
 
 def test_digest_stays_compact(pipeline):
-    _, _, _, settings = pipeline
+    """Ориентир ТЗ — 5-8 содержательных карточек, а не всё подряд."""
+    _, _, digest_stats, settings = pipeline
     text = (settings.digest_dir / "latest.md").read_text("utf-8")
-    assert text.count("### ") <= settings.digest_max_per_section * 4
+    assert digest_stats["cards"] <= settings.digest_max_cards
+    assert text.count("### ") <= settings.digest_max_cards
 
 
 def test_runs_are_logged_for_every_stage(pipeline):

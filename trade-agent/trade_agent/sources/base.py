@@ -16,6 +16,15 @@ class SourceResult:
     error: str = ""
     fetched_pages: int = 0
     retries: int = 0
+    # Покрыт ли запрошенный период целиком. False означает, что источник
+    # упёрся в технический лимит и часть периода не прочитана. Делать вид,
+    # что весь период обработан, нельзя: в выпуске это разные состояния.
+    complete: bool = True
+    # Позиция, с которой продолжить в следующий раз (формат — дело адаптера).
+    cursor: str = ""
+    # Самая свежая публикация источника: по ней видно, молчит ли исправный
+    # источник или просто давно ничего не публиковал.
+    latest_published_at: str = ""
 
 
 class SourceAdapter:
@@ -34,6 +43,15 @@ class SourceAdapter:
         self.settings = settings
         self.source_id = self.config.get("id") or self.source_id
         self.log = logging.getLogger(f"trade_agent.source.{self.source_id}")
+        # Сохранённая позиция предыдущего запуска. Сбор продолжается
+        # от неё, а не от «последних суток».
+        self.cursor = ""
+        self.last_published_at = ""
+
+    def resume_from(self, cursor: str, last_published_at: str = "") -> None:
+        """Передаёт адаптеру позицию, на которой он остановился в прошлый раз."""
+        self.cursor = str(cursor or "")
+        self.last_published_at = str(last_published_at or "")
 
     @property
     def enabled(self) -> bool:

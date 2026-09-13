@@ -129,11 +129,30 @@ def normalize_catalog_row(row: dict[str, Any], source_row: int,
     hs_codes = _hs_codes(hs_value)
     countries = _countries(row.get("Страны экспорта") or row.get("export_countries"))
     industry = _text(row.get("Отрасль экспорта") or row.get("industry"))
-    classification_text = " ".join([industry, *products])
+    classification_text = " ".join([industry, *products, description])
     categories = [category for category, _ in taxonomy.guess_categories(classification_text)]
     if not categories:
         categories = ["OTHER"]
+
+    # Отрасль каталога — отправная точка, а не гарантия точности. Поэтому
+    # рядом с отраслью хранится основание: колонка каталога или конкретное
+    # слово продукции. Выдумывать отрасль ради формального устранения
+    # OTHER нельзя — спорная запись уходит на проверку человеком.
+    sectors: list[str] = []
+    basis: list[str] = []
+    for sector in taxonomy.sectors_from_industry(industry):
+        sectors.append(sector)
+        basis.append(f"колонка «Отрасль экспорта»: {industry}")
+    for sector, hits in taxonomy.guess_sectors(" ".join(products) or description, limit=3):
+        if sector in sectors:
+            continue
+        sectors.append(sector)
+        basis.append(f"слово в описании продукции ({hits} совпад.): "
+                     f"{taxonomy.sector_label(sector)}")
+
     quality: list[str] = []
+    if not sectors:
+        quality.append("отрасль не определена автоматически, нужна ручная проверка")
     if not description:
         quality.append("нет описания")
     if not products:
@@ -155,6 +174,8 @@ def normalize_catalog_row(row: dict[str, Any], source_row: int,
         "product_aliases": _aliases(products),
         "hs_codes": hs_codes,
         "categories": categories,
+        "sectors": sectors,
+        "sector_basis": basis,
         "export_countries": countries,
         "export_experience": ", ".join(countries),
         "industry": industry,

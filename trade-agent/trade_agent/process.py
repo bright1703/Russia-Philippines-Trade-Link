@@ -22,14 +22,15 @@ from typing import Any, Optional
 from .agents import Analyst, Reviewer, Scout, ScoutResult
 from .alerts import detect_mandatory_policy_alert
 from .companies.loader import sync_companies
+from .events import event_key
 from .config import load_settings
 from .exit_codes import EXIT_CRITICAL, EXIT_OK, EXIT_PARTIAL
 from .db import Database
 from .llm import build_client
 from .models import (
     REVIEW_ERROR_MAX_REVISIONS, RunLog, SIGNAL_ANALYZED, SIGNAL_FAILED,
-    SIGNAL_NEEDS_REVIEW, SIGNAL_NEW, SIGNAL_REJECTED, UNPUBLISHED_STATUSES,
-    VERDICT_FAILED, VERDICT_PASS, VERDICT_REJECT, VERDICT_REVISE, Review,
+    SIGNAL_NEEDS_REVIEW, SIGNAL_REJECTED, VERDICT_FAILED, VERDICT_PASS,
+    VERDICT_REJECT, Review,
 )
 from .radar import OpportunityRadar
 from .utils import setup_logging
@@ -89,6 +90,12 @@ def run(settings: Any, limit: int = 100, stage: str = "all",
                     continue
                 counters["signals"] += 1
                 if not dry_run:
+                    # Ключ события считается один раз и хранится вместе
+                    # с сигналом: дедупликация выпуска опирается на него,
+                    # а не на похожесть заголовков во время сборки.
+                    result.signal.event_key = event_key(item, result.signal)
+                    if not result.signal.first_seen_at:
+                        result.signal.first_seen_at = item.published_at or item.fetched_at
                     signal_id, _ = db.upsert_signal(result.signal)
                     result.signal.id = signal_id
 
@@ -104,8 +111,11 @@ def run(settings: Any, limit: int = 100, stage: str = "all",
                 item = db.get_raw_item(signal.raw_item_id)
                 if item is None:
                     continue
-                relevant = [c for c in companies
-                            if radar.match_all(signal, item, [c])] or companies[:5]
+                # Только компании с прямой применимостью. Раньше при
+                # отсутствии совпадений в Analyst подставлялись первые пять
+                # компаний каталога, и модель писала про тех, к кому событие
+                # отношения не имеет. Пустой список допустим.
+                relevant = radar.direct_matches(signal, item, companies)
 
                 analysis = None
                 review: Optional[Review] = None
@@ -132,7 +142,19 @@ def run(settings: Any, limit: int = 100, stage: str = "all",
                     review = None                 # цикл исчерпан без решения
 
                 if analysis is None:
+                    # Недоступность модели ничего не стоит и попытку не
+                    # тратит. Мусорный ответ — тратит, иначе один и тот же
+                    # сигнал будет дорого перезапрашиваться бесконечно.
                     counters["deferred"] += 1
+                    if analyst.last_error == "analyst_invalid_response":
+                        attempts = db.bump_review_attempt(signal_id, analyst.last_error)
+                        if attempts >= max_attempts:
+                            db.set_signal_status(signal_id, SIGNAL_FAILED,
+                                                 analyst.last_error)
+                            counters["review_failed"] += 1
+                        else:
+                            db.schedule_retry(signal_id, minutes=60,
+                                              error=analyst.last_error)
                     continue
                 if dry_run:
                     counters["analysed"] += 1

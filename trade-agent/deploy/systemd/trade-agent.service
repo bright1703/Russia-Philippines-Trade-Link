@@ -1,0 +1,27 @@
+[Unit]
+Description=Trade Agent — полный цикл: сбор, анализ, выпуск, доставка
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=tradeagent
+WorkingDirectory=/opt/trade-agent
+Environment=PYTHONUNBUFFERED=1
+# --scheduled: плановый прогон. Он сам проверяет, что за календарную неделю
+# по Маниле выполнено не больше двух автоматических циклов, включая
+# догоняющие старты после простоя.
+# Период сбора не задаётся: каждый источник догружает интервал от своей
+# последней успешной позиции, поэтому между запусками не остаётся дыр.
+ExecStart=/opt/trade-agent/.venv/bin/python -m trade_agent.run_pipeline --scheduled
+TimeoutStartSec=5400
+Nice=10
+# безопасность
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/trade-agent/data /opt/trade-agent/logs /opt/trade-agent/digest /opt/trade-agent/tenders
+
+[Install]
+WantedBy=multi-user.target

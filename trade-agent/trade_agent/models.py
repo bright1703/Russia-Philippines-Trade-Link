@@ -15,6 +15,63 @@ CATEGORIES = (
 
 SOURCE_TYPES = ("telegram", "tender", "web", "manual")
 
+# --- направление торговли --------------------------------------------------
+# Отрасль отвечает на вопрос «какой товар», направление — «куда идёт товар».
+# Смешивать их нельзя: одна и та же рыба интересна и в ту, и в другую сторону.
+DIRECTION_RU_TO_PH = "RU_TO_PH"
+DIRECTION_PH_TO_RU = "PH_TO_RU"
+DIRECTION_BOTH = "BOTH"
+DIRECTION_UNKNOWN = "UNKNOWN"
+TRADE_DIRECTIONS = (DIRECTION_RU_TO_PH, DIRECTION_PH_TO_RU,
+                    DIRECTION_BOTH, DIRECTION_UNKNOWN)
+
+# --- тип события -----------------------------------------------------------
+# Пошлина, тендер, логистика, спрос — это НЕ отрасли, а типы событий.
+EVENT_DEMAND = "DEMAND"                  # изменение спроса
+EVENT_SUPPLY = "SUPPLY"                  # изменение предложения
+EVENT_MARKET_ACCESS = "MARKET_ACCESS"    # доступ на рынок, допуск предприятия
+EVENT_RULE_CHANGE = "RULE_CHANGE"        # изменение правил, пошлин, квот
+EVENT_LOGISTICS = "LOGISTICS"            # маршруты, ставки, сроки
+EVENT_BUYER_REQUEST = "BUYER_REQUEST"    # запрос покупателя, тендер
+EVENT_BUSINESS_CONTACT = "BUSINESS_CONTACT"  # миссия, встреча, выставка
+EVENT_OTHER = "OTHER"
+EVENT_TYPES = (EVENT_DEMAND, EVENT_SUPPLY, EVENT_MARKET_ACCESS, EVENT_RULE_CHANGE,
+               EVENT_LOGISTICS, EVENT_BUYER_REQUEST, EVENT_BUSINESS_CONTACT, EVENT_OTHER)
+
+# --- уровень проверки ------------------------------------------------------
+# «Проверка текста моделью» и «проверка первичного документа» — разные вещи,
+# и в выпуске они не должны выглядеть одинаково.
+VERIFY_SOURCE_CLAIM = "source_claim"        # по сообщению источника
+VERIFY_PRIMARY = "primary_verified"         # проверен первичный документ
+VERIFY_NEEDS_CHECK = "needs_check"          # требуется уточнение
+VERIFICATION_STATUSES = (VERIFY_SOURCE_CLAIM, VERIFY_PRIMARY, VERIFY_NEEDS_CHECK)
+
+# --- вид связи компании с событием ----------------------------------------
+# Прямая применимость и отраслевая связь не смешиваются никогда.
+LINK_DIRECT = "direct"      # в материале есть товар, код или название компании
+LINK_SECTOR = "sector"      # событие в отрасли компании, применимость не доказана
+LINK_TYPES = (LINK_DIRECT, LINK_SECTOR)
+
+# --- роль компании в сделке -----------------------------------------------
+# Экспортёр из каталога не становится покупателем филиппинского товара
+# только потому, что товар совпал.
+ROLE_PRODUCER = "producer"
+ROLE_EXPORTER = "exporter"
+ROLE_IMPORTER = "importer"
+ROLE_DISTRIBUTOR = "distributor"
+ROLE_PROCESSOR = "processor"
+ROLE_LOGISTICS = "logistics_provider"
+ROLE_UNKNOWN = "unknown"
+COMPANY_ROLES = (ROLE_PRODUCER, ROLE_EXPORTER, ROLE_IMPORTER, ROLE_DISTRIBUTOR,
+                 ROLE_PROCESSOR, ROLE_LOGISTICS, ROLE_UNKNOWN)
+
+# --- состояние доставки ----------------------------------------------------
+DELIVERY_SENT = "sent"            # подтверждено
+DELIVERY_PARTIAL = "partial"      # часть постов ушла
+DELIVERY_UNKNOWN = "unknown"      # результат сетевого вызова неясен
+DELIVERY_FAILED = "failed"
+DELIVERY_STATUSES = (DELIVERY_SENT, DELIVERY_PARTIAL, DELIVERY_UNKNOWN, DELIVERY_FAILED)
+
 # FAILED — служебный вердикт fail-closed: рецензия не состоялась.
 # Он НИКОГДА не означает «проверено и годно».
 VERDICT_PASS = "PASS"
@@ -106,6 +163,31 @@ class Signal:
     last_error: str = ""           # код последней ошибки конвейера
     created_at: str = field(default_factory=utcnow)
 
+    # --- раздельные ответы на раздельные вопросы --------------------------
+    # «что произошло», «на какое направление влияет» и «кого это касается»
+    # хранятся отдельно и не подменяют друг друга.
+    trade_direction: str = DIRECTION_UNKNOWN
+    event_type: str = EVENT_OTHER
+    sectors: list[str] = field(default_factory=list)
+    jurisdiction: str = ""              # чьё правило меняется
+    destination_market: str = ""        # рынок назначения, не место новости
+    origin_countries: list[str] = field(default_factory=list)
+    # Фрагменты исходного текста, на которых основан вывод. Пустой список
+    # означает, что доказательств нет, а не что они не понадобились.
+    evidence_fragments: list[str] = field(default_factory=list)
+    # Устойчивый идентификатор события: два перепоста одной новости
+    # дают одну карточку.
+    event_key: str = ""
+    event_date: str = ""                # когда произошло событие
+    effective_from: str = ""            # с какой даты действует правило
+    deadline: str = ""
+    first_seen_at: str = ""
+    verification_status: str = VERIFY_SOURCE_CLAIM
+    uncertainties: list[str] = field(default_factory=list)
+    # Когда можно повторить дорогую попытку анализа. Пустое значение —
+    # можно сейчас. Защита от бесконечных повторов в одном запуске.
+    next_retry_at: str = ""
+
     @property
     def published(self) -> bool:
         """Сигнал считается подтверждённым только после PASS рецензента."""
@@ -127,9 +209,10 @@ class Signal:
 
     def to_row(self) -> dict[str, Any]:
         row = asdict(self)
-        row["companies_matched"] = _json(self.companies_matched)
-        row["hs_codes"] = _json(self.hs_codes)
-        row["matched_products"] = _json(self.matched_products)
+        for key in ("companies_matched", "hs_codes", "matched_products",
+                    "sectors", "origin_countries", "evidence_fragments",
+                    "uncertainties"):
+            row[key] = _json(getattr(self, key))
         row["needs_deep_analysis"] = int(self.needs_deep_analysis)
         row["must_alert"] = int(self.must_alert)
         row.pop("id", None)
@@ -138,15 +221,26 @@ class Signal:
     @staticmethod
     def from_row(row: Any) -> "Signal":
         data = dict(row)
-        data["companies_matched"] = _unjson(data.get("companies_matched"), [])
-        data["hs_codes"] = _unjson(data.get("hs_codes"), [])
-        data["matched_products"] = _unjson(data.get("matched_products"), [])
+        for key in ("companies_matched", "hs_codes", "matched_products",
+                    "sectors", "origin_countries", "evidence_fragments",
+                    "uncertainties"):
+            data[key] = _unjson(data.get(key), [])
         data["needs_deep_analysis"] = bool(data.get("needs_deep_analysis"))
         data["must_alert"] = bool(data.get("must_alert"))
         data["review_attempts"] = int(data.get("review_attempts") or 0)
-        data.setdefault("last_error", "")
-        if data.get("last_error") is None:
-            data["last_error"] = ""
+        for key, default in (("last_error", ""), ("next_retry_at", ""),
+                             ("jurisdiction", ""),
+                             ("destination_market", ""), ("event_key", ""),
+                             ("event_date", ""), ("effective_from", ""),
+                             ("deadline", ""), ("first_seen_at", "")):
+            if not data.get(key):
+                data[key] = default
+        if not data.get("trade_direction"):
+            data["trade_direction"] = DIRECTION_UNKNOWN
+        if not data.get("event_type"):
+            data["event_type"] = EVENT_OTHER
+        if not data.get("verification_status"):
+            data["verification_status"] = VERIFY_SOURCE_CLAIM
         return Signal(**data)
 
 
@@ -245,6 +339,15 @@ class Company:
     source_name: str = ""
     source_row: int = 0
     data_quality: list[str] = field(default_factory=list)
+    # Отрасли и товарные группы новой таксономии. Исходная колонка
+    # industry сохраняется как есть и не перезаписывается.
+    sectors: list[str] = field(default_factory=list)
+    # На чём основано отнесение к отрасли: колонка каталога, слово из
+    # описания продукции, ручная проверка.
+    sector_basis: list[str] = field(default_factory=list)
+    # Роли в сделке. Экспортёр из каталога не становится покупателем
+    # филиппинского товара автоматически.
+    roles: list[str] = field(default_factory=lambda: [ROLE_UNKNOWN])
     export_experience: str = ""
     documents: list[str] = field(default_factory=list)
     status: str = ""
@@ -260,7 +363,8 @@ class Company:
     def to_row(self) -> dict[str, Any]:
         row = asdict(self)
         for key in ("products", "product_aliases", "hs_codes", "categories", "export_countries", "documents",
-                    "restrictions", "potential_buyers", "regulators", "data_quality"):
+                    "restrictions", "potential_buyers", "regulators", "data_quality",
+                    "sectors", "sector_basis", "roles"):
             row[key] = _json(getattr(self, key))
         row.pop("id", None)
         return row
@@ -269,8 +373,11 @@ class Company:
     def from_row(row: Any) -> "Company":
         data = dict(row)
         for key in ("products", "product_aliases", "hs_codes", "categories", "export_countries", "documents",
-                    "restrictions", "potential_buyers", "regulators", "data_quality"):
+                    "restrictions", "potential_buyers", "regulators", "data_quality",
+                    "sectors", "sector_basis", "roles"):
             data[key] = _unjson(data.get(key), [])
+        if not data.get("roles"):
+            data["roles"] = [ROLE_UNKNOWN]
         data.setdefault("product_aliases", [])
         data.setdefault("description", "")
         data.setdefault("inn", "")
@@ -287,7 +394,13 @@ class Company:
 
 @dataclass
 class Match:
-    """Результат Opportunity Radar: связь сигнала с компанией."""
+    """
+    Результат Opportunity Radar: связь сигнала с компанией.
+
+    Вид связи обязателен и виден человеку. «Прямая применимость» и
+    «компании отрасли, применимость уточнить» — разные утверждения,
+    и выдавать второе за первое нельзя.
+    """
     id: Optional[int] = None
     company_slug: str = ""
     signal_id: int = 0
@@ -295,15 +408,32 @@ class Match:
     reason: str = ""
     recommended_action: str = ""
     created_at: str = field(default_factory=utcnow)
+    link_type: str = LINK_SECTOR
+    # Фрагменты исходного материала, подтверждающие связь.
+    evidence: list[str] = field(default_factory=list)
+    # Роль компании в этом событии. Для PH_TO_RU роль unknown означает,
+    # что покупателем компанию называть нельзя.
+    role: str = ROLE_UNKNOWN
+
+    @property
+    def direct(self) -> bool:
+        return self.link_type == LINK_DIRECT
 
     def to_row(self) -> dict[str, Any]:
         row = asdict(self)
+        row["evidence"] = _json(self.evidence)
         row.pop("id", None)
         return row
 
     @staticmethod
     def from_row(row: Any) -> "Match":
-        return Match(**dict(row))
+        data = dict(row)
+        data["evidence"] = _unjson(data.get("evidence"), [])
+        if not data.get("link_type"):
+            data["link_type"] = LINK_SECTOR
+        if not data.get("role"):
+            data["role"] = ROLE_UNKNOWN
+        return Match(**data)
 
 
 @dataclass
@@ -334,3 +464,160 @@ class RunLog:
         data = dict(row)
         data["details"] = _unjson(data.get("details"), {})
         return RunLog(**data)
+
+
+@dataclass
+class IssueItem:
+    """
+    Одна карточка выпуска.
+
+    Карточка — единственный источник правды о том, что человек увидел.
+    Счётчики шапки, список компаний и посты в Telegram считаются по
+    карточкам, а не по независимо выбранным строкам таблиц.
+    """
+    id: Optional[int] = None
+    issue_id: int = 0
+    position: int = 0
+    section: str = ""
+    event_key: str = ""
+    signal_id: Optional[int] = None
+    analysis_id: Optional[int] = None
+    title: str = ""
+    fact: str = ""
+    meaning: str = ""
+    trade_direction: str = DIRECTION_UNKNOWN
+    event_type: str = EVENT_OTHER
+    sectors: list[str] = field(default_factory=list)
+    source_urls: list[str] = field(default_factory=list)
+    published_at: str = ""
+    verification_status: str = VERIFY_SOURCE_CLAIM
+    # Анализ старого сигнала, готовый только сегодня, выходит один раз
+    # с исходной датой и пометкой о позднем подтверждении.
+    late_confirmation: bool = False
+    urgent: bool = False
+    action: str = ""
+    companies_direct: list[dict[str, Any]] = field(default_factory=list)
+    companies_sector: list[dict[str, Any]] = field(default_factory=list)
+    companies_total: int = 0
+    created_at: str = field(default_factory=utcnow)
+
+    _JSON_FIELDS = ("sectors", "source_urls", "companies_direct", "companies_sector")
+
+    def to_row(self) -> dict[str, Any]:
+        row = asdict(self)
+        for key in self._JSON_FIELDS:
+            row[key] = _json(getattr(self, key))
+        row["late_confirmation"] = int(self.late_confirmation)
+        row["urgent"] = int(self.urgent)
+        row.pop("id", None)
+        return row
+
+    @staticmethod
+    def from_row(row: Any) -> "IssueItem":
+        data = dict(row)
+        for key in IssueItem._JSON_FIELDS:
+            data[key] = _unjson(data.get(key), [])
+        data["late_confirmation"] = bool(data.get("late_confirmation"))
+        data["urgent"] = bool(data.get("urgent"))
+        data["companies_total"] = int(data.get("companies_total") or 0)
+        return IssueItem(**data)
+
+
+@dataclass
+class Issue:
+    """Выпуск: период, охват сбора, честные счётчики и путь к файлу."""
+    id: Optional[int] = None
+    kind: str = "scheduled"
+    period_start: str = ""
+    period_end: str = ""
+    built_at: str = field(default_factory=utcnow)
+    status: str = "built"          # built | failed
+    coverage: dict[str, Any] = field(default_factory=dict)
+    counters: dict[str, Any] = field(default_factory=dict)
+    markdown_path: str = ""
+    content_hash: str = ""
+
+    def to_row(self) -> dict[str, Any]:
+        row = asdict(self)
+        row["coverage"] = _json(self.coverage)
+        row["counters"] = _json(self.counters)
+        row.pop("id", None)
+        return row
+
+    @staticmethod
+    def from_row(row: Any) -> "Issue":
+        data = dict(row)
+        data["coverage"] = _unjson(data.get("coverage"), {})
+        data["counters"] = _unjson(data.get("counters"), {})
+        return Issue(**data)
+
+
+@dataclass
+class Delivery:
+    """
+    Состояние доставки одного выпуска в один чат.
+
+    Неопределённый результат сетевого вызова не считается ни успехом,
+    ни поводом для слепой повторной рассылки.
+    """
+    id: Optional[int] = None
+    issue_id: int = 0
+    channel: str = "telegram"
+    chat_id: str = ""
+    status: str = DELIVERY_UNKNOWN
+    parts_total: int = 0
+    parts_sent: int = 0
+    message_ids: list[int] = field(default_factory=list)
+    error: str = ""
+    created_at: str = field(default_factory=utcnow)
+    updated_at: str = field(default_factory=utcnow)
+
+    @property
+    def confirmed(self) -> bool:
+        return self.status == DELIVERY_SENT
+
+    def to_row(self) -> dict[str, Any]:
+        row = asdict(self)
+        row["message_ids"] = _json(self.message_ids)
+        row.pop("id", None)
+        return row
+
+    @staticmethod
+    def from_row(row: Any) -> "Delivery":
+        data = dict(row)
+        data["message_ids"] = _unjson(data.get("message_ids"), [])
+        return Delivery(**data)
+
+
+@dataclass
+class SourceState:
+    """
+    Позиция источника между запусками.
+
+    Молчание исправного источника, ошибка загрузки и неподключённый
+    источник — три разных состояния, и в выпуске они выглядят по-разному.
+    """
+    source_id: str = ""
+    last_success_at: str = ""
+    last_published_at: str = ""
+    cursor: str = ""
+    coverage_complete: bool = True
+    last_error: str = ""
+    items_last_run: int = 0
+    new_last_run: int = 0
+    updated_at: str = field(default_factory=utcnow)
+
+    @property
+    def never_ran(self) -> bool:
+        return not self.last_success_at
+
+    def to_row(self) -> dict[str, Any]:
+        row = asdict(self)
+        row["coverage_complete"] = int(self.coverage_complete)
+        return row
+
+    @staticmethod
+    def from_row(row: Any) -> "SourceState":
+        data = dict(row)
+        data["coverage_complete"] = bool(data.get("coverage_complete"))
+        return SourceState(**data)

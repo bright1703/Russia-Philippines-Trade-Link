@@ -29,6 +29,8 @@ import requests
 
 from .config import load_settings
 from .db import Database
+from .models import LINK_DIRECT
+from .timeutil import manila_date, manila_stamp
 from .utils import setup_logging, truncate
 
 LOG = logging.getLogger("trade_agent.bot")
@@ -40,14 +42,28 @@ PRIVATE_CHAT = "private"
 class TelegramApiError(RuntimeError):
     """Telegram ответил ошибкой. Текст очищен от токена."""
 
+
+class TelegramUncertain(TelegramApiError):
+    """
+    Результат вызова неизвестен: запрос ушёл, ответ не получен.
+
+    Сообщение могло дойти. Считать такую отправку ни успешной, ни
+    провалившейся нельзя, поэтому она выделена в отдельный случай.
+    """
+
+
 HELP = (
     "Доступные команды:\n"
-    "/status — состояние системы\n"
-    "/latest — последний дайджест\n"
+    "/status — состояние системы и охват сбора\n"
+    "/latest — последний выпуск\n"
     "/companies — список компаний\n"
-    "/opportunities — последние найденные возможности\n"
+    "/companies <id> [страница] — все компании по карточке выпуска\n"
+    "/opportunities — последние найденные связи\n"
     "/help — эта справка"
 )
+
+# Сколько компаний показывать на одной странице полного списка.
+COMPANIES_PAGE = 15
 
 
 class TelegramBot:
@@ -78,6 +94,11 @@ class TelegramBot:
             response = self.session.post(
                 API.format(token=self.token, method=method), json=params, timeout=60
             )
+        except (requests.Timeout, requests.ConnectionError) as exc:
+            # Запрос мог дойти до Telegram, а ответ потеряться. Это не
+            # отказ: повторять отправку вслепую нельзя.
+            raise TelegramUncertain(
+                self._sanitize(f"{method}: ответ не получен: {exc}")) from None
         except requests.RequestException as exc:
             raise TelegramApiError(self._sanitize(f"{method}: сеть недоступна: {exc}")) from None
 
@@ -107,6 +128,19 @@ class TelegramBot:
             self._call("sendMessage", chat_id=chat_id, text=chunk,
                        disable_web_page_preview=True)
 
+    def send_post(self, chat_id: int, text: str) -> int:
+        """
+        Отправляет одну готовую часть выпуска и возвращает id сообщения.
+
+        Id нужен состоянию доставки: по нему видно, что именно ушло,
+        и повторная рассылка подтверждённой части не выполняется.
+        """
+        if not self._chat_allowed(chat_id):
+            raise TelegramApiError("чат не разрешён")
+        data = self._call("sendMessage", chat_id=chat_id, text=text,
+                          disable_web_page_preview=True)
+        return int((data.get("result") or {}).get("message_id") or 0)
+
     @staticmethod
     def _split(text: str) -> list[str]:
         """Режет длинный ответ на части, помещающиеся в одно сообщение."""
@@ -130,12 +164,13 @@ class TelegramBot:
         normalized = (text or "").strip()
         command = normalized.split()[0].lower() if normalized else ""
         command = command.split("@")[0]
+        arguments = normalized.split()[1:]
         handlers = {
-            "/status": self.cmd_status,
-            "/health": self.cmd_status,
-            "/latest": self.cmd_latest,
-            "/companies": self.cmd_companies,
-            "/opportunities": self.cmd_opportunities,
+            "/status": lambda: self.cmd_status(),
+            "/health": lambda: self.cmd_status(),
+            "/latest": lambda: self.cmd_latest(),
+            "/companies": lambda: self.cmd_companies(arguments),
+            "/opportunities": lambda: self.cmd_opportunities(),
             "/start": lambda: HELP,
             "/help": lambda: HELP,
         }
@@ -150,27 +185,81 @@ class TelegramBot:
             return "Команда не выполнена. Подробности записаны в журнал."
 
     def cmd_status(self) -> str:
+        """
+        Технические подробности, которых нет в выпуске.
+
+        Статусы сбора, анализа, выпуска и доставки показываются раздельно:
+        по одному зелёному статусу службы о качестве выпуска судить нельзя.
+        Ошибки старых ожидающих сигналов здесь видны независимо от периода
+        последнего выпуска.
+        """
         db = Database(self.settings.db_path)
         try:
             stats = db.stats()
             runs = db.recent_runs(5)
+            sources = db.all_source_states()
+            issue = db.latest_issue("built")
+            deliveries = db.deliveries_for_issue(int(issue.id)) if issue else []
+            pending = db.signals_needing_attention(10)
         finally:
             db.close()
+
         lines = [
             "Состояние системы",
-            f"Сырьё: {stats['raw_items']} (в очереди: {stats['queue']})",
-            f"Сигналы: {stats['signals']} (новых {stats['signals_new']}, "
-            f"разобрано {stats['signals_analyzed']})",
-            f"Анализы: {stats['analyses']}, прошли рецензию: {stats['reviews_pass']}",
-            f"Компании: {stats['companies']}, совпадений: {stats['matches']}",
             "",
-            "Последние запуски:",
+            "Сбор:",
+            f"- сырьё: {stats['raw_items']}, в очереди на разбор: {stats['queue']}",
         ]
+        for state in sources:
+            if state.last_error:
+                mark = f"ошибка загрузки: {truncate(state.last_error, 120)}"
+            elif not state.coverage_complete:
+                mark = "период покрыт не полностью, есть остаток для догрузки"
+            elif state.never_ran:
+                mark = "не подключён, ни одной успешной проверки"
+            else:
+                mark = (f"последняя проверка {manila_stamp(state.last_success_at)}, "
+                        f"свежая публикация {manila_date(state.last_published_at) or '—'}")
+            lines.append(f"- {state.source_id}: {mark}")
+
+        lines += [
+            "",
+            "Анализ:",
+            f"- сигналы: {stats['signals']} (новых {stats['signals_new']}, "
+            f"подтверждено {stats['signals_analyzed']}, "
+            f"сбой {stats['signals_failed']}, ручная проверка {stats['signals_needs_review']})",
+            f"- анализы: {stats['analyses']}, прошли рецензию: {stats['reviews_pass']}, "
+            f"рецензия не состоялась: {stats['reviews_failed']}",
+            f"- компании: {stats['companies']}, связей с событиями: {stats['matches']}",
+        ]
+        if pending:
+            lines.append("- ожидают вмешательства:")
+            for signal in pending[:5]:
+                lines.append(f"  #{signal.id} {signal.status}: "
+                             f"{signal.last_error or 'причина не записана'}")
+
+        lines += ["", "Выпуск:"]
+        if issue is None:
+            lines.append("- успешно собранных выпусков ещё нет")
+        else:
+            counters = issue.counters or {}
+            lines.append(f"- №{issue.id} от {manila_stamp(issue.built_at)}: "
+                         f"карточек {counters.get('cards', 0)}, "
+                         f"наблюдать {counters.get('watch', 0)}, "
+                         f"поздних подтверждений {counters.get('late_confirmations', 0)}")
+            if not deliveries:
+                lines.append("- доставка: не выполнялась")
+            for delivery in deliveries:
+                lines.append(f"- доставка в чат {delivery.chat_id}: {delivery.status}, "
+                             f"частей {delivery.parts_sent}/{delivery.parts_total}"
+                             + (f", {truncate(delivery.error, 120)}" if delivery.error else ""))
+
+        lines += ["", "Последние запуски:"]
         for run in runs:
             lines.append(
                 f"- {run.stage}: {run.status}, обработано {run.processed}, "
                 f"новых {run.created}, ошибок {run.errors}, {run.duration_sec}s "
-                f"({run.started_at})"
+                f"({manila_stamp(run.started_at)})"
             )
         if stats["last_error"]:
             lines += ["", f"Последняя ошибка: {truncate(stats['last_error'], 300)}"]
@@ -184,22 +273,83 @@ class TelegramBot:
             return "Дайджест ещё не сформирован. Запустите python -m trade_agent.digest"
         return truncate(path.read_text("utf-8"), MAX_MESSAGE * 3)
 
-    def cmd_companies(self) -> str:
+    def cmd_companies(self, arguments: Optional[list[str]] = None) -> str:
+        """
+        Список компаний.
+
+        Без аргументов — каталог постранично. С номером сигнала — ПОЛНЫЙ
+        список компаний по этой карточке выпуска: сначала прямая
+        применимость, затем компании отрасли. В карточку выпуска
+        помещаются только первые три, остальные доступны здесь.
+        """
+        arguments = [a for a in (arguments or []) if a]
+        signal_id = 0
+        page = 1
+        if arguments and arguments[0].lstrip("#").isdigit():
+            signal_id = int(arguments[0].lstrip("#"))
+            if len(arguments) > 1 and arguments[1].isdigit():
+                page = max(1, int(arguments[1]))
+        elif arguments and arguments[0].isdigit():
+            page = max(1, int(arguments[0]))
+
         db = Database(self.settings.db_path)
         try:
-            companies = db.all_companies()
+            companies = {c.slug: c for c in db.all_companies()}
+            matches = db.matches_for_signals([signal_id]) if signal_id else []
         finally:
             db.close()
+
+        if signal_id:
+            return self._companies_for_signal(signal_id, matches, companies, page)
+
         if not companies:
             return "Профили компаний не загружены. Положите файлы в brain/companies/."
-        lines = [f"Компаний в базе: {len(companies)}", ""]
-        for company in companies:
-            products = ", ".join(company.products[:4]) or "номенклатура не заполнена"
-            lines.append(f"- {company.name} [{company.slug}]: {products}"
-                         + (f" — {company.status}" if company.status else ""))
-        return "\n".join(lines)
+        rows = sorted(companies.values(), key=lambda c: c.name)
+        return self._paginate(
+            f"Компаний в базе: {len(rows)}",
+            [f"- {c.name} [{c.slug}]: "
+             + (", ".join(c.products[:3]) or "номенклатура не заполнена")
+             for c in rows],
+            page, "/companies")
 
-    def cmd_opportunities(self) -> str:
+    def _companies_for_signal(self, signal_id: int, matches: list[Any],
+                              companies: dict[str, Any], page: int) -> str:
+        if not matches:
+            return f"По карточке #{signal_id} связей с компаниями не найдено."
+        direct = [m for m in matches if m.link_type == LINK_DIRECT]
+        sector = [m for m in matches if m.link_type != LINK_DIRECT]
+
+        def row(match: Any) -> str:
+            company = companies.get(match.company_slug)
+            name = company.name if company else match.company_slug
+            return f"- {name} ({match.match_score}/5) — {match.recommended_action}"
+
+        lines: list[str] = []
+        if direct:
+            lines.append("ПРЯМАЯ ПРИМЕНИМОСТЬ: в материале назван товар, код или компания")
+            lines += [row(m) for m in direct]
+        if sector:
+            if lines:
+                lines.append("")
+            lines.append("КОМПАНИИ ОТРАСЛИ: применимость к продукции не установлена")
+            lines += [row(m) for m in sector]
+        header = (f"Карточка #{signal_id}: прямая применимость — {len(direct)}, "
+                  f"компании отрасли — {len(sector)}")
+        return self._paginate(header, lines, page, f"/companies {signal_id}")
+
+    @staticmethod
+    def _paginate(header: str, lines: list[str], page: int, command: str) -> str:
+        """Страница списка с понятной навигацией."""
+        total_pages = max(1, (len(lines) + COMPANIES_PAGE - 1) // COMPANIES_PAGE)
+        page = min(max(1, page), total_pages)
+        start = (page - 1) * COMPANIES_PAGE
+        body = lines[start:start + COMPANIES_PAGE]
+        result = [header, f"Страница {page} из {total_pages}", ""] + body
+        if page < total_pages:
+            result += ["", f"Дальше: {command} {page + 1}"]
+        return "\n".join(result)
+
+    def cmd_opportunities(self) -> str:  # noqa: C901 - линейный вывод списка
         db = Database(self.settings.db_path)
         try:
             matches = db.matches_since(7, self.settings.radar_min_match_score)

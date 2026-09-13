@@ -1,5 +1,6 @@
 # Альтернатива systemd. Время сервера — UTC.
+# Два запуска в неделю в 08:00 по Маниле = 00:00 UTC понедельника и четверга.
+# Ежедневного сбора и отдельных ежедневных уведомлений здесь быть не должно.
 # Логи пишутся в /opt/trade-agent/logs, поэтому вывод глушим.
-30 5 * * *  cd /opt/trade-agent && .venv/bin/python -m trade_agent.fetch   >/dev/null 2>&1
-0  6 * * *  cd /opt/trade-agent && .venv/bin/python -m trade_agent.process >/dev/null 2>&1
-30 6 * * *  cd /opt/trade-agent && .venv/bin/python -m trade_agent.digest  >/dev/null 2>&1
+0 0 * * 1  cd /opt/trade-agent && .venv/bin/python -m trade_agent.run_pipeline --scheduled >/dev/null 2>&1
+0 0 * * 4  cd /opt/trade-agent && .venv/bin/python -m trade_agent.run_pipeline --scheduled >/dev/null 2>&1

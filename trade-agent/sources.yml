@@ -2,6 +2,16 @@
 # Тендерный модуль и Telegram подключаются как обычные источники.
 # Веб-источники добавляются одной записью; для нестандартного сайта
 # создаётся отдельный класс в trade_agent/sources/web/.
+#
+# ВАЖНО. Наличие URL и enabled: true само по себе НЕ означает работающий
+# сбор. Каждый адаптер проверяется на живой странице отдельно, и до такой
+# проверки источник остаётся выключенным. У выключенного источника в
+# выпуске статус «не подключён» — он отличается и от ошибки загрузки,
+# и от молчания исправного источника.
+#
+# Поле `verified` — отметка человека о том, что адаптер проверен на
+# реальных свежих материалах. Оно ни на что не влияет в коде и служит
+# памяткой при включении источника.
 
 defaults:
   timeout: 30
@@ -108,13 +118,91 @@ sources:
     container_selector: "main, #content"
 
   - id: boc
-    name: Bureau of Customs
+    name: Bureau of Customs — issuances
     adapter: web_html
     enabled: false
-    url: https://customs.gov.ph/category/customs-memorandum-order/
+    verified: false          # страница найдена, загрузка документов не проверялась
+    url: https://customs.gov.ph/issuances/
     agency: BOC
     topic: customs
     container_selector: "main, .entry-content, #content"
+
+  # --- первоисточники из ТЗ, раздел 6 -----------------------------------
+  # Все перечисленные адреса найдены при веб-проверке. Ни один адаптер
+  # на Леново не проверялся: включать по одному, после проверки.
+  - id: psa_openstat
+    name: PSA OpenSTAT — внешняя торговля товарами (IMTS)
+    adapter: web_html
+    enabled: false
+    verified: false
+    url: https://openstat.psa.gov.ph/International-Merchandise-Trade-Statistics-IMTS
+    agency: PSA
+    topic: trade_statistics
+    # Импорт и экспорт по товару, стране, периоду, стоимости и количеству.
+    # Сравнивать можно только одинаковые периоды и товарные группы.
+    container_selector: "main, #content"
+
+  - id: psa_downloads
+    name: PSA — Trade Data Downloads
+    adapter: web_html
+    enabled: false
+    verified: false
+    url: https://openstat.psa.gov.ph/Database/Economic-and-Financial-Statistics/Trade-International-Merchandise-and-Domestic/Trade-Data-Downloads
+    agency: PSA
+    topic: trade_statistics
+    container_selector: "main, #content"
+
+  - id: tariff_finder
+    name: Tariff Commission — тарифные документы
+    adapter: web_html
+    enabled: false
+    verified: false          # автоматическое сравнение ставок не проверялось
+    url: https://www.tariffcommission.gov.ph/
+    agency: Tariff Commission
+    topic: tariffs
+    container_selector: "main, #content"
+
+  - id: bfar_orders
+    name: BFAR — административные приказы
+    adapter: web_html
+    enabled: false
+    verified: false          # в старом тендерном сборе была ошибка TLS другого URL BFAR
+    url: https://www.bfar.da.gov.ph/laws-regulations-issuances/administrative-orders/
+    agency: BFAR
+    topic: fisheries
+    container_selector: "main, .entry-content, #content"
+
+  - id: bfar_forms
+    name: BFAR — формы по импорту и экспорту
+    adapter: web_html
+    enabled: false
+    verified: false
+    url: https://www.bfar.da.gov.ph/downloadable-forms/
+    agency: BFAR
+    topic: fisheries
+    container_selector: "main, .entry-content, #content"
+
+  - id: dti_tradeline
+    name: DTI Tradeline Philippines
+    adapter: web_html
+    enabled: false
+    verified: false          # способ автоматического сбора нужно проверить
+    url: https://tradelinephilippines.dti.gov.ph/home
+    agency: DTI
+    topic: ph_export
+    container_selector: "main, #content"
+
+  - id: eaeu_third_countries
+    name: ЕАЭС — реестр предприятий третьих стран
+    adapter: web_html
+    enabled: false
+    verified: false          # статус конкретных компаний и товаров не проверялся
+    url: https://sps.eaeunion.org/sps/ru/veterinary_measures/third_country_enterprises
+    agency: ЕЭК
+    topic: reverse_access
+    # Нужен для обратного направления: допуск филиппинских предприятий
+    # к поставкам в ЕАЭС по соответствующим товарам.
+    container_selector: "main, #content"
 
   # --- ассоциации, пресс-релизы, СМИ ------------------------------------
   - id: assoc_meat

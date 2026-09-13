@@ -108,11 +108,17 @@ def test_scout_rejects_garbage_types(settings):
     assert result.dropped or (result.signal and result.signal.category == "OTHER")
 
 
-def test_scout_drops_hs_codes_without_digits(settings):
+def test_scout_ignores_hs_codes_invented_by_model(settings):
+    """
+    Коды берутся только из материала, а не из ответа модели.
+
+    Код, который модель «вспомнила», в сигнале выглядел бы как найденный
+    в новости и дальше подтверждал бы связь с компанией сам собой.
+    """
     llm = mock_llm(json_response({"relevant": True, "category": "MEAT", "score": 4,
                                   "reason": "r", "hs_codes": ["ANY", "0203"]}))
     result = Scout(llm, settings).evaluate(_item())
-    assert result.signal.hs_codes == ["0203"]
+    assert result.signal.hs_codes == []
 
 
 def test_analyst_validates_types(settings):

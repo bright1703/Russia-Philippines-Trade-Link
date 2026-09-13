@@ -124,10 +124,23 @@ class Settings:
     analyst_min_score: int = 3        # глубокий анализ только с этого уровня
     reviewer_max_revisions: int = 2   # защита от бесконечного цикла
     radar_min_match_score: int = 2
-    digest_lookback_days: int = 1
+    # Отраслевая связь показывается наравне с прямой, но отдельно от неё,
+    # поэтому у неё собственный порог.
+    radar_min_sector_score: int = 2
+    # Период выпуска по умолчанию — интервал между двумя запусками в неделю
+    # плюс перекрытие: между понедельником и четвергом не должно оставаться
+    # непокрытого промежутка.
+    digest_lookback_days: int = 4
     digest_min_confidence: float = 0.4
     digest_max_per_section: int = 8
+    # Ориентир ТЗ — 5-8 содержательных карточек. Меньше достойных новостей —
+    # меньше карточек; добивать количество шумом нельзя.
+    digest_max_cards: int = 8
     fetch_days: int = 7
+    # Перекрытие при догрузке: поздние публикации и правки не теряются.
+    fetch_overlap_hours: int = 12
+    # Максимальный интервал догрузки после простоя сервера.
+    fetch_max_backfill_days: int = 45
 
     llm: LLMSettings = field(default_factory=LLMSettings)
     bot: TelegramBotSettings = field(default_factory=TelegramBotSettings)
@@ -197,10 +210,14 @@ def load_settings(project_dir: Optional[Path] = None) -> Settings:
         analyst_min_score=_int("ANALYST_MIN_SCORE", 3),
         reviewer_max_revisions=_int("REVIEWER_MAX_REVISIONS", 2),
         radar_min_match_score=_int("RADAR_MIN_MATCH_SCORE", 2),
-        digest_lookback_days=_int("DIGEST_LOOKBACK_DAYS", 1),
+        radar_min_sector_score=_int("RADAR_MIN_SECTOR_SCORE", 2),
+        digest_lookback_days=_int("DIGEST_LOOKBACK_DAYS", 4),
         digest_min_confidence=_float("DIGEST_MIN_CONFIDENCE", 0.4),
         digest_max_per_section=_int("DIGEST_MAX_PER_SECTION", 8),
+        digest_max_cards=_int("DIGEST_MAX_CARDS", 8),
         fetch_days=_int("FETCH_DAYS", 7),
+        fetch_overlap_hours=_int("FETCH_OVERLAP_HOURS", 12),
+        fetch_max_backfill_days=_int("FETCH_MAX_BACKFILL_DAYS", 45),
         dry_run=_bool("TRADE_AGENT_DRY_RUN", False),
         llm=LLMSettings(
             provider=provider_name,

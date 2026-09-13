@@ -15,11 +15,11 @@ import sqlite3
 from contextlib import contextmanager
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Any, Iterator, Optional
+from typing import Any, Iterable, Iterator, Optional
 
 from .models import (
-    Analysis, Company, Match, RawItem, Review, RunLog, Signal,
-    SIGNAL_ANALYZED, SIGNAL_NEW, utcnow,
+    Analysis, Company, Delivery, Issue, IssueItem, Match, RawItem, Review,
+    RunLog, Signal, SourceState, SIGNAL_ANALYZED, SIGNAL_NEW, utcnow,
 )
 
 SCHEMA = """
@@ -56,9 +56,25 @@ CREATE TABLE IF NOT EXISTS signals (
     status              TEXT DEFAULT 'new',
     review_attempts     INTEGER DEFAULT 0,
     last_error          TEXT DEFAULT '',
-    created_at          TEXT NOT NULL
+    created_at          TEXT NOT NULL,
+    trade_direction     TEXT DEFAULT 'UNKNOWN',
+    event_type          TEXT DEFAULT 'OTHER',
+    sectors             TEXT,
+    jurisdiction        TEXT DEFAULT '',
+    destination_market  TEXT DEFAULT '',
+    origin_countries    TEXT,
+    evidence_fragments  TEXT,
+    event_key           TEXT DEFAULT '',
+    event_date          TEXT DEFAULT '',
+    effective_from      TEXT DEFAULT '',
+    deadline            TEXT DEFAULT '',
+    first_seen_at       TEXT DEFAULT '',
+    verification_status TEXT DEFAULT 'source_claim',
+    uncertainties       TEXT,
+    next_retry_at       TEXT DEFAULT ''
 );
 CREATE INDEX IF NOT EXISTS idx_signals_status ON signals(status, relevance_score);
+CREATE INDEX IF NOT EXISTS idx_signals_event ON signals(event_key);
 
 CREATE TABLE IF NOT EXISTS analyses (
     id                INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -110,6 +126,9 @@ CREATE TABLE IF NOT EXISTS companies (
     source_name       TEXT,
     source_row        INTEGER DEFAULT 0,
     data_quality      TEXT,
+    sectors           TEXT,
+    sector_basis      TEXT,
+    roles             TEXT,
     export_experience TEXT,
     documents         TEXT,
     status            TEXT,
@@ -131,6 +150,9 @@ CREATE TABLE IF NOT EXISTS matches (
     reason             TEXT,
     recommended_action TEXT,
     created_at         TEXT NOT NULL,
+    link_type          TEXT DEFAULT 'sector',
+    evidence           TEXT,
+    role               TEXT DEFAULT 'unknown',
     UNIQUE(company_slug, signal_id)
 );
 CREATE INDEX IF NOT EXISTS idx_matches_score ON matches(match_score, created_at);
@@ -151,7 +173,88 @@ CREATE TABLE IF NOT EXISTS runs (
     details      TEXT
 );
 CREATE INDEX IF NOT EXISTS idx_runs_stage ON runs(stage, started_at);
+
+-- Состав выпуска фиксируется один раз. Карточки, счётчики, список компаний
+-- и посты в Telegram строятся из одного сохранённого набора issue_items,
+-- поэтому шапка не может противоречить содержимому.
+CREATE TABLE IF NOT EXISTS issues (
+    id            INTEGER PRIMARY KEY AUTOINCREMENT,
+    kind          TEXT NOT NULL DEFAULT 'scheduled',
+    period_start  TEXT NOT NULL,
+    period_end    TEXT NOT NULL,
+    built_at      TEXT NOT NULL,
+    status        TEXT NOT NULL DEFAULT 'built',
+    coverage      TEXT,
+    counters      TEXT,
+    markdown_path TEXT DEFAULT '',
+    content_hash  TEXT DEFAULT ''
+);
+CREATE INDEX IF NOT EXISTS idx_issues_built ON issues(built_at);
+
+CREATE TABLE IF NOT EXISTS issue_items (
+    id                  INTEGER PRIMARY KEY AUTOINCREMENT,
+    issue_id            INTEGER NOT NULL REFERENCES issues(id) ON DELETE CASCADE,
+    position            INTEGER NOT NULL DEFAULT 0,
+    section             TEXT NOT NULL,
+    event_key           TEXT DEFAULT '',
+    signal_id           INTEGER,
+    analysis_id         INTEGER,
+    title               TEXT,
+    fact                TEXT,
+    meaning             TEXT,
+    trade_direction     TEXT DEFAULT 'UNKNOWN',
+    event_type          TEXT DEFAULT 'OTHER',
+    sectors             TEXT,
+    source_urls         TEXT,
+    published_at        TEXT DEFAULT '',
+    verification_status TEXT DEFAULT 'source_claim',
+    late_confirmation   INTEGER DEFAULT 0,
+    urgent              INTEGER DEFAULT 0,
+    action              TEXT DEFAULT '',
+    companies_direct    TEXT,
+    companies_sector    TEXT,
+    companies_total     INTEGER DEFAULT 0,
+    created_at          TEXT NOT NULL,
+    UNIQUE(issue_id, event_key)
+);
+CREATE INDEX IF NOT EXISTS idx_issue_items_issue ON issue_items(issue_id, position);
+
+-- Доставка привязана к конкретному собранному выпуску. Подтверждённая
+-- доставка не повторяется, неопределённая не считается успешной.
+CREATE TABLE IF NOT EXISTS deliveries (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    issue_id    INTEGER NOT NULL REFERENCES issues(id) ON DELETE CASCADE,
+    channel     TEXT NOT NULL DEFAULT 'telegram',
+    chat_id     TEXT NOT NULL,
+    status      TEXT NOT NULL DEFAULT 'unknown',
+    parts_total INTEGER DEFAULT 0,
+    parts_sent  INTEGER DEFAULT 0,
+    message_ids TEXT,
+    error       TEXT DEFAULT '',
+    created_at  TEXT NOT NULL,
+    updated_at  TEXT NOT NULL,
+    UNIQUE(issue_id, channel, chat_id)
+);
+
+-- Позиция каждого источника. Молчание исправного источника, ошибка
+-- загрузки и неподключённый источник — разные состояния.
+CREATE TABLE IF NOT EXISTS source_state (
+    source_id         TEXT PRIMARY KEY,
+    last_success_at   TEXT DEFAULT '',
+    last_published_at TEXT DEFAULT '',
+    cursor            TEXT DEFAULT '',
+    coverage_complete INTEGER DEFAULT 1,
+    last_error        TEXT DEFAULT '',
+    items_last_run    INTEGER DEFAULT 0,
+    new_last_run      INTEGER DEFAULT 0,
+    updated_at        TEXT NOT NULL
+);
 """
+
+
+def _json_text(value: Any) -> str:
+    import json
+    return json.dumps(value, ensure_ascii=False)
 
 
 def _iso_days_ago(days: int) -> str:
@@ -186,6 +289,27 @@ class Database:
         ("companies", "source_name", "TEXT"),
         ("companies", "source_row", "INTEGER DEFAULT 0"),
         ("companies", "data_quality", "TEXT"),
+        ("companies", "sectors", "TEXT"),
+        ("companies", "sector_basis", "TEXT"),
+        ("companies", "roles", "TEXT"),
+        ("signals", "trade_direction", "TEXT DEFAULT 'UNKNOWN'"),
+        ("signals", "event_type", "TEXT DEFAULT 'OTHER'"),
+        ("signals", "sectors", "TEXT"),
+        ("signals", "jurisdiction", "TEXT DEFAULT ''"),
+        ("signals", "destination_market", "TEXT DEFAULT ''"),
+        ("signals", "origin_countries", "TEXT"),
+        ("signals", "evidence_fragments", "TEXT"),
+        ("signals", "event_key", "TEXT DEFAULT ''"),
+        ("signals", "event_date", "TEXT DEFAULT ''"),
+        ("signals", "effective_from", "TEXT DEFAULT ''"),
+        ("signals", "deadline", "TEXT DEFAULT ''"),
+        ("signals", "first_seen_at", "TEXT DEFAULT ''"),
+        ("signals", "verification_status", "TEXT DEFAULT 'source_claim'"),
+        ("signals", "uncertainties", "TEXT"),
+        ("signals", "next_retry_at", "TEXT DEFAULT ''"),
+        ("matches", "link_type", "TEXT DEFAULT 'sector'"),
+        ("matches", "evidence", "TEXT"),
+        ("matches", "role", "TEXT DEFAULT 'unknown'"),
     )
 
     def _migrate(self) -> None:
@@ -279,10 +403,25 @@ class Database:
         rows = self.conn.execute(
             "SELECT * FROM signals WHERE status = ? AND relevance_score >= ? "
             "AND COALESCE(review_attempts, 0) < ? "
+            "AND COALESCE(next_retry_at, '') <= ? "
             "ORDER BY relevance_score DESC, id LIMIT ?",
-            (SIGNAL_NEW, min_score, max_attempts, limit),
+            (SIGNAL_NEW, min_score, max_attempts, utcnow(), limit),
         ).fetchall()
         return [Signal.from_row(r) for r in rows]
+
+    def schedule_retry(self, signal_id: int, minutes: int, error: str = "") -> str:
+        """
+        Откладывает следующую попытку.
+
+        Без паузы сигнал с ошибкой модели возвращается в очередь в том же
+        запуске и сжигает лимит вызовов на одном и том же материале.
+        """
+        moment = (datetime.now(timezone.utc)
+                  + timedelta(minutes=max(1, minutes))).isoformat(timespec="seconds")
+        with self.tx() as conn:
+            conn.execute("UPDATE signals SET next_retry_at = ?, last_error = ? WHERE id = ?",
+                         (moment, error, signal_id))
+        return moment
 
     def signals_since(self, days: int, min_score: int = 0) -> list[Signal]:
         rows = self.conn.execute(
@@ -291,6 +430,35 @@ class Database:
             (_iso_days_ago(days), min_score),
         ).fetchall()
         return [Signal.from_row(r) for r in rows]
+
+    def signals_by_ids(self, signal_ids: Iterable[int]) -> dict[int, Signal]:
+        """
+        Сигналы по идентификаторам — без фильтра по времени.
+
+        Нужно там, где анализ завершился сегодня, а сигнал создан раньше
+        окна выпуска. Разные временные фильтры для сигнала и анализа
+        разрывали связь новости, анализа и компаний.
+        """
+        ids = [int(value) for value in signal_ids if value]
+        result: dict[int, Signal] = {}
+        for start in range(0, len(ids), 400):
+            chunk = ids[start:start + 400]
+            marks = ", ".join("?" for _ in chunk)
+            rows = self.conn.execute(
+                f"SELECT * FROM signals WHERE id IN ({marks})", chunk).fetchall()
+            for row in rows:
+                signal = Signal.from_row(row)
+                result[int(signal.id or 0)] = signal
+        return result
+
+    def update_signal_fields(self, signal_id: int, **fields: Any) -> None:
+        """Точечное обновление сигнала (event_key, направление, проверка)."""
+        if not fields:
+            return
+        assignments = ", ".join(f"{key} = ?" for key in fields)
+        with self.tx() as conn:
+            conn.execute(f"UPDATE signals SET {assignments} WHERE id = ?",
+                         [*fields.values(), signal_id])
 
     def set_signal_status(self, signal_id: int, status: str, error: str = "") -> None:
         with self.tx() as conn:
@@ -369,7 +537,7 @@ class Database:
         "website", "products", "product_aliases", "hs_codes", "categories",
         "description", "inn", "export_countries", "industry", "source_name",
         "contact_name", "address", "contacts", "source_row", "data_quality",
-        "export_experience",
+        "sectors", "sector_basis", "roles", "export_experience",
         "documents", "status", "restrictions", "potential_buyers", "regulators",
         "history", "next_step", "region",
     )
@@ -453,6 +621,26 @@ class Database:
             cursor = conn.execute(sql, values)
             return int(cursor.lastrowid), True
 
+    def matches_for_signals(self, signal_ids: Iterable[int],
+                            min_score: int = 0) -> list[Match]:
+        """
+        Совпадения для конкретных сигналов выпуска.
+
+        Совпадения выбираются по сигналам показанных карточек, а не по
+        собственному created_at: иначе счётчик компаний в шапке относится
+        к другому набору строк, чем сами карточки.
+        """
+        ids = [int(value) for value in signal_ids if value]
+        result: list[Match] = []
+        for start in range(0, len(ids), 400):
+            chunk = ids[start:start + 400]
+            marks = ", ".join("?" for _ in chunk)
+            rows = self.conn.execute(
+                f"SELECT * FROM matches WHERE signal_id IN ({marks}) AND match_score >= ? "
+                "ORDER BY match_score DESC, id DESC", [*chunk, min_score]).fetchall()
+            result.extend(Match.from_row(r) for r in rows)
+        return result
+
     def matches_since(self, days: int, min_score: int = 0) -> list[Match]:
         rows = self.conn.execute(
             "SELECT * FROM matches WHERE created_at >= ? AND match_score >= ? "
@@ -490,11 +678,148 @@ class Database:
             rows = self.conn.execute("SELECT * FROM runs ORDER BY id DESC LIMIT ?", (limit,)).fetchall()
         return [RunLog.from_row(r) for r in rows]
 
+    def count_runs_since(self, stage: str, since: str) -> int:
+        """Сколько прогонов этапа было начато с указанного момента."""
+        row = self.conn.execute(
+            "SELECT COUNT(*) c FROM runs WHERE stage = ? AND started_at >= ?",
+            (stage, since)).fetchone()
+        return int(row["c"]) if row else 0
+
     def signals_needing_attention(self, limit: int = 20) -> list[Signal]:
         rows = self.conn.execute(
             "SELECT * FROM signals WHERE status IN ('failed', 'needs_review') "
             "ORDER BY id DESC LIMIT ?", (limit,)).fetchall()
         return [Signal.from_row(r) for r in rows]
+
+
+    # -- выпуски ----------------------------------------------------------
+    def create_issue(self, issue: Issue) -> int:
+        """Создаёт выпуск. Состав карточек добавляется одной транзакцией."""
+        with self.tx() as conn:
+            sql, values = self._insert_sql("issues", issue.to_row())
+            cursor = conn.execute(sql, values)
+            return int(cursor.lastrowid)
+
+    def save_issue_items(self, issue_id: int, items: list[IssueItem]) -> int:
+        """
+        Сохраняет состав выпуска целиком.
+
+        Либо сохраняются все карточки, либо ни одной: выпуск с половиной
+        карточек и счётчиками от полного состава — это ровно та ошибка,
+        из-за которой шапка расходилась с содержимым.
+        """
+        with self.tx() as conn:
+            conn.execute("DELETE FROM issue_items WHERE issue_id = ?", (issue_id,))
+            for position, item in enumerate(items, start=1):
+                item.issue_id = issue_id
+                item.position = position
+                sql, values = self._insert_sql("issue_items", item.to_row())
+                conn.execute(sql, values)
+        return len(items)
+
+    def finish_issue(self, issue_id: int, status: str, counters: dict[str, Any],
+                     coverage: dict[str, Any], markdown_path: str,
+                     content_hash: str) -> None:
+        with self.tx() as conn:
+            conn.execute(
+                "UPDATE issues SET status = ?, counters = ?, coverage = ?, "
+                "markdown_path = ?, content_hash = ? WHERE id = ?",
+                (status, _json_text(counters), _json_text(coverage),
+                 markdown_path, content_hash, issue_id),
+            )
+
+    def get_issue(self, issue_id: int) -> Optional[Issue]:
+        row = self.conn.execute("SELECT * FROM issues WHERE id = ?", (issue_id,)).fetchone()
+        return Issue.from_row(row) if row else None
+
+    def latest_issue(self, status: str = "built") -> Optional[Issue]:
+        """Последний УСПЕШНО собранный выпуск. Сбойный не выдаётся за новый."""
+        row = self.conn.execute(
+            "SELECT * FROM issues WHERE status = ? ORDER BY id DESC LIMIT 1", (status,)
+        ).fetchone()
+        return Issue.from_row(row) if row else None
+
+    def issue_items(self, issue_id: int) -> list[IssueItem]:
+        rows = self.conn.execute(
+            "SELECT * FROM issue_items WHERE issue_id = ? ORDER BY position", (issue_id,)
+        ).fetchall()
+        return [IssueItem.from_row(r) for r in rows]
+
+    def published_event_keys(self, before_issue_id: Optional[int] = None) -> dict[str, str]:
+        """
+        Уже опубликованные события: ключ события → дата выпуска.
+
+        Нужно, чтобы повторное событие выходило только при существенном
+        обновлении, а не при каждом перепосте.
+        """
+        sql = ("SELECT i.event_key AS k, MAX(s.built_at) AS built FROM issue_items i "
+               "JOIN issues s ON s.id = i.issue_id WHERE i.event_key != ''")
+        args: list[Any] = []
+        if before_issue_id is not None:
+            sql += " AND i.issue_id != ?"
+            args.append(before_issue_id)
+        sql += " GROUP BY i.event_key"
+        return {row["k"]: row["built"] for row in self.conn.execute(sql, args).fetchall()}
+
+    # -- доставка ---------------------------------------------------------
+    def get_delivery(self, issue_id: int, chat_id: str,
+                     channel: str = "telegram") -> Optional[Delivery]:
+        row = self.conn.execute(
+            "SELECT * FROM deliveries WHERE issue_id = ? AND channel = ? AND chat_id = ?",
+            (issue_id, channel, str(chat_id)),
+        ).fetchone()
+        return Delivery.from_row(row) if row else None
+
+    def save_delivery(self, delivery: Delivery) -> int:
+        row = delivery.to_row()
+        row["updated_at"] = utcnow()
+        with self.tx() as conn:
+            existing = conn.execute(
+                "SELECT id FROM deliveries WHERE issue_id = ? AND channel = ? AND chat_id = ?",
+                (delivery.issue_id, delivery.channel, str(delivery.chat_id)),
+            ).fetchone()
+            if existing is None:
+                sql, values = self._insert_sql("deliveries", row)
+                cursor = conn.execute(sql, values)
+                return int(cursor.lastrowid)
+            row.pop("created_at", None)
+            assignments = ", ".join(f"{k} = ?" for k in row)
+            conn.execute(f"UPDATE deliveries SET {assignments} WHERE id = ?",
+                         list(row.values()) + [existing["id"]])
+            return int(existing["id"])
+
+    def deliveries_for_issue(self, issue_id: int) -> list[Delivery]:
+        rows = self.conn.execute(
+            "SELECT * FROM deliveries WHERE issue_id = ? ORDER BY id", (issue_id,)
+        ).fetchall()
+        return [Delivery.from_row(r) for r in rows]
+
+    # -- позиции источников ------------------------------------------------
+    def get_source_state(self, source_id: str) -> Optional[SourceState]:
+        row = self.conn.execute(
+            "SELECT * FROM source_state WHERE source_id = ?", (source_id,)
+        ).fetchone()
+        return SourceState.from_row(row) if row else None
+
+    def save_source_state(self, state: SourceState) -> None:
+        row = state.to_row()
+        row["updated_at"] = utcnow()
+        with self.tx() as conn:
+            existing = conn.execute(
+                "SELECT source_id FROM source_state WHERE source_id = ?",
+                (state.source_id,)).fetchone()
+            if existing is None:
+                sql, values = self._insert_sql("source_state", row)
+                conn.execute(sql, values)
+                return
+            payload = {k: v for k, v in row.items() if k != "source_id"}
+            assignments = ", ".join(f"{k} = ?" for k in payload)
+            conn.execute(f"UPDATE source_state SET {assignments} WHERE source_id = ?",
+                         list(payload.values()) + [state.source_id])
+
+    def all_source_states(self) -> list[SourceState]:
+        rows = self.conn.execute("SELECT * FROM source_state ORDER BY source_id").fetchall()
+        return [SourceState.from_row(r) for r in rows]
 
     # -- сводка -----------------------------------------------------------
     def stats(self) -> dict[str, Any]:

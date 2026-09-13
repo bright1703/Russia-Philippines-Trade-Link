@@ -125,6 +125,27 @@ def _pick(record: dict[str, Any], *names: str, default: str = "") -> str:
     return default
 
 
+def _load_cursor(value: str) -> dict[str, int]:
+    """Позиции по каналам. Битый курсор не должен ронять сбор."""
+    try:
+        data = json.loads(value or "{}")
+    except (ValueError, TypeError):
+        return {}
+    if not isinstance(data, dict):
+        return {}
+    result: dict[str, int] = {}
+    for key, number in data.items():
+        try:
+            result[str(key)] = int(number)
+        except (TypeError, ValueError):
+            continue
+    return result
+
+
+def _dump_cursor(cursor: dict[str, int]) -> str:
+    return json.dumps(cursor, ensure_ascii=False, sort_keys=True)
+
+
 class TelegramSource(SourceAdapter):
     source_id = "telegram"
     source_type = "telegram"
@@ -180,6 +201,8 @@ class TelegramSource(SourceAdapter):
                 )
                 item.hash = content_hash(item.source, item.external_id, item.title, item.raw_text)
                 result.items.append(item)
+                if item.published_at > result.latest_published_at:
+                    result.latest_published_at = item.published_at
         return result
 
     @staticmethod
@@ -228,9 +251,21 @@ class TelegramSource(SourceAdapter):
                 result.error = ("Telegram-сессия не авторизована. "
                                 "Авторизацию выполняет человек вне этой системы.")
                 return result
+            # Позиция по каждому каналу: читаем от последнего известного
+            # сообщения, а не «последние N штук вообще».
+            cursor = _load_cursor(self.cursor)
+            page_limit = int(self.config.get("limit", 200))
             for channel in channels:
                 result.fetched_pages += 1
-                for message in client.iter_messages(channel, limit=int(self.config.get("limit", 100))):
+                channel_key = str(channel)
+                min_id = int(cursor.get(channel_key) or 0)
+                seen_in_channel = 0
+                reached_border = False
+                highest = min_id
+                for message in client.iter_messages(channel, limit=page_limit,
+                                                    min_id=min_id):
+                    seen_in_channel += 1
+                    highest = max(highest, int(getattr(message, "id", 0) or 0))
                     text = collapse(getattr(message, "message", "") or "")
                     if not text:
                         continue
@@ -239,6 +274,7 @@ class TelegramSource(SourceAdapter):
                         when_utc = when.replace(tzinfo=timezone.utc) if when.tzinfo is None \
                             else when.astimezone(timezone.utc)
                         if when_utc < cutoff:
+                            reached_border = True
                             break
                     item = RawItem(
                         source=f"tg:{channel}",
@@ -252,6 +288,18 @@ class TelegramSource(SourceAdapter):
                     )
                     item.hash = content_hash(item.source, item.external_id, item.title, item.raw_text)
                     result.items.append(item)
+                    if item.published_at > result.latest_published_at:
+                        result.latest_published_at = item.published_at
+                if highest:
+                    cursor[channel_key] = highest
+                # Упёрлись в лимит страницы и не дошли ни до границы периода,
+                # ни до конца канала — период покрыт не полностью.
+                if seen_in_channel >= page_limit and not reached_border:
+                    result.complete = False
+                    self.log.warning("канал %s: прочитано %d сообщений, достигнут "
+                                     "технический лимит, период покрыт не полностью",
+                                     channel_key, seen_in_channel)
+            result.cursor = _dump_cursor(cursor)
         except PermissionError as exc:
             result.error = f"нарушение read-only режима: {exc}"
         except Exception as exc:  # noqa: BLE001 - сбой источника не роняет конвейер

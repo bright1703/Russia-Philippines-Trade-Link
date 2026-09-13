@@ -162,20 +162,24 @@ def test_max_revisions_ends_in_needs_review(settings):
 def test_unverified_signal_is_absent_from_digest(settings):
     _seed_raw(settings)
     _run(settings, reviewer_exc="503")
-    digest_module.run(settings, days=3650)
+    stats = digest_module.run(settings, days=3650)
     text = (settings.digest_dir / "latest.md").read_text("utf-8")
-    body = text.split("## Исключено")[0]
-    assert "BAI opens pork accreditation" not in body
-    assert "Не подтверждено рецензентом" in text
+    assert "BAI opens pork accreditation" not in text
+    # Неподтверждённый сигнал не публикуется, но и не исчезает молча:
+    # он посчитан в выпуске и виден в /status.
+    assert stats["unverified"] == 1
+    assert "без завершённой проверки" in text
 
 
 def test_needs_review_signal_is_counted_but_not_published(settings):
     _seed_raw(settings)
     _run(settings, reviewer_answer=json_response({"verdict": "REVISE", "problems": ["x"]}))
-    digest_module.run(settings, days=3650)
+    stats = digest_module.run(settings, days=3650)
     text = (settings.digest_dir / "latest.md").read_text("utf-8")
-    assert "BAI opens pork accreditation" not in text.split("## Исключено")[0]
-    assert "reviewer_max_revisions" in text
+    assert "BAI opens pork accreditation" not in text
+    assert stats["unverified"] == 1
+    assert "без завершённой проверки" in text
+    assert all(s.status == SIGNAL_NEEDS_REVIEW for s in _state(settings)["signals"])
 
 
 # --- контрольный положительный сценарий -------------------------------------

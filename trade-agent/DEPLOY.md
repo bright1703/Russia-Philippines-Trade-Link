@@ -125,25 +125,66 @@ sudo -u tradeagent .venv/bin/python -m trade_agent.companies.import_companies ca
 
 ## 9. Расписание (systemd, рекомендуется)
 
+Расписание — ДВА запуска в неделю: понедельник и четверг, 08:00 по Маниле.
+Ежедневных таймеров в проекте нет и быть не должно.
+
+Перед включением обязательно проверьте, куда попадут запуски:
+
+```bash
+systemd-analyze calendar --iterations=6 'Mon,Thu 08:00 Asia/Manila'
+```
+
 ```bash
 sudo cp deploy/systemd/*.service deploy/systemd/*.timer /etc/systemd/system/
 sudo systemctl daemon-reload
-sudo systemctl enable --now trade-agent-fetch.timer
-sudo systemctl enable --now trade-agent-process.timer
-sudo systemctl enable --now trade-agent-digest.timer
+sudo systemctl enable --now trade-agent.timer
 sudo systemctl enable --now trade-agent-bot.service
 ```
+
+Отдельные `trade-agent-fetch.service`, `-process.service`, `-digest.service`
+остаются для ручных запусков. Таймеров у них нет — включать их не нужно.
 
 Проверка:
 
 ```bash
 systemctl list-timers | grep trade-agent
-journalctl -u trade-agent-fetch.service -n 50 --no-pager
+journalctl -u trade-agent.service -n 100 --no-pager
 systemctl status trade-agent-bot.service
 ```
 
-Время в unit-файлах указано в UTC (`OnCalendar=*-*-* 05:30:00`).
-Изменить — отредактировать таймер и выполнить `sudo systemctl daemon-reload`.
+Часовой пояс сервера НЕ меняется: зона указана только в таймере проекта.
+Время в базе хранится в UTC, а даты выпуска показываются по Маниле.
+
+`Persistent=true` догоняет пропущенный запуск после простоя. Несколько старых
+выпусков подряд при этом не рассылаются: systemd делает один догоняющий старт,
+сам прогон добирает пропущенный интервал сбора, а число автоматических циклов
+за календарную неделю ограничено двумя.
+
+### Переход со старого ежедневного расписания
+
+Если на сервере уже включены ежедневные таймеры прежней версии, их нужно
+выключить, иначе скрытый ежедневный сбор продолжится:
+
+```bash
+sudo systemctl disable --now trade-agent-fetch.timer \
+                             trade-agent-process.timer \
+                             trade-agent-digest.timer
+sudo rm -f /etc/systemd/system/trade-agent-fetch.timer \
+           /etc/systemd/system/trade-agent-process.timer \
+           /etc/systemd/system/trade-agent-digest.timer
+sudo systemctl daemon-reload
+systemctl list-timers | grep trade-agent   # должен остаться один таймер
+```
+
+Проверьте также пользовательские таймеры и cron именно этого проекта:
+
+```bash
+systemctl --user list-timers | grep trade-agent
+crontab -l | grep trade_agent
+```
+
+Таймеры и задания других проектов (Tour-Phil News, Lazy Reader,
+Price Collector) не трогайте.
 
 ## 10. Расписание (cron, альтернатива)
 
@@ -165,9 +206,21 @@ sudo systemctl restart trade-agent-bot.service
 
 ## 12. Резервная копия
 
+База работает в режиме WAL, поэтому простое копирование одного db-файла
+согласованной копией НЕ является: часть данных лежит в `-wal`. Используйте
+штатный механизм SQLite:
+
 ```bash
 sudo -u tradeagent sqlite3 data/trade_agent.db ".backup '/opt/trade-agent/backup-$(date +%F).db'"
 sudo tar czf /root/trade-agent-brain-$(date +%F).tar.gz -C /opt/trade-agent brain digest
+```
+
+Перед миграцией схемы дополнительно сделайте версионируемый экспорт
+каталога — резервной копии одного файла для этого мало:
+
+```bash
+sudo -u tradeagent /opt/trade-agent/.venv/bin/python -m trade_agent.companies.audit \
+     --out /opt/trade-agent/backup-catalog-$(date +%F).md
 ```
 
 Копировать `.env` в общий бэкап не нужно — храните его отдельно.

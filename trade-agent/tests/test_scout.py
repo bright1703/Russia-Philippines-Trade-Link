@@ -1,7 +1,4 @@
 """Scout: предфильтр, порог, поведение при недоступности модели."""
-import json
-
-import pytest
 
 from helpers import json_response, mock_llm
 from trade_agent.agents import Scout
@@ -35,10 +32,36 @@ def test_prefilter_drops_obvious_noise(settings):
     assert result.dropped and "шум" in result.drop_reason
 
 
-def test_prefilter_drops_material_without_industry_keywords(settings):
+def test_prefilter_drops_material_without_industry_or_deal_event(settings):
     scout = Scout(mock_llm(RELEVANT), settings)
     result = scout.evaluate(_item("Office memo", "The regional office will hold a meeting " * 5))
     assert result.dropped
+
+
+def test_prefilter_keeps_business_mission_without_product_word(settings):
+    """
+    Деловая миссия проходит предфильтр без товарного слова.
+
+    На старом правиле «нет ни одного отраслевого ключевого слова»
+    терялись новости о выходе российских компаний на местный рынок.
+    """
+    scout = Scout(mock_llm(RELEVANT), settings)
+    found = scout.prefilter(_item(
+        "Бизнес-миссия Иркутской области на Филиппинах",
+        "Делегация российских компаний провела переговоры в Маниле. "
+        "Запланирован деловой форум и встречи с местными партнёрами."))
+    assert found.passed
+    assert not found.reason
+
+
+def test_prefilter_drops_third_market_without_our_side(settings):
+    """Событие третьего рынка без связи с Филиппинами или РФ не берём."""
+    scout = Scout(mock_llm(RELEVANT), settings)
+    found = scout.prefilter(_item(
+        "South Africa imposes duties on Chinese steel",
+        "The tariff on steel imports from China was introduced this week. " * 3))
+    assert not found.passed
+    assert "третьего рынка" in found.reason
 
 
 def test_relevant_material_becomes_signal(settings):
@@ -49,6 +72,15 @@ def test_relevant_material_becomes_signal(settings):
     assert result.signal is not None
     assert result.signal.category == "MEAT"
     assert result.signal.relevance_score == 4
+    # Кода в тексте нет — предположение модели уликой не становится.
+    assert result.signal.hs_codes == []
+
+
+def test_hs_code_is_taken_from_text_not_from_model(settings):
+    scout = Scout(mock_llm(RELEVANT), settings)
+    result = scout.evaluate(_item(
+        "BAI opens accreditation for foreign pork establishments",
+        "Accreditation covers pork, HS 0203, for foreign meat establishments. " * 3))
     assert result.signal.hs_codes == ["0203"]
 
 

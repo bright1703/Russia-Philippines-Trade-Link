@@ -1,5 +1,5 @@
-"""Opportunity Radar — сопоставление сигналов со всеми профилями компаний."""
+"""Opportunity Radar — сопоставление событий со всеми профилями компаний."""
 
-from .matcher import OpportunityRadar, match_signal
+from .matcher import MatchDetail, OpportunityRadar, match_signal, recommended_action
 
-__all__ = ["OpportunityRadar", "match_signal"]
+__all__ = ["MatchDetail", "OpportunityRadar", "match_signal", "recommended_action"]
