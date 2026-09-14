@@ -194,7 +194,8 @@ CREATE TABLE IF NOT EXISTS issues (
     coverage      TEXT,
     counters      TEXT,
     markdown_path TEXT DEFAULT '',
-    content_hash  TEXT DEFAULT ''
+    content_hash  TEXT DEFAULT '',
+    composition_hash TEXT DEFAULT ''
 );
 CREATE INDEX IF NOT EXISTS idx_issues_built ON issues(built_at);
 
@@ -221,6 +222,8 @@ CREATE TABLE IF NOT EXISTS issue_items (
     companies_direct    TEXT,
     companies_sector    TEXT,
     companies_total     INTEGER DEFAULT 0,
+    fingerprint         TEXT,
+    updates             TEXT,
     created_at          TEXT NOT NULL,
     UNIQUE(issue_id, event_key)
 );
@@ -262,6 +265,19 @@ CREATE TABLE IF NOT EXISTS source_state (
 def _json_text(value: Any) -> str:
     import json
     return json.dumps(value, ensure_ascii=False)
+
+
+def _unjson_dict(value: Any) -> dict[str, Any]:
+    import json
+    if isinstance(value, dict):
+        return value
+    if not value:
+        return {}
+    try:
+        data = json.loads(value)
+    except (ValueError, TypeError):
+        return {}
+    return data if isinstance(data, dict) else {}
 
 
 def _iso_days_ago(days: int) -> str:
@@ -324,6 +340,9 @@ class Database:
         ("matches", "link_type", "TEXT DEFAULT 'sector'"),
         ("matches", "evidence", "TEXT"),
         ("matches", "role", "TEXT DEFAULT 'unknown'"),
+        ("issues", "composition_hash", "TEXT DEFAULT ''"),
+        ("issue_items", "fingerprint", "TEXT"),
+        ("issue_items", "updates", "TEXT"),
     )
 
     def _migrate(self) -> None:
@@ -761,13 +780,14 @@ class Database:
 
     def finish_issue(self, issue_id: int, status: str, counters: dict[str, Any],
                      coverage: dict[str, Any], markdown_path: str,
-                     content_hash: str) -> None:
+                     content_hash: str, composition_hash: str = "") -> None:
         with self.tx() as conn:
             conn.execute(
                 "UPDATE issues SET status = ?, counters = ?, coverage = ?, "
-                "markdown_path = ?, content_hash = ? WHERE id = ?",
+                "markdown_path = ?, content_hash = ?, composition_hash = ? "
+                "WHERE id = ?",
                 (status, _json_text(counters), _json_text(coverage),
-                 markdown_path, content_hash, issue_id),
+                 markdown_path, content_hash, composition_hash, issue_id),
             )
 
     def get_issue(self, issue_id: int) -> Optional[Issue]:
@@ -787,21 +807,68 @@ class Database:
         ).fetchall()
         return [IssueItem.from_row(r) for r in rows]
 
-    def published_event_keys(self, before_issue_id: Optional[int] = None) -> dict[str, str]:
+    def published_events(self, before_issue_id: Optional[int] = None
+                         ) -> dict[str, dict[str, Any]]:
         """
-        Уже опубликованные события: ключ события → дата выпуска.
+        Уже опубликованные события: ключ → дата выпуска и отпечаток.
 
         Нужно, чтобы повторное событие выходило только при существенном
-        обновлении, а не при каждом перепосте.
+        обновлении, а не при каждом перепосте и не в каждом выпуске.
+        Берётся САМАЯ СВЕЖАЯ публикация события.
         """
-        sql = ("SELECT i.event_key AS k, MAX(s.built_at) AS built FROM issue_items i "
-               "JOIN issues s ON s.id = i.issue_id WHERE i.event_key != ''")
+        sql = ("SELECT i.event_key AS k, s.built_at AS built, "
+               "       i.fingerprint AS fingerprint, i.issue_id AS issue_id "
+               "FROM issue_items i JOIN issues s ON s.id = i.issue_id "
+               "WHERE i.event_key != '' AND s.status = 'built'")
         args: list[Any] = []
         if before_issue_id is not None:
             sql += " AND i.issue_id != ?"
             args.append(before_issue_id)
-        sql += " GROUP BY i.event_key"
-        return {row["k"]: row["built"] for row in self.conn.execute(sql, args).fetchall()}
+        sql += " ORDER BY s.built_at, i.issue_id"
+        result: dict[str, dict[str, Any]] = {}
+        for row in self.conn.execute(sql, args).fetchall():
+            # Порядок по возрастанию: последняя запись перетирает ранние.
+            result[row["k"]] = {
+                "built_at": row["built"],
+                "issue_id": int(row["issue_id"]),
+                "fingerprint": _unjson_dict(row["fingerprint"]),
+            }
+        return result
+
+    def published_event_keys(self, before_issue_id: Optional[int] = None) -> dict[str, str]:
+        """Совместимость: ключ события → дата последней публикации."""
+        return {key: value["built_at"]
+                for key, value in self.published_events(before_issue_id).items()}
+
+    def issue_by_composition(self, composition_hash: str) -> Optional[Issue]:
+        """
+        Собранный выпуск с таким же СОСТАВОМ, если он уже есть.
+
+        Сравнивается состав, а не отрисованный текст: в тексте есть время
+        сборки, поэтому два одинаковых по смыслу выпуска, собранные в
+        разные минуты, всегда отличались бы. Именно из-за этого повторный
+        запуск плодил выпуски-двойники, а доставка считала их новыми.
+        """
+        if not composition_hash:
+            return None
+        row = self.conn.execute(
+            "SELECT * FROM issues WHERE status = 'built' AND composition_hash = ? "
+            "ORDER BY id DESC LIMIT 1", (composition_hash,)).fetchone()
+        return Issue.from_row(row) if row else None
+
+    def refresh_issue_text(self, issue_id: int, markdown_path: str,
+                           content_hash: str) -> None:
+        """
+        Обновляет ссылку на файл и хэш текста переиспользованного выпуска.
+
+        Состав тот же и идентификатор тот же — меняется только свежая
+        метка времени в отрисованном файле. Без этого сверка latest.md
+        с выпуском не прошла бы, и доставка отказалась бы работать.
+        """
+        with self.tx() as conn:
+            conn.execute(
+                "UPDATE issues SET markdown_path = ?, content_hash = ? WHERE id = ?",
+                (markdown_path, content_hash, issue_id))
 
     # -- доставка ---------------------------------------------------------
     def get_delivery(self, issue_id: int, chat_id: str,

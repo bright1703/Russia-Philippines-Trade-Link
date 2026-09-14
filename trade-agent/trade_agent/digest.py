@@ -119,9 +119,18 @@ class Candidate:
     def signal_id(self) -> int:
         return int(self.signal.id or 0)
 
+    # Что изменилось с прошлой публикации этого события (заполняется
+    # при отборе, если событие уже выходило).
+    updates: list[str] = field(default_factory=list)
+
     @property
     def event_key(self) -> str:
         return self.signal.event_key or f"signal:{self.signal_id}"
+
+    def fingerprint(self) -> dict[str, str]:
+        from .events import fingerprint_fields
+
+        return fingerprint_fields(self.signal, self.item or RawItem())
 
 
 class IssueBuilder:
@@ -165,7 +174,7 @@ class IssueBuilder:
             "matches_by_signal": matches_by_signal,
             "companies": {c.slug: c for c in self.db.all_companies()},
             "coverage": self.coverage(),
-            "published": self.db.published_event_keys(),
+            "published": self.db.published_events(),
         }
 
     def coverage(self) -> dict[str, Any]:
@@ -351,14 +360,17 @@ class IssueBuilder:
         candidates = self._deduplicate(candidates)
 
         # Повторное событие выходит снова только при существенном
-        # обновлении — иначе один факт всплывает каждую неделю.
+        # обновлении — иначе один факт всплывает в каждом выпуске.
         repeats = 0
         fresh: list[Candidate] = []
         for candidate in candidates:
-            if candidate.event_key in published and not candidate.late:
-                if not self._materially_updated(candidate):
+            previous = published.get(candidate.event_key)
+            if previous is not None and not candidate.late:
+                changes = self._material_changes(candidate, previous)
+                if not changes:
                     repeats += 1
                     continue
+                candidate.updates = changes
             fresh.append(candidate)
         candidates = fresh
 
@@ -395,14 +407,20 @@ class IssueBuilder:
         )
         return issue, items
 
-    def _materially_updated(self, candidate: Candidate) -> bool:
-        """Существенное обновление: изменились сроки, оценка или статус."""
-        signal = candidate.signal
-        if signal.must_alert:
-            return True
-        if signal.effective_from or signal.deadline:
-            return True
-        return signal.relevance_score >= 5
+    @staticmethod
+    def _material_changes(candidate: Candidate,
+                          previous: dict[str, Any]) -> list[str]:
+        """
+        Что существенно изменилось с прошлой публикации события.
+
+        Пустой список означает «ничего не изменилось» — событие
+        не повторяется. Важность события обновлением не является:
+        иначе любая новость с оценкой 5 выходила бы в каждом выпуске.
+        """
+        from .events import changed_fields
+
+        return changed_fields(previous.get("fingerprint") or {},
+                              candidate.fingerprint())
 
     @staticmethod
     def _period_start(days: int) -> str:
@@ -412,7 +430,7 @@ class IssueBuilder:
 
     def _to_issue_item(self, candidate: Candidate, section: str,
                        companies: dict[str, Company],
-                       published: dict[str, str]) -> IssueItem:
+                       published: dict[str, Any]) -> IssueItem:
         signal = candidate.signal
         item = candidate.item
         analysis = candidate.analysis
@@ -456,9 +474,11 @@ class IssueBuilder:
             late_confirmation=candidate.late,
             urgent=self._is_urgent(candidate),
             action=truncate(action, 300),
+            updates=list(candidate.updates),
             companies_direct=direct,
             companies_sector=sector,
             companies_total=total,
+            fingerprint=candidate.fingerprint(),
         )
 
     def _counters(self, items: list[IssueItem], data: dict[str, Any],
@@ -561,6 +581,9 @@ class IssueBuilder:
             facts.append(f"Дата: {date_text}")
         if entry.late_confirmation:
             facts.append("позднее подтверждение: анализ завершён уже после события")
+        if entry.updates:
+            facts.append("обновление ранее опубликованного события — "
+                         + "; ".join(entry.updates[:2]))
         facts.append("Проверка: " + VERIFICATION_LABELS.get(entry.verification_status,
                                                             entry.verification_status))
         for url in entry.source_urls[:3]:
@@ -683,7 +706,35 @@ def write_digest(markdown: str, digest_dir: Path, today: Optional[Any] = None,
 
 
 def content_hash(markdown: str) -> str:
+    """Хэш отрисованного текста — для сверки файла выпуска с базой."""
     return hashlib.sha256(markdown.encode("utf-8")).hexdigest()[:32]
+
+
+def composition_hash(items: list[IssueItem]) -> str:
+    """
+    Хэш состава выпуска: что именно показано человеку.
+
+    Время сборки, длительность и прочие метки сюда НЕ входят — иначе два
+    одинаковых по содержанию выпуска, собранных в разные минуты, выглядели
+    бы разными, повторный запуск плодил бы выпуски-двойники, а доставка
+    считала бы их новыми.
+    """
+    parts: list[str] = []
+    for item in items:
+        parts.append("|".join([
+            item.section,
+            item.event_key,
+            str(item.signal_id or ""),
+            str(item.analysis_id or ""),
+            item.title,
+            item.verification_status,
+            "1" if item.urgent else "0",
+            "1" if item.late_confirmation else "0",
+            ",".join(sorted(row["slug"] for row in item.companies_direct)),
+            ",".join(sorted(row["slug"] for row in item.companies_sector)),
+            ";".join(f"{k}={v}" for k, v in sorted(item.fingerprint.items())),
+        ]))
+    return hashlib.sha256("\n".join(parts).encode("utf-8")).hexdigest()[:32]
 
 
 def run(settings: Any, days: Optional[int] = None, dry_run: bool = False) -> dict[str, Any]:
@@ -696,6 +747,7 @@ def run(settings: Any, days: Optional[int] = None, dry_run: bool = False) -> dic
     paths = {"latest": "", "archive": "", "written": "no"}
     counters: dict[str, Any] = {}
     issue_id: Optional[int] = None
+    reused = False
 
     try:
         builder = IssueBuilder(db, settings)
@@ -703,32 +755,50 @@ def run(settings: Any, days: Optional[int] = None, dry_run: bool = False) -> dic
         issue, items = builder.compose(data, days)
         markdown = builder.render(issue, items)
         counters = issue.counters
+        digest_hash = content_hash(markdown)
+        issue.composition_hash = composition_hash(items)
 
-        if not dry_run:
-            # Выпуск создаётся до записи файла, а помечается собранным
-            # только после успешной записи: сбой сборки не должен
-            # оставлять «готовый» выпуск для рассылки.
-            issue.status = "building"
-            issue_id = db.create_issue(issue)
-            db.save_issue_items(issue_id, items)
+        # Повторный запуск с тем же составом не создаёт выпуск-двойник.
+        # Иначе доставка, привязанная к идентификатору выпуска, увидела бы
+        # новый выпуск и отправила бы то же самое ещё раз.
+        existing = None if dry_run else db.issue_by_composition(issue.composition_hash)
+        if existing is not None:
+            issue_id = int(existing.id or 0)
+            reused = True
+            LOG.info("состав совпадает с выпуском %s — повторный выпуск "
+                     "не создаётся", issue_id)
+        else:
+            reused = False
+            if not dry_run:
+                # Выпуск создаётся до записи файла, а помечается собранным
+                # только после успешной записи: сбой сборки не должен
+                # оставлять «готовый» выпуск для рассылки.
+                issue.status = "building"
+                issue_id = db.create_issue(issue)
+                db.save_issue_items(issue_id, items)
 
         today = to_manila(issue.period_end)
         paths = write_digest(markdown, settings.digest_dir,
                              today.date() if today else None, dry_run=dry_run)
 
-        if issue_id is not None:
+        if issue_id is not None and not reused:
             db.finish_issue(issue_id, "built", counters, issue.coverage,
-                            paths["latest"], content_hash(markdown))
+                            paths["latest"], digest_hash, issue.composition_hash)
+        elif issue_id is not None and reused and not dry_run:
+            # Состав тот же, но в файле новая метка времени сборки.
+            # Обновляем только ссылку на файл и хэш текста.
+            db.refresh_issue_text(issue_id, paths["latest"], digest_hash)
 
         log.processed = len(data["signals"])
         log.created = counters.get("cards", 0)
         log.status = "ok"
-        log.details = {**counters, "issue_id": issue_id}
+        log.details = {**counters, "issue_id": issue_id, "reused_issue": reused}
     except Exception as exc:  # noqa: BLE001
         log.status = "error"
         log.error_text = str(exc)
         log.errors += 1
-        if issue_id is not None:
+        if issue_id is not None and not reused:
+            # Чужой, уже доставленный выпуск сбойным не помечаем.
             try:
                 db.finish_issue(issue_id, "failed", counters, {}, "", "")
             except Exception:  # noqa: BLE001
@@ -742,6 +812,7 @@ def run(settings: Any, days: Optional[int] = None, dry_run: bool = False) -> dic
 
     return {**counters, "paths": paths, "status": log.status, "errors": log.errors,
             "dry_run": dry_run, "duration": log.duration_sec, "issue_id": issue_id,
+            "reused_issue": bool(log.details.get("reused_issue")),
             "unverified": counters.get("unverified", 0)}
 
 
@@ -770,6 +841,9 @@ def main(argv: Optional[list[str]] = None) -> int:
     print(f"Ошибок: {stats['errors']}")
     print(f"Выпуск: {stats['paths']['latest']}"
           + (" (dry-run, файл не записан)" if stats["dry_run"] else ""))
+    if stats.get("reused_issue"):
+        print(f"Состав не изменился — переиспользован выпуск №{stats['issue_id']}, "
+              "новый не создавался")
 
     if stats["status"] == "error":
         print("Статус: КРИТИЧЕСКИЙ СБОЙ — выпуск не сформирован", file=sys.stderr)

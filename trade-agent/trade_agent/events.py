@@ -100,22 +100,64 @@ def same_event(left: RawItem, right: RawItem,
     return event_key(left, left_signal) == event_key(right, right_signal)
 
 
+# Человекочитаемые названия полей отпечатка: по ним в выпуске пишется,
+# что именно изменилось с прошлой публикации события.
+FINGERPRINT_LABELS = {
+    "event_type": "тип события",
+    "trade_direction": "направление торговли",
+    "jurisdiction": "юрисдикция",
+    "effective_from": "дата вступления в силу",
+    "deadline": "срок",
+    "hs_codes": "коды товара",
+    "tender_status": "статус закупки",
+}
+
+
+def fingerprint_fields(signal: Signal, item: RawItem) -> dict[str, str]:
+    """
+    Поля, по которым событие считается изменившимся.
+
+    Оценка значимости сюда НЕ входит: важность события — не его
+    обновление. Иначе любая важная новость выходила бы в каждом выпуске
+    как «существенно обновлённая».
+    """
+    return {
+        "event_type": signal.event_type,
+        "trade_direction": signal.trade_direction,
+        "jurisdiction": signal.jurisdiction,
+        "effective_from": _day(signal.effective_from),
+        "deadline": _day(signal.deadline),
+        "hs_codes": ",".join(sorted(signal.hs_codes)),
+        "tender_status": str((item.meta or {}).get("status") or ""),
+    }
+
+
+def changed_fields(previous: dict[str, str],
+                   current: dict[str, str]) -> list[str]:
+    """Что изменилось относительно прошлой публикации, словами."""
+    changes: list[str] = []
+    for key, label in FINGERPRINT_LABELS.items():
+        was = str((previous or {}).get(key) or "")
+        now = str((current or {}).get(key) or "")
+        if was == now:
+            continue
+        if was and now:
+            changes.append(f"{label}: было «{was}», стало «{now}»")
+        elif now:
+            changes.append(f"{label}: появилось «{now}»")
+        else:
+            changes.append(f"{label}: больше не указано (было «{was}»)")
+    return changes
+
+
 def update_fingerprint(signal: Signal, item: RawItem) -> str:
     """
     Отпечаток содержания события.
 
     Повторное событие публикуется только при существенном обновлении:
-    сменились предмет правила, дата вступления в силу, дедлайн или
-    оценка значимости. Косметическая правка текста отпечаток не меняет.
+    сменились предмет правила, дата вступления в силу, срок или статус.
+    Косметическая правка текста отпечаток не меняет.
     """
-    payload = "|".join([
-        signal.event_type,
-        signal.trade_direction,
-        signal.jurisdiction,
-        _day(signal.effective_from),
-        _day(signal.deadline),
-        str(signal.relevance_score),
-        ",".join(sorted(signal.hs_codes)),
-        str((item.meta or {}).get("status") or ""),
-    ])
+    fields = fingerprint_fields(signal, item)
+    payload = "|".join(f"{key}={fields[key]}" for key in sorted(fields))
     return hashlib.sha1(payload.encode("utf-8")).hexdigest()[:16]

@@ -510,12 +510,18 @@ class IssueItem:
     late_confirmation: bool = False
     urgent: bool = False
     action: str = ""
+    updates: list[str] = field(default_factory=list)
     companies_direct: list[dict[str, Any]] = field(default_factory=list)
     companies_sector: list[dict[str, Any]] = field(default_factory=list)
     companies_total: int = 0
+    # Отпечаток содержания события на момент публикации. По нему
+    # следующий выпуск решает, было ли существенное обновление, и
+    # показывает, что именно изменилось.
+    fingerprint: dict[str, str] = field(default_factory=dict)
     created_at: str = field(default_factory=utcnow)
 
-    _JSON_FIELDS = ("sectors", "source_urls", "companies_direct", "companies_sector")
+    _JSON_FIELDS = ("sectors", "source_urls", "companies_direct",
+                    "companies_sector", "fingerprint", "updates")
 
     def to_row(self) -> dict[str, Any]:
         row = asdict(self)
@@ -530,7 +536,7 @@ class IssueItem:
     def from_row(row: Any) -> "IssueItem":
         data = dict(row)
         for key in IssueItem._JSON_FIELDS:
-            data[key] = _unjson(data.get(key), [])
+            data[key] = _unjson(data.get(key), {} if key == "fingerprint" else [])
         data["late_confirmation"] = bool(data.get("late_confirmation"))
         data["urgent"] = bool(data.get("urgent"))
         data["companies_total"] = int(data.get("companies_total") or 0)
@@ -549,7 +555,12 @@ class Issue:
     coverage: dict[str, Any] = field(default_factory=dict)
     counters: dict[str, Any] = field(default_factory=dict)
     markdown_path: str = ""
+    # Хэш отрисованного текста — для сверки файла latest.md с выпуском.
     content_hash: str = ""
+    # Хэш СОСТАВА выпуска: карточки, их порядок и отпечатки событий.
+    # В него намеренно не входят время сборки и другие метки, иначе два
+    # одинаковых по смыслу выпуска всегда выглядели бы разными.
+    composition_hash: str = ""
 
     def to_row(self) -> dict[str, Any]:
         row = asdict(self)
