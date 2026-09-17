@@ -77,6 +77,12 @@
     .nav-links a:hover { color:var(--green); }
     .nav-cta { gap:9px; padding:12px 15px; border:1px solid #abc8bb; color:var(--ink); }
     .nav-cta .icon { width:14px; }
+    .nav-home { white-space:nowrap; }
+    .nav-home-mini { display:none; }
+    .to-top { position:fixed; right:20px; bottom:20px; z-index:60; display:grid; place-items:center; width:46px; height:46px; padding:0; border:1px solid #abc8bb; border-radius:50%; background:var(--green); color:#fff; cursor:pointer; opacity:0; visibility:hidden; transform:translateY(10px); transition:opacity .25s ease, transform .25s ease, visibility .25s ease, background .2s ease; }
+    .to-top .icon { width:19px; height:19px; stroke-width:2; }
+    .to-top:hover { background:var(--green-dark); }
+    .to-top.is-visible { opacity:1; visibility:visible; transform:none; }
     .hero { width:min(1180px,calc(100% - 72px)); margin:0 auto; padding:90px 0 104px; display:grid; grid-template-columns:1.05fr .95fr; gap:75px; align-items:center; }
     .eyebrow { display:flex; align-items:center; gap:10px; margin:0 0 22px; color:#82958d; font-size:10px; font-weight:700; letter-spacing:.16em; }
     .eyebrow-line { width:29px; height:1px; background:#a9bfb5; }
@@ -138,7 +144,8 @@
     .site-footer p { max-width:570px; margin-bottom:0; }
     @media (max-width:900px) {
       .nav-links { gap:12px; }
-      .nav-links > a:not(.nav-cta) { display:none; }
+      .nav-links > a:not(.nav-cta):not(.nav-home) { display:none; }
+      .nav-home { min-height:38px; padding:0 10px; border:1px solid #bad0c6; border-radius:999px; background:var(--mint); color:var(--green); }
       .hero { grid-template-columns:1fr; gap:50px; padding:70px 0 82px; }
       .hero-card { width:min(520px,100%); }
       .steps { grid-template-columns:repeat(2,1fr); }
@@ -161,12 +168,32 @@
       .contact { padding:72px 18px; }
       .site-footer { grid-template-columns:1fr; gap:13px; }
     }
+    @media (max-width:640px) {
+      .nav-links { gap:9px; font-size:10px; }
+      .site-header { gap:12px; }
+      .brand > span:last-child { white-space:nowrap; }
+      .nav-cta { white-space:nowrap; }
+      .to-top { right:14px; bottom:14px; width:44px; height:44px; }
+    }
+    @media (max-width:380px) {
+      .site-header { gap:10px; }
+      .nav-links { gap:8px; }
+      .nav-cta { padding:10px 9px; }
+      .brand { font-size:11.5px; }
+      .nav-home-full { display:none; }
+      .nav-home-mini { display:inline; letter-spacing:.06em; font-weight:600; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      .to-top { transition:none; }
+    }
   </style>
 </head>
 <body>
   <svg aria-hidden="true" width="0" height="0" style="position:absolute"><defs>
     <symbol id="earth" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18M4.5 7.5h15M4.5 16.5h15"/></symbol>
     <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
     <symbol id="shield" viewBox="0 0 24 24"><path d="M12 3 20 6v5c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6l8-3Z"/><path d="m8 12 2.5 2.5L16 9"/></symbol>
     <symbol id="mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m4 7 8 6 8-6"/></symbol>
     <symbol id="message" viewBox="0 0 24 24"><path d="M3 17a10 10 0 1 1 4 4l-3.4 1a1 1 0 0 1-1.2-1.2l1-3.4A10 10 0 0 1 3 17Z"/></symbol>
@@ -175,7 +202,7 @@
 
   <header class="site-header">
     <a class="brand" href="../"><span class="brand-mark"><svg class="icon"><use href="#earth"></use></svg></span><span>Russia–Philippines<br><b>Trade Link</b></span></a>
-    <nav class="nav-links"><a href="../">Главная</a><a href="#services">Услуги</a><a href="#how-it-works">Как работаем</a><a class="nav-cta" href="#contact">Связаться <svg class="icon"><use href="#arrow"></use></svg></a></nav>
+    <nav class="nav-links"><a class="nav-home" href="../" title="Главная страница (English)"><span class="nav-home-full">Главная</span><span class="nav-home-mini">EN</span></a><a href="#services">Услуги</a><a href="#how-it-works">Как работаем</a><a class="nav-cta" href="#contact">Связаться <svg class="icon"><use href="#arrow"></use></svg></a></nav>
   </header>
 
   <main>
@@ -209,5 +236,20 @@
   </main>
 
   <footer class="site-footer"><div class="footer-brand"><span class="brand-mark"><svg class="icon"><use href="#earth"></use></svg></span><span>Russia–Philippines <b>Trade Link</b></span></div><p>Russia–Philippines Trade Link — независимый деловой контакт для российских компаний и филиппинских покупателей. Мы не являемся государственным органом.</p><span>© 2026</span></footer>
+  <button class="to-top" type="button" id="to-top" aria-label="Наверх"><svg class="icon" aria-hidden="true"><use href="#arrow-up"></use></svg></button>
+
+  <script>
+    (() => {
+      const toTop = document.querySelector('#to-top');
+      if (!toTop) return;
+      const toggleToTop = () => toTop.classList.toggle('is-visible', window.scrollY > 500);
+      toggleToTop();
+      window.addEventListener('scroll', toggleToTop, { passive: true });
+      toTop.addEventListener('click', () => {
+        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+      });
+    })();
+  </script>
 </body>
 </html>

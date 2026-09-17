@@ -95,6 +95,13 @@
     .nav-links a:hover, .text-link:hover, .card-link:hover { color: var(--green); }
     .nav-cta { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; padding: 12px 15px; border: 1px solid #abc8bb; color: var(--ink); }
     .nav-cta .icon { width: 14px; }
+    .nav-ru { white-space: nowrap; }
+    .cta-short { display: none; }
+    .nav-ru-short, .nav-ru-mini { display: none; }
+    .to-top { position: fixed; right: 20px; bottom: 20px; z-index: 60; display: grid; place-items: center; width: 46px; height: 46px; padding: 0; border: 1px solid #abc8bb; border-radius: 50%; background: var(--green); color: #fff; cursor: pointer; opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity .25s ease, transform .25s ease, visibility .25s ease, background .2s ease; }
+    .to-top .icon { width: 19px; height: 19px; stroke-width: 2; }
+    .to-top:hover { background: var(--green-dark); }
+    .to-top.is-visible { opacity: 1; visibility: visible; transform: none; }
     .hero { position: relative; width: min(1240px, calc(100% - 72px)); min-height: 470px; margin: 0 auto; display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 50px; overflow: hidden; }
     .hero::after { content: ""; position: absolute; z-index: -1; top: 0; right: -12%; width: 58%; height: 100%; background: #efede5; clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%); }
     .hero-copy { padding: 64px 0 78px 3%; max-width: 610px; }
@@ -252,10 +259,17 @@
     }
     @media (max-width: 640px) {
       .wrap, .section, .site-footer, .site-header, .hero { width: min(100% - 36px, 1180px); }
-      .site-header { height: 76px; }
-      .nav-links { gap: 12px; font-size: 10px; }
-      .nav-links a:not(.nav-cta) { display: none; }
-      .nav-cta { padding: 9px 10px; }
+      .site-header { height: 76px; gap: 12px; }
+      .nav-links { gap: 9px; font-size: 10px; }
+      .nav-links a:not(.nav-cta):not(.nav-ru) { display: none; }
+      .brand > span:last-child { white-space: nowrap; }
+      .nav-cta { padding: 9px 10px; white-space: nowrap; }
+      .cta-full { display: none; }
+      .cta-short { display: inline; }
+      .nav-ru { min-height: 38px; padding: 0 10px; border: 1px solid #bad0c6; border-radius: 999px; background: var(--mint); color: var(--green); }
+      .nav-ru-full { display: none; }
+      .nav-ru-short { display: inline; }
+      .to-top { right: 14px; bottom: 14px; width: 44px; height: 44px; }
       .hero-copy { padding: 48px 0 60px; }
       h1 { font-size: 49px; }
       .hero-lead { font-size: 16px; }
@@ -283,12 +297,23 @@
       .steps-grid { gap: 30px 18px; }
       .site-footer { display: grid; gap: 14px; }
     }
+    @media (max-width: 380px) {
+      .site-header { gap: 12px; }
+      .brand { font-size: 11.5px; }
+      .nav-ru-short { display: none; }
+      .nav-ru-mini { display: inline; letter-spacing: .06em; font-weight: 600; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .to-top { transition: none; }
+    }
   </style>
 </head>
 <body>
   <svg aria-hidden="true" width="0" height="0" style="position:absolute"><defs>
     <symbol id="earth" viewBox="0 0 24 24"><path d="M21.5 15H17a2 2 0 0 0-2 2v4.5M7 3.3V5a3 3 0 0 0 3 3 2 2 0 0 1 2 2c0 1.1.9 2 2 2s2-.9 2-2  .9-2 2-2h3.2M11 22v-4a2 2 0 0 0-2-2 2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z"/></symbol>
     <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+    <symbol id="arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
     <symbol id="chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
     <symbol id="shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.7 9a1 1 0 0 1-.6 0C8.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.6 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1v7Z"/><path d="m9 12 2 2 4-4"/></symbol>
     <symbol id="check" viewBox="0 0 24 24"><path d="m20 6-11 11-5-5"/></symbol>
@@ -300,7 +325,7 @@
 
   <header class="site-header">
     <a class="brand" href="#top"><span class="brand-mark"><svg class="icon"><use href="#earth"></use></svg></span><span>Russia–Philippines<br><b>Trade Link</b></span></a>
-    <nav class="nav-links"><a href="#products">Supplier opportunities</a><a href="#due-diligence">Due diligence</a><a href="#how-it-works">How it works</a><a href="./for-russian-suppliers/">Для российских поставщиков</a><a class="nav-cta" href="#contact">Send an inquiry <svg class="icon"><use href="#arrow"></use></svg></a></nav>
+    <nav class="nav-links"><a href="#products">Supplier opportunities</a><a href="#due-diligence">Due diligence</a><a href="#how-it-works">How it works</a><a class="nav-ru" href="./for-russian-suppliers/" lang="ru" title="Для российских поставщиков"><span class="nav-ru-full">Для российских поставщиков</span><span class="nav-ru-short">Поставщикам</span><span class="nav-ru-mini">RU</span></a><a class="nav-cta" href="#contact"><span class="cta-full">Send an inquiry</span><span class="cta-short">Inquiry</span> <svg class="icon"><use href="#arrow"></use></svg></a></nav>
   </header>
 
   <main>
@@ -337,6 +362,8 @@
   </main>
 
   <footer class="site-footer"><div class="footer-brand"><span class="brand-mark"><svg class="icon"><use href="#earth"></use></svg></span><span>Russia–Philippines <b>Trade Link</b></span></div><p>Russia–Philippines Trade Link is an independent B2B trade platform and contact point. It is not an official website of the Government of Primorsky Krai or the Russian Federation.</p><span>© 2026</span></footer>
+  <button class="to-top" type="button" id="to-top" aria-label="Back to top"><svg class="icon" aria-hidden="true"><use href="#arrow-up"></use></svg></button>
+
   <script>
     (() => {
       const buttons = [...document.querySelectorAll('[data-filter]')];
@@ -353,6 +380,17 @@
           card.classList.toggle('is-hidden', filter !== 'all' && !categories.includes(filter));
         });
       }));
+
+      const toTop = document.querySelector('#to-top');
+      if (toTop) {
+        const toggleToTop = () => toTop.classList.toggle('is-visible', window.scrollY > 500);
+        toggleToTop();
+        window.addEventListener('scroll', toggleToTop, { passive: true });
+        toTop.addEventListener('click', () => {
+          const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+        });
+      }
 
       const inquiryForm = document.querySelector('#inquiry-form');
       inquiryForm?.addEventListener('submit', (event) => {
