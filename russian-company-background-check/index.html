@@ -169,6 +169,18 @@
       .source-table td:first-child { width: 100%; padding-top: 16px; }
       .source-table tr { border-bottom: 1px solid var(--line); padding-bottom: 12px; }
     }
+    .chat-fab { display: none; }
+    .form-status { min-height: 1.2em; margin: 0; color: var(--green); font-size: 15px; font-weight: 600; }
+    .form-status.is-error { color: #a33b2b; }
+    .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    @media (max-width: 900px) {
+      .chat-fab { position: fixed; left: 16px; bottom: 16px; z-index: 50; display: flex; gap: 8px; }
+      .chat-fab a { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 0 16px; border-radius: 22px; color: #fff; font-size: 15px; font-weight: 600; box-shadow: 0 6px 18px rgba(13, 80, 66, .22); }
+      .chat-fab .icon { width: 18px; height: 18px; }
+      .chat-wa { background: #1c7c4f; }
+      .chat-viber { background: #6a5aa8; }
+      body { padding-bottom: 76px; }
+    }
     .to-top { position: fixed; right: 22px; bottom: 22px; z-index: 50; display: grid; place-items: center; width: 46px; height: 46px; padding: 0; border: 1px solid #abc8bb; border-radius: 50%; background: var(--paper); color: var(--green); box-shadow: 0 6px 18px rgba(13, 80, 66, .16); cursor: pointer; opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity .25s ease, transform .25s ease, visibility .25s, background .2s ease, color .2s ease; }
     .to-top.is-visible { opacity: 1; visibility: visible; transform: none; }
     .to-top:hover { background: var(--green); color: #fff; }
@@ -441,11 +453,52 @@
       <div class="note-box"><p>Looking for a supplier rather than checking one? See the <a href="../#products">current supplier directions</a> or <a href="../#contact">send a product inquiry</a>.</p></div>
     </article>
 
-    <section class="due-diligence-section" id="request"><div class="due-diligence-inner"><div class="due-diligence-copy"><p class="eyebrow">REQUEST A REVIEW</p><h2>Tell us which company you want to check.</h2><p class="due-lead">Send your contact details and we will ask for the company name, INN or documents in a follow-up.</p><h3>The review may cover</h3><ul class="due-list"><li><svg class="icon"><use href="#check"></use></svg><span>Registration and current legal status</span></li><li><svg class="icon"><use href="#check"></use></svg><span>Directors, founders and ownership where public</span></li><li><svg class="icon"><use href="#check"></use></svg><span>Arbitration and court cases</span></li><li><svg class="icon"><use href="#check"></use></svg><span>Bankruptcy and enforcement information</span></li><li><svg class="icon"><use href="#check"></use></svg><span>Financial statements and risk indicators</span></li><li><svg class="icon"><use href="#check"></use></svg><span>Comparison with the supplier’s declared information</span></li></ul></div><div class="due-diligence-panel"><form id="due-diligence-form" class="due-form" action="mailto:rus.import.ph@gmail.com" method="get"><h3>Request a Counterparty Check</h3><p class="due-form-intro">Send your company name, contact person and preferred way to reach you. We will clarify the remaining details in a follow-up.</p><label for="due-company">Philippine company name<input id="due-company" name="Philippine company name" autocomplete="organization" placeholder="Your company" required></label><label for="due-contact">Contact person<input id="due-contact" name="Contact person" autocomplete="name" placeholder="Your name" required></label><label for="due-contact-details">Phone or email<input id="due-contact-details" name="Phone or email" autocomplete="email" placeholder="Phone number or email address" required></label><button class="button button-primary" type="submit">Request a Counterparty Check <svg class="icon"><use href="#arrow"></use></svg></button><small>We review publicly available and legally accessible information only. We do not promise access to closed databases, bank information or confidential law-enforcement data.</small></form><div class="due-sources"><strong>Possible public sources may include</strong><ul><li>Russian state registration and tax records</li><li>Public court and arbitration records</li><li>Bankruptcy and enforcement databases</li><li>Public corporate and business databases, including SPARK or SBIS where access is available</li><li>Company websites, official documents and open business information</li><li>Other legally accessible public sources</li></ul><p>Reports avoid categorical conclusions such as “fraudulent company”. They identify available signals, open questions and matters that may require enhanced due diligence or independent legal and financial verification.</p></div></div></div></section>
+    <section class="due-diligence-section" id="request"><div class="due-diligence-inner"><div class="due-diligence-copy"><p class="eyebrow">REQUEST A REVIEW</p><h2>Tell us which company you want to check.</h2><p class="due-lead">Send your contact details and we will ask for the company name, INN or documents in a follow-up.</p><h3>The review may cover</h3><ul class="due-list"><li><svg class="icon"><use href="#check"></use></svg><span>Registration and current legal status</span></li><li><svg class="icon"><use href="#check"></use></svg><span>Directors, founders and ownership where public</span></li><li><svg class="icon"><use href="#check"></use></svg><span>Arbitration and court cases</span></li><li><svg class="icon"><use href="#check"></use></svg><span>Bankruptcy and enforcement information</span></li><li><svg class="icon"><use href="#check"></use></svg><span>Financial statements and risk indicators</span></li><li><svg class="icon"><use href="#check"></use></svg><span>Comparison with the supplier’s declared information</span></li></ul></div><div class="due-diligence-panel"><form id="due-diligence-form" class="due-form" action="https://formsubmit.co/rus.import.ph@gmail.com" method="post"><h3>Request a Counterparty Check</h3><p class="due-form-intro">Send your company name, contact person and preferred way to reach you. We will clarify the remaining details in a follow-up.</p><label for="due-company">Philippine company name<input id="due-company" name="Philippine company name" autocomplete="organization" placeholder="Your company" required></label><label for="due-contact">Contact person<input id="due-contact" name="Contact person" autocomplete="name" placeholder="Your name" required></label><label for="due-contact-details">Phone or email<input id="due-contact-details" name="Phone or email" autocomplete="email" placeholder="Phone number or email address" required></label><div class="hp-field" aria-hidden="true"><label>Leave empty<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div><button class="button button-primary" type="submit">Request a Counterparty Check <svg class="icon"><use href="#arrow"></use></svg></button><p class="form-status" role="status" aria-live="polite"></p><small>We review publicly available and legally accessible information only. We do not promise access to closed databases, bank information or confidential law-enforcement data.</small></form><div class="due-sources"><strong>Possible public sources may include</strong><ul><li>Russian state registration and tax records</li><li>Public court and arbitration records</li><li>Bankruptcy and enforcement databases</li><li>Public corporate and business databases, including SPARK or SBIS where access is available</li><li>Company websites, official documents and open business information</li><li>Other legally accessible public sources</li></ul><p>Reports avoid categorical conclusions such as “fraudulent company”. They identify available signals, open questions and matters that may require enhanced due diligence or independent legal and financial verification.</p></div></div></div></section>
   </main>
 
-  <footer class="site-footer"><div class="footer-brand"><span class="brand-mark"><svg class="icon"><use href="#earth"></use></svg></span><span>Russia–Philippines <b>Trade Link</b></span></div><p>Russia–Philippines Trade Link is an independent B2B trade platform and contact point. It is not an official website of the Government of Primorsky Krai or the Russian Federation.</p><span>© 2026</span></footer>
+  <footer class="site-footer"><div class="footer-brand"><span class="brand-mark"><svg class="icon"><use href="#earth"></use></svg></span><span>Russia–Philippines <b>Trade Link</b></span></div><p>Russia–Philippines Trade Link is an independent B2B trade platform and contact point. It is not an official website of the Government of Primorsky Krai or the Russian Federation.</p><span>© 2026 · <a href="https://www.linkedin.com/in/andrey-subich-09b696435/" rel="noopener">Andrey Subich on LinkedIn</a></span></footer>
+  <div class="chat-fab"><a class="chat-wa" href="https://wa.me/639215884430" aria-label="Chat on WhatsApp"><svg class="icon" aria-hidden="true"><use href="#message"></use></svg>WhatsApp</a><a class="chat-viber" href="viber://chat?number=%2B639215884430" aria-label="Chat on Viber"><svg class="icon" aria-hidden="true"><use href="#message"></use></svg>Viber</a></div>
   <button class="to-top" type="button" aria-label="Наверх / Back to top" title="Наверх / Back to top"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+  <script>
+    (() => {
+      const ENDPOINT = 'https://formsubmit.co/ajax/rus.import.ph@gmail.com';
+      const setup = (form, subjectOf) => {
+        if (!form) return;
+        const status = form.querySelector('.form-status');
+        const button = form.querySelector('button[type="submit"]');
+        form.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          const values = Object.fromEntries(new FormData(form).entries());
+          if (values._honey) return;
+          delete values._honey;
+          const subject = subjectOf(values);
+          status.classList.remove('is-error');
+          status.textContent = 'Sending…';
+          button.disabled = true;
+          try {
+            const response = await fetch(ENDPOINT, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+              body: JSON.stringify({ ...values, _subject: subject, _template: 'table', _captcha: 'false' })
+            });
+            const result = await response.json();
+            if (!response.ok || String(result.success) !== 'true') throw new Error(result.message || 'Form not sent');
+            form.reset();
+            status.textContent = 'Thank you. Your inquiry has been sent and we will reply as soon as possible.';
+          } catch (error) {
+            status.classList.add('is-error');
+            status.textContent = 'The form could not be sent. Your email app will open with the inquiry instead.';
+            const body = Object.entries(values).map(([key, value]) => `${key}: ${value}`).join('\n');
+            window.location.href = `mailto:rus.import.ph@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          } finally {
+            button.disabled = false;
+          }
+        });
+      };
+      setup(document.querySelector('#inquiry-form'), (v) => `${v['Inquiry type'] || 'Business inquiry'}: ${v.Product || 'new request'}`);
+      setup(document.querySelector('#due-diligence-form'), (v) => `Counterparty check request: ${v['Philippine company name'] || ''}`);
+    })();
+  </script>
   <script>
     (() => {
       const toTop = document.querySelector('.to-top');

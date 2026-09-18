@@ -184,6 +184,18 @@
     .related a { padding: 10px 14px; border: 1px solid var(--line); text-decoration: none !important; font-size: 15px; }
     @media (max-width: 900px) { .cta-inner { grid-template-columns: 1fr; gap: 32px; } }
     @media (max-width: 640px) { .cta-inner { width: min(100% - 36px, 1180px); padding: 64px 0; } }
+    .chat-fab { display: none; }
+    .form-status { min-height: 1.2em; margin: 0; color: var(--green); font-size: 15px; font-weight: 600; }
+    .form-status.is-error { color: #a33b2b; }
+    .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    @media (max-width: 900px) {
+      .chat-fab { position: fixed; left: 16px; bottom: 16px; z-index: 50; display: flex; gap: 8px; }
+      .chat-fab a { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 0 16px; border-radius: 22px; color: #fff; font-size: 15px; font-weight: 600; box-shadow: 0 6px 18px rgba(13, 80, 66, .22); }
+      .chat-fab .icon { width: 18px; height: 18px; }
+      .chat-wa { background: #1c7c4f; }
+      .chat-viber { background: #6a5aa8; }
+      body { padding-bottom: 76px; }
+    }
     .to-top { position: fixed; right: 22px; bottom: 22px; z-index: 50; display: grid; place-items: center; width: 46px; height: 46px; padding: 0; border: 1px solid #abc8bb; border-radius: 50%; background: var(--paper); color: var(--green); box-shadow: 0 6px 18px rgba(13, 80, 66, .16); cursor: pointer; opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity .25s ease, transform .25s ease, visibility .25s, background .2s ease, color .2s ease; }
     .to-top.is-visible { opacity: 1; visibility: visible; transform: none; }
     .to-top:hover { background: var(--green); color: #fff; }
@@ -447,7 +459,8 @@
       <div class="cta-actions"><a class="primary" href="mailto:rus.import.ph@gmail.com?subject=Inquiry:%20container%20spreader%20/%20load%20leveler">Email rus.import.ph@gmail.com <svg class="icon"><use href="#arrow"></use></svg></a><a href="https://wa.me/639215884430">WhatsApp business inquiries <svg class="icon"><use href="#arrow"></use></svg></a><a href="../#contact">Use the inquiry form <svg class="icon"><use href="#arrow"></use></svg></a></div></div></section>
   </main>
 
-  <footer class="site-footer"><div class="footer-brand"><span class="brand-mark"><svg class="icon"><use href="#earth"></use></svg></span><span>Russia–Philippines <b>Trade Link</b></span></div><p>Russia–Philippines Trade Link is an independent B2B trade platform and contact point. It is not an official website of the Government of Primorsky Krai or the Russian Federation.</p><span>© 2026</span></footer>
+  <footer class="site-footer"><div class="footer-brand"><span class="brand-mark"><svg class="icon"><use href="#earth"></use></svg></span><span>Russia–Philippines <b>Trade Link</b></span></div><p>Russia–Philippines Trade Link is an independent B2B trade platform and contact point. It is not an official website of the Government of Primorsky Krai or the Russian Federation.</p><span>© 2026 · <a href="https://www.linkedin.com/in/andrey-subich-09b696435/" rel="noopener">Andrey Subich on LinkedIn</a></span></footer>
+  <div class="chat-fab"><a class="chat-wa" href="https://wa.me/639215884430" aria-label="Chat on WhatsApp"><svg class="icon" aria-hidden="true"><use href="#message"></use></svg>WhatsApp</a><a class="chat-viber" href="viber://chat?number=%2B639215884430" aria-label="Chat on Viber"><svg class="icon" aria-hidden="true"><use href="#message"></use></svg>Viber</a></div>
   <button class="to-top" type="button" aria-label="Наверх / Back to top" title="Наверх / Back to top"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
   <script>
     (() => {
