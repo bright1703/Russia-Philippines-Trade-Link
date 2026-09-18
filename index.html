@@ -266,13 +266,15 @@
     .panel-topline, .panel-bottom { display: flex; justify-content: space-between; gap: 24px; }
     .panel-topline { padding-bottom: 28px; border-bottom: 1px solid #d9ded7; color: #91a098; font-size: 12px; font-weight: 700; letter-spacing: .17em; }
     .panel-topline span:last-child { color: var(--ink); }
-    .route-visual { display: flex; align-items: center; gap: 18px; padding: 39px 0 43px; }
-    .route-node { position: relative; min-width: 74px; color: var(--ink); font-family: var(--serif); font-size: 16px; line-height: 1.15; }
-    .route-node .node-dot { display: block; width: 9px; height: 9px; margin-bottom: 12px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px #d4e4da; }
-    .node-ph { margin-left: auto; background: var(--accent) !important; box-shadow: 0 0 0 4px #f4e8c6 !important; }
-    .route-right { text-align: right; }
-    .route-line { flex: 1; display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed #a8bbb1; }
-    .route-line span { width: 4px; height: 4px; margin-top: -2px; border-radius: 50%; background: #a8bbb1; }
+    .route-visual { padding: 34px 0 36px; }
+    .route-track { display: flex; align-items: center; margin: 0 5px; }
+    .route-dot { flex: none; width: 12px; height: 12px; border-radius: 50%; }
+    .dot-ru { background: var(--green); box-shadow: 0 0 0 5px #d4e4da; }
+    .dot-ph { background: var(--accent); box-shadow: 0 0 0 5px #f4e8c6; }
+    .route-dash { flex: 1; margin: 0 10px; border-top: 2px dashed #a8bbb1; }
+    .route-label { flex: none; color: #82958d; font-size: 13px; }
+    .route-names { display: flex; justify-content: space-between; gap: 16px; margin-top: 14px; color: var(--ink); font-family: var(--serif); font-size: 17px; line-height: 1.2; }
+    .route-names span:last-child { text-align: right; }
     .panel-bottom { padding-top: 20px; border-top: 1px solid #d9ded7; }
     .panel-bottom strong, .panel-bottom small { display: block; }
     .panel-bottom strong { font-family: var(--serif); font-size: 19px; font-weight: 400; }
@@ -473,7 +475,7 @@
         <div class="hero-actions"><a class="button button-primary" href="#contact">Tell us what you need <svg class="icon"><use href="#arrow"></use></svg></a><a class="text-link" href="#products">Explore product areas <svg class="icon"><use href="#chevron"></use></svg></a></div>
         <div class="hero-note"><svg class="icon"><use href="#shield"></use></svg> Independent trade agent based in the Philippines</div>
       </div>
-      <div class="hero-panel"><div class="panel-topline"><span>TRADE CORRIDOR</span><span>RU → PH</span></div><div class="route-visual"><div class="route-node"><span class="node-dot node-russia"></span>Primorsky<br>Krai, Russia</div><div class="route-line"><span></span><span></span><span></span></div><div class="route-node route-right"><span class="node-dot node-ph"></span>Philippines</div></div><div class="panel-bottom"><div><strong>Selected</strong><small>supplier opportunities</small></div><div><strong>Direct</strong><small>business contact</small></div></div></div>
+      <div class="hero-panel"><div class="panel-topline"><span>TRADE CORRIDOR</span><span>RU → PH</span></div><div class="route-visual"><div class="route-track" aria-hidden="true"><span class="route-dot dot-ru"></span><span class="route-dash"></span><span class="route-label">sea route</span><span class="route-dash"></span><span class="route-dot dot-ph"></span></div><div class="route-names"><span>Primorsky Krai,<br>Russia</span><span>Philippines</span></div></div><div class="panel-bottom"><div><strong>Selected</strong><small>supplier opportunities</small></div><div><strong>Direct</strong><small>business contact</small></div></div></div>
     </section>
 
     <section class="trust-strip"><span>For Philippine importers</span><i></i><span>For distributors</span><i></i><span>For industrial buyers</span><i></i><span>For Primorsky Krai suppliers</span></section>
