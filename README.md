@@ -14,7 +14,7 @@ Open `index.html` directly in a browser, or serve the directory with any static 
 python -m http.server 8000
 ```
 
-The buyer inquiry and counterparty check forms submit to Formspree with an inline success or error state. Direct email, WhatsApp and Viber links remain available as alternative contact channels.
+The buyer inquiry and counterparty check forms submit to Formspree with an inline success or error state. Direct email and WhatsApp links remain available as alternative contact channels.
 
 ## AI monitoring pipeline
 
