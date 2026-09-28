@@ -231,6 +231,17 @@
     .service-card .number { margin-bottom:12px; color:#82958d; font-size:12px; font-weight:700; letter-spacing:.14em; }
     .service-card h3 { margin-bottom:8px; font-size:19px; font-weight:700; letter-spacing:-.02em; }
     .service-card p { margin-bottom:0; color:var(--ink-soft); font-size:16px; line-height:1.45; }
+    .news-band { padding:52px max(36px,calc((100vw - 1180px)/2)); background:var(--green); color:#eef5f0; }
+    .news-inner { width:min(1180px,100%); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:40px; }
+    .news-band .eyebrow { margin:0 0 14px; color:#a8cdbb; }
+    .news-band .eyebrow-line { background:#7fae97; }
+    .news-band h2 { margin:0 0 12px; color:#fff; font-size:clamp(30px,3.4vw,44px); line-height:1.05; }
+    .news-band p { max-width:620px; margin:0; color:#cfe2da; font-size:17px; line-height:1.55; }
+    .news-cta { flex:none; display:inline-flex; align-items:center; gap:10px; min-height:52px; padding:15px 24px; background:#fff; color:var(--green); font-size:16px; font-weight:600; }
+    .news-cta:hover { background:var(--accent); color:var(--ink); }
+    .news-cta .icon { width:18px; height:18px; }
+    @media (max-width:900px) { .news-inner { flex-direction:column; align-items:flex-start; gap:24px; } }
+    @media (max-width:640px) { .news-band { padding:44px 18px; } .news-cta { width:100%; justify-content:space-between; } }
     .dark-section { padding:95px max(36px,calc((100vw - 1180px)/2)); background:var(--green); color:#eef5f0; }
     .dark-inner { width:min(1180px,100%); margin:0 auto; }
     .dark-section .eyebrow { color:#a6c5b8; }
@@ -258,7 +269,8 @@
     .site-footer p { max-width:570px; margin-bottom:0; }
     @media (max-width:900px) {
       .nav-links { gap:12px; }
-      .nav-links > a:not(.nav-cta) { display:none; }
+      .nav-links > a:not(.nav-cta):not(.nav-news) { display:none; }
+      .nav-news { color:var(--green); font-weight:600; }
       .hero { grid-template-columns:1fr; gap:50px; padding:70px 0 82px; }
       .hero-card { width:min(520px,100%); }
       .steps { grid-template-columns:repeat(2,1fr); }
@@ -281,6 +293,13 @@
       .contact { padding:72px 18px; }
       .site-footer { grid-template-columns:1fr; gap:13px; }
     }
+    @media (max-width:400px) {
+      .site-header { gap:12px; }
+      .brand { font-size:13px; gap:9px; }
+      .nav-links { gap:10px; font-size:13px; }
+      .nav-cta { padding:7px 9px; line-height:1.2; }
+      .nav-cta .icon { display:none; }
+    }
   </style>
 </head>
 <body>
@@ -295,7 +314,7 @@
 
   <header class="site-header">
     <a class="brand" href="../"><span class="brand-mark"><svg class="icon"><use href="#earth"></use></svg></span><span>Russia–Philippines<br><b>Trade Link</b></span></a>
-    <nav class="nav-links"><a href="../">Главная</a><a href="#services">Услуги</a><a href="#directions">Товары</a><a href="#faq">Вопросы</a><a class="nav-cta" href="#contact">Связаться <svg class="icon"><use href="#arrow"></use></svg></a></nav>
+    <nav class="nav-links"><a href="../">Главная</a><a href="#services">Услуги</a><a href="#directions">Товары</a><a class="nav-news" href="./novosti-filippin/">Новости</a><a href="#faq">Вопросы</a><a class="nav-cta" href="#contact">Связаться <svg class="icon"><use href="#arrow"></use></svg></a></nav>
   </header>
 
   <main>
@@ -309,6 +328,8 @@
       </div>
       <div class="hero-card"><div class="card-label"><span>ТОРГОВЫЙ КОРИДОР</span><span>RU → PH</span></div><div class="route"><div class="route-place"><strong>ПОСТАВЩИК</strong>Россия</div><div class="route-line"></div><div class="route-place"><strong>ПОКУПАТЕЛЬ</strong>Филиппины</div></div><div class="card-bottom"><div><strong>Поиск</strong><small>покупателей и партнёров</small></div><div><strong>Контакт</strong><small>деловое сопоставление</small></div></div></div>
     </section>
+
+    <section class="news-band" id="news"><div class="news-inner"><div><p class="eyebrow"><span class="eyebrow-line"></span>НОВОСТИ РЫНКА</p><h2>Торговые новости Филиппин</h2><p>Импорт, пошлины, цены и спрос на филиппинском рынке, а также деловые связи с Россией. Коротко на русском, со ссылкой на первоисточник. Подборка обновляется два раза в неделю.</p></div><a class="news-cta" href="./novosti-filippin/">Читать свежий выпуск <svg class="icon"><use href="#arrow"></use></svg></a></div></section>
 
     <section class="section services" id="services">
       <div class="intro"><p class="eyebrow">ПОИСК ПАРТНЁРОВ НА ФИЛИППИНАХ</p><h2>От российского товара<br>к первому деловому контакту.</h2><p>Работаем с компаниями из Приморского края, Дальнего Востока и других регионов России. Помогаем понять, кому на филиппинском рынке может быть интересна ваша продукция и с чего начать переговоры.</p></div>
