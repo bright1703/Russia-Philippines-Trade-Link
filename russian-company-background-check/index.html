@@ -505,6 +505,7 @@
     .order-form .consent input { width: 18px; height: 18px; margin-top: 2px; flex: none; }
     .order-form .consent a { color: var(--green); text-decoration: underline; }
     .order-form .button { justify-self: start; }
+    .order-hint { margin: -6px 0 0; color: #6d8379; font-size: 14px; line-height: 1.45; }
     .form-error { min-height: 0; margin: 0; color: #a33b2b; font-size: 15px; font-weight: 600; }
     .order-done { padding: 28px; border: 2px solid var(--green); background: #fff; }
     .order-done h3 { margin: 0 0 10px; font-family: var(--serif); font-size: 26px; font-weight: 400; }
@@ -635,10 +636,11 @@
           </div>
           <label>Russian company name<input name="target" placeholder="For example OOO Company name" required></label>
           <div class="order-grid">
-            <label>INN (10 digits, if known)<input name="inn" inputmode="numeric" maxlength="12" placeholder="Taxpayer number"></label>
+            <label>INN (optional, 10 digits)<input name="inn" inputmode="numeric" maxlength="12" placeholder="Taxpayer number, if you have it"></label>
             <label>OGRN (optional)<input name="ogrn" inputmode="numeric" maxlength="15" placeholder="State registration number"></label>
           </div>
           <label>Supplier website (optional)<input name="site" type="url" placeholder="https://"></label>
+          <p class="order-hint">No INN? No problem. Send what you have, and we will help identify the company before you pay. The INN is usually on the contract, invoice or commercial offer.</p>
           <label>Package<select name="package" required><option value="snapshot">Company Snapshot, USD 29</option><option value="supplier" selected>Supplier Check, USD 49</option><option value="deeper">Deeper Review, USD 99</option></select></label>
           <label>Product or planned deal<textarea name="deal" rows="3" required placeholder="What you plan to buy, approximate amount and payment terms"></textarea></label>
           <label>Your question or reason for the check (optional)<textarea name="question" rows="2"></textarea></label>
@@ -770,7 +772,6 @@
         const inn = v.inn.replace(/\D/g, ''), ogrn = v.ogrn.replace(/\D/g, '');
         if (inn) e.inn = inn.length === 12 ? 'individual' : (innOk(inn) ? undefined : 'checksum');
         if (ogrn) e.ogrn = ogrn.length === 15 ? 'individual' : (ogrnOk(ogrn) ? undefined : 'checksum');
-        if (!inn && !ogrn && !v.site.trim()) e.inn = 'identify';
         if (!form.elements.consent.checked) e.consent = 'required';
         Object.keys(e).forEach((k) => e[k] === undefined && delete e[k]);
         return e;
