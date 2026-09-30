@@ -44,7 +44,7 @@
   <meta name="twitter:image" content="https://rusphiltrade.com/images/og-image.png">
   <meta name="twitter:image:alt" content="Russia–Philippines Trade Link mark">
   <script type="application/ld+json">
-    {"@context": "https://schema.org", "@type": "CollectionPage", "name": "Philippine trade news", "url": "https://rusphiltrade.com/philippine-trade-news/", "inLanguage": "en", "description": "Short notes on Philippine imports, tariffs, prices and demand, with a link to the original publication. Collected twice a week.", "dateModified": "2026-09-29", "isPartOf": {"@type": "WebSite", "name": "Russia–Philippines Trade Link", "url": "https://rusphiltrade.com/"}}
+    {"@context": "https://schema.org", "@type": "CollectionPage", "name": "Philippine trade news", "url": "https://rusphiltrade.com/philippine-trade-news/", "inLanguage": "en", "description": "Short notes on Philippine imports, tariffs, prices and demand, with a link to the original publication. Collected twice a week.", "dateModified": "2026-10-01", "isPartOf": {"@type": "WebSite", "name": "Russia–Philippines Trade Link", "url": "https://rusphiltrade.com/"}}
   </script>
   <style>
     :root {
@@ -345,6 +345,27 @@
       .nav-cta { padding: 7px 9px; line-height: 1.2; }
       .nav-cta .icon { display: none; }
     }
+    .status-short { margin: 30px 0 0; padding: 14px 18px; border: 1px solid var(--line); background: var(--cream); color: var(--ink-soft); font-size: 15px; }
+    .status-short a { color: var(--green); text-decoration: underline; }
+    .rpt-form-section { padding: 80px max(36px, calc((100vw - 1180px) / 2)); background: var(--mint); }
+    .rpt-form-inner { width: min(1180px, 100%); margin: 0 auto; display: grid; grid-template-columns: .8fr 1.2fr; gap: 56px; align-items: start; }
+    .rpt-form-inner h2 { margin: 0 0 16px; font-size: clamp(30px, 3.4vw, 42px); }
+    .rpt-form-inner > div > p { color: var(--ink-soft); font-size: 17px; line-height: 1.6; }
+    .rpt-form { display: grid; gap: 15px; padding: 26px; border: 1px solid #c5d9cf; background: rgba(251,250,246,.9); }
+    .rpt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .rpt-form label { display: grid; gap: 6px; color: #56736b; font-size: 14px; }
+    .rpt-form input, .rpt-form select, .rpt-form textarea { width: 100%; padding: 10px 12px; border: 1px solid #b9ccc3; background: #fff; color: var(--ink); font: inherit; font-size: 16px; }
+    .rpt-form input:focus, .rpt-form select:focus, .rpt-form textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .rpt-form [aria-invalid="true"] { border-color: #a33b2b; }
+    .rpt-form .field-error { color: #a33b2b; font-size: 13px; }
+    .rpt-form .consent { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; }
+    .rpt-form .consent input { width: 18px; height: 18px; margin-top: 2px; flex: none; }
+    .rpt-form .consent a { color: var(--green); text-decoration: underline; }
+    .rpt-form .button { justify-self: start; }
+    .rpt-form .form-status { margin: 0; color: var(--green); font-size: 15px; font-weight: 600; min-height: 1.2em; }
+    .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    @media (max-width: 900px) { .rpt-form-inner { grid-template-columns: 1fr; gap: 26px; } }
+    @media (max-width: 640px) { .rpt-form-section { padding: 56px 18px; } .rpt-grid { grid-template-columns: 1fr; } .rpt-form { padding: 20px 16px; } }
 
     .news-issue { margin-top:10px; }
     .news-item { padding:22px 0; border-bottom:1px solid var(--line); }
@@ -353,7 +374,13 @@
     .article-body .news-item h3 { margin:0 0 8px; font-family:var(--serif); font-size:22px; font-weight:400; line-height:1.25; }
     .article-body .news-item p { margin:0 0 8px; }
     .article-body .news-src { color:#7e9289; font-size:14px; }
+    .article-body .news-share { display:flex; flex-wrap:wrap; align-items:center; gap:4px 18px; margin:6px 0 0; color:#7e9289; font-size:14px; }
+    .article-body .news-share a { display:inline-flex; align-items:center; min-height:44px; color:var(--green); text-decoration:underline; }
+    .article-body .news-cta { margin:10px 0 40px; padding:18px 20px; border-left:3px solid var(--accent); background:var(--cream, #f4f1ea); }
+    .article-body .news-cta p { margin:0; }
+    .article-body .news-cta a { color:var(--green); text-decoration:underline; }
   </style>
+  <link rel="alternate" type="application/rss+xml" title="Philippine Trade News, Russia–Philippines Trade Link" href="https://rusphiltrade.com/philippine-trade-news/feed.xml">
 </head>
 <body>
   <svg aria-hidden="true" width="0" height="0" style="position:absolute"><defs>
@@ -379,10 +406,10 @@
       <p class="eyebrow">MARKET NEWS</p>
       <h1>Philippine <em>trade news.</em></h1>
       <p class="hero-lead">Imports, tariffs, prices, demand and trade policy in the Philippines, collected twice a week. Each item keeps the original headline and a short extract from the publication, with a link to the source.</p>
-      <p class="article-meta">Updated 29 September 2026. Collected by an independent trade agent in the Philippines. The "What this means" note is the agent's own short read of the issue, not the view of the sources. Extracts are shortened from the original publications, so check figures and dates at the source.</p>
+      <p class="article-meta">Updated 1 October 2026. Collected by an independent trade agent in the Philippines. The "What this means" note is the agent's own short read of the issue, not the view of the sources. Extracts are shortened from the original publications, so check figures and dates at the source. <a href="feed.xml">RSS feed</a>.</p>
     </section>
     <article class="article-body">
-      <section class="news-issue">
+      <section class="news-issue" id="issue-3">
         <h2>Issue of 28 September 2026</h2>
         <div class="note-box"><p><strong>What this means.</strong> The news is mixed: pork imports are being tightened, while demand for poultry and rice is rising, and there are separate signals on rehabilitation equipment and agri-drones. The key point for Russian suppliers is pork, where quotas and higher tariffs are under discussion, so check the current tariff regime, permits, and frozen meat inspection rules before shipping. For poultry, demand is steady but competition and local output are growing, so prepare documents and pricing with logistics in mind, and watch customs enforcement changes and BAI ASF consultations because they affect delays and market access.</p></div>
         <div class="news-item">
@@ -443,8 +470,10 @@
           <p>ASM, Philippine Canadian Inquirer September 25, 2026 The Asian Development Bank has approved $1.5 billion in financing to help the Philippines cushion the economic impact of the...</p>
           <p class="news-src">25.09.2026, <a href="https://canadianinquirer.net/2026/09/25/adb-approves-1-5b-loan-for-philippines-middle-east-crisis-response/" target="_blank" rel="nofollow noopener">canadianinquirer.net</a></p>
         </div>
+        <p class="news-share">Share this issue <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Frusphiltrade.com%2Fphilippine-trade-news%2F%23issue-3" target="_blank" rel="noopener">LinkedIn</a><a href="https://t.me/share/url?url=https%3A%2F%2Frusphiltrade.com%2Fphilippine-trade-news%2F%23issue-3&amp;text=Philippine%20trade%20news%2C%20issue%20of%2028%20September%202026" target="_blank" rel="noopener">Telegram</a></p>
+        <div class="news-cta"><p><strong>Looking for a Russian supplier?</strong> See our <a href="/#products">supplier directions</a> or <a href="/#contact">send an inquiry</a>. Supplier search is free for buyers.</p></div>
       </section>
-      <section class="news-issue">
+      <section class="news-issue" id="issue-2">
         <h2>Issue of 24 September 2026</h2>
         <div class="note-box"><p><strong>What this means.</strong> The main signal is Philippine demand for imported meat: pork cuts and offal are driving purchases and chicken imports are expected to keep growing, so Russian suppliers should focus on importers and processors in those categories. The backdrop is getting harder, since the EU deal gives European suppliers preferential access and the zero-tariff regime for some goods is ending, which will raise price competition. Local hog groups want import policy reviewed, so rules can shift and decisions by the Bureau of Animal Industry are worth watching. Also expect stricter customs enforcement on misdeclared shipments and softer retail demand as growth slows.</p></div>
         <div class="news-item">
@@ -525,8 +554,10 @@
           <p>The Asian Development Bank on Wednesday cut its Philippine growth forecast for 2026 to 3.3 percent from 3.8 percent, citing elevated inflation and weak...</p>
           <p class="news-src">23.09.2026, <a href="https://manilastandard.net/business/314796662/adb-slashes-2026-ph-growth-outlook-to-3-3-amid-high-prices.html" target="_blank" rel="nofollow noopener">manilastandard.net</a></p>
         </div>
+        <p class="news-share">Share this issue <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Frusphiltrade.com%2Fphilippine-trade-news%2F%23issue-2" target="_blank" rel="noopener">LinkedIn</a><a href="https://t.me/share/url?url=https%3A%2F%2Frusphiltrade.com%2Fphilippine-trade-news%2F%23issue-2&amp;text=Philippine%20trade%20news%2C%20issue%20of%2024%20September%202026" target="_blank" rel="noopener">Telegram</a></p>
+        <div class="news-cta"><p><strong>Looking for a Russian supplier?</strong> See our <a href="/#products">supplier directions</a> or <a href="/#contact">send an inquiry</a>. Supplier search is free for buyers.</p></div>
       </section>
-      <section class="news-issue">
+      <section class="news-issue" id="issue-1">
         <h2>Issue of 21 September 2026</h2>
         <div class="note-box"><p><strong>What this means.</strong> The items here are a mixed bag, but for Russian sellers the key one is Miratorg clearing the Philippine inspection audit and already shipping meat, which shows the demand is real and the approval path is workable. On pork, check with your buyer which tariff code and rate will apply, since the reclassification of frozen pork jowls is still undecided and duties depend on it. Poultry and pork imports are forecast to grow, while rice is already locked up by Vietnam and under a safeguard investigation, so it is a poor fit. Watch the Philippines-Canada free trade talks, because a deal would give Canadian suppliers preferential terms and affect your pricing.</p></div>
         <div class="news-item">
@@ -572,8 +603,10 @@
           <p>Luzon’s busiest Roro port The Philippine Ports Authority (PPA) has allocated P2.2 billion to expand some of the facilities in Luzon’s busiest crossing for roll-on, roll-off (Roro...</p>
           <p class="news-src">17.09.2026, <a href="https://www.msn.com/en-ph/money/general/matnog-port-in-line-for-p2-2-billion-upgrade/ar-AA2crJSr" target="_blank" rel="nofollow noopener">msn.com</a></p>
         </div>
+        <p class="news-share">Share this issue <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Frusphiltrade.com%2Fphilippine-trade-news%2F%23issue-1" target="_blank" rel="noopener">LinkedIn</a><a href="https://t.me/share/url?url=https%3A%2F%2Frusphiltrade.com%2Fphilippine-trade-news%2F%23issue-1&amp;text=Philippine%20trade%20news%2C%20issue%20of%2021%20September%202026" target="_blank" rel="noopener">Telegram</a></p>
+        <div class="news-cta"><p><strong>Looking for a Russian supplier?</strong> See our <a href="/#products">supplier directions</a> or <a href="/#contact">send an inquiry</a>. Supplier search is free for buyers.</p></div>
       </section>
-      <div class="note-box"><p>Items from Russian-language sources are published on the <a href="https://rusphiltrade.com/for-russian-suppliers/novosti-filippin/">Russian news page</a>. Looking for a Russian supplier? See the <a href="../#products">supplier directions</a> or <a href="../#contact">send an inquiry</a>.</p></div>
+      <div class="note-box"><p>Items from Russian-language sources are published on the <a href="https://rusphiltrade.com/for-russian-suppliers/novosti-filippin/">Russian news page</a>.</p></div>
     </article>
   </main>
 
