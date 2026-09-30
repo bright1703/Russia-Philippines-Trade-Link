@@ -204,7 +204,6 @@
       .chat-fab .icon { width: 18px; height: 18px; }
       .chat-wa { background: #1c7c4f; }
       .chat-viber { background: #6a5aa8; }
-      body { padding-bottom: 76px; }
     }
     .to-top { position: fixed; right: 22px; bottom: 22px; z-index: 50; display: grid; place-items: center; width: 46px; height: 46px; padding: 0; border: 1px solid #abc8bb; border-radius: 50%; background: var(--paper); color: var(--green); box-shadow: 0 6px 18px rgba(13, 80, 66, .16); cursor: pointer; opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity .25s ease, transform .25s ease, visibility .25s, background .2s ease, color .2s ease; }
     .to-top.is-visible { opacity: 1; visibility: visible; transform: none; }
@@ -408,6 +407,27 @@
       .nav-cta { padding: 7px 9px; line-height: 1.2; }
       .nav-cta .icon { display: none; }
     }
+    .status-short { margin: 30px 0 0; padding: 14px 18px; border: 1px solid var(--line); background: var(--cream); color: var(--ink-soft); font-size: 15px; }
+    .status-short a { color: var(--green); text-decoration: underline; }
+    .rpt-form-section { padding: 80px max(36px, calc((100vw - 1180px) / 2)); background: var(--mint); }
+    .rpt-form-inner { width: min(1180px, 100%); margin: 0 auto; display: grid; grid-template-columns: .8fr 1.2fr; gap: 56px; align-items: start; }
+    .rpt-form-inner h2 { margin: 0 0 16px; font-size: clamp(30px, 3.4vw, 42px); }
+    .rpt-form-inner > div > p { color: var(--ink-soft); font-size: 17px; line-height: 1.6; }
+    .rpt-form { display: grid; gap: 15px; padding: 26px; border: 1px solid #c5d9cf; background: rgba(251,250,246,.9); }
+    .rpt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .rpt-form label { display: grid; gap: 6px; color: #56736b; font-size: 14px; }
+    .rpt-form input, .rpt-form select, .rpt-form textarea { width: 100%; padding: 10px 12px; border: 1px solid #b9ccc3; background: #fff; color: var(--ink); font: inherit; font-size: 16px; }
+    .rpt-form input:focus, .rpt-form select:focus, .rpt-form textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .rpt-form [aria-invalid="true"] { border-color: #a33b2b; }
+    .rpt-form .field-error { color: #a33b2b; font-size: 13px; }
+    .rpt-form .consent { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; }
+    .rpt-form .consent input { width: 18px; height: 18px; margin-top: 2px; flex: none; }
+    .rpt-form .consent a { color: var(--green); text-decoration: underline; }
+    .rpt-form .button { justify-self: start; }
+    .rpt-form .form-status { margin: 0; color: var(--green); font-size: 15px; font-weight: 600; min-height: 1.2em; }
+    .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    @media (max-width: 900px) { .rpt-form-inner { grid-template-columns: 1fr; gap: 26px; } }
+    @media (max-width: 640px) { .rpt-form-section { padding: 56px 18px; } .rpt-grid { grid-template-columns: 1fr; } .rpt-form { padding: 20px 16px; } }
   </style>
 </head>
 <body>
@@ -435,6 +455,7 @@
       <h1>Organic fertilizer and soil improvement products <em>from Russia.</em></h1>
       <p class="hero-lead">Two agricultural inputs from Russian producers are currently available for discussion with Philippine fertilizer importers, agricultural distributors and commercial farms: a granular organic fertilizer made from poultry manure, and a humic concentrate for soil and plant treatment.</p>
       <a class="button button-primary" href="#inquiry">Request details <svg class="icon"><use href="#arrow"></use></svg></a>
+      <div class="status-short"><b>Trade Agent of Primorsky Krai project.</b> Supporting documents are available on request. <a href="/#status">Learn more</a></div>
       <p class="article-meta">Gigantin Bio offer updated 30 September 2026. General regulatory links last checked 18 September 2026.</p>
     </section>
 
@@ -481,7 +502,7 @@
       </tbody></table>
       <p>The Philippine distributor or importer would handle import clearance. Delivery timing, payment route and registration responsibilities must be agreed before a commercial shipment. The buyer contracts and pays the supplier directly. Andrey Subich acts as the trade agent and contact point in the Philippines.</p>
 
-      <h2>2. Humic soil improvement concentrate</h2>
+      <h2 id="humic-concentrate">2. Humic soil improvement concentrate</h2>
       <p>A peat-based concentrate containing humic and fulvic acids, supplied as a paste and diluted with water before use. The concentrated form reduces freight costs: the producer states that one tonne of paste makes several tonnes of working solution. Standard packaging is a 1,000-litre IBC container.</p>
       <ul><li>Application methods stated by the producer: foliar spray, root watering and seed soaking.</li><li>Documents available from the producer: safety data sheet (SDS) in English, laboratory reports on composition, pathogens and pesticide residues, product certificates.</li><li>Samples for a local demonstration trial can be discussed</li></ul>
       <p>The producer reports field results from other countries. These claims have not been independently verified for Philippine conditions, so a local trial on the buyer’s crops is recommended before commercial volumes.</p>
@@ -505,12 +526,23 @@
       <div class="related"><a href="../container-spreaders-load-levelers/">Container spreaders &amp; load levelers</a><a href="../processed-meat-products/">Processed meat products</a><a href="../russian-company-background-check/">Russian company background check</a><a href="../#products">All supplier directions</a></div>
     </article>
 
-    <section class="cta-band" id="inquiry"><div class="cta-inner"><div><p class="eyebrow eyebrow-light">START A CONVERSATION</p><h2>Discuss the offer or meet the producer</h2><p>Tell us your crop, region and expected volume. We can send the available documents and arrange an introductory call with the producer. Sample shipments and commercial imports are subject to the applicable Philippine requirements and approvals.</p></div>
-      <div class="cta-actions"><a class="primary" href="mailto:rus.import.ph@gmail.com?subject=Inquiry:%20organic%20fertilizer%20/%20soil%20improvement">Email rus.import.ph@gmail.com <svg class="icon"><use href="#arrow"></use></svg></a><a href="https://wa.me/639215884430">WhatsApp business inquiries <svg class="icon"><use href="#arrow"></use></svg></a><a href="../#contact">Use the inquiry form <svg class="icon"><use href="#arrow"></use></svg></a></div></div></section>
+    <section class="rpt-form-section" id="inquiry"><div class="rpt-form-inner"><div>
+      <p class="eyebrow">REQUEST SUPPLIER DETAILS</p><h2>Interested in organic fertilizer?</h2><p>Tell us your crop, region, expected volume and whether you already hold a Philippine registration or import permit.</p>
+      <p>We reply within 2 business days by email. Supplier search is free for buyers.</p></div>
+      <form class="rpt-form" data-rpt-form="product_sourcing">
+        <input type="hidden" name="inquiry_type" value="product_sourcing" data-label="Inquiry type">
+        <div class="rpt-grid"><label>Your name<input name="name" data-label="Contact" autocomplete="name" required></label><label>Company<input name="company" data-label="Company" autocomplete="organization" required></label><label>Work email<input name="email" type="email" data-label="Email" autocomplete="email" required></label><label>Phone (optional)<input name="phone" type="tel" data-label="Phone" autocomplete="tel"></label></div>
+        <label>Product<input name="product" data-label="Product" value="Organic fertilizer" required></label>
+        <label>Volume and frequency (optional)<input name="volume" data-label="Volume" placeholder="For example 2 containers per month"></label>
+        <label>Details (optional)<textarea name="message" data-label="Message" rows="3" placeholder="Specifications, packaging, delivery port"></textarea></label>
+        <div class="hp-field" aria-hidden="true"><label>Leave empty<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+        <label class="consent"><input type="checkbox" name="consent" required><span>I agree to the <a href="/privacy/">Privacy Policy</a>.</span></label>
+        <button class="button button-primary" type="submit">Request supplier details <svg class="icon"><use href="#arrow"></use></svg></button>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form></div></section>
   </main>
 
   <footer class="site-footer"><div class="footer-brand"><span class="brand-mark"><svg class="icon"><use href="#earth"></use></svg></span><span>Russia–Philippines <b>Trade Link</b></span></div><p>Russia–Philippines Trade Link is an independent B2B trade platform and contact point. It is not an official website of the Government of Primorsky Krai (Vladivostok, Russian Far East) or the Russian Federation.</p><span>© 2026 · <a href="https://www.linkedin.com/in/andrey-subich-09b696435/" rel="noopener">Our LinkedIn</a> · <a href="/terms/">Terms of Service</a> · <a href="/privacy/">Privacy Policy</a></span></footer>
-  <div class="chat-fab"><a class="chat-wa" href="https://wa.me/639215884430" aria-label="Chat on WhatsApp"><svg class="icon" aria-hidden="true"><use href="#message"></use></svg>WhatsApp</a></div>
   <button class="to-top" type="button" aria-label="Наверх / Back to top" title="Наверх / Back to top"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
   <script>
     (() => {
@@ -524,5 +556,6 @@
   </script>
   <script src="https://chat.rusphiltrade.com/widget.js?v=3" data-lang="en" defer></script>
   <script src="/assets/menu.js?v=1" defer></script>
+  <script src="/assets/forms.js?v=1" defer></script>
 </body>
 </html>
