@@ -1,0 +1,520 @@
+[
+  {
+    "slug": "flour-grains-vegetable-oils",
+    "category": "food agriculture",
+    "category_label": "FOOD & AGRICULTURE",
+    "title_en": "Flour, grains & vegetable oils",
+    "title_ru": "Мука, крупы и растительные масла",
+    "summary_en": "Food ingredients and agricultural raw materials, including wheat flour, oat flakes and vegetable oils such as sunflower and soybean oil, and dairy products such as milk powder and condensed milk. Other products are considered when a supplier offer is confirmed.",
+    "meta_html": "<span><strong>Potential buyers</strong> Food importers, distributors, bakeries, noodle and food manufacturers, HoReCa suppliers and retail distributors.</span>",
+    "products": [
+      "Wheat flour",
+      "Oat flakes",
+      "Vegetable oils",
+      "Milk powder",
+      "Condensed milk"
+    ],
+    "supplier_region": "Primorsky Krai / Russian Far East",
+    "supplier_status": "on_request",
+    "certificates": "On request",
+    "moq": "On request",
+    "packaging": "On request",
+    "incoterms": "On request",
+    "port_of_loading": "On request",
+    "import_notes": [
+      {
+        "text": "FDA Philippines, License to Operate and Certificate of Product Registration",
+        "url": "https://www.fda.gov.ph/faqs/"
+      }
+    ],
+    "page_url": "",
+    "show_name": false
+  },
+  {
+    "slug": "organic-fertilizer-agricultural-inputs",
+    "category": "agriculture",
+    "category_label": "AGRICULTURE",
+    "title_en": "Organic fertilizer & agricultural inputs",
+    "title_ru": "Органическое удобрение",
+    "summary_en": "Organic agricultural fertilizer and agricultural input produced from poultry farming by-products in Primorsky Krai (Vladivostok, Russian Far East). Organic fertilizers based on fish and seafood processing waste are also considered. The export direction has been considered, and packaging options and product specifications are available upon request.",
+    "meta_html": "<span><strong>Potential buyers</strong> Agricultural distributors and commercial growers.</span><span>Documents and specifications are reviewed for each inquiry.</span>",
+    "products": [
+      "Organic input",
+      "Packaging options"
+    ],
+    "supplier_region": "Primorsky Krai / Russian Far East",
+    "supplier_status": "on_request",
+    "certificates": "On request",
+    "moq": "On request",
+    "packaging": "On request",
+    "incoterms": "On request",
+    "port_of_loading": "On request",
+    "import_notes": [
+      {
+        "text": "BAFS registers organic soil amendment products and producers and issues organic input importation permits",
+        "url": "https://bafs.da.gov.ph/index.php/divisions/"
+      }
+    ],
+    "page_url": "/organic-fertilizer-soil-improvement/#gigantin-bio",
+    "show_name": false
+  },
+  {
+    "slug": "soil-improvement-products",
+    "category": "agriculture",
+    "category_label": "AGRICULTURE",
+    "title_en": "Soil improvement products",
+    "title_ru": "Почвоулучшители",
+    "summary_en": "Agricultural soil improvement product and related fertilizer or agricultural input for farms and distributors, including companies working with degraded or saline soils.",
+    "meta_html": "<span><strong>Potential buyers</strong> Fertilizer importers, agricultural distributors and commercial farms.</span><span>Results may vary and require independent verification under local conditions.</span>",
+    "products": [
+      "Soil improvement",
+      "Farm input"
+    ],
+    "supplier_region": "Primorsky Krai / Russian Far East",
+    "supplier_status": "on_request",
+    "certificates": "On request",
+    "moq": "On request",
+    "packaging": "On request",
+    "incoterms": "On request",
+    "port_of_loading": "On request",
+    "import_notes": [
+      {
+        "text": "The regulator depends on the product: BAFS for organic soil amendments, FPA for other fertilizers",
+        "url": "https://fpa.da.gov.ph/faqs/"
+      }
+    ],
+    "page_url": "/organic-fertilizer-soil-improvement/#humic-concentrate",
+    "show_name": false
+  },
+  {
+    "slug": "sausages-meat-products",
+    "category": "food",
+    "category_label": "FOOD",
+    "title_en": "Sausages & meat products",
+    "title_ru": "Колбасы и мясная продукция",
+    "summary_en": "Sausages, meat delicacies, frozen meat products and prepared food products for food importers, meat distributors, retail chains, HoReCa suppliers and foodservice companies.",
+    "meta_html": "<span><strong>Supply review</strong> Subject to Philippine import eligibility, exporter accreditation, sanitary and veterinary requirements, English labelling and the local importer’s FDA requirements.</span>",
+    "products": [
+      "Sausages",
+      "Frozen meat",
+      "Prepared foods"
+    ],
+    "supplier_region": "Primorsky Krai / Russian Far East",
+    "supplier_status": "on_request",
+    "certificates": "On request",
+    "moq": "On request",
+    "packaging": "On request",
+    "incoterms": "On request",
+    "port_of_loading": "On request",
+    "import_notes": [
+      {
+        "text": "FDA Philippines, License to Operate and Certificate of Product Registration",
+        "url": "https://www.fda.gov.ph/faqs/"
+      }
+    ],
+    "page_url": "/processed-meat-products/",
+    "show_name": false
+  },
+  {
+    "slug": "honey-confectionery",
+    "category": "food",
+    "category_label": "FOOD",
+    "title_en": "Honey & confectionery",
+    "title_ru": "Мёд и кондитерские изделия",
+    "summary_en": "Honey, marshmallow, marmalade, mead and other confectionery products from Primorsky Krai (Vladivostok, Russian Far East) producers, where supplier confirmation is available.",
+    "meta_html": "<span><strong>Potential buyers</strong> Food importers, specialty food distributors, retail chains, premium food channels, restaurants and HoReCa.</span>",
+    "products": [
+      "Honey",
+      "Marshmallow",
+      "Marmalade"
+    ],
+    "supplier_region": "Primorsky Krai / Russian Far East",
+    "supplier_status": "on_request",
+    "certificates": "On request",
+    "moq": "On request",
+    "packaging": "On request",
+    "incoterms": "On request",
+    "port_of_loading": "On request",
+    "import_notes": [
+      {
+        "text": "FDA Philippines, License to Operate and Certificate of Product Registration",
+        "url": "https://www.fda.gov.ph/faqs/"
+      }
+    ],
+    "page_url": "",
+    "show_name": false
+  },
+  {
+    "slug": "packaging-paper-cardboard-materials",
+    "category": "packaging",
+    "category_label": "PACKAGING",
+    "title_en": "Packaging paper & cardboard materials",
+    "title_ru": "Упаковочная бумага и картон",
+    "summary_en": "Fluting paper, testliner paper and packaging paper materials for corrugated packaging manufacturers, paper converters, industrial packaging companies and importers.",
+    "meta_html": "<span><strong>Available on request</strong> Grades, weights, minimum lots and prices are provided after the buyer’s requirements are understood.</span>",
+    "products": [
+      "Fluting paper",
+      "Testliner",
+      "Packaging paper"
+    ],
+    "supplier_region": "Primorsky Krai / Russian Far East",
+    "supplier_status": "on_request",
+    "certificates": "On request",
+    "moq": "On request",
+    "packaging": "On request",
+    "incoterms": "On request",
+    "port_of_loading": "On request",
+    "import_notes": [],
+    "page_url": "",
+    "show_name": false
+  },
+  {
+    "slug": "vehicles-industrial-equipment",
+    "category": "equipment",
+    "category_label": "EQUIPMENT",
+    "title_en": "Vehicles & industrial equipment",
+    "title_ru": "Техника и промышленное оборудование",
+    "summary_en": "Possible supply and partnership opportunities involving commercial vehicles in CBU, SKD and CKD formats, special machinery, industrial equipment and crane equipment from Primorsky Krai (Vladivostok, Russian Far East) manufacturers.",
+    "meta_html": "<span><strong>Scope</strong> Service, spare parts, local support concepts and LPG-related solutions are considered only where a specific supplier and product are confirmed.</span><span>Technical and commercial verification is required.</span>",
+    "products": [
+      "Commercial vehicles",
+      "Special machinery",
+      "Crane equipment"
+    ],
+    "supplier_region": "Primorsky Krai / Russian Far East",
+    "supplier_status": "on_request",
+    "certificates": "On request",
+    "moq": "On request",
+    "packaging": "On request",
+    "incoterms": "On request",
+    "port_of_loading": "On request",
+    "import_notes": [
+      {
+        "text": "DOLE carries out technical safety inspection of hoisting and other mechanical equipment",
+        "url": "https://bwc.dole.gov.ph/our-programs-and-services/technical-safety-inspection/"
+      }
+    ],
+    "page_url": "/container-spreaders-load-levelers/",
+    "show_name": false
+  },
+  {
+    "slug": "pork-cuts-by-products",
+    "category": "food",
+    "category_label": "FOOD",
+    "title_en": "Pork, cuts & by-products",
+    "title_ru": "Свинина и субпродукты",
+    "summary_en": "Pork carcasses and half carcasses, industrial cuts, large cuts, offal and semi-finished pork products from a vertically integrated producer in Primorsky Krai (Vladivostok, Russian Far East). Feed ingredients from the same production chain are also available for discussion.",
+    "meta_html": "<span><strong>Potential buyers</strong> Meat importers, processors, cold-chain distributors, retail chains and foodservice suppliers.</span><span>Supply is subject to Philippine import eligibility for Russian pork, plant-level accreditation and the local importer’s permits.</span>",
+    "products": [
+      "Pork cuts",
+      "Offal",
+      "Semi-finished products"
+    ],
+    "supplier_region": "Primorsky Krai / Russian Far East",
+    "supplier_status": "on_request",
+    "certificates": "On request",
+    "moq": "On request",
+    "packaging": "On request",
+    "incoterms": "On request",
+    "port_of_loading": "On request",
+    "import_notes": [
+      {
+        "text": "DA Memorandum Order No. 80, s. 2025: ASF regionalization and lifting of the temporary ban on Russian swine products",
+        "url": "https://www.da.gov.ph/wp-content/uploads/2025/12/mo80_s2025.pdf"
+      },
+      {
+        "text": "NMIS: only licensed meat importers may import meat",
+        "url": "https://nmis.gov.ph/license-to-import/"
+      }
+    ],
+    "page_url": "/russian-pork/",
+    "show_name": false
+  },
+  {
+    "slug": "eggs-egg-powder-frozen-poultry",
+    "category": "food",
+    "category_label": "FOOD",
+    "title_en": "Eggs, egg powder & frozen poultry",
+    "title_ru": "Яйца, яичный порошок и птица",
+    "summary_en": "Table eggs, dried egg powder and frozen poultry products from a large poultry farm in the Vladivostok free port area can be discussed on request. No egg or poultry supply is agreed at this stage.",
+    "meta_html": "<span><strong>Potential buyers</strong> Food importers, egg and poultry distributors, bakeries, food manufacturers and HoReCa suppliers.</span><span>Import eligibility, veterinary certification and shelf-life logistics are reviewed for each inquiry.</span>",
+    "products": [
+      "Table eggs",
+      "Egg powder",
+      "Frozen poultry"
+    ],
+    "supplier_region": "Primorsky Krai / Russian Far East",
+    "supplier_status": "on_request",
+    "certificates": "On request",
+    "moq": "On request",
+    "packaging": "On request",
+    "incoterms": "On request",
+    "port_of_loading": "On request",
+    "import_notes": [],
+    "page_url": "",
+    "show_name": false
+  },
+  {
+    "slug": "vodka-herbal-liqueurs",
+    "category": "food",
+    "category_label": "FOOD & BEVERAGES",
+    "title_en": "Vodka & herbal liqueurs",
+    "title_ru": "Водка и настойки",
+    "summary_en": "Vodka and herbal liqueurs and bitters from a distillery in Ussuriysk, including products made with Far Eastern ingredients such as ginseng, velvet antler and cedar nuts. Price lists in bottle sizes from 0.25 to 1 litre are available.",
+    "meta_html": "<span><strong>Potential buyers</strong> Alcohol importers and distributors, duty-free and specialty retailers, bars, restaurants and HoReCa.</span><span>Alcohol import licensing, excise and labelling rules are checked with the local importer before any offer.</span>",
+    "products": [
+      "Vodka",
+      "Herbal liqueurs",
+      "Bitters"
+    ],
+    "supplier_region": "Primorsky Krai / Russian Far East",
+    "supplier_status": "on_request",
+    "certificates": "On request",
+    "moq": "On request",
+    "packaging": "On request",
+    "incoterms": "On request",
+    "port_of_loading": "On request",
+    "import_notes": [
+      {
+        "text": "FDA Philippines, License to Operate and Certificate of Product Registration",
+        "url": "https://www.fda.gov.ph/faqs/"
+      }
+    ],
+    "page_url": "",
+    "show_name": false
+  },
+  {
+    "slug": "marine-automation-ship-repair",
+    "category": "equipment",
+    "category_label": "MARINE SERVICES",
+    "title_en": "Marine automation & ship repair",
+    "title_ru": "Судовая автоматика и судоремонт",
+    "summary_en": "Engineering, manufacture, installation and repair of ship automation and control systems, including integrated vessel control, engine and generator control, alarm and monitoring systems, power management and switchboards. An engineering company in Vladivostok, in the Russian Far East, with more than 180 staff, operating since 1994.",
+    "meta_html": "<span><strong>Potential partners</strong> Shipyards, ship repair and drydock companies, shipping and fishing fleet operators, marine engineering and electrical contractors.</span><span>A local partner is sought. A small pilot project is the proposed first step.</span>",
+    "products": [
+      "Ship automation",
+      "Ship repair",
+      "Control systems"
+    ],
+    "supplier_region": "Primorsky Krai / Russian Far East",
+    "supplier_status": "on_request",
+    "certificates": "On request",
+    "moq": "On request",
+    "packaging": "On request",
+    "incoterms": "On request",
+    "port_of_loading": "On request",
+    "import_notes": [],
+    "page_url": "",
+    "show_name": false
+  },
+  {
+    "slug": "wheat-corn-barley-soybeans",
+    "category": "agriculture food",
+    "category_label": "AGRICULTURE",
+    "title_en": "Wheat, corn, barley & soybeans",
+    "title_ru": "Пшеница, кукуруза, ячмень и соя",
+    "summary_en": "Bulk grains and oilseeds from agricultural producers and traders in Primorsky Krai (Vladivostok) and other parts of the Russian Far East, for flour milling, animal feed and food processing. Packed silage is also available from one of the producers.",
+    "meta_html": "<span><strong>Potential buyers</strong> Flour millers, feed manufacturers, grain traders and importers, livestock and poultry integrators.</span><span>Volumes, quality specifications, port loading and Philippine plant import requirements are confirmed for each inquiry.</span>",
+    "products": [
+      "Wheat",
+      "Corn",
+      "Barley",
+      "Soybeans"
+    ],
+    "supplier_region": "Primorsky Krai / Russian Far East",
+    "supplier_status": "on_request",
+    "certificates": "On request",
+    "moq": "On request",
+    "packaging": "On request",
+    "incoterms": "On request",
+    "port_of_loading": "On request",
+    "import_notes": [
+      {
+        "text": "BPI: Sanitary and Phytosanitary Import Clearance for plant products",
+        "url": "https://www.buplant.da.gov.ph/index.php/sample-levels/national-plant-quarantine-services-division/sanitary-and-phytosanitary-import-clearance"
+      }
+    ],
+    "page_url": "/russian-grain-oilseeds/",
+    "show_name": false
+  },
+  {
+    "slug": "fish-seafood-fishmeal",
+    "category": "food",
+    "category_label": "FOOD",
+    "title_en": "Fish, seafood & fishmeal",
+    "title_ru": "Рыба, морепродукты и рыбная мука",
+    "summary_en": "Frozen fish and seafood from Far Eastern processors, including pink and chum salmon, sockeye, pollock, flounder, cod and herring. Fishmeal and fish oil are available for feed and aquaculture customers.",
+    "meta_html": "<span><strong>Potential buyers</strong> Seafood importers and distributors, food processors and canneries, wholesale markets, HoReCa suppliers, aquaculture and feed manufacturers.</span><span>Import permits, veterinary and sanitary requirements for fishery products are confirmed with the local importer before any offer.</span>",
+    "products": [
+      "Salmon",
+      "Pollock",
+      "Frozen fish",
+      "Fishmeal"
+    ],
+    "supplier_region": "Primorsky Krai / Russian Far East",
+    "supplier_status": "on_request",
+    "certificates": "On request",
+    "moq": "On request",
+    "packaging": "On request",
+    "incoterms": "On request",
+    "port_of_loading": "On request",
+    "import_notes": [
+      {
+        "text": "BFAR: importer accreditation and a Sanitary and Phytosanitary Import Clearance for each shipment",
+        "url": "https://www.bfar.da.gov.ph/wp-content/uploads/2025/05/BFAR-CITIZENS-CHARTER-2024-UPDATED.pdf"
+      }
+    ],
+    "page_url": "/frozen-fish-seafood/",
+    "show_name": false
+  },
+  {
+    "slug": "lumber-wood-products",
+    "category": "building",
+    "category_label": "WOOD",
+    "title_en": "Lumber & wood products",
+    "title_ru": "Пиломатериалы и древесина",
+    "summary_en": "Softwood lumber, kiln-dried and planed timber, oak, ash and birch lumber, round logs and veneer from sawmills and wood processors in Primorsky Krai (Vladivostok, Russian Far East). Wood fuel briquettes are also available.",
+    "meta_html": "<span><strong>Potential buyers</strong> Timber importers and traders, construction and furniture manufacturers, joinery and packaging companies.</span><span>Species, grades, moisture content, phytosanitary certification and Philippine import permits are confirmed for each inquiry.</span>",
+    "products": [
+      "Softwood lumber",
+      "Oak and ash",
+      "Logs",
+      "Briquettes"
+    ],
+    "supplier_region": "Primorsky Krai / Russian Far East",
+    "supplier_status": "on_request",
+    "certificates": "On request",
+    "moq": "On request",
+    "packaging": "On request",
+    "incoterms": "On request",
+    "port_of_loading": "On request",
+    "import_notes": [
+      {
+        "text": "DENR: Certificate of Registration as Importer or Dealer of Imported Wood Materials",
+        "url": "https://www.denr.gov.ph/index.php/products-services/frontline-services/69-forest-management/324-certificate-of-registration-as-importer-dealer-of-imported-wood-materials"
+      }
+    ],
+    "page_url": "/russian-lumber-wood-products/",
+    "show_name": false
+  },
+  {
+    "slug": "steel-construction-materials",
+    "category": "building",
+    "category_label": "BUILDING MATERIALS",
+    "title_en": "Steel & construction materials",
+    "title_ru": "Сталь и стройматериалы",
+    "summary_en": "Hot-rolled steel angles, steel flanges, extruded polystyrene insulation boards, polyurethane systems, cement and concrete admixtures, polymer-sand building products made from recycled plastic and stretch film from Far Eastern traders and manufacturers.",
+    "meta_html": "<span><strong>Potential buyers</strong> Steel and hardware importers, construction contractors, developers, building supply distributors and industrial buyers.</span><span>Product standards, Philippine mandatory product certification and prices are checked for each inquiry.</span>",
+    "products": [
+      "Steel angles",
+      "Flanges",
+      "Insulation",
+      "Admixtures",
+      "Polymer-sand products"
+    ],
+    "supplier_region": "Primorsky Krai / Russian Far East",
+    "supplier_status": "on_request",
+    "certificates": "On request",
+    "moq": "On request",
+    "packaging": "On request",
+    "incoterms": "On request",
+    "port_of_loading": "On request",
+    "import_notes": [
+      {
+        "text": "DTI Bureau of Philippine Standards: products under mandatory certification need the PS mark or ICC sticker",
+        "url": "https://bps.dti.gov.ph/product-certification/ps-and-icc-marks"
+      }
+    ],
+    "page_url": "/building-materials-from-russia/",
+    "show_name": false
+  },
+  {
+    "slug": "canned-preserved-fish",
+    "category": "food",
+    "category_label": "FOOD",
+    "title_en": "Canned & preserved fish",
+    "title_ru": "Рыбные консервы",
+    "summary_en": "Canned Pacific saury, sardine (iwashi) and herring in natural juice, and other prepared or preserved fish products from Far Eastern fish processors.",
+    "meta_html": "<span><strong>Potential buyers</strong> Canned food importers and distributors, supermarket and sari-sari store supply chains, institutional and relief food buyers.</span><span>Local competition in canned fish is strong, so price, size and packaging are agreed with the importer first.</span>",
+    "products": [
+      "Saury",
+      "Sardine",
+      "Herring"
+    ],
+    "supplier_region": "Primorsky Krai / Russian Far East",
+    "supplier_status": "on_request",
+    "certificates": "On request",
+    "moq": "On request",
+    "packaging": "On request",
+    "incoterms": "On request",
+    "port_of_loading": "On request",
+    "import_notes": [
+      {
+        "text": "FDA Philippines, License to Operate and Certificate of Product Registration",
+        "url": "https://www.fda.gov.ph/faqs/"
+      }
+    ],
+    "page_url": "",
+    "show_name": false
+  },
+  {
+    "slug": "crab-squid-scallops-shrimp",
+    "category": "food",
+    "category_label": "FOOD",
+    "title_en": "Crab, squid, scallops & shrimp",
+    "title_ru": "Краб, кальмар, гребешок и креветка",
+    "summary_en": "Cooked-frozen king crab legs and whole crab, live snow crab, Pacific squid and tentacles, scallops, octopus, northern shrimp and sea cucumber from Far Eastern seafood companies.",
+    "meta_html": "<span><strong>Potential buyers</strong> Seafood importers and wholesalers, hotels, restaurants and HoReCa suppliers, premium retail and cold-chain distributors.</span><span>Live and chilled shipments need air freight or short transit. Frozen shipments go by reefer container.</span>",
+    "products": [
+      "King crab",
+      "Squid",
+      "Scallops",
+      "Shrimp"
+    ],
+    "supplier_region": "Primorsky Krai / Russian Far East",
+    "supplier_status": "on_request",
+    "certificates": "On request",
+    "moq": "On request",
+    "packaging": "On request",
+    "incoterms": "On request",
+    "port_of_loading": "On request",
+    "import_notes": [
+      {
+        "text": "BFAR: importer accreditation and a Sanitary and Phytosanitary Import Clearance for each shipment",
+        "url": "https://www.bfar.da.gov.ph/wp-content/uploads/2025/05/BFAR-CITIZENS-CHARTER-2024-UPDATED.pdf"
+      }
+    ],
+    "page_url": "/frozen-fish-seafood/#shellfish",
+    "show_name": false
+  },
+  {
+    "slug": "windows-blinds-gates-tent-structures",
+    "category": "building",
+    "category_label": "BUILDING MATERIALS",
+    "title_en": "Windows, blinds, gates & tent structures",
+    "title_ru": "Окна, жалюзи, ворота и тенты",
+    "summary_en": "PVC windows, sectional garage and industrial gates, roller shutters, vertical, roller and horizontal blinds, barrier gates and frame tent structures for events, exhibitions and staff accommodation. Products are made and installed by Far Eastern manufacturers.",
+    "meta_html": "<span><strong>Potential buyers</strong> Building contractors, window and door distributors, developers, event and exhibition organisers, resorts and hotels.</span><span>Sizes, materials, tropical climate suitability and Philippine product standards are checked for each inquiry.</span>",
+    "products": [
+      "PVC windows",
+      "Blinds & shutters",
+      "Sectional gates",
+      "Tents"
+    ],
+    "supplier_region": "Primorsky Krai / Russian Far East",
+    "supplier_status": "on_request",
+    "certificates": "On request",
+    "moq": "On request",
+    "packaging": "On request",
+    "incoterms": "On request",
+    "port_of_loading": "On request",
+    "import_notes": [
+      {
+        "text": "DTI Bureau of Philippine Standards: products under mandatory certification need the PS mark or ICC sticker",
+        "url": "https://bps.dti.gov.ph/product-certification/ps-and-icc-marks"
+      }
+    ],
+    "page_url": "/building-materials-from-russia/#windows-gates",
+    "show_name": false
+  }
+]

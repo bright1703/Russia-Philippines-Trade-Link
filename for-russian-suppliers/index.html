@@ -179,6 +179,16 @@
       .article-hero { padding:40px 0 40px; }
       .article-body p, .article-body li { font-size:16px; }
     }
+    .status-band { padding:40px max(36px,calc((100vw - 1180px)/2)); background:var(--cream); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+    .status-inner { width:min(1180px,100%); margin:0 auto; display:grid; grid-template-columns:1.6fr 1fr; gap:40px; align-items:center; }
+    .status-copy .eyebrow { margin-bottom:10px; }
+    .status-copy h2 { margin:0 0 12px; font-size:clamp(26px,2.6vw,34px); line-height:1.1; }
+    .status-copy p { margin:0; color:var(--ink-soft); font-size:16px; line-height:1.6; }
+    .status-docs { padding:22px 24px; border:1px solid var(--line); background:var(--paper); }
+    .status-docs p { margin:0 0 14px; color:var(--ink); font-size:16px; font-weight:600; }
+    .button-light { display:inline-flex; align-items:center; gap:9px; min-height:46px; padding:12px 18px; border:1px solid var(--green); background:transparent; color:var(--green); font-size:15px; font-weight:600; }
+    @media (max-width:900px) { .status-inner { grid-template-columns:1fr; gap:20px; } }
+    @media (max-width:640px) { .status-band { padding:32px 18px; } }
     .chat-fab { display: none; }
     .form-status { min-height: 1.2em; margin: 0; color: var(--green); font-size: 15px; font-weight: 600; }
     .form-status.is-error { color: #a33b2b; }
@@ -189,7 +199,6 @@
       .chat-fab .icon { width: 18px; height: 18px; }
       .chat-wa { background: #1c7c4f; }
       .chat-viber { background: #6a5aa8; }
-      body { padding-bottom: 76px; }
     }
     .to-top { position: fixed; right: 22px; bottom: 22px; z-index: 50; display: grid; place-items: center; width: 46px; height: 46px; padding: 0; border: 1px solid #abc8bb; border-radius: 50%; background: var(--paper); color: var(--green); box-shadow: 0 6px 18px rgba(13, 80, 66, .16); cursor: pointer; opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity .25s ease, transform .25s ease, visibility .25s, background .2s ease, color .2s ease; }
     .to-top.is-visible { opacity: 1; visibility: visible; transform: none; }
@@ -300,7 +309,31 @@
       .nav-cta { padding:7px 9px; line-height:1.2; }
       .nav-cta .icon { display:none; }
     }
+    .status-short { margin: 30px 0 0; padding: 14px 18px; border: 1px solid var(--line); background: var(--cream); color: var(--ink-soft); font-size: 15px; }
+    .status-short a { color: var(--green); text-decoration: underline; }
+    .rpt-form-section { padding: 80px max(36px, calc((100vw - 1180px) / 2)); background: var(--mint); }
+    .rpt-form-inner { width: min(1180px, 100%); margin: 0 auto; display: grid; grid-template-columns: .8fr 1.2fr; gap: 56px; align-items: start; }
+    .rpt-form-inner h2 { margin: 0 0 16px; font-size: clamp(30px, 3.4vw, 42px); }
+    .rpt-form-inner > div > p { color: var(--ink-soft); font-size: 17px; line-height: 1.6; }
+    .rpt-form { display: grid; gap: 15px; padding: 26px; border: 1px solid #c5d9cf; background: rgba(251,250,246,.9); }
+    .rpt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .rpt-form label { display: grid; gap: 6px; color: #56736b; font-size: 14px; }
+    .rpt-form input, .rpt-form select, .rpt-form textarea { width: 100%; padding: 10px 12px; border: 1px solid #b9ccc3; background: #fff; color: var(--ink); font: inherit; font-size: 16px; }
+    .rpt-form input:focus, .rpt-form select:focus, .rpt-form textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .rpt-form [aria-invalid="true"] { border-color: #a33b2b; }
+    .rpt-form .field-error { color: #a33b2b; font-size: 13px; }
+    .rpt-form .consent { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; }
+    .rpt-form .consent input { width: 18px; height: 18px; margin-top: 2px; flex: none; }
+    .rpt-form .consent a { color: var(--green); text-decoration: underline; }
+    .rpt-form .button { justify-self: start; }
+    .rpt-form .form-status { margin: 0; color: var(--green); font-size: 15px; font-weight: 600; min-height: 1.2em; }
+    .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    @media (max-width: 900px) { .rpt-form-inner { grid-template-columns: 1fr; gap: 26px; } }
+    @media (max-width: 640px) { .rpt-form-section { padding: 56px 18px; } .rpt-grid { grid-template-columns: 1fr; } .rpt-form { padding: 20px 16px; } }
   </style>
+  <link rel="alternate" hreflang="en" href="https://rusphiltrade.com/">
+  <link rel="alternate" hreflang="ru" href="https://rusphiltrade.com/for-russian-suppliers/">
+  <link rel="alternate" hreflang="x-default" href="https://rusphiltrade.com/">
 </head>
 <body>
   <svg aria-hidden="true" width="0" height="0" style="position:absolute"><defs>
@@ -329,6 +362,8 @@
       <div class="hero-card"><div class="card-label"><span>ТОРГОВЫЙ КОРИДОР</span><span>RU → PH</span></div><div class="route"><div class="route-place"><strong>ПОСТАВЩИК</strong>Россия</div><div class="route-line"></div><div class="route-place"><strong>ПОКУПАТЕЛЬ</strong>Филиппины</div></div><div class="card-bottom"><div><strong>Поиск</strong><small>покупателей и партнёров</small></div><div><strong>Контакт</strong><small>деловое сопоставление</small></div></div></div>
     </section>
 
+    <section class="status-band" id="status"><div class="status-inner"><div class="status-copy"><p class="eyebrow"><span class="eyebrow-line"></span>СТАТУС</p><h2>Проект «Торговый агент Приморского края»</h2><p>Russia–Philippines Trade Link работает в рамках проекта «Торговый агент Приморского края». По соглашению о сотрудничестве с Министерством международных и внешнеэкономических связей Приморского края и АНО «Центр поддержки предпринимательства Приморского края» торговый агент проекта на Филиппинах оказывает приморским компаниям аналитическую и консультационную поддержку при выходе на рынок Филиппин и содействует в оформлении экспортных контрактов. О работе проекта уведомлены Посольство и Торговое представительство РФ на Филиппинах.</p></div><div class="status-docs"><p>Документы, подтверждающие статус, предоставляем по запросу.</p><a class="button button-light" href="#contact">Запросить документы <svg class="icon"><use href="#arrow"></use></svg></a></div></div></section>
+
     <section class="news-band" id="news"><div class="news-inner"><div><p class="eyebrow"><span class="eyebrow-line"></span>НОВОСТИ РЫНКА</p><h2>Торговые новости Филиппин</h2><p>Импорт, пошлины, цены и спрос на филиппинском рынке, а также деловые связи с Россией. Коротко на русском, со ссылкой на первоисточник. Подборка обновляется два раза в неделю.</p></div><a class="news-cta" href="./novosti-filippin/">Читать свежий выпуск <svg class="icon"><use href="#arrow"></use></svg></a></div></section>
 
     <section class="section services" id="services">
@@ -355,11 +390,10 @@
     <section class="section ru-block" id="materials"><p class="eyebrow"><span class="eyebrow-line"></span>ПОЛЕЗНЫЕ МАТЕРИАЛЫ</p><h2>Прежде чем выходить на рынок</h2><p>Две короткие статьи для российских производителей. Требования Филиппин даны со ссылками на официальные источники.</p>
       <div class="read-list"><a class="dir-card" href="./kak-vyjti-na-rynok-filippin/"><b>Как российскому производителю выйти на рынок Филиппин</b><span>Семь шагов от проверки товара до пробной поставки.</span><em>Читать →</em></a><a class="dir-card" href="./razresheniya-dlya-vvoza-na-filippiny/"><b>Какие разрешения нужны для ввоза товара на Филиппины</b><span>Продукты питания, мясо, удобрения и оборудование.</span><em>Читать →</em></a><a class="dir-card" href="./novosti-filippin/"><b>Торговые новости Филиппин</b><span>Импорт, пошлины, цены и спрос. Обновляется два раза в неделю.</span><em>Читать →</em></a></div></section>
 
-    <section class="contact" id="contact"><div class="section contact-inner"><div class="contact-copy"><p class="eyebrow">НАЧАТЬ ОБСУЖДЕНИЕ</p><h2>Есть товар для рынка Филиппин?</h2><p>Отправьте краткую информацию о компании и продукции. Остальные вопросы (рынок, покупатели, документы и формат контакта) уточним в переписке.</p><div class="contact-links"><a href="mailto:rus.import.ph@gmail.com"><svg class="icon"><use href="#mail"></use></svg> rus.import.ph@gmail.com</a><a href="https://wa.me/639215884430"><svg class="icon"><use href="#message"></use></svg> WhatsApp для деловых вопросов</a><a href="https://www.linkedin.com/in/andrey-subich-09b696435/" rel="noopener"><svg class="icon"><use href="#message"></use></svg> Наш LinkedIn</a><span><svg class="icon"><use href="#pin"></use></svg> Республика Филиппины</span></div></div><div class="contact-card"><h3>Представить товар для оценки</h3><p>Напишите название компании, имя контактного лица и удобный способ связи. Подробности можно отправить позже.</p><a class="button button-primary" href="mailto:rus.import.ph@gmail.com?subject=%D0%9F%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D1%82%D1%8C%20%D1%82%D0%BE%D0%B2%D0%B0%D1%80">Написать нам <svg class="icon"><use href="#arrow"></use></svg></a></div></div></section>
+    <section class="contact" id="contact"><div class="section contact-inner"><div class="contact-copy"><p class="eyebrow">НАЧАТЬ ОБСУЖДЕНИЕ</p><h2>Есть товар для рынка Филиппин?</h2><p>Отправьте краткую информацию о компании и продукции. Остальные вопросы (рынок, покупатели, документы и формат контакта) уточним в переписке.</p><div class="contact-links"><a href="mailto:rus.import.ph@gmail.com"><svg class="icon"><use href="#mail"></use></svg> rus.import.ph@gmail.com</a><a href="https://www.linkedin.com/in/andrey-subich-09b696435/" rel="noopener"><svg class="icon"><use href="#message"></use></svg> Наш LinkedIn</a><span><svg class="icon"><use href="#pin"></use></svg> Республика Филиппины</span></div></div><form class="rpt-form" data-rpt-form="supplier_application"><div class="rpt-grid"><label>Компания<input name="company" data-label="Компания" autocomplete="organization" required></label><label>Контактное лицо<input name="name" data-label="Контакт" autocomplete="name" required></label><label>Почта<input name="email" type="email" data-label="Почта" autocomplete="email" required></label><label>Телефон (необязательно)<input name="phone" type="tel" data-label="Телефон" autocomplete="tel"></label></div><label>Продукция<input name="product" data-label="Продукция" placeholder="Что производите и в какой упаковке" required></label><div class="rpt-grid"><label>Регион производства<input name="region" data-label="Регион" placeholder="Например, Приморский край"></label><label>Сайт (необязательно)<input name="website" data-label="Сайт" placeholder="https://"></label></div><label>Объёмы поставок (необязательно)<input name="volume" data-label="Объём" placeholder="Сколько можете поставлять в месяц"></label><label>Комментарий (необязательно)<textarea name="message" data-label="Комментарий" rows="3" placeholder="Был ли экспорт, есть ли материалы на английском"></textarea></label><div class="hp-field" aria-hidden="true"><label>Leave empty<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div><label class="consent"><input type="checkbox" name="consent" required><span>Согласен с <a href="/privacy/">политикой конфиденциальности</a> (на английском).</span></label><button class="button button-primary" type="submit">Отправить заявку <svg class="icon"><use href="#arrow"></use></svg></button><p class="form-status" role="status" aria-live="polite"></p></form></div></section>
   </main>
 
-  <footer class="site-footer"><div class="footer-brand"><span class="brand-mark"><svg class="icon"><use href="#earth"></use></svg></span><span>Russia–Philippines <b>Trade Link</b></span></div><p>Russia–Philippines Trade Link это независимый деловой контакт для российских компаний и филиппинских покупателей. Мы не являемся государственным органом.</p><span>© 2026 · <a href="https://www.linkedin.com/in/andrey-subich-09b696435/" rel="noopener">Наш LinkedIn</a> · <a href="https://tour-phil.com/">Поездки на Филиппины</a> · <a href="/terms/">Условия (англ.)</a> · <a href="/privacy/">Конфиденциальность (англ.)</a></span></footer>
-  <div class="chat-fab"><a class="chat-wa" href="https://wa.me/639215884430" aria-label="Chat on WhatsApp"><svg class="icon" aria-hidden="true"><use href="#message"></use></svg>WhatsApp</a></div>
+  <footer class="site-footer"><div class="footer-brand"><span class="brand-mark"><svg class="icon"><use href="#earth"></use></svg></span><span>Russia–Philippines <b>Trade Link</b></span></div><p>Russia–Philippines Trade Link это независимый деловой контакт для российских компаний и филиппинских покупателей. Мы не являемся государственным органом, и это не официальный сайт Правительства Приморского края или Российской Федерации.</p><span>© 2026 · <a href="https://www.linkedin.com/in/andrey-subich-09b696435/" rel="noopener">Наш LinkedIn</a> · <a href="https://tour-phil.com/">Поездки на Филиппины</a> · <a href="/terms/">Условия (англ.)</a> · <a href="/privacy/">Конфиденциальность (англ.)</a></span></footer>
   <button class="to-top" type="button" aria-label="Наверх" title="Наверх"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
   <script>
     (() => {
@@ -373,5 +407,6 @@
   </script>
   <script src="https://chat.rusphiltrade.com/widget.js?v=3" data-lang="ru" defer></script>
   <script src="/assets/menu.js?v=1" defer></script>
+  <script src="/assets/forms.js?v=1" defer></script>
 </body>
 </html>
