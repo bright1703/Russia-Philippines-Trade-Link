@@ -27,7 +27,7 @@
         "url": "https://www.fda.gov.ph/faqs/"
       }
     ],
-    "page_url": "",
+    "page_url": "/sunflower-soybean-oil/",
     "show_name": false,
     "shelf_life": "Oils 15 to 18 months, milk powder 24 months, condensed milk, oats and flour 12 months"
   },
@@ -37,7 +37,7 @@
     "category_label": "AGRICULTURE",
     "title_en": "Organic fertilizer & agricultural inputs",
     "title_ru": "Органическое удобрение",
-    "summary_en": "Gigantin Bio organic fertilizer made by aerobic fermentation of poultry manure at a poultry farm in Artem, near Vladivostok. The fertilizer is registered with the Russian Ministry of Agriculture (valid to October 2033) and a full 40-foot container was shipped to Vietnam in December 2025. A second producer offers OrganicaFK granulated organic fertilizer made from seaweed, fish meal and natural minerals.",
+    "summary_en": "Gigantin Bio organic fertilizer made by aerobic fermentation of poultry manure at Ussuriyskaya Poultry Farm in Primorsky Krai. The fertilizer is registered with the Russian Ministry of Agriculture (valid to October 2033) and a full 40-foot container was shipped to Vietnam in December 2025. A second producer offers OrganicaFK granulated organic fertilizer made from seaweed, fish meal and natural minerals.",
     "meta_html": "<span><strong>Potential buyers</strong> Agricultural distributors and commercial growers.</span><span>Documents and specifications are reviewed for each inquiry.</span>",
     "products": [
       "Gigantin Bio",
@@ -45,7 +45,7 @@
       "OrganicaFK granules",
       "Seaweed and fish meal base"
     ],
-    "supplier_region": "Artem and Fokino, Primorsky Krai",
+    "supplier_region": "Ussuriyskaya Poultry Farm and Fokino, Primorsky Krai",
     "supplier_status": "on_request",
     "certificates": "Russian state registration of Gigantin Bio, product analysis and the 2025 bill of lading to Vietnam, on request",
     "moq": "One 40-foot container for Gigantin Bio, about 26 t net in 25 kg bags",
@@ -87,7 +87,7 @@
         "url": "https://fpa.da.gov.ph/faqs/"
       }
     ],
-    "page_url": "/organic-fertilizer-soil-improvement/#humic-concentrate",
+    "page_url": "/humic-soil-conditioner-biostimulant/",
     "show_name": false
   },
   {
@@ -147,7 +147,7 @@
         "url": "https://www.fda.gov.ph/faqs/"
       }
     ],
-    "page_url": "",
+    "page_url": "/honey-confectionery/",
     "show_name": false
   },
   {
@@ -172,7 +172,7 @@
     "incoterms": "FOB Vladivostok",
     "port_of_loading": "Vladivostok",
     "import_notes": [],
-    "page_url": "",
+    "page_url": "/testliner-fluting-paper-corrugated-board/",
     "show_name": false
   },
   {
@@ -203,7 +203,7 @@
         "url": "https://bwc.dole.gov.ph/our-programs-and-services/technical-safety-inspection/"
       }
     ],
-    "page_url": "/container-spreaders-load-levelers/",
+    "page_url": "/uaz-sollers-vehicles/",
     "show_name": false,
     "lead_time": "Vehicles about 90 days of production plus about 60 days of delivery",
     "warranty": "UAZ Hunter 1 year or 30,000 km, UAZ Bukhanka 2 years or 80,000 km. Spreaders and load leveler 12 months from commissioning"
@@ -243,30 +243,6 @@
     "show_name": false
   },
   {
-    "slug": "eggs-egg-powder-frozen-poultry",
-    "category": "food",
-    "category_label": "FOOD",
-    "title_en": "Eggs & poultry products",
-    "title_ru": "Яйца, яичный порошок и птица",
-    "summary_en": "Table eggs and poultry products from a poultry farm in Artem, near Vladivostok, working since 1973 with about 880,000 laying hens and its own hatchery (company data). Egg and poultry supply to the Philippines is not agreed and would first need Philippine accreditation of the farm.",
-    "meta_html": "<span><strong>Potential buyers</strong> Food importers, egg and poultry distributors, bakeries, food manufacturers and HoReCa suppliers.</span><span>Import eligibility, veterinary certification and shelf-life logistics are reviewed for each inquiry.</span>",
-    "products": [
-      "Table eggs",
-      "Egg products",
-      "Poultry"
-    ],
-    "supplier_region": "Artem, Primorsky Krai",
-    "supplier_status": "on_request",
-    "certificates": "On request",
-    "moq": "On request",
-    "packaging": "On request",
-    "incoterms": "On request",
-    "port_of_loading": "On request",
-    "import_notes": [],
-    "page_url": "",
-    "show_name": false
-  },
-  {
     "slug": "vodka-herbal-liqueurs",
     "category": "food",
     "category_label": "FOOD & BEVERAGES",
@@ -293,7 +269,7 @@
         "url": "https://www.fda.gov.ph/faqs/"
       }
     ],
-    "page_url": "",
+    "page_url": "/russian-vodka-liqueurs/",
     "show_name": false
   },
   {
@@ -318,7 +294,7 @@
     "incoterms": "On request",
     "port_of_loading": "On request",
     "import_notes": [],
-    "page_url": "",
+    "page_url": "/marine-automation-ship-repair/",
     "show_name": false
   },
   {
@@ -468,7 +444,7 @@
         "url": "https://www.fda.gov.ph/faqs/"
       }
     ],
-    "page_url": "",
+    "page_url": "/canned-fish-saury-sardines/",
     "show_name": false
   },
   {
