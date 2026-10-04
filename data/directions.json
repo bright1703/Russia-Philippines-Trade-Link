@@ -243,30 +243,6 @@
     "show_name": false
   },
   {
-    "slug": "eggs-egg-powder-frozen-poultry",
-    "category": "food",
-    "category_label": "FOOD",
-    "title_en": "Eggs & poultry products",
-    "title_ru": "Яйца, яичный порошок и птица",
-    "summary_en": "Table eggs and poultry products from a poultry farm in Artem, near Vladivostok, working since 1973 with about 880,000 laying hens and its own hatchery (company data). Egg and poultry supply to the Philippines is not agreed and would first need Philippine accreditation of the farm.",
-    "meta_html": "<span><strong>Potential buyers</strong> Food importers, egg and poultry distributors, bakeries, food manufacturers and HoReCa suppliers.</span><span>Import eligibility, veterinary certification and shelf-life logistics are reviewed for each inquiry.</span>",
-    "products": [
-      "Table eggs",
-      "Egg products",
-      "Poultry"
-    ],
-    "supplier_region": "Artem, Primorsky Krai",
-    "supplier_status": "on_request",
-    "certificates": "On request",
-    "moq": "On request",
-    "packaging": "On request",
-    "incoterms": "On request",
-    "port_of_loading": "On request",
-    "import_notes": [],
-    "page_url": "",
-    "show_name": false
-  },
-  {
     "slug": "vodka-herbal-liqueurs",
     "category": "food",
     "category_label": "FOOD & BEVERAGES",
