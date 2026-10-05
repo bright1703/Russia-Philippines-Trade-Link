@@ -1,0 +1,1189 @@
+{
+ "about": "Russia-Philippines Trade Link (rusphiltrade.com): independent B2B trade platform and contact point in the Philippines for selected suppliers from Primorsky Krai (Vladivostok) and the Russian Far East. Trade Agent of Primorsky Krai project. Supplier search is free for buyers; buyers contract and pay suppliers directly. Contact: rus.import.ph@gmail.com.",
+ "rules": [
+  "Answer from these facts when they cover the question, and give the page URL.",
+  "Say clearly when a fact is not published (price, MOQ, specification) and offer to request it from the manufacturer.",
+  "Never invent prices, certificates, registrations or delivery times."
+ ],
+ "directions": [
+  {
+   "slug": "flour-grains-vegetable-oils",
+   "category": "food agriculture",
+   "category_label": "FOOD & AGRICULTURE",
+   "title_en": "Flour, grains & vegetable oils",
+   "title_ru": "Мука, крупы и растительные масла",
+   "summary_en": "Refined sunflower and soybean oil (Rus Vostochnaya brand), whole and skimmed milk powder, sweetened condensed milk, rolled oats and premium and first-grade wheat flour from a Vladivostok food exporter that ships to China, Vietnam and other Asia-Pacific markets.",
+   "products": [
+    "Sunflower and soybean oil",
+    "Milk powder",
+    "Condensed milk",
+    "Rolled oats",
+    "Wheat flour"
+   ],
+   "supplier_region": "Vladivostok, Primorsky Krai (trading company)",
+   "supplier_status": "on_request",
+   "certificates": "On request",
+   "moq": "Full 20 or 40-foot containers, for example 26,010 one-litre or 5,352 five-litre oil bottles per 40-foot container",
+   "packaging": "Oil in 1 and 5 litre bottles. Milk powder 500 g and 25 kg. Condensed milk 360 g, 1,150 g and 20 kg. Oats 380 to 400 g and 30 kg. Flour 1 to 50 kg bags",
+   "incoterms": "FOB Vladivostok",
+   "port_of_loading": "Vladivostok",
+   "import_notes": [
+    {
+     "text": "FDA Philippines, License to Operate and Certificate of Product Registration",
+     "url": "https://www.fda.gov.ph/faqs/"
+    }
+   ],
+   "page_url": "https://rusphiltrade.com/sunflower-soybean-oil/",
+   "show_name": false,
+   "shelf_life": "Oils 15 to 18 months, milk powder 24 months, condensed milk, oats and flour 12 months"
+  },
+  {
+   "slug": "organic-fertilizer-agricultural-inputs",
+   "category": "agriculture",
+   "category_label": "AGRICULTURE",
+   "title_en": "Organic fertilizer & agricultural inputs",
+   "title_ru": "Органическое удобрение",
+   "summary_en": "Gigantin Bio organic fertilizer made by aerobic fermentation of poultry manure at Ussuriyskaya Poultry Farm in Artem, near Vladivostok. The fertilizer is registered with the Russian Ministry of Agriculture (valid to October 2033) and a full 40-foot container was shipped to Vietnam in December 2025. A second producer offers OrganicaFK granulated organic fertilizer made from seaweed, fish meal and natural minerals.",
+   "products": [
+    "Gigantin Bio",
+    "Poultry manure base",
+    "OrganicaFK granules",
+    "Seaweed and fish meal base"
+   ],
+   "supplier_region": "Artem (Ussuriyskaya Poultry Farm) and Fokino, Primorsky Krai",
+   "supplier_status": "on_request",
+   "certificates": "Russian state registration of Gigantin Bio, product analysis and the 2025 bill of lading to Vietnam, on request",
+   "moq": "One 40-foot container for Gigantin Bio, about 26 t net in 25 kg bags",
+   "packaging": "Gigantin Bio in big bags or 25 kg bags. OrganicaFK in 20 to 50 kg bags and small retail packs",
+   "incoterms": "CFR or EXW (Gigantin Bio), EXW or CIF (OrganicaFK)",
+   "port_of_loading": "Vladivostok",
+   "import_notes": [
+    {
+     "text": "BAFS registers organic soil amendment products and producers and issues organic input importation permits",
+     "url": "https://bafs.da.gov.ph/index.php/divisions/"
+    }
+   ],
+   "page_url": "https://rusphiltrade.com/organic-fertilizer-soil-improvement/#gigantin-bio",
+   "show_name": false
+  },
+  {
+   "slug": "soil-improvement-products",
+   "category": "agriculture",
+   "category_label": "AGRICULTURE",
+   "title_en": "Soil improvement products",
+   "title_ru": "Почвоулучшители",
+   "summary_en": "BIOTORF, a peat-based organic biostimulant paste with humic substances. One litre of paste is mixed with four litres of water to make a working concentrate for seed soaking, foliar spraying and root feeding. The producer reports field trials in 2024 on cotton in Uzbekistan and on bananas, coffee, maize and papaya in Uganda and Equatorial Guinea.",
+   "products": [
+    "BIOTORF paste",
+    "Humic biostimulant",
+    "Seed, foliar and root use"
+   ],
+   "supplier_region": "Saratov region, Russia",
+   "supplier_status": "on_request",
+   "certificates": "Russian technical specification TU 039010-01-90160664-2025, English safety data sheet and 2025 laboratory reports (pathogens, pesticides, humic substances), on request",
+   "moq": "Free 2-litre sample for trials. Commercial minimum on request",
+   "packaging": "1-tonne IBC containers. One tonne of paste gives about five tonnes of concentrate",
+   "incoterms": "On request",
+   "port_of_loading": "On request",
+   "import_notes": [
+    {
+     "text": "The regulator depends on the product: BAFS for organic soil amendments, FPA for other fertilizers",
+     "url": "https://fpa.da.gov.ph/faqs/"
+    }
+   ],
+   "page_url": "https://rusphiltrade.com/humic-soil-conditioner-biostimulant/",
+   "show_name": false
+  },
+  {
+   "slug": "sausages-meat-products",
+   "category": "food",
+   "category_label": "FOOD",
+   "title_en": "Sausages & meat products",
+   "title_ru": "Колбасы и мясная продукция",
+   "summary_en": "Cooked and smoked sausages, ham, bacon, smoked meats, dry-cured delicacies of the Alto Concetto line, dumplings and frozen meat products from a Vladivostok meat processor working since 1999. The company lists more than 380 products. A first shipment would start with a short list of heat-treated products registered with FDA Philippines by the importer.",
+   "products": [
+    "Cooked and smoked sausages",
+    "Ham and bacon",
+    "Dry-cured meats",
+    "Dumplings",
+    "Frozen meat products"
+   ],
+   "supplier_region": "Vladivostok, Primorsky Krai",
+   "supplier_status": "on_request",
+   "certificates": "The producer reports ISO 22000 and FSSC 22000 certification. Copies on request",
+   "moq": "On request",
+   "packaging": "On request",
+   "incoterms": "On request",
+   "port_of_loading": "Vladivostok, refrigerated container",
+   "import_notes": [
+    {
+     "text": "FDA Philippines, License to Operate and Certificate of Product Registration",
+     "url": "https://www.fda.gov.ph/faqs/"
+    }
+   ],
+   "page_url": "https://rusphiltrade.com/processed-meat-products/",
+   "show_name": false
+  },
+  {
+   "slug": "honey-confectionery",
+   "category": "food",
+   "category_label": "FOOD",
+   "title_en": "Honey & confectionery",
+   "title_ru": "Мёд и кондитерские изделия",
+   "summary_en": "Honey, marshmallow, marmalade, mead and other confectionery products from Primorsky Krai (Vladivostok, Russian Far East) producers, where supplier confirmation is available.",
+   "products": [
+    "Honey",
+    "Marshmallow",
+    "Marmalade"
+   ],
+   "supplier_region": "Primorsky Krai / Russian Far East",
+   "supplier_status": "on_request",
+   "certificates": "On request",
+   "moq": "On request",
+   "packaging": "On request",
+   "incoterms": "On request",
+   "port_of_loading": "On request",
+   "import_notes": [
+    {
+     "text": "FDA Philippines, License to Operate and Certificate of Product Registration",
+     "url": "https://www.fda.gov.ph/faqs/"
+    }
+   ],
+   "page_url": "https://rusphiltrade.com/honey-confectionery/",
+   "show_name": false
+  },
+  {
+   "slug": "packaging-paper-cardboard-materials",
+   "category": "packaging",
+   "category_label": "PACKAGING",
+   "title_en": "Packaging paper & cardboard materials",
+   "title_ru": "Упаковочная бумага и картон",
+   "summary_en": "Fluting paper from 110 to 160 g/m² and testliner from 125 to 300 g/m², made from 100% recovered paper by a cardboard mill in Ussuriysk that also produces corrugated board and boxes. For corrugated packaging makers, paper converters and importers.",
+   "products": [
+    "Fluting 110 to 160 gsm",
+    "Testliner 125 to 300 gsm",
+    "Corrugated board",
+    "Corrugated boxes"
+   ],
+   "supplier_region": "Ussuriysk, Primorsky Krai",
+   "supplier_status": "on_request",
+   "certificates": "On request",
+   "moq": "On request",
+   "packaging": "On request",
+   "incoterms": "FOB Vladivostok",
+   "port_of_loading": "Vladivostok",
+   "import_notes": [],
+   "page_url": "https://rusphiltrade.com/testliner-fluting-paper-corrugated-board/",
+   "show_name": false
+  },
+  {
+   "slug": "vehicles-industrial-equipment",
+   "category": "equipment",
+   "category_label": "EQUIPMENT",
+   "title_en": "Vehicles & industrial equipment",
+   "title_ru": "Техника и промышленное оборудование",
+   "summary_en": "UAZ Hunter 4x4 SUVs, UAZ Bukhanka vans, minibuses and chassis, and Sollers ST6 and ST8 pickups, all left-hand drive, delivered built up or as kits for local assembly. Container spreaders for 20 and 40-foot containers and a load leveler, rated at 40 t, from a crane plant in Nakhodka with English passports, manuals and factory test reports.",
+   "products": [
+    "UAZ Hunter",
+    "UAZ Bukhanka",
+    "Sollers pickups",
+    "Container spreaders",
+    "Load levelers"
+   ],
+   "supplier_region": "Vladivostok and Nakhodka, Primorsky Krai, and Ulyanovsk",
+   "supplier_status": "on_request",
+   "certificates": "Spreaders and load leveler have EAEU TR 010/2011 declarations and 2026 factory load test reports",
+   "moq": "Vehicles from 2 units, one 40-foot container, for a pilot",
+   "packaging": "On request",
+   "incoterms": "CIF Manila for vehicles",
+   "port_of_loading": "On request",
+   "import_notes": [
+    {
+     "text": "DOLE carries out technical safety inspection of hoisting and other mechanical equipment",
+     "url": "https://bwc.dole.gov.ph/our-programs-and-services/technical-safety-inspection/"
+    }
+   ],
+   "page_url": "https://rusphiltrade.com/uaz-sollers-vehicles/",
+   "show_name": false,
+   "lead_time": "Vehicles about 90 days of production plus about 60 days of delivery",
+   "warranty": "UAZ Hunter 1 year or 30,000 km, UAZ Bukhanka 2 years or 80,000 km. Spreaders and load leveler 12 months from commissioning"
+  },
+  {
+   "slug": "pork-cuts-by-products",
+   "category": "food",
+   "category_label": "FOOD",
+   "title_en": "Pork, cuts & by-products",
+   "title_ru": "Свинина и субпродукты",
+   "summary_en": "Frozen pork cuts, bone-in hams and shoulders, boneless pork, liver, other edible offal and pork fat from a vertically integrated pig producer in the Mikhailovsky district of Primorsky Krai with six pig farms and its own feed production. The plant has been submitted through the Russian veterinary authority for Philippine accreditation (register number RU-025/EE44599). The decision is pending, and no pork can be shipped from this plant until it is accredited.",
+   "products": [
+    "Frozen pork cuts",
+    "Hams and shoulders",
+    "Liver and offal",
+    "Pork fat"
+   ],
+   "supplier_region": "Mikhailovsky district, Primorsky Krai",
+   "supplier_status": "on_request",
+   "certificates": "After accreditation, each shipment travels with a Russian veterinary certificate (form 23 RU-PH). The importer needs an SPSIC from the Bureau of Animal Industry",
+   "moq": "On request",
+   "packaging": "On request",
+   "incoterms": "On request",
+   "port_of_loading": "Vladivostok, frozen",
+   "import_notes": [
+    {
+     "text": "DA Memorandum Order No. 80, s. 2025: ASF regionalization and lifting of the temporary ban on Russian swine products",
+     "url": "https://www.da.gov.ph/wp-content/uploads/2025/12/mo80_s2025.pdf"
+    },
+    {
+     "text": "NMIS: only licensed meat importers may import meat",
+     "url": "https://nmis.gov.ph/license-to-import/"
+    }
+   ],
+   "page_url": "https://rusphiltrade.com/russian-pork/",
+   "show_name": false
+  },
+  {
+   "slug": "vodka-herbal-liqueurs",
+   "category": "food",
+   "category_label": "FOOD & BEVERAGES",
+   "title_en": "Vodka & herbal liqueurs",
+   "title_ru": "Водка и настойки",
+   "summary_en": "Vodka, herbal bitters and liqueurs from a distillery in Ussuriysk, including the Belenkaya, Ussuriyskiy Rodnik, Tsar and Sily Prirody brands and the USURI line with ginseng and honey, velvet antler and herbal extracts. Price lists from other Russian distilleries, such as Arkhangelskaya from Arkhangelsk and Orthodox from Mariinsk, are also available.",
+   "products": [
+    "Vodka",
+    "Cedar nut vodka",
+    "Herbal bitters",
+    "Ginseng and honey liqueur"
+   ],
+   "supplier_region": "Ussuriysk, Primorsky Krai, and other Russian regions",
+   "supplier_status": "on_request",
+   "certificates": "On request",
+   "moq": "On request",
+   "packaging": "Bottles of 0.25, 0.5, 0.7 and 1 litre, 35 to 45% alcohol. USURI in 0.5 litre bottles, 12 per box",
+   "incoterms": "FCA",
+   "port_of_loading": "On request",
+   "import_notes": [
+    {
+     "text": "FDA Philippines, License to Operate and Certificate of Product Registration",
+     "url": "https://www.fda.gov.ph/faqs/"
+    }
+   ],
+   "page_url": "https://rusphiltrade.com/russian-vodka-liqueurs/",
+   "show_name": false
+  },
+  {
+   "slug": "marine-automation-ship-repair",
+   "category": "equipment",
+   "category_label": "MARINE SERVICES",
+   "title_en": "Marine automation & ship repair",
+   "title_ru": "Судовая автоматика и судоремонт",
+   "summary_en": "Design, manufacture, installation and repair of ship automation and control systems, including remote engine and generator control, alarm and monitoring, rudder control and engine telegraphs on CAN bus, Profibus, Modbus and Ethernet. A Vladivostok engineering company founded in 1994 with 185 staff.",
+   "products": [
+    "Ship automation",
+    "Engine and generator control",
+    "Alarm and monitoring",
+    "Ship repair"
+   ],
+   "supplier_region": "Vladivostok, Primorsky Krai",
+   "supplier_status": "on_request",
+   "certificates": "ISO 9001:2015 and Russian Maritime Register of Shipping recognition (valid to February 2028)",
+   "moq": "On request",
+   "packaging": "On request",
+   "incoterms": "On request",
+   "port_of_loading": "On request",
+   "import_notes": [],
+   "page_url": "https://rusphiltrade.com/marine-automation-ship-repair/",
+   "show_name": false
+  },
+  {
+   "slug": "wheat-corn-barley-soybeans",
+   "category": "agriculture food",
+   "category_label": "AGRICULTURE",
+   "title_en": "Wheat, corn, barley & soybeans",
+   "title_ru": "Пшеница, кукуруза, ячмень и соя",
+   "summary_en": "Bulk grains and oilseeds from agricultural producers and traders in Primorsky Krai (Vladivostok) and other parts of the Russian Far East, for flour milling, animal feed and food processing. Packed silage is also available from one of the producers.",
+   "products": [
+    "Wheat",
+    "Corn",
+    "Barley",
+    "Soybeans"
+   ],
+   "supplier_region": "Primorsky Krai / Russian Far East",
+   "supplier_status": "on_request",
+   "certificates": "On request",
+   "moq": "On request",
+   "packaging": "On request",
+   "incoterms": "On request",
+   "port_of_loading": "On request",
+   "import_notes": [
+    {
+     "text": "BPI: Sanitary and Phytosanitary Import Clearance for plant products",
+     "url": "https://www.buplant.da.gov.ph/index.php/sample-levels/national-plant-quarantine-services-division/sanitary-and-phytosanitary-import-clearance"
+    }
+   ],
+   "page_url": "https://rusphiltrade.com/russian-grain-oilseeds/",
+   "show_name": false
+  },
+  {
+   "slug": "fish-seafood-fishmeal",
+   "category": "food",
+   "category_label": "FOOD",
+   "title_en": "Fish, seafood & fishmeal",
+   "title_ru": "Рыба, морепродукты и рыбная мука",
+   "summary_en": "Frozen fish and seafood from Far Eastern processors, including pink and chum salmon, sockeye, pollock, flounder, cod and herring. Fishmeal and fish oil are available for feed and aquaculture customers.",
+   "products": [
+    "Salmon",
+    "Pollock",
+    "Frozen fish",
+    "Fishmeal"
+   ],
+   "supplier_region": "Primorsky Krai / Russian Far East",
+   "supplier_status": "on_request",
+   "certificates": "On request",
+   "moq": "On request",
+   "packaging": "On request",
+   "incoterms": "On request",
+   "port_of_loading": "On request",
+   "import_notes": [
+    {
+     "text": "BFAR: importer accreditation and a Sanitary and Phytosanitary Import Clearance for each shipment",
+     "url": "https://www.bfar.da.gov.ph/wp-content/uploads/2025/05/BFAR-CITIZENS-CHARTER-2024-UPDATED.pdf"
+    }
+   ],
+   "page_url": "https://rusphiltrade.com/frozen-fish-seafood/",
+   "show_name": false
+  },
+  {
+   "slug": "lumber-wood-products",
+   "category": "building",
+   "category_label": "WOOD",
+   "title_en": "Lumber & wood products",
+   "title_ru": "Пиломатериалы и древесина",
+   "summary_en": "Softwood lumber, kiln-dried and planed timber, oak, ash and birch lumber, round logs and veneer from sawmills and wood processors in Primorsky Krai (Vladivostok, Russian Far East). Wood fuel briquettes are also available.",
+   "products": [
+    "Softwood lumber",
+    "Oak and ash",
+    "Logs",
+    "Briquettes"
+   ],
+   "supplier_region": "Primorsky Krai / Russian Far East",
+   "supplier_status": "on_request",
+   "certificates": "On request",
+   "moq": "On request",
+   "packaging": "On request",
+   "incoterms": "On request",
+   "port_of_loading": "On request",
+   "import_notes": [
+    {
+     "text": "DENR: Certificate of Registration as Importer or Dealer of Imported Wood Materials",
+     "url": "https://www.denr.gov.ph/index.php/products-services/frontline-services/69-forest-management/324-certificate-of-registration-as-importer-dealer-of-imported-wood-materials"
+    }
+   ],
+   "page_url": "https://rusphiltrade.com/russian-lumber-wood-products/",
+   "show_name": false
+  },
+  {
+   "slug": "steel-construction-materials",
+   "category": "building",
+   "category_label": "BUILDING MATERIALS",
+   "title_en": "Steel & construction materials",
+   "title_ru": "Сталь и стройматериалы",
+   "summary_en": "Hot-rolled steel angles, steel flanges, extruded polystyrene insulation boards, polyurethane systems, cement and concrete admixtures, polymer-sand building products made from recycled plastic and stretch film from Far Eastern traders and manufacturers.",
+   "products": [
+    "Steel angles",
+    "Flanges",
+    "Insulation",
+    "Admixtures",
+    "Polymer-sand products"
+   ],
+   "supplier_region": "Primorsky Krai / Russian Far East",
+   "supplier_status": "on_request",
+   "certificates": "On request",
+   "moq": "On request",
+   "packaging": "On request",
+   "incoterms": "On request",
+   "port_of_loading": "On request",
+   "import_notes": [
+    {
+     "text": "DTI Bureau of Philippine Standards: products under mandatory certification need the PS mark or ICC sticker",
+     "url": "https://bps.dti.gov.ph/product-certification/ps-and-icc-marks"
+    }
+   ],
+   "page_url": "https://rusphiltrade.com/building-materials-from-russia/",
+   "show_name": false
+  },
+  {
+   "slug": "canned-preserved-fish",
+   "category": "food",
+   "category_label": "FOOD",
+   "title_en": "Canned & preserved fish",
+   "title_ru": "Рыбные консервы",
+   "summary_en": "Canned Pacific saury, sardine (iwashi) and herring in natural juice, and other prepared or preserved fish products from Far Eastern fish processors.",
+   "products": [
+    "Saury",
+    "Sardine",
+    "Herring"
+   ],
+   "supplier_region": "Primorsky Krai / Russian Far East",
+   "supplier_status": "on_request",
+   "certificates": "On request",
+   "moq": "On request",
+   "packaging": "On request",
+   "incoterms": "On request",
+   "port_of_loading": "On request",
+   "import_notes": [
+    {
+     "text": "FDA Philippines, License to Operate and Certificate of Product Registration",
+     "url": "https://www.fda.gov.ph/faqs/"
+    }
+   ],
+   "page_url": "https://rusphiltrade.com/canned-fish-saury-sardines/",
+   "show_name": false
+  },
+  {
+   "slug": "crab-squid-scallops-shrimp",
+   "category": "food",
+   "category_label": "FOOD",
+   "title_en": "Crab, squid, scallops & shrimp",
+   "title_ru": "Краб, кальмар, гребешок и креветка",
+   "summary_en": "Cooked-frozen king crab legs and whole crab, live snow crab, Pacific squid and tentacles, scallops, octopus, northern shrimp and sea cucumber from Far Eastern seafood companies.",
+   "products": [
+    "King crab",
+    "Squid",
+    "Scallops",
+    "Shrimp"
+   ],
+   "supplier_region": "Primorsky Krai / Russian Far East",
+   "supplier_status": "on_request",
+   "certificates": "On request",
+   "moq": "On request",
+   "packaging": "On request",
+   "incoterms": "On request",
+   "port_of_loading": "On request",
+   "import_notes": [
+    {
+     "text": "BFAR: importer accreditation and a Sanitary and Phytosanitary Import Clearance for each shipment",
+     "url": "https://www.bfar.da.gov.ph/wp-content/uploads/2025/05/BFAR-CITIZENS-CHARTER-2024-UPDATED.pdf"
+    }
+   ],
+   "page_url": "https://rusphiltrade.com/frozen-fish-seafood/#shellfish",
+   "show_name": false
+  },
+  {
+   "slug": "windows-blinds-gates-tent-structures",
+   "category": "building",
+   "category_label": "BUILDING MATERIALS",
+   "title_en": "Windows, blinds, gates & tent structures",
+   "title_ru": "Окна, жалюзи, ворота и тенты",
+   "summary_en": "PVC windows, sectional garage and industrial gates, roller shutters, vertical, roller and horizontal blinds, barrier gates and frame tent structures for events, exhibitions and staff accommodation. Products are made and installed by Far Eastern manufacturers.",
+   "products": [
+    "PVC windows",
+    "Blinds & shutters",
+    "Sectional gates",
+    "Tents"
+   ],
+   "supplier_region": "Primorsky Krai / Russian Far East",
+   "supplier_status": "on_request",
+   "certificates": "On request",
+   "moq": "On request",
+   "packaging": "On request",
+   "incoterms": "On request",
+   "port_of_loading": "On request",
+   "import_notes": [
+    {
+     "text": "DTI Bureau of Philippine Standards: products under mandatory certification need the PS mark or ICC sticker",
+     "url": "https://bps.dti.gov.ph/product-certification/ps-and-icc-marks"
+    }
+   ],
+   "page_url": "https://rusphiltrade.com/building-materials-from-russia/#windows-gates",
+   "show_name": false
+  }
+ ],
+ "pages": [
+  {
+   "url": "https://rusphiltrade.com/building-materials-from-russia/",
+   "lang": "en",
+   "title": "Steel Angle Bar, Flanges & Insulation Supplier Philippines | RusPhilTrade",
+   "h1": "Steel, insulation and building materials for Philippine importers.",
+   "description": "Hot-rolled steel angles, flanges, XPS insulation, concrete admixtures, PVC windows, sectional gates, blinds and tents from Russian Far East makers. DTI certification explained.",
+   "facts": "Steel and construction materials\nhot-rolled steel angles and steel flanges\nextruded polystyrene insulation boards and polyurethane systems\ncement and concrete admixtures\npolymer-sand building products made from recycled plastic\nstretch film\nWindows, blinds, gates and tent structures\nPVC windows\nsectional garage and industrial gates, roller shutters, barrier gates\nvertical, roller and horizontal blinds\nframe tent structures for events, exhibitions and staff accommodation\nSizes, materials and suitability for the tropical climate are checked for each inquiry.\nWho it is for\nSteel and hardware importers, construction contractors, developers, building supply distributors, window and door distributors, event organisers, resorts and hotels.\nWhat the importer needs\nProducts under the mandatory certification of the DTI Bureau of Philippine Standards must carry the PS mark or ICC sticker before they are sold. The list covers 87 products and systems, including building and construction materials.\nPortland and blended hydraulic cement may be imported only from manufacturers holding a Philippine Standard (PS) license.\nDeformed and rerolled steel bars and equal leg steel angle bars need a PS license or a Statement of Confirmation before distribution.\nImport duties are checked in the Philippine Tariff Finder.",
+   "faq": [
+    {
+     "q": "Which steel products are available?",
+     "a": "Hot-rolled steel angles and steel flanges. Equal leg steel angle bars need a PS license or a Statement of Confirmation from the DTI Bureau of Philippine Standards before distribution."
+    },
+    {
+     "q": "Which other building materials are available?",
+     "a": "Extruded polystyrene insulation boards, polyurethane systems, cement and concrete admixtures, polymer-sand products from recycled plastic and stretch film."
+    },
+    {
+     "q": "Do you supply windows and gates?",
+     "a": "Yes: PVC windows, sectional garage and industrial gates, roller shutters, barrier gates, blinds and frame tent structures. Suitability for the tropical climate is checked per inquiry."
+    },
+    {
+     "q": "Which products need DTI mandatory certification?",
+     "a": "Products on the DTI Bureau of Philippine Standards mandatory list must carry the PS mark or ICC sticker before sale. The list covers 87 products and systems, including building and construction materials."
+    }
+   ]
+  },
+  {
+   "url": "https://rusphiltrade.com/business-car-manila/",
+   "lang": "en",
+   "title": "Car with Driver for Business Meetings in Manila | Russia–Philippines Trade Link",
+   "h1": "A car with a driver for business meetings in Manila.",
+   "description": "Toyota Alphard Hybrid with driver for business meetings, factory visits and airport transfers in Metro Manila. Seats up to 5 passengers. Fuel, tolls, parking and driver meals included. Prices in USD.",
+   "facts": "Русская версия страницы\nRates\nService | Price\nOne-way transfer (pick-up and drop-off) | USD 259\n6 hours | USD 367\n10 hours | USD 432\nOvertime, per hour | USD 43\nRates apply to itineraries within Metro Manila. They include the driver, the driver’s meals, fuel, toll fees and parking fees. A temporary fuel surcharge may apply to the total cost, including overtime, while fuel prices in the Philippines remain high. It is confirmed in the booking reply.\nThe car\nToyota Alphard Hybrid, black, 2020 or newer\nup to 5 passengers, comfortable rear seating with room for luggage\nhybrid drivetrain, sunroof and leather seats\ndriver who knows Manila routes, traffic patterns and meeting venues\nWhen it is useful\na delegation visiting importers, distributors or buyers in Metro Manila\na supplier’s representative attending an exhibition or a series of meetings in one day\nan airport pick-up or drop-off for a business guest\na factory, port or warehouse visit with several stops\nHow booking works\nSend the date, pick-up point, approximate route, number of passengers and the package you need.\nYou receive a confirmation with the final price and any surcharge before anything is booked.\nThe car is arranged with a local transport provider. Your driver’s contact details are sent before the trip.\nCoverage is Metro Manila only. Trips outside Metro Manila, and multi-day itineraries, are quoted separately on request. Prices are in US dollars, converted at a fixed rate, and are confirmed again at booking.",
+   "faq": []
+  },
+  {
+   "url": "https://rusphiltrade.com/canned-fish-saury-sardines/",
+   "lang": "en",
+   "title": "Canned Saury, Sardines & Herring Supplier Philippines | RusPhilTrade",
+   "h1": "Canned saury, sardines and herring for Philippine importers.",
+   "description": "Canned Pacific saury, sardine (iwashi) and herring in natural juice from Russian Far East fish processors, for Philippine canned food importers and distributors. Import rules explained.",
+   "facts": "Products\ncanned Pacific saury in natural juice\ncanned sardine (iwashi) in natural juice\ncanned herring in natural juice\nother prepared or preserved fish products\nLocal competition in canned fish is strong, so price, size and packaging are agreed with the importer first.\nWho it is for\nCanned food importers and distributors, supermarket and sari-sari store supply chains, institutional and relief food buyers.\nWhat the importer needs\nFDA Philippines: License to Operate and Certificate of Product Registration. Canned and other processed fish products are processed food and need FDA registration by the importer.\nBFAR accredits importers of fish and fishery products, and each commercial shipment of fishery products needs a Sanitary and Phytosanitary Import Clearance from BFAR.\nImport duties are checked in the Philippine Tariff Finder.\nFrozen fish is on the frozen fish and seafood page.",
+   "faq": [
+    {
+     "q": "Which canned fish are available?",
+     "a": "Canned Pacific saury, sardine (iwashi) and herring in natural juice, and other prepared or preserved fish products."
+    },
+    {
+     "q": "What does a Philippine importer need?",
+     "a": "An FDA License to Operate and Certificate of Product Registration. Canned fish is processed food and needs FDA registration by the importer."
+    },
+    {
+     "q": "How are price and can size agreed?",
+     "a": "Local competition in canned fish is strong, so price, size and packaging are agreed with the importer first."
+    }
+   ]
+  },
+  {
+   "url": "https://rusphiltrade.com/container-spreaders-load-levelers/",
+   "lang": "en",
+   "title": "Container Spreader 20/40 ft for Sale Philippines | RusPhilTrade",
+   "h1": "Container spreaders and load levelers for standard cranes.",
+   "description": "Semi-automatic 20 and 40 ft container spreaders rated 40 t and load levelers for ordinary mobile, port and ship cranes. No power or hydraulics. For Philippine ports and depots.",
+   "facts": "Equipment available\nProduct | Key points (manufacturer data)\nSemi-automatic spreader, 20 ft | Rated lifting capacity 40 t. Engages the container by four twistlocks. The locks open and close by the tension of the wire-rope slings. Also has lifting lugs for containers with an uneven top surface. Own weight about 1.7 t.\nSemi-automatic spreader, 40 ft | Same operating principle for 40 ft containers.\nLightweight spreader version | For smaller cranes with limited capacity reserve: about 1.2 t for 20 ft and about 1.5 t for 40 ft.\nLoad leveler | Installed between the crane hook and the load. Helps find the correct lifting point when the load is heavier on one side. Useful for unevenly loaded containers, generators, machinery and steel structures.\nWeights and capacities are taken from the manufacturer’s passports and materials and are confirmed in each commercial offer.\nAlbatross 40 ft spreader in operation\nBerkut 20 ft spreader at a port\nGZVR CU40 load leveler, 40 t\nPhotos from the manufacturer's product leaflets.\nModel specifications from the passports\nModel | Container | Rated capacity | Own weight | EAEU certificate\nBerkut semi-automatic spreader | 20 ft | 40.0 t | 1,740 kg without slings | EAEU N RU D-RU.PA05.V.00656/26, valid until 10 June 2031\nAlbatross semi-automatic spreader | 40 ft | 40.0 t | 1,500 kg without slings, 1,860 kg with two 2SK slings. Dimensions 12,185 × 2,429 × 756 mm | EAEU N RU D-RU.PA01.V.67294/24, valid until 1 February 2029\nLoad leveler GPST GZVR CU40 | Works with 20 ft and 40 ft semi-automatic spreaders | 40.0 t | 540 kg | EAEU N RU D-RU.RA02.V.74246/24\nEach spreader has four rotating twistlocks rated 10.0 t each, four lifting lugs for containers with an uneven top surface and three centering guides (flippers).\nThe twistlocks of all four corners turn together when the wire-rope slings are tensioned and released, controlled by a control rope with a spring and a ratchet mechanism.\nThe load leveler works with portal and mobile cranes with single or double hooks and needs no electrical power or hydraulic drive. The crane operator shifts the lifting point with a Ø32 mm chain so an unevenly loaded container is lifted level.\nOperating temperature for all three: −40 °C to +40 °C. Spreaders are made to GOST 23002-87 and comply with TR CU 010/2011.\nWhere this equipment makes sense\nThe strongest fit is not a large container terminal with dedicated equipment, but a site where containers or heavy loads are lifted by an ordinary crane:\nregional and multipurpose ports and private industrial wharves\ncontainer depots and yards\nheavy-lift crane rental companies adding container work\ninter-island vessels with their own cranes\nshipyards, construction, mining, energy and agricultural companies that move containers or heavy equipment\nDocuments from the manufacturer\nproduct passports and operating manuals in English\nload test reports\nEurasian Economic Union conformity certificates under technical regulation TR CU 010/2011 “On the Safety of Machinery and Equipment”\nThe equipment is made to Russian and Eurasian standards. Compliance with EN or ASME standards is not claimed. If your site requires it, this should be raised at the start.\nPhilippine side: safety inspection\nIn the Philippines, the Department of Labor and Employment (DOLE) carries out technical safety inspection of hoisting equipment and other mechanical equipment, and occupational safety and health standards apply to lifting operations. Before purchase, the buyer’s safety officer should confirm what documents and tests will be needed to accept the spreader or load leveler on site. Import duties depend on the HS / AHTN code and can be checked in the Philippine Tariff Finder.\nPractical questions agreed before an order\ncompatibility with your crane: hook, capacity reserve, sling length\ncorrosion protection for humid, salty coastal conditions\nspare parts for the first year and who provides local service\nwarranty, training of the local operator or partner, and payment route\nA realistic first step is one pilot site with a clear task, rather than a large order.\nFrequently asked questions\nWhich spreader models are available?\nBerkut for 20-foot containers and Albatross for 40-foot containers, both semi-automatic with a rated capacity of 40.0 t, plus the GPST GZVR CU40 load leveler rated 40.0 t.\nWhat is the operating temperature range?\nFrom −40 °C to +40 °C, according to the passports.\nDoes the spreader need electric power or hydraulics?\nNo. The twistlocks open and close by the tension of the wire-rope slings, so the spreader hangs on the hook of an ordinary mobile, port or ship crane.\nWhat is the lifting capacity?\nThe 20 ft semi-automatic spreader is rated at 40 t and weighs about 1.7 t. Lightweight versions weigh about 1.2 t (20 ft) and 1.5 t (40 ft).\nWhich documents come with the equipment?\nProduct passports and operating manuals in English, load test reports and EAEU conformity under TR CU 010/2011.\nWhat is needed on the Philippine side?\nDOLE carries out technical safety inspection of hoisting equipment. The buyer's safety officer confirms the documents and tests needed before purchase.",
+   "faq": [
+    {
+     "q": "Which spreader models are available?",
+     "a": "Berkut for 20-foot containers and Albatross for 40-foot containers, both semi-automatic with a rated capacity of 40.0 t, plus the GPST GZVR CU40 load leveler rated 40.0 t."
+    },
+    {
+     "q": "What is the operating temperature range?",
+     "a": "From −40 °C to +40 °C, according to the passports."
+    },
+    {
+     "q": "Does the spreader need electric power or hydraulics?",
+     "a": "No. The twistlocks open and close by the tension of the wire-rope slings, so the spreader hangs on the hook of an ordinary mobile, port or ship crane."
+    },
+    {
+     "q": "What is the lifting capacity?",
+     "a": "The 20 ft semi-automatic spreader is rated at 40 t and weighs about 1.7 t. Lightweight versions weigh about 1.2 t (20 ft) and 1.5 t (40 ft)."
+    },
+    {
+     "q": "Which documents come with the equipment?",
+     "a": "Product passports and operating manuals in English, load test reports and EAEU conformity under TR CU 010/2011."
+    },
+    {
+     "q": "What is needed on the Philippine side?",
+     "a": "DOLE carries out technical safety inspection of hoisting equipment. The buyer's safety officer confirms the documents and tests needed before purchase."
+    }
+   ]
+  },
+  {
+   "url": "https://rusphiltrade.com/fishmeal-fish-oil/",
+   "lang": "en",
+   "title": "Fishmeal & Fish Oil Supplier Philippines – Feed & Aquaculture | RusPhilTrade",
+   "h1": "Fishmeal and fish oil for Philippine feed and aquaculture.",
+   "description": "Fishmeal and fish oil from Russian Far East processors for Philippine feed and aquaculture customers. BFAR importer accreditation and SPS import clearance explained.",
+   "facts": "Products\nfishmeal\nfish oil\nSpecifications, volumes and prices are confirmed for each inquiry.\nWho it is for\nAquaculture and feed manufacturers.\nWhat the importer needs\nBFAR accredits importers of fish and fishery products (Fisheries Administrative Order No. 195).\nEach commercial shipment needs a Sanitary and Phytosanitary Import Clearance (SPSIC) from BFAR. It is valid for 30 days from issue.\nOn arrival, the shipment needs an international health certificate from the competent authority of the country of origin, and samples may be taken for testing.\nImport duties are checked in the Philippine Tariff Finder.\nGrain from the Russian Far East is listed under wheat, corn, barley and soybeans. Frozen fish is on the frozen fish and seafood page.",
+   "faq": [
+    {
+     "q": "What are the fishmeal specifications?",
+     "a": "Specifications, volumes and prices are confirmed for each inquiry."
+    },
+    {
+     "q": "Which clearances does a Philippine importer need?",
+     "a": "BFAR importer accreditation and a Sanitary and Phytosanitary Import Clearance for each commercial shipment, valid for 30 days from issue."
+    },
+    {
+     "q": "Is fish oil available?",
+     "a": "Yes, fishmeal and fish oil are available for feed and aquaculture customers."
+    }
+   ]
+  },
+  {
+   "url": "https://rusphiltrade.com/for-russian-suppliers/",
+   "lang": "ru",
+   "title": "Поиск партнёров на Филиппинах | Russia–Philippines Trade Link",
+   "h1": "Как найти партнёра на Филиппинах для вашего товара",
+   "description": "Помогаем российским компаниям найти покупателей, импортёров и деловых партнёров на Филиппинах, подготовить товар к переговорам и начать обсуждение поставок.",
+   "facts": "01 / РЫНОКПроверим соответствие товара рынку\nОпределим, для каких покупателей и отраслей на Филиппинах может подойти ваша продукция.",
+   "faq": [
+    {
+     "q": "Можете ли вы гарантировать продажу?",
+     "a": "Нет. Задача в том, чтобы понять, есть ли у товара спрос на Филиппинах, найти заинтересованных импортёров и дистрибьюторов и довести дело до предметного разговора. Решение о покупке принимает филиппинская компания."
+    },
+    {
+     "q": "Кто подписывает контракт и получает оплату?",
+     "a": "Контракт заключают напрямую производитель и филиппинский покупатель. Оплата тоже идёт между ними. Деньги за товар через меня не проходят."
+    },
+    {
+     "q": "С какими товарами вы работаете?",
+     "a": "С товарами, для которых на Филиппинах есть реальный спрос и понятный путь ввоза. Сейчас это продукты питания (мясо, свинина, молочная продукция, рыба, крабы и морепродукты, рыбные консервы, масла, крупы, мёд, алкоголь), зерно и масличные, удобрения, пиломатериалы, стройматериалы, окна, жалюзи и тентовые конструкции, упаковочные материалы, техника и оборудование, судовая автоматика и судоремонт. Другие товары тоже можно обсудить."
+    },
+    {
+     "q": "Нужно ли регистрировать товар на Филиппинах?",
+     "a": "Зависит от категории. Пищевые продукты регистрирует в FDA филиппинский импортёр. Для мяса нужна аккредитация страны и предприятия. Удобрения регистрируют в BAFS или FPA в зависимости от состава. Подробности в статье о разрешениях ниже."
+    },
+    {
+     "q": "Работаете ли вы только с Приморским краем?",
+     "a": "Основная часть компаний из Приморского края и Дальнего Востока, но товары из других регионов России тоже рассматриваются."
+    },
+    {
+     "q": "Нужны ли материалы на английском?",
+     "a": "Да, филиппинские компании работают на английском. Если готовых материалов нет, поможем подготовить короткую презентацию или коммерческое предложение."
+    }
+   ]
+  },
+  {
+   "url": "https://rusphiltrade.com/for-russian-suppliers/kak-vyjti-na-rynok-filippin/",
+   "lang": "ru",
+   "title": "Как российскому производителю выйти на рынок Филиппин | Russia–Philippines Trade Link",
+   "h1": "Как российскому производителю выйти на рынок Филиппин",
+   "description": "Семь практических шагов для российского производителя. Проверка товара, пошлины, оплата, материалы на английском, выбор импортёра и пробная поставка на Филиппины.",
+   "facts": "1. Проверьте, можно ли ввозить ваш товар\nНачинать стоит не с поиска покупателя, а с вопроса, пустят ли товар на Филиппины. Для пищевых продуктов, мяса, удобрений и оборудования правила разные, и отвечают за них разные ведомства. Если товар требует регистрации, без филиппинского импортёра с нужной лицензией поставка не состоится. Подробно об этом в статье о разрешениях на ввоз.\n2. Посчитайте пошлину до разговора о цене\nСтавку пошлины можно найти по коду товара в Philippine Tariff Finder. Сверху начисляется НДС. Для одних товаров пошлина нулевая, для других она делает поставку невыгодной. Если конкуренты из стран АСЕАН ввозят тот же товар без пошлины, это нужно знать заранее.\n3. Решите вопрос оплаты заранее\nФилиппинский покупатель спросит, как он будет платить российской компании. Если рабочей схемы расчётов нет, интерес покупателя быстро пропадёт. Этот вопрос лучше закрыть до поиска клиентов, а не после.\n4. Подготовьте материалы на английском\nНужны короткая презентация на 1–2 страницы, спецификация, фото продукции и перечень документов. Импортёру важно быстро понять, что это за товар, какая упаковка, срок хранения и минимальная партия. Длинные каталоги на первом этапе не нужны.\n5. Ищите импортёра, а не просто покупателя\nРегистрацию товара и лицензии на ввоз обычно оформляет филиппинский импортёр. Поэтому хороший партнёр это компания, у которой уже есть лицензии для вашей категории и опыт работы с похожим товаром. Магазин или ресторан может быть конечным клиентом, но ввозить товар будет импортёр.\n6. Начните с образцов и пробной партии\nНовому поставщику доверяют после проверки. Образцы, локальные испытания для агротоваров и небольшая первая поставка работают лучше, чем попытка сразу продать контейнеры. Эксклюзив для дистрибьютора лучше обсуждать после первых продаж.\n7. Будьте готовы к сроку\nПуть от первого контакта до первой поставки обычно занимает месяцы. Регистрация продукции, образцы, согласование цены и логистики требуют времени. Хороший признак, если на каждом этапе есть конкретный следующий шаг и ответственный.\nЕсли хотите понять, есть ли у вашего товара шанс на Филиппинах, расскажите о нём. Посмотрю требования, конкурентов и возможных покупателей.\nОфициальные источники\nЭто общий ориентир, а не юридическая консультация. Требования меняются, поэтому перед поставкой их нужно подтвердить у филиппинского ведомства, импортёра или лицензированного таможенного брокера.\nТарифная комиссия Филиппин, Philippine Tariff Finder\nFDA Philippines, вопросы о License to Operate и Certificate of Product Registration",
+   "faq": []
+  },
+  {
+   "url": "https://rusphiltrade.com/for-russian-suppliers/mashina-dlya-delovyh-vstrech-manila/",
+   "lang": "ru",
+   "title": "Машина с водителем для деловых встреч в Маниле | Russia–Philippines Trade Link",
+   "h1": "Машина с водителем для деловых встреч в Маниле",
+   "description": "Toyota Alphard Hybrid с водителем для деловых встреч, поездок на производство и трансферов из аэропорта по Метро-Маниле. До 5 пассажиров. Топливо, платные дороги и парковка включены. Цены в долларах США.",
+   "facts": "English version: Car with a driver for business meetings in Manila\nТарифы\nУслуга | Цена\nТрансфер в одну сторону (подача и высадка) | 259 USD\n6 часов | 367 USD\n10 часов | 432 USD\nСверхурочные, за час | 43 USD\nТарифы действуют для маршрутов по Метро-Маниле. В них включены услуги водителя, его питание, топливо, платные дороги и парковка. Пока топливо на Филиппинах остаётся дорогим, к итоговой сумме, включая сверхурочные, может применяться временная топливная надбавка. Её размер подтверждается в ответе на заявку.\nАвтомобиль\nToyota Alphard Hybrid чёрного цвета, 2020 года или новее\nдо 5 пассажиров, удобные задние сиденья, место для багажа\nгибридная силовая установка, панорамный люк и кожаный салон\nводитель, который знает маршруты Манилы, загруженные участки и места встреч\nКогда это удобно\nделегация едет к импортёрам, дистрибьюторам или покупателям по городу\nпредставитель поставщика на выставке или на серии встреч за один день\nвстреча или проводы гостя в аэропорту\nпоездка на производство, в порт или на склад с несколькими остановками\nКак заказать\nНапишите дату, место подачи, примерный маршрут, число пассажиров и нужный тариф.\nВы получите подтверждение с итоговой ценой и надбавкой, если она есть. Пока вы не согласились, ничего не бронируется.\nМашину организует местный перевозчик. Контакты водителя приходят до поездки.\nРаботаем только по Метро-Маниле. Поездки за её пределы и поездки на несколько дней рассчитываются отдельно по запросу. Цены указаны в долларах США по фиксированному курсу и подтверждаются при бронировании.\nДругие материалы\nКакие разрешения нужны для ввозаКак выйти на рынок ФилиппинРоссийским поставщикам",
+   "faq": []
+  },
+  {
+   "url": "https://rusphiltrade.com/for-russian-suppliers/razresheniya-dlya-vvoza-na-filippiny/",
+   "lang": "ru",
+   "title": "Какие разрешения нужны для ввоза товара на Филиппины | Russia–Philippines Trade Link",
+   "h1": "Какие разрешения нужны для ввоза товара на Филиппины",
+   "description": "Требования к ввозу на Филиппины для российских товаров. Пищевые продукты (FDA), мясо (NMIS, BAI, АЧС), удобрения (BAFS, FPA), оборудование (DOLE), пошлины.",
+   "facts": "Правила ввоза на Филиппины зависят от категории товара. Ниже основные требования по направлениям, с которыми мы работаем. У каждого пункта есть ссылка на официальный источник.\nПищевые продукты\nПо данным FDA Philippines, переработанные пищевые продукты, которые ввозятся и продаются на Филиппинах, должны иметь Certificate of Product Registration (CPR). Каждый импортёр получает CPR на свой ввозимый товар, а сам импортёр должен иметь License to Operate (LTO). Маркировка нужна на английском языке.\nДля российского производителя это значит, что без филиппинского импортёра с лицензией FDA продавать фасованные продукты не получится. Производитель готовит документы и данные для регистрации, а подаёт их импортёр.\nМясо и мясная продукция\nМясо можно ввозить только из стран и с предприятий, аккредитованных Минсельхозом Филиппин. Порядок аккредитации иностранных мясных предприятий установлен приказом AO No. 16 от 2006 года. Ввозить мясо могут только импортёры с лицензией National Meat Inspection Service (NMIS). На партии импортёр получает санитарное разрешение (SPS Import Clearance) в Bureau of Animal Industry.\nПо свинине есть важная новость. Меморандумом No. 80 от 23 декабря 2025 года Минсельхоз Филиппин признал российскую регионализацию по африканской чуме свиней и снял временный запрет на ввоз свиноводческой продукции из России. Порядок регионализации описан в циркуляре No. 12 от 2025 года. На практике это значит, что сырьё должно происходить из зоны или компартмента, признанных благополучными. Для Приморского края это отдельный вопрос, потому что край неблагополучен по АЧС.\nУдобрения\nЗдесь важно, какое у вас удобрение. Органические почвоулучшители регистрирует Bureau of Agriculture and Fisheries Standards (BAFS). Отдел регистрации BAFS регистрирует продукты и производителей и выдаёт разрешения на ввоз органических удобрений. Неорганические удобрения регулирует Fertilizer and Pesticide Authority (FPA). По данным FPA, импортёру нужна лицензия и регистрация продукта, а полномочия по органическим удобрениям перешли к BAFS по закону RA 10068.\nДо поставки нужно точно определить категорию продукта. От этого зависит, в какое ведомство идти и какие испытания и анализы понадобятся.\nПодъёмное и промышленное оборудование\nОтдельной регистрации товара, как для продуктов или удобрений, мы для такого оборудования не нашли. Но на Филиппинах Министерство труда (DOLE) проводит техническую инспекцию безопасности подъёмного и другого механического оборудования. Покупателю нужно заранее понять, какие документы и испытания потребует инспектор. Паспорта, инструкции и протоколы испытаний на английском сильно упрощают дело.\nПошлины и налоги\nСтавка пошлины зависит от кода товара и проверяется в Philippine Tariff Finder. Кроме пошлины начисляется НДС. Считать это нужно до переговоров о цене, иначе предложение может оказаться неконкурентным.\nНужно проверить требования для вашего товара? Напишите, какой это товар и в какой упаковке. Скажу, какое ведомство за него отвечает и что понадобится импортёру.\nОфициальные источники\nЭто общий ориентир, а не юридическая консультация. Требования меняются, поэтому перед поставкой их нужно подтвердить у филиппинского ведомства, импортёра или лицензированного таможенного брокера.\nFDA Philippines, вопросы о License to Operate и Certificate of Product Registration\nNational Meat Inspection Service (NMIS), License to Import\nМинсельхоз Филиппин, Department Order No. 02, s. 2023 (ссылается на AO No. 16, s. 2006 о требованиях к экспорту мяса)\nМинсельхоз Филиппин, Memorandum Order No. 80, s. 2025 (регионализация по АЧС и снятие запрета на свинину из России)\nМинсельхоз Филиппин, Administrative Circular No. 12, s. 2025 (порядок регионализации по АЧС)\nBAFS, структура и функции отдела регистрации\nFPA, часто задаваемые вопросы\nDOLE, Bureau of Working Conditions, техническая инспекция безопасности\nТарифная комиссия Филиппин, Philippine Tariff Finder",
+   "faq": []
+  },
+  {
+   "url": "https://rusphiltrade.com/frozen-fish-seafood/",
+   "lang": "en",
+   "title": "Frozen Fish & Seafood Supplier Philippines – Pollock, Salmon | RusPhilTrade",
+   "h1": "Frozen fish and seafood for Philippine importers.",
+   "description": "Frozen pink and chum salmon, sockeye, pollock, cod, herring, king crab, squid, scallops and shrimp from Russian Far East processors. BFAR accreditation and SPS clearance explained.",
+   "facts": "Frozen fish, fishmeal and fish oil\npink and chum salmon, sockeye\npollock, flounder, cod and herring\nfishmeal and fish oil for feed and aquaculture customers\nCrab, squid, scallops and shrimp\ncooked-frozen king crab legs and whole crab, live snow crab\nPacific squid and tentacles, octopus\nscallops, northern shrimp and sea cucumber\nLive and chilled shipments need air freight or short transit. Frozen shipments go by reefer container.\nWho it is for\nSeafood importers and distributors, food processors and canneries, wholesale markets, hotels, restaurants and HoReCa suppliers, premium retail, aquaculture and feed manufacturers.\nWhat the importer needs\nBFAR accredits importers of fish and fishery products (Fisheries Administrative Order No. 195).\nEach commercial shipment needs a Sanitary and Phytosanitary Import Clearance (SPSIC) from BFAR. It is valid for 30 days from issue.\nOn arrival, the shipment needs an international health certificate from the competent authority of the country of origin, and samples may be taken for testing.\nCanned and other processed fish products are processed food and also need FDA registration by the importer.\nImport duties are checked in the Philippine Tariff Finder.",
+   "faq": [
+    {
+     "q": "Which frozen fish are available?",
+     "a": "Pink and chum salmon, sockeye, pollock, flounder, cod and herring from Far Eastern processors."
+    },
+    {
+     "q": "Which seafood is available?",
+     "a": "Cooked-frozen king crab legs and whole crab, live snow crab, Pacific squid and tentacles, octopus, scallops, northern shrimp and sea cucumber."
+    },
+    {
+     "q": "What does a Philippine importer need?",
+     "a": "BFAR importer accreditation and a Sanitary and Phytosanitary Import Clearance (SPSIC) for each shipment, valid for 30 days from issue. Processed fish products also need FDA registration."
+    },
+    {
+     "q": "How is seafood shipped?",
+     "a": "Frozen products go by reefer container. Live and chilled products need air freight or short transit."
+    }
+   ]
+  },
+  {
+   "url": "https://rusphiltrade.com/guides/how-to-check-a-russian-company/",
+   "lang": "en",
+   "title": "How to Check a Russian Company Before You Pay | Russia–Philippines Trade Link",
+   "h1": "How to check a Russian company before you pay.",
+   "description": "Six steps to check a Russian supplier: INN and OGRN, registration, financial statements, court and bankruptcy records, sanctions lists and warning signs. With official sources.",
+   "facts": "In short. Get the company's INN, check its status in the official Russian register, look at its financial statements and court records, screen it against sanctions lists, and make sure every document and bank detail belongs to the same company.\nStep 1. Get the INN and OGRN\nEvery Russian company has two numbers. The INN is the 10-digit taxpayer number. The OGRN is the 13-digit state registration number. Ask the supplier for both and compare them with the contract and the invoice. A 12-digit INN or a 15-digit OGRNIP means you are dealing with a sole proprietor, not a company.\nStep 2. Check the registration\nSearch the INN in the official register of the Federal Tax Service (EGRUL). It shows whether the company is active, in liquidation or reorganisation, when it was registered, its region and its main registered activity. The Federal Tax Service's business transparency service can show extra signals, such as notes that registered data may be unreliable.\nStep 3. Look at the financial statements\nRussian companies file annual statements, published in the state register of financial statements. Compare the revenue with the volumes the supplier offers you. A company with very small revenue that promises dozens of containers a month needs an explanation.\nStep 4. Check courts, bankruptcy and enforcement\nCommercial court cases are in the arbitration case files. Look for claims from buyers about unpaid or undelivered goods. Bankruptcy notices are in Fedresurs, and unpaid debts being collected are in the enforcement database of the Federal Bailiff Service.\nStep 5. Screen against sanctions lists\nSearch the company name in the US, EU and UK sanctions lists. Why this matters for a Philippine buyer is explained in our guide Is it legal to import from Russia to the Philippines?\nStep 6. Compare everything with your documents\nThe company name and INN in the contract, the invoice, the bank details and the email address should all point to the same company. If the supplier calls itself a manufacturer, its registered activity and website should support that.\nWarning signs\na request to pay a different company, a personal account or a company in another country\na very new company offering large volumes at low prices\na registered activity that has nothing to do with the product\nan INN on the invoice that differs from the one in the contract\npressure to pay quickly, or refusal of a video call or samples\nWhen a professional check makes sense\nThe registers are free, but most are only in Russian, some may be slow or limited from abroad, and it takes time to read court and financial records correctly. If the deal involves an advance payment, a professional check usually costs far less than the risk.\nWant us to check a supplier for you?\nAn independent review of a Russian company based on public records, with screening against the US, EU and UK sanctions lists and a PDF report in English. From USD 29, payment by GCash.\nSee the company check\nFound an inaccuracy? Please let us know at rus.import.ph@gmail.com. We check every report and update the guide.",
+   "faq": [
+    {
+     "q": "What is an INN?",
+     "a": "The INN is the Russian taxpayer identification number. A company has a 10-digit INN, a sole proprietor or an individual has a 12-digit one. It is usually printed on the contract, invoice and commercial offer."
+    },
+    {
+     "q": "What is an OGRN?",
+     "a": "The OGRN is the state registration number of a Russian company, 13 digits long. Sole proprietors have a 15-digit number called OGRNIP."
+    },
+    {
+     "q": "Can I check the company myself?",
+     "a": "Yes. The official registers listed below are free, but most of them are in Russian, some may be slow or limited from abroad, and reading court and financial records takes experience."
+    },
+    {
+     "q": "The supplier has no court cases. Is it safe?",
+     "a": "Not necessarily. A new company may simply have no history yet. Look at the whole picture: age, filed statements, activity, and whether the documents match the records."
+    },
+    {
+     "q": "Do you check sole proprietors?",
+     "a": "Our paid service covers companies such as OOO and AO only. You can still check a sole proprietor's status yourself in the EGRUL and EGRIP register."
+    }
+   ]
+  },
+  {
+   "url": "https://rusphiltrade.com/guides/is-it-legal-to-import-from-russia/",
+   "lang": "en",
+   "title": "Is It Legal to Import from Russia to the Philippines? | Russia–Philippines Trade Link",
+   "h1": "Is it legal to import from Russia to the Philippines?",
+   "description": "Philippine rules, UN, US, EU and UK sanctions, and what they mean for a Philippine company buying from a Russian supplier. With official sources and a practical checklist.",
+   "facts": "Short answer. Philippine rules do not ban trade with Russia as a country, and some Russian products are officially cleared for import. But US, EU and UK sanctions can still affect your deal, mostly through the supplier itself, your bank and the payment route. Here is what applies and how to check it.\nWhat the Philippines and the UN say\nThe Philippines applies targeted financial sanctions adopted by the UN Security Council, mainly related to terrorism and weapons of mass destruction. They are implemented by the Anti-Money Laundering Council. None of the current UN Security Council sanctions regimes is directed at Russia.\nWe found no Philippine law or regulation that bans trade with Russia as a country. Philippine agencies continue to regulate Russian goods product by product. For example, by Memorandum Order No. 80 of 23 December 2025 the Department of Agriculture lifted its temporary ban on swine products from Russia.\nWhere sanctions still matter\nUnited States\nThe US Treasury's Office of Foreign Assets Control (OFAC) runs a Russia sanctions program with a list of blocked companies and people. Under OFAC's 50 percent rule, a company owned 50 percent or more by blocked persons is treated as blocked too, even if its name is not on the list.\nSince Executive Order 14114 of December 2023, OFAC can also sanction foreign banks that conduct significant transactions involving Russia's military-industrial base. This is why many banks outside the US, including in the Philippines, check Russia-related payments carefully and may ask questions or decline them.\nEuropean Union\nThe EU has adopted 21 packages of sanctions against Russia and has extended them until 31 July 2027. They cover finance, trade, energy, transport and technology. They bind EU persons and business done in the EU, so they matter when an EU bank, insurer or shipping company is involved, or when your supplier is on the EU list.\nUnited Kingdom\nUK sanctions bind UK persons and anyone in the UK. The UK government also warns that non-UK businesses that help others get around UK sanctions face risks.\nProduct rules still apply\nSanctions are only one part. Every product also has Philippine import rules: FDA registration for processed food, accreditation and clearances for meat, BAFS or FPA registration for fertilizers, and customs duties for everything. See our pages on processed meat, fertilizers and equipment.\nA practical checklist before you sign\nCheck the supplier and, where possible, its owners against the US, EU and UK sanctions lists.\nMake sure the goods are not military or dual-use items.\nAsk your bank early how it handles payments to Russia and in which currency.\nPay only the company named in the contract. A request to pay a different company is a warning sign.\nConfirm the Philippine import requirements for your product with the importer or a licensed customs broker.\nCheck that the supplier is a real, active company. Our guide explains how to check a Russian company.\nWant us to check a supplier for you?\nAn independent review of a Russian company based on public records, with screening against the US, EU and UK sanctions lists and a PDF report in English. From USD 29, payment by GCash.\nSee the company check\nFound an inaccuracy? Please let us know at rus.import.ph@gmail.com. We check every report and update the guide.",
+   "faq": [
+    {
+     "q": "Do US or EU sanctions apply to a Philippine company?",
+     "a": "These sanctions mainly bind US, EU and UK persons and business done in those jurisdictions. A Philippine company is not directly bound in the same way, but it can still be affected when it deals with a listed company, pays through banks that apply these rules, or uses insurers and shipping lines from those jurisdictions."
+    },
+    {
+     "q": "Can my bank refuse a payment to a Russian supplier?",
+     "a": "Yes. Banks set their own compliance rules, and under Executive Order 14114 the US can sanction foreign banks that handle certain transactions linked to Russia's military-industrial base. Ask your bank how it treats Russia-related payments before you agree on payment terms."
+    },
+    {
+     "q": "Is Russian food allowed into the Philippines?",
+     "a": "It depends on the product. Each category has its own rules and agencies. For example, the Department of Agriculture lifted its temporary ban on Russian swine products in December 2025, but imports still need accredited establishments, licensed importers and clearances."
+    },
+    {
+     "q": "Does a clean sanctions check mean the deal is safe?",
+     "a": "No. It only means the company was not found in the lists on the date of the check. You still need to check the company itself, the goods and the payment route."
+    },
+    {
+     "q": "Is this legal advice?",
+     "a": "No. This is a general information guide based on public official sources. For a specific deal, talk to your bank and, if the amount is significant, to a lawyer."
+    }
+   ]
+  },
+  {
+   "url": "https://rusphiltrade.com/honey-confectionery/",
+   "lang": "en",
+   "title": "Russian Honey & Confectionery Supplier Philippines | RusPhilTrade",
+   "h1": "Honey and confectionery from the Russian Far East.",
+   "description": "Honey, marshmallow, marmalade, mead and other confectionery from producers in Primorsky Krai (Vladivostok, Russian Far East) for Philippine food importers, retail and HoReCa.",
+   "facts": "Products\nhoney\nmarshmallow\nmarmalade\nmead and other confectionery products\nPackaging, minimum order, delivery basis and prices are on request.\nWho it is for\nFood importers, specialty food distributors, retail chains, premium food channels, restaurants and HoReCa.\nWhat the importer needs\nFDA Philippines: License to Operate and Certificate of Product Registration.\nImport duties depend on the tariff code and are checked in the Philippine Tariff Finder.",
+   "faq": [
+    {
+     "q": "Which products are available?",
+     "a": "Honey, marshmallow, marmalade, mead and other confectionery products from Primorsky Krai producers, where supplier confirmation is available."
+    },
+    {
+     "q": "Are prices and pack sizes listed?",
+     "a": "Packaging, minimum order, delivery basis and prices are on request."
+    },
+    {
+     "q": "What does the importer need?",
+     "a": "An FDA License to Operate and Certificate of Product Registration."
+    }
+   ]
+  },
+  {
+   "url": "https://rusphiltrade.com/humic-soil-conditioner-biostimulant/",
+   "lang": "en",
+   "title": "Humic Biostimulant & Soil Conditioner Supplier Philippines | RusPhilTrade",
+   "h1": "Humic biostimulant and soil conditioner for Philippine growers.",
+   "description": "BIOTORF humic paste: 45–52% humic and 18–22% fulvic acids, shelf life 36 months, up to 1,500 t a month. 1 l paste + 4 l water = 5 l concentrate. Free 2-litre trial sample.",
+   "facts": "Product\nParameter | Producer information\nProduct | BIOTORF, stabilised suspension of micronised peat in paste form\nHumic acids | 45–52%\nFulvic acids | 18–22%\nParticle size | Below 100 microns\nShelf life | At least 36 months. A small precipitate is mixed back in\nCapacity | Up to 1,500 tonnes of paste per month\nDilution | 1 litre of paste mixed with 4 litres of water makes a working concentrate\nUse | 10% solution for root feeding and seed soaking (100 ml concentrate per 1 l of water). 1% solution for foliar feeding (10 ml per 1 l)\nFrequency | Foliar feeding 1–3 times a week, root feeding every 10 days, seed soaking once\nCompatibility | Can be used with other fertilizers and chemical plant protection products\nPackaging | From 100 ml to 1,000 l: canisters, barrels and 1-tonne IBC containers (Eurocube). One tonne of paste gives about five tonnes of concentrate\nMinimum order | Free 2-litre sample for trials. Commercial minimum on request\nDocuments | Russian technical specification TU 039010-01-90160664-2025, English safety data sheet and 2025 laboratory reports (pathogens, pesticides, humic substances), on request\nBIOTORF paste in a 1,000-litre IBC container. Producer's product image.\nApplication methods: foliar spray, leaf spray for trees, root watering, seed soaking. Producer's infographic.\nField results reported by the producer\nThe producer reports field trials in 2024 on cotton in Uzbekistan and on bananas, coffee, maize and papaya in Uganda and Equatorial Guinea. Two examples from the producer's 2026 presentation:\nTrial | Producer-reported result\nBanana seedlings, Mbarara, Uganda, 24 November – 31 December 2024 | On day 8, treated plants measured 35–47 cm against 14–16 cm in the untreated control\nCotton, Tashkent region, Fergana Valley and Samarkand region, Uzbekistan, 20 June – 19 August 2024 | Treated plots: plants up to 90 cm, more than 12 branches, 23–47 bolls. Control plots: up to 70 cm, about 9 branches, 15–21 bolls\nThe producer states that BIOTORF is exported to nine countries, including Kenya, Tanzania, Uganda, Egypt, Equatorial Guinea and Venezuela, and that it received a bronze medal at the Golden Autumn 2023 agricultural exhibition. These claims have not been independently verified for Philippine conditions, so a local trial on the buyer's crops is recommended before commercial volumes.\nWho it is for\nFertilizer importers, agricultural distributors and commercial farms.\nWhat the importer needs\nThe regulator depends on the product: the Bureau of Agriculture and Fisheries Standards (BAFS) for organic soil amendments, the Fertilizer and Pesticide Authority (FPA) for other fertilizers.\nRegistration, sample import and testing requirements are clarified with the Philippine importer and the competent authority.\nImport duties depend on the tariff code and are checked in the Philippine Tariff Finder.\nFor a pelletized organic fertilizer from poultry manure see Gigantin Bio organic fertilizer.",
+   "faq": [
+    {
+     "q": "How is the humic paste used?",
+     "a": "One litre of paste is mixed with four litres of water to make a working concentrate for seed soaking, foliar spraying and root feeding."
+    },
+    {
+     "q": "What is the humic and fulvic acid content?",
+     "a": "Humic acids 45–52% and fulvic acids 18–22%, according to the producer. Particle size is below 100 microns."
+    },
+    {
+     "q": "Can I get a sample for a trial?",
+     "a": "Yes. A free 2-litre sample is available for trials."
+    },
+    {
+     "q": "What is the shelf life?",
+     "a": "At least 36 months. If a small precipitate forms, it is mixed back in."
+    },
+    {
+     "q": "How is it packed?",
+     "a": "In 1-tonne IBC containers. One tonne of paste gives about five tonnes of concentrate."
+    },
+    {
+     "q": "Which authority regulates it in the Philippines?",
+     "a": "It depends on the product: BAFS for organic soil amendments, FPA for other fertilizers."
+    }
+   ]
+  },
+  {
+   "url": "https://rusphiltrade.com/marine-automation-ship-repair/",
+   "lang": "en",
+   "title": "Marine Automation, Ship Electrical & Repair Partner Philippines | RusPhilTrade",
+   "h1": "Ship automation and repair for Philippine shipyards and fleets.",
+   "description": "Ship automation, alarm and monitoring, engine and generator control, power management, electrical installation and commissioning. RMRS and RCS certified, since 1994, 180+ staff.",
+   "facts": "Systems and services\nintegrated vessel management and monitoring systems\nmain propulsion engine control systems and remote control of main engines\ngenerator control and load-sharing systems, power management systems (PMS)\nalarm and monitoring systems, tank level gauging\nthruster control, ballast water management and control, marine winch control\nmarine boiler control, marine HVAC, marine energy storage systems\nintegrated control and safety systems (ICSS), fire and gas detection (FGS), emergency shutdown (ESD) and safety instrumented systems (SIS)\nPLC, ICS and SCADA-based solutions for the marine, oil and gas industries\nelectronic power distribution switchboards, navigation control panels and consoles\nmaintenance and overhaul of marine and industrial power-generation equipment\nmodification and upgrade of control and remote-start systems\nOwn products\nProduct | Purpose\nIntegrated vessel control system | Centralised automation of the shipboard power plant and auxiliary machinery, remote start and stop of diesel generator sets, parameter monitoring\nRemote automatic control system for main engines | Remote control of main internal combustion engines from control stations\nMain engine speed and reversing control lever | Stepwise speed control and fine adjustment of main engine RPM\nAzimuth thruster control lever | Remote setting of thruster azimuth and actuator speed\nAutomatic parameter monitoring system | Monitoring of ship equipment parameters, suited to retrofits without replacing existing infrastructure\nEngine order telegraph | Bridge to engine room command communication for newbuilds and modernisation\nElectrical installation, commissioning and diesel generator sets\nMarine electrical installation from cable route marking and laying to insulation checks, cable transits and equipment mounting. Commissioning of switchgear, power sources, distribution boards, electrical automation devices, electric drives and motors, including software configuration and tuning. The company manufactures automation panels and electrical control cabinets, and packages marine diesel generator sets and diesel-reduction gear units with remote automatic control systems. It has a production site with hot-test benches for diesel generator sets and main engines.\nCompany credentials\noperating since 1994\nmore than 180 employees, including 118 production specialists\nequipment certified by the Russian Maritime Register of Shipping (RMRS) and the Russian Classification Society (RCS)\nRMRS certificate confirming own production\nISO 9001:2015\nScientific and Technical Council established in 2024\nWho it is for\nShipyards, ship repair and drydock companies, shipping and fishing fleet operators, marine engineering and electrical contractors.\nHow cooperation starts\nA local partner is sought. The company proposes to start with a specific, relatively small real project. Solutions can be adapted to the customer's requirements.",
+   "faq": [
+    {
+     "q": "Which systems can be supplied?",
+     "a": "Engine and generator control, power management, alarm and monitoring, thruster, ballast water, boiler, winch and HVAC control, ICSS, fire and gas detection, emergency shutdown and safety instrumented systems, and PLC, ICS and SCADA solutions."
+    },
+    {
+     "q": "Does the company do electrical installation and commissioning?",
+     "a": "Yes: marine electrical installation, commissioning of switchgear, distribution boards, electric drives and automation, including software configuration."
+    },
+    {
+     "q": "What certifications does the company hold?",
+     "a": "Equipment is certified by the Russian Maritime Register of Shipping and the Russian Classification Society. The company also holds ISO 9001:2015."
+    },
+    {
+     "q": "How would cooperation start?",
+     "a": "A local partner is sought. The company proposes to start with a specific, relatively small real project."
+    }
+   ]
+  },
+  {
+   "url": "https://rusphiltrade.com/milk-powder-condensed-milk/",
+   "lang": "en",
+   "title": "Milk Powder & Condensed Milk Supplier Philippines | RusPhilTrade",
+   "h1": "Milk powder and condensed milk for Philippine buyers.",
+   "description": "Whole milk powder (26% fat or reduced fat) in 500 g packs and sweetened condensed milk in 360 g cans, Rus Vostochnaya brand. Container loads, shelf life, FOB Vladivostok.",
+   "facts": "Products\nProduct | Packaging | Shelf life\nWhole milk powder, Rus Vostochnaya: whole milk, 26% fat or reduced fat | 500 g pack, 10 per carton. 13,500 packs per 20 ft container, 29,700 per 40 ft container | 24 months\nSkimmed milk powder | 500 g and 25 kg | 24 months\nSweetened condensed milk, Rus Vostochnaya: whole milk and sugar | 360 g can, 12 per box. 54,000 cans per 20 ft container. Also 1,150 g and 20 kg | 12 months\nStorage: cool, dry place protected from light.\nThe exporter is a group of companies working in the food market, including import and export, since 1998. It states that the products are made in Siberia, Altai Krai and southern Russia without GMOs, that customer labels are possible and that payment is accepted in rubles or US dollars.\nThe same exporter also supplies sunflower and soybean oil and wheat flour and rolled oats.\nSupply terms\nTerm | Current information\nMinimum order | Full 20 or 40-foot containers\nIncoterms | FOB Vladivostok\nPort of loading | Vladivostok\nPrice and certificates | On request\nWho it is for\nFood importers, distributors, bakeries, noodle and food manufacturers, HoReCa suppliers and retail distributors.\nWhat the importer needs\nFDA Philippines: License to Operate and Certificate of Product Registration.\nImport duties depend on the tariff code and are checked in the Philippine Tariff Finder.",
+   "faq": [
+    {
+     "q": "Is milk powder available in 25 kg bags?",
+     "a": "Yes. Whole and skimmed milk powder are available in 500 g and 25 kg packaging."
+    },
+    {
+     "q": "How much milk powder fits in a container?",
+     "a": "13,500 packs of 500 g in a 20-foot container and 29,700 packs in a 40-foot container."
+    },
+    {
+     "q": "What is the shelf life?",
+     "a": "Milk powder 24 months, sweetened condensed milk 12 months."
+    },
+    {
+     "q": "How is condensed milk packed?",
+     "a": "360 g cans, 12 per box, 54,000 cans per 20-foot container. 1,150 g and 20 kg packs are also listed."
+    },
+    {
+     "q": "What is the minimum order?",
+     "a": "Full 20 or 40-foot containers, FOB Vladivostok."
+    }
+   ]
+  },
+  {
+   "url": "https://rusphiltrade.com/organic-fertilizer-soil-improvement/",
+   "lang": "en",
+   "title": "Organic Fertilizer Supplier Philippines – Bulk Pellets, 25 kg Bags | RusPhilTrade",
+   "h1": "Bulk organic fertilizer for Philippine distributors and growers.",
+   "description": "Gigantin Bio pelletized chicken manure organic fertilizer, USD 100/MT EXW in 25 kg bags, one 40HC container. OrganicaFK seaweed granules. BAFS and FPA registration explained.",
+   "facts": "1. Gigantin Bio pelletized organic fertilizer\nA pelletized fertilizer made from chicken manure, produced by Ussuriyskaya Poultry Farm LLC in the city of Artem, Primorsky Krai (Russian Far East), in the free port of Vladivostok zone. The farm has worked since 1973 and keeps about 880,000 laying hens, with its own hatchery for 600,000 hatching eggs, an egg powder department and an organic fertilizer plant with a capacity of 600 tonnes per month. It is 1–2 hours by truck from the ports of Vladivostok, Nakhodka and Vostochny (company data). The fertilizer is made through aerobic fermentation of poultry litter with plant-based carbon materials (peat, sawdust, straw) and forced aeration. The producer has already shipped this fertilizer to Vietnam, according to shipping documents it has provided.\nThe pellets provide organic matter and plant nutrients for agricultural use. Packed in 25 kg bags for handling and distribution. Application rates should be agreed for the crop, soil and local conditions. The manufacturer reports production capacity of up to 600 metric tonnes per month.\nGigantin Bio in a 25 kg bag with the manufacturer's design. The label shown is the current export version; Philippine-specific label content is to be confirmed.\nYour browser does not support embedded video. Download the product overview.\nA short illustrated overview of the product and production process. AI-generated visuals, not footage of the manufacturer's factory. English captions, no audio. Philippine product registration is not yet completed.\nUSD 100 per metric tonne EXW, including 25 kg bags with the manufacturer's design. Minimum order is one 40HC container, approximately 25.5–25.8 metric tonnes net.\nDownload commercial offer (PDF)\nDownload one-page brief (JPEG)\nDownload one-page brief (PDF)\nReference product data\nParameter | 2026 laboratory reference\nNitrogen (N) | 4.7%\nPhosphorus (P, element) | 2.4%\nPotassium (K, element) | 1.9%\nOrganic matter | 57.2%\nMoisture | 13.4%\npH | 8.1\nRussian HS code used previously | 3101000000. Philippine classification to be confirmed\nPhysical form | Dark brown pellets, approximately 5 mm diameter and 10–12 mm length\nReference values are from the manufacturer's 2026 Russian laboratory report, not a guaranteed grade. P and K are reported as elements, not P2O5 and K2O. Natural composition can vary between batches. A batch-specific Certificate of Analysis will confirm shipment values.\nCommercial terms\nTerm | Current offer\nPrice and basis | USD 100/MT EXW, confirmed by the manufacturer on 30 September 2026. Collection point and final terms to be stated in the sales contract.\nPrice outlook | The supplier expects no price revision through 31 December 2026. Price to be reconfirmed when the order is placed.\nPackaging included | 25 kg bags with manufacturer design. Philippine-specific label content to be confirmed.\nMinimum order | 1 x 40HC container\nIndicative net load | 25.5–25.8 MT. Goods value approximately USD 2,550–2,580 per container, based on final net weight.\nPayment | 50% advance and 50% against draft bill of lading. Final payment arrangements to be agreed in the sales contract.\nAdditional costs | Freight, inland transport, Philippine import clearance, duties, taxes and local product registration are not included.\nThe Philippine distributor or importer would handle import clearance. Delivery timing, payment route and registration responsibilities must be agreed before a commercial shipment. The buyer contracts and pays the supplier directly. Russia–Philippines Trade Link acts as the trade agent and contact point in the Philippines.\n2. OrganicaFK granulated organic fertilizer\nA second producer in Primorsky Krai offers OrganicaFK, an organic fertilizer made from fish, seafood and seaweed. The producer states that its customers are in Russia and Southeast Asia.\nTerm | Current information\nBase | Seaweed, fish meal and natural minerals\nPackaging | 20 to 50 kg bags, big bags of 1,000 to 1,500 kg, retail packs of 1, 4, 10 and 15 litres. Retail labels in Russian, English or Vietnamese on request\nIncoterms | EXW or CIF\nPort of loading | Vladivostok\nPrice and specification | On request\n3. Humic soil improvement paste (BIOTORF)\nBIOTORF, a peat-based humic paste for seed soaking, foliar spraying and root feeding, supplied in 1-tonne IBC containers. A free 2-litre sample is available for trials. Full details are on the humic biostimulant and soil conditioner page.\nWho these fertilizers are for\nfertilizer importers and agricultural input distributors\ncommercial farms and plantations, for example rice, sugarcane, banana and coconut growers\ncompanies working with degraded or low-organic-matter soils\nPhilippine requirements to check first\nGigantin Bio is not yet registered in the Philippines. Based on the description submitted, FPA has initially classified the product as a Non-Traditional Fertilizer and indicated that a Bioefficacy Field Experiment (BFE) is required, with an approved Experimental Use Clearance (EUC) before the experiment. The final product category, sample import procedure and testing requirements remain subject to confirmation with FPA's Non-Traditional Fertilizer Team. No commercial import approval is being claimed.\nWhich authority regulates a fertilizer in the Philippines depends on what the product is:\nTopic | What the official source says\nOrganic soil amendments | Regulated by the Bureau of Agriculture and Fisheries Standards (BAFS). According to BAFS, its registration section registers organic soil amendment products and producers and issues organic input importation permits and clearances.\nInorganic and other fertilizers | Regulated by the Fertilizer and Pesticide Authority (FPA). According to FPA, a company importing fertilizer needs a license as importer and registration of its products. FPA states that its jurisdiction over organic fertilizers was transferred to BAFS under Republic Act 10068.\nImport duties and taxes | Depend on the HS / AHTN code of the product and are ch",
+   "faq": [
+    {
+     "q": "Who produces Gigantin Bio?",
+     "a": "Ussuriyskaya Poultry Farm LLC in Artem, Primorsky Krai, Russia, working since 1973 with about 880,000 laying hens and its own hatchery (company data). The producer reports capacity of up to 600 metric tonnes per month, previous export shipments to Vietnam and Russian product registration No. 4203, stated valid through 2033."
+    },
+    {
+     "q": "What is the price of Gigantin Bio organic fertilizer?",
+     "a": "USD 100 per metric tonne EXW, including 25 kg bags with the manufacturer's design, as confirmed by the manufacturer on 30 September 2026. Freight, import clearance, duties and local registration are not included."
+    },
+    {
+     "q": "What is the minimum order?",
+     "a": "One 40HC container, approximately 25.5 to 25.8 metric tonnes net in 25 kg bags."
+    },
+    {
+     "q": "What is the nutrient content?",
+     "a": "The manufacturer's 2026 laboratory reference shows nitrogen 4.7%, phosphorus 2.4% and potassium 1.9% (as elements), organic matter 57.2%, moisture 13.4% and pH 8.1. These are reference values, not a guaranteed grade; a batch Certificate of Analysis confirms shipment values."
+    },
+    {
+     "q": "Is Gigantin Bio registered in the Philippines?",
+     "a": "Not yet. FPA has initially classified it as a Non-Traditional Fertilizer and indicated that a Bioefficacy Field Experiment is required. No commercial import approval is claimed."
+    },
+    {
+     "q": "What are the payment terms?",
+     "a": "50% advance and 50% against the draft bill of lading. Final payment arrangements are agreed in the sales contract between the buyer and the manufacturer."
+    },
+    {
+     "q": "Is there another organic fertilizer?",
+     "a": "Yes. OrganicaFK is a granulated organic fertilizer made from seaweed, fish meal and natural minerals, packed in 20 to 50 kg bags and small retail packs, EXW or CIF."
+    }
+   ]
+  },
+  {
+   "url": "https://rusphiltrade.com/processed-meat-products/",
+   "lang": "en",
+   "title": "Sausage & Processed Meat Supplier Philippines – Wholesale | RusPhilTrade",
+   "h1": "Sausages, ham and processed meat for Philippine importers.",
+   "description": "Cooked sausages, frankfurters, ham and smoked meats from a Vladivostok meat processor that reports ISO 22000 and FSSC 22000. For importers and HoReCa. FDA, NMIS and BAI rules.",
+   "facts": "Product range\nCategory | Status\nCooked sausages, frankfurters, wieners | Main focus for a first shipment: fully cooked, vacuum-packed, suited to retail and foodservice.\nHam and smoked meat delicacies | For retail, delis, hotels and restaurants.\nFrozen prepared foods | Dumplings, stuffed pancakes and similar items are considered case by case, depending on recipe and heat treatment.\nDry-cured and raw-smoked products | Not offered until the applicable import regime is officially confirmed: products that are not fully cooked are treated more strictly.\nWho this is for\nfood and meat importers with experience in chilled or frozen products\ndistributors to hotels, restaurants and catering (HoReCa)\nspecialty and premium retail, delis and European-style food shops\nPhilippine requirements to check first\nThe rules depend on what exactly the product is, so each item is checked separately before an offer is made.\nTopic | What applies\nProcessed food registration | According to FDA Philippines, processed food products that are imported and distributed must have a Certificate of Product Registration (CPR), and each importer secures its own CPR. The importer also needs an FDA License to Operate (LTO).\nMeat import eligibility | Meat can be imported only from countries and foreign meat establishments accredited by the Department of Agriculture, under the pre-border measures of DA Administrative Order No. 16, s. 2006. Only meat importers licensed by the National Meat Inspection Service (NMIS) may import meat.\nPork and African swine fever | By Memorandum Order No. 80, s. 2025 (23 December 2025) the Department of Agriculture recognised Russia’s regionalization for African swine fever and lifted the temporary ban on swine products and by-products from Russia. Regionalization rules are set by Administrative Circular No. 12, s. 2025. In practice the pork raw material must come from a zone or compartment recognised as free of the disease, so the origin of the meat used in each product is checked.\nShipment clearance | Licensed meat importers apply for a Sanitary and Phytosanitary (SPS) Import Clearance from the Bureau of Animal Industry for shipments.\nLabelling | Labels must be in English and meet FDA labelling rules. Health or quality claims need supporting documents.\nImport duties and taxes | Depend on the AHTN code (for example chapter 16 for sausages and prepared meat) and are checked in the Philippine Tariff Finder.\nWhether a specific Russian establishment and product are currently eligible for export to the Philippines is verified for each item before any commercial offer. No product is presented as cleared for import until this is confirmed.\nWhat is prepared for an importer\nproduct list with recipes, ingredients, heat treatment and shelf life\npackaging and label information for English labelling\nproduction certificates and quality system documents available from the producer\nlogistics details: reefer container, temperature regime, loading port in the Russian Far East\nFrequently asked questions\nWhich products would be shipped first?\nThe main focus for a first shipment is fully cooked, vacuum-packed cooked sausages, frankfurters and wieners. A first shipment would start with a short list of heat-treated products registered with FDA Philippines by the importer.\nAre dry-cured or raw-smoked products offered?\nNo. They are not offered until the applicable Philippine import regime is officially confirmed.\nWhat certifications does the producer have?\nThe producer, a Vladivostok meat processor working since 1999, reports ISO 22000 and FSSC 22000 certification. Copies are available on request.\nWhat does the Philippine importer need?\nAn FDA License to Operate and product registration, an NMIS meat importer licence and a BAI Sanitary and Phytosanitary Import Clearance for each shipment.",
+   "faq": [
+    {
+     "q": "Which products would be shipped first?",
+     "a": "The main focus for a first shipment is fully cooked, vacuum-packed cooked sausages, frankfurters and wieners. A first shipment would start with a short list of heat-treated products registered with FDA Philippines by the importer."
+    },
+    {
+     "q": "Are dry-cured or raw-smoked products offered?",
+     "a": "No. They are not offered until the applicable Philippine import regime is officially confirmed."
+    },
+    {
+     "q": "What certifications does the producer have?",
+     "a": "The producer, a Vladivostok meat processor working since 1999, reports ISO 22000 and FSSC 22000 certification. Copies are available on request."
+    },
+    {
+     "q": "What does the Philippine importer need?",
+     "a": "An FDA License to Operate and product registration, an NMIS meat importer licence and a BAI Sanitary and Phytosanitary Import Clearance for each shipment."
+    }
+   ]
+  },
+  {
+   "url": "https://rusphiltrade.com/russian-company-background-check/",
+   "lang": "en",
+   "title": "Check a Russian Supplier Before You Pay | Russia–Philippines Trade Link",
+   "h1": "Check a Russian supplier before you pay.",
+   "description": "Independent review of a Russian company based on public records, prepared in English for Philippine buyers. Registration, finances, court cases, bankruptcy and sanctions lists. From USD 29.",
+   "facts": "When to order a check\nbefore an advance payment to a new Russian supplier\nbefore signing a supply or distribution contract\nwhen a supplier contacted you first and you know little about the company\nwhen documents or bank details look different from what you expected\nbefore a first trial shipment\nWhat we check\nregistration and current legal status: active, in liquidation or reorganisation\nregistered activity, region and age of the company\nfiled financial statements and basic indicators\narbitration court cases\nbankruptcy notices and enforcement proceedings\nparticipation in public procurement\nscreening of the company against the public sanctions lists of the US (OFAC), the EU and the UK\ncomparison of public records with what the supplier told you, if you share it\nWe check the company as a legal entity. Personal data of individuals is not included in the report.\nPrefer to start on your own? Read our free guides: how to check a Russian company and is it legal to import from Russia to the Philippines.",
+   "faq": [
+    {
+     "q": "How is this different from your supplier search?",
+     "a": "Supplier search is free for Philippine buyers. The company check is a separate paid service for one specific Russian company, including a company you found yourself."
+    },
+    {
+     "q": "What if I only know the company name?",
+     "a": "Send the name and the website if there is one. If the name matches several companies, we will ask for the INN. It is usually shown on the contract, invoice or commercial offer."
+    },
+    {
+     "q": "Do you check sole proprietors or individuals?",
+     "a": "No. We check Russian legal entities such as OOO and AO only, and we do not include personal data of individuals in the report."
+    },
+    {
+     "q": "How do I pay?",
+     "a": "By GCash, after we confirm the company and the scope of the check by email. We never ask for card or bank details on this website."
+    },
+    {
+     "q": "Does a clean report mean the supplier is safe?",
+     "a": "No. It means we found no negative signals in the sources we checked on that date. Use the report together with your own steps, such as samples, a clear contract and safe payment terms."
+    },
+    {
+     "q": "Will the supplier know about my request?",
+     "a": "No. We do not contact the supplier or share your request unless you ask us to."
+    },
+    {
+     "q": "How does the sanctions screening work?",
+     "a": "We search the company name and identifiers in the official public sanctions lists of the US, the EU and the UK and record the result as found or not found on the date of the check. It is not a legal opinion on sanctions compliance."
+    }
+   ]
+  },
+  {
+   "url": "https://rusphiltrade.com/russian-grain-oilseeds/",
+   "lang": "en",
+   "title": "Feed Wheat, Corn & Soybean Supplier Philippines – Bulk | RusPhilTrade",
+   "h1": "Wheat, corn, barley and soybeans for Philippine millers and feed mills.",
+   "description": "Bulk milling and feed wheat, corn, barley and soybeans from Primorsky Krai and the Russian Far East, plus packed silage. BPI plant import clearance explained.",
+   "facts": "Products\nwheat\ncorn\nbarley\nsoybeans\npacked silage from one of the producers\nProcessed products such as wheat flour, oat flakes and vegetable oils are a separate direction and are regulated as processed food.\nWho it is for\nFlour millers, feed manufacturers, grain traders and importers, livestock and poultry integrators.\nWhat the importer needs\nPlant products need a Sanitary and Phytosanitary Import Clearance from the Bureau of Plant Industry before shipment.\nVolumes, quality specifications and port loading are confirmed with the supplier for each inquiry.\nProcessed products such as flour and oil need FDA registration by the importer.\nImport duties depend on the tariff code and are checked in the Philippine Tariff Finder.",
+   "faq": [
+    {
+     "q": "Which grains are available?",
+     "a": "Wheat, corn, barley and soybeans from producers and traders in Primorsky Krai and the Russian Far East. Packed silage is available from one of the producers."
+    },
+    {
+     "q": "What does a Philippine importer need?",
+     "a": "A Sanitary and Phytosanitary Import Clearance from the Bureau of Plant Industry before shipment. Import duties are checked in the Philippine Tariff Finder."
+    },
+    {
+     "q": "Do you also offer wheat flour?",
+     "a": "Yes, as a separate processed food direction: premium and first-grade wheat flour in 1 to 50 kg bags."
+    },
+    {
+     "q": "How are volumes and quality agreed?",
+     "a": "Volumes, quality specifications and port loading are confirmed with the supplier for each inquiry."
+    }
+   ]
+  },
+  {
+   "url": "https://rusphiltrade.com/russian-lumber-wood-products/",
+   "lang": "en",
+   "title": "Softwood Lumber Supplier Philippines – Oak, Birch, Logs | RusPhilTrade",
+   "h1": "Softwood lumber, hardwood and logs for Philippine importers.",
+   "description": "Kiln-dried and planed softwood lumber, oak, ash and birch lumber, round logs, veneer and wood fuel briquettes from Primorsky Krai. DENR and phytosanitary rules explained.",
+   "facts": "Products\nsoftwood lumber, kiln-dried and planed timber\noak, ash and birch lumber\nround logs and veneer\nwood fuel briquettes\nWho it is for\nTimber importers and traders, construction and furniture manufacturers, joinery and packaging companies.\nWhat the importer needs\nThe Department of Environment and Natural Resources registers importers and dealers of imported wood materials. The requirements include business registration, a supply contract with the foreign exporter and documents authenticated at the Philippine Embassy in the country of origin.\nEntry of imported wood products is governed by DENR Administrative Order No. 2021-06.\nPhytosanitary certificates are required for wood shipments.\nSpecies, grades and moisture content are confirmed for each inquiry. Import duties are checked in the Philippine Tariff Finder.",
+   "faq": [
+    {
+     "q": "Which wood products are available?",
+     "a": "Kiln-dried and planed softwood lumber, oak, ash and birch lumber, round logs, veneer and wood fuel briquettes."
+    },
+    {
+     "q": "What does a Philippine importer need?",
+     "a": "Registration with the DENR as an importer of wood materials, entry under DENR Administrative Order No. 2021-06 and phytosanitary certificates for each shipment."
+    },
+    {
+     "q": "Are species, grades and moisture content specified?",
+     "a": "Yes. Species, grades and moisture content are confirmed for each inquiry."
+    }
+   ]
+  },
+  {
+   "url": "https://rusphiltrade.com/russian-pork/",
+   "lang": "en",
+   "title": "Frozen Pork Supplier Philippines – Cuts, Offal, Pork Fat | RusPhilTrade",
+   "h1": "Frozen pork cuts, offal and pork fat for Philippine importers.",
+   "description": "Frozen pork carcasses, cuts, hams, shoulders, offal and pork fat from a Primorsky Krai producer. Plant accreditation status, NMIS licence and BAI clearance explained.",
+   "facts": "Products\npork carcasses and half carcasses\nindustrial cuts and large cuts\noffal\nsemi-finished pork products\nfeed ingredients from the same production chain, available for discussion\nWho it is for\nMeat importers, processors, cold-chain distributors, retail chains and foodservice suppliers.\nImport eligibility\nOn 23 December 2025 the Department of Agriculture recognised Russia's regionalization for African swine fever and lifted the temporary ban on swine products from Russia (Memorandum Order No. 80, s. 2025). This opens the door, but each shipment still depends on the accreditation of the specific plant, the disease status of its zone or compartment, a licensed importer and a clearance for the shipment.\nAccreditation of this producer for the Philippine market is not confirmed yet. We do not make an offer for pork until eligibility is confirmed for the specific plant and products.\nWhat the importer needs\nMeat may be imported only from countries and foreign meat establishments accredited by the Department of Agriculture, under the pre-border measures of DA Administrative Order No. 16, s. 2006.\nOnly meat importers licensed by the National Meat Inspection Service (NMIS) may import meat.\nA Sanitary and Phytosanitary Import Clearance from the Bureau of Animal Industry is needed for shipments.\nImport duties depend on the tariff code and are checked in the Philippine Tariff Finder.",
+   "faq": [
+    {
+     "q": "Can pork from Russia be imported to the Philippines?",
+     "a": "Yes, in principle. On 23 December 2025 the Department of Agriculture recognised Russia's regionalization for African swine fever and lifted the temporary ban on Russian swine products (Memorandum Order No. 80, s. 2025). Each plant still needs Philippine accreditation."
+    },
+    {
+     "q": "Is this producer accredited for the Philippines?",
+     "a": "Not yet. The plant has been submitted through the Russian veterinary authority for Philippine accreditation (register number RU-025/EE44599). No pork can be shipped from it until the decision is made."
+    },
+    {
+     "q": "Which pork products are available?",
+     "a": "Carcasses and half carcasses, industrial and large cuts, bone-in hams and shoulders, boneless pork, liver and other edible offal, pork fat and semi-finished pork products."
+    },
+    {
+     "q": "What does the Philippine importer need?",
+     "a": "An NMIS meat importer licence and a Sanitary and Phytosanitary Import Clearance from the Bureau of Animal Industry for each shipment."
+    }
+   ]
+  },
+  {
+   "url": "https://rusphiltrade.com/russian-vodka-liqueurs/",
+   "lang": "en",
+   "title": "Russian Vodka Supplier Philippines – Importers & Distributors | RusPhilTrade",
+   "h1": "Russian vodka and herbal liqueurs for Philippine importers.",
+   "description": "Vodka, cedar nut vodka, herbal bitters and ginseng and honey liqueur from a distillery in Ussuriysk. Bottles 0.25 to 1 litre, 35–45% alcohol, FCA. For Philippine alcohol importers.",
+   "facts": "Products\nLine | Products\nVodka | Belenkaya, Ussuriyskiy Rodnik, Tsar, Sily Prirody, cedar nut vodka\nUSURI line, 0.5 l bottles, 12 per box | USURI Herbal Bitter 45%. USURI herbal liqueur 35%. USURI Ginseng essence with honey 35%. USURI Velvet antler 35%. USURI Russian Island 40%\nOther Russian distilleries | Price lists for Arkhangelskaya from Arkhangelsk and Orthodox from Mariinsk are also available\nSupply terms\nTerm | Current information\nPackaging | Bottles of 0.25, 0.5, 0.7 and 1 litre, 35 to 45% alcohol. USURI in 0.5 litre bottles, 12 per box\nIncoterms | FCA\nMinimum order and price | On request\nWho it is for\nAlcohol importers and distributors, duty-free and specialty retailers, bars, restaurants and HoReCa.\nWhat the importer needs\nFDA Philippines: License to Operate and Certificate of Product Registration.\nAlcohol import licensing, excise and labelling rules are checked with the local importer before any offer.\nImport duties depend on the tariff code and are checked in the Philippine Tariff Finder.",
+   "faq": [
+    {
+     "q": "Which vodka brands are available?",
+     "a": "Belenkaya, Ussuriyskiy Rodnik, Tsar and Sily Prirody from a distillery in Ussuriysk, and cedar nut vodka. Price lists for Arkhangelskaya and Orthodox are also available."
+    },
+    {
+     "q": "Which USURI products are available?",
+     "a": "USURI Herbal Bitter 45%, USURI herbal liqueur 35%, USURI Ginseng essence with honey 35%, USURI Velvet antler 35% and USURI Russian Island 40%, all in 0.5 litre bottles, 12 per box."
+    },
+    {
+     "q": "What bottle sizes are available?",
+     "a": "0.25, 0.5, 0.7 and 1 litre, 35 to 45% alcohol. USURI in 0.5 litre bottles, 12 per box."
+    },
+    {
+     "q": "What is the delivery basis?",
+     "a": "FCA."
+    }
+   ]
+  },
+  {
+   "url": "https://rusphiltrade.com/sunflower-soybean-oil/",
+   "lang": "en",
+   "title": "Sunflower Oil Supplier Philippines – Refined, 1 L & 5 L | RusPhilTrade",
+   "h1": "Refined sunflower and soybean oil for Philippine importers.",
+   "description": "Refined sunflower and soybean oil, Rus Vostochnaya brand, in 1 and 5 litre bottles: 26,010 one-litre or 5,352 five-litre bottles per 40 ft container, FOB Vladivostok. FDA and fortification rules.",
+   "facts": "Products\nProduct | Packaging | Shelf life\nRefined sunflower oil, Rus Vostochnaya, premium. 100% sunflower seed oil | 1 l bottle with a protective valve, 15 per carton. 5 l bottle, 3 per carton | 18 months\nRefined soybean oil, Rus Vostochnaya, premium. 100% soybean oil | 1 l bottle with a stopper, 15 per carton. 5 l bottle, 3 per carton | 15 months\nExport packaging: 5-layer cardboard cartons and high-density bottles. Storage: cool, dry, dark place.\nThe exporter is a group of companies working in the food market, including import and export, since 1998. It states that the products are made in Siberia, Altai Krai and southern Russia without GMOs, that customer labels are possible and that payment is accepted in rubles or US dollars.\nThe same exporter also supplies milk powder and condensed milk and wheat flour and rolled oats.\nSupply terms\nTerm | Current information\nMinimum order | Full 20 or 40-foot containers\n40-foot container | 26,010 bottles of 1 l or 5,352 bottles of 5 l\nIncoterms | FOB Vladivostok\nPort of loading | Vladivostok\nPrice and certificates | On request\nWho it is for\nFood importers, distributors, bakeries, noodle and food manufacturers, HoReCa suppliers and retail distributors.\nWhat the importer needs\nFDA Philippines: License to Operate and Certificate of Product Registration.\nUnder the Philippine Food Fortification Act (Republic Act No. 8976), cooking oil must be fortified with vitamin A. For imported products the fortification is done by the foreign producer; otherwise the importer is responsible for fortifying the product before it is distributed or sold.\nImport duties depend on the tariff code and are checked in the Philippine Tariff Finder.",
+   "faq": [
+    {
+     "q": "What is the minimum order for sunflower oil?",
+     "a": "Full 20 or 40-foot containers. A 40-foot container holds 26,010 bottles of 1 litre or 5,352 bottles of 5 litres."
+    },
+    {
+     "q": "Which bottle sizes are available?",
+     "a": "1 and 5 litre bottles of refined sunflower oil and refined soybean oil."
+    },
+    {
+     "q": "What is the shelf life?",
+     "a": "Sunflower oil 18 months, soybean oil 15 months, stored in a cool, dry, dark place."
+    },
+    {
+     "q": "Does imported cooking oil need vitamin A fortification in the Philippines?",
+     "a": "Yes. Republic Act No. 8976 makes vitamin A fortification of cooking oil mandatory. For imported products the foreign producer fortifies it; otherwise the importer is responsible before distribution or sale."
+    },
+    {
+     "q": "What is the delivery basis?",
+     "a": "FOB Vladivostok."
+    }
+   ]
+  },
+  {
+   "url": "https://rusphiltrade.com/testliner-fluting-paper-corrugated-board/",
+   "lang": "en",
+   "title": "Testliner & Fluting Paper Supplier Philippines – 110–300 gsm | RusPhilTrade",
+   "h1": "Testliner and fluting paper for Philippine corrugated packaging makers.",
+   "description": "Fluting paper 110–160 g/m² and testliner 125–300 g/m² from 100% recovered paper, made by a cardboard mill in Ussuriysk that also produces corrugated board and boxes. FOB Vladivostok.",
+   "facts": "Products\nProduct | Basis weight\nFluting paper | 110 to 160 g/m²\nTestliner | 125 to 300 g/m²\nCorrugated board | On request\nCorrugated boxes | On request\nFluting and testliner are made from 100% recovered paper. Grades, weights, minimum lots and prices are provided after the buyer's requirements are understood.\nSupply terms\nTerm | Current information\nIncoterms | FOB Vladivostok\nPort of loading | Vladivostok\nMinimum order and price | On request\nWho it is for\nCorrugated packaging makers, paper converters and importers.\nWhat the importer needs\nImport duties depend on the tariff code and are checked in the Philippine Tariff Finder.",
+   "faq": [
+    {
+     "q": "What weights of fluting and testliner are available?",
+     "a": "Fluting from 110 to 160 g/m² and testliner from 125 to 300 g/m²."
+    },
+    {
+     "q": "What raw material is used?",
+     "a": "100% recovered paper."
+    },
+    {
+     "q": "Can you supply corrugated board or boxes?",
+     "a": "The same mill in Ussuriysk also produces corrugated board and boxes. Details on request."
+    },
+    {
+     "q": "What is the delivery basis?",
+     "a": "FOB Vladivostok. Grades, weights, minimum lots and prices are provided after the buyer's requirements are understood."
+    }
+   ]
+  },
+  {
+   "url": "https://rusphiltrade.com/uaz-sollers-vehicles/",
+   "lang": "en",
+   "title": "UAZ Hunter, UAZ Bukhanka & Sollers Pickups Philippines | RusPhilTrade",
+   "h1": "UAZ 4x4 vehicles and Sollers pickups for the Philippines.",
+   "description": "UAZ Hunter 4x4 SUVs, UAZ Bukhanka vans, minibuses and chassis and Sollers ST6 and ST8 pickups. Left-hand drive, built up or kits, CIF Manila, from 2 units. Warranty and lead time.",
+   "facts": "Vehicles\nModel | Type | Warranty\nUAZ Hunter | 4x4 SUV | 1 year or 30,000 km\nUAZ Bukhanka | Vans, minibuses and chassis | 2 years or 80,000 km\nSollers ST6 and ST8 | Pickups | On request\nSupply terms\nTerm | Current information\nMinimum order | From 2 units, one 40-foot container, for a pilot\nIncoterms | CIF Manila\nLead time | About 90 days of production plus about 60 days of delivery\nSteering | Left-hand drive\nFormat | Built up or kits for local assembly\nService, spare parts, local support concepts and LPG-related solutions are considered only where a specific supplier and product are confirmed. Technical and commercial verification is required.\nWhat the importer needs\nImport duties depend on the tariff code and are checked in the Philippine Tariff Finder.\nLifting equipment from Primorsky Krai: container spreaders and load levelers.",
+   "faq": [
+    {
+     "q": "Are UAZ and Sollers vehicles left-hand drive?",
+     "a": "Yes, all vehicles are left-hand drive."
+    },
+    {
+     "q": "What is the minimum order?",
+     "a": "From 2 units, one 40-foot container, for a pilot, CIF Manila."
+    },
+    {
+     "q": "How long does delivery take?",
+     "a": "About 90 days of production plus about 60 days of delivery."
+    },
+    {
+     "q": "What warranty is offered?",
+     "a": "UAZ Hunter 1 year or 30,000 km, UAZ Bukhanka 2 years or 80,000 km."
+    },
+    {
+     "q": "Can vehicles be delivered as kits?",
+     "a": "Yes, vehicles are delivered built up or as kits for local assembly."
+    }
+   ]
+  },
+  {
+   "url": "https://rusphiltrade.com/wheat-flour-rolled-oats/",
+   "lang": "en",
+   "title": "Wheat Flour & Rolled Oats Supplier Philippines – 1–50 kg | RusPhilTrade",
+   "h1": "Russian wheat flour and rolled oats for Philippine buyers.",
+   "description": "Rus Vostochnaya wheat flour, premium, grade 1 and grade 2, in 1 to 50 kg bags (22 t per 20 ft container) and rolled oats, FOB Vladivostok. Flour fortification rules explained.",
+   "facts": "Products\nProduct | Packaging | Shelf life\nWheat flour, Rus Vostochnaya: premium, grade 1, grade 2 | 1, 2, 5, 10, 25 and 50 kg bags. 22 t per 20 ft container | 12 months\nOat flakes, Rus Vostochnaya: 100% oat flakes | 400 g packs, 50,000 packs per 40 ft container. 30 kg bags also listed | 12 months\nStorage: cool, dry, dark place.\nThe exporter is a group of companies working in the food market, including import and export, since 1998. It states that the products are made in Siberia, Altai Krai and southern Russia without GMOs, that customer labels are possible and that payment is accepted in rubles or US dollars.\nThe same exporter also supplies sunflower and soybean oil and milk powder and condensed milk. Bulk grain is a separate direction: wheat, corn, barley and soybeans.\nSupply terms\nTerm | Current information\nMinimum order | Full 20 or 40-foot containers\nIncoterms | FOB Vladivostok\nPort of loading | Vladivostok\nPrice and certificates | On request\nWho it is for\nFood importers, distributors, bakeries, noodle and food manufacturers, HoReCa suppliers and retail distributors.\nWhat the importer needs\nFDA Philippines: License to Operate and Certificate of Product Registration.\nUnder the Philippine Food Fortification Act (Republic Act No. 8976), wheat flour must be fortified with vitamin A and iron. For imported products the fortification is done by the foreign producer; otherwise the importer is responsible for fortifying the product before it is distributed or sold.\nImport duties depend on the tariff code and are checked in the Philippine Tariff Finder.",
+   "faq": [
+    {
+     "q": "What bag sizes are available for wheat flour?",
+     "a": "1, 2, 5, 10, 25 and 50 kg. A 20-foot container holds 22 tonnes."
+    },
+    {
+     "q": "Does imported wheat flour have to be fortified in the Philippines?",
+     "a": "Yes. Republic Act No. 8976 requires wheat flour to be fortified with vitamin A and iron. For imported products the foreign producer fortifies it; otherwise the importer is responsible before distribution or sale."
+    },
+    {
+     "q": "Which grades of flour are available?",
+     "a": "Premium, grade 1 and grade 2."
+    },
+    {
+     "q": "How are rolled oats packed?",
+     "a": "400 g packs, 50,000 packs per 40-foot container. 30 kg bags are also listed."
+    }
+   ]
+  }
+ ]
+}
