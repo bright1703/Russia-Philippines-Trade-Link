@@ -2,16 +2,16 @@
    скрытые поля, проверка, переход на страницу благодарности, цели аналитики. */
 (function () {
   'use strict';
-  var FORMSUBMIT = 'https://formsubmit.co/ajax/rus.import.ph@gmail.com';
+  var FORMSUBMIT = 'https://formsubmit.co/ajax/andrey@rusphiltrade.com';
   var SERVER = 'https://chat.rusphiltrade.com/inquiry.php';
   var ru = (document.documentElement.lang || '').slice(0, 2) === 'ru';
   var T = ru ? {
     required: 'Заполните это поле.', email: 'Проверьте адрес почты.', consent: 'Нужно согласие с политикой конфиденциальности.',
-    check: 'Проверьте отмеченные поля.', sending: 'Отправляем...', failed: 'Не удалось отправить. Напишите, пожалуйста, на rus.import.ph@gmail.com.',
+    check: 'Проверьте отмеченные поля.', sending: 'Отправляем...', failed: 'Не удалось отправить. Напишите, пожалуйста, на andrey@rusphiltrade.com.',
     thanks: '/for-russian-suppliers/thank-you/'
   } : {
     required: 'Please fill in this field.', email: 'Please enter a valid email address.', consent: 'Please accept the Privacy Policy.',
-    check: 'Please check the highlighted fields.', sending: 'Sending...', failed: 'The form could not be sent. Please email rus.import.ph@gmail.com.',
+    check: 'Please check the highlighted fields.', sending: 'Sending...', failed: 'The form could not be sent. Please email andrey@rusphiltrade.com.',
     thanks: '/thank-you/'
   };
 

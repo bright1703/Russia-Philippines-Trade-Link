@@ -22,7 +22,7 @@
       send: 'Send',
       close: 'Close chat',
       privacy: 'We use your messages only to reply to your request and keep them for 30 days.',
-      error: 'Connection problem. Please try again or write to rus.import.ph@gmail.com.',
+      error: 'Connection problem. Please try again or write to andrey@rusphiltrade.com.',
       ended: 'Conversation closed.'
     },
     ru: {
@@ -35,7 +35,7 @@
       send: 'Отправить',
       close: 'Закрыть чат',
       privacy: 'Сообщения используем только для ответа на ваш запрос и храним 30 дней.',
-      error: 'Проблема со связью. Попробуйте ещё раз или напишите на rus.import.ph@gmail.com.',
+      error: 'Проблема со связью. Попробуйте ещё раз или напишите на andrey@rusphiltrade.com.',
       ended: 'Разговор завершён.'
     }
   }[lang];
