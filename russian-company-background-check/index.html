@@ -70,7 +70,7 @@
         "@type": "Organization",
         "name": "Russia–Philippines Trade Link",
         "url": "https://rusphiltrade.com/",
-        "email": "rus.import.ph@gmail.com"
+        "email": "andrey@rusphiltrade.com"
       },
       "areaServed": {
         "@type": "Country",
@@ -658,7 +658,7 @@
   <button class="to-top" type="button" aria-label="Наверх / Back to top" title="Наверх / Back to top"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
   <script>
     (() => {
-      const ENDPOINT = 'https://formsubmit.co/ajax/rus.import.ph@gmail.com';
+      const ENDPOINT = 'https://formsubmit.co/ajax/andrey@rusphiltrade.com';
       const setup = (form, subjectOf) => {
         if (!form) return;
         const status = form.querySelector('.form-status');
@@ -686,7 +686,7 @@
             status.classList.add('is-error');
             status.textContent = 'The form could not be sent. Your email app will open with the inquiry instead.';
             const body = Object.entries(values).map(([key, value]) => `${key}: ${value}`).join('\n');
-            window.location.href = `mailto:rus.import.ph@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = `mailto:andrey@rusphiltrade.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
           } finally {
             button.disabled = false;
           }
@@ -709,7 +709,7 @@
   <script>
     (() => {
       const API = 'https://chat.rusphiltrade.com/order.php';
-      const FORMSUBMIT = 'https://formsubmit.co/ajax/rus.import.ph@gmail.com';
+      const FORMSUBMIT = 'https://formsubmit.co/ajax/andrey@rusphiltrade.com';
       const form = document.querySelector('#order-form');
       if (!form) return;
       const errorBox = form.querySelector('.form-error');
@@ -721,9 +721,9 @@
         checksum: 'This number does not look right. Please check the digits.',
         individual: 'We check legal entities only. A 12-digit INN or 15-digit OGRN belongs to a sole proprietor or an individual.',
         identify: 'Please add the INN, the OGRN or the supplier website so we can identify the company.',
-        limit: 'Too many requests from your connection. Please try again later or email rus.import.ph@gmail.com.',
-        forbidden: 'The request could not be sent. Please email rus.import.ph@gmail.com.',
-        server: 'Something went wrong on our side. Please try again or email rus.import.ph@gmail.com.',
+        limit: 'Too many requests from your connection. Please try again later or email andrey@rusphiltrade.com.',
+        forbidden: 'The request could not be sent. Please email andrey@rusphiltrade.com.',
+        server: 'Something went wrong on our side. Please try again or email andrey@rusphiltrade.com.',
         json: 'Something went wrong. Please try again.'
       };
       const innOk = (v) => {

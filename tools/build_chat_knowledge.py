@@ -53,7 +53,7 @@ for d in directions:
     d.pop("meta_html", None)
 
 out = {
-    "about": "Russia-Philippines Trade Link (rusphiltrade.com): independent B2B trade platform and contact point in the Philippines for selected suppliers from Primorsky Krai (Vladivostok) and the Russian Far East. Trade Agent of Primorsky Krai project. Supplier search is free for buyers; buyers contract and pay suppliers directly. Contact: rus.import.ph@gmail.com.",
+    "about": "Russia-Philippines Trade Link (rusphiltrade.com): independent B2B trade platform and contact point in the Philippines for selected suppliers from Primorsky Krai (Vladivostok) and the Russian Far East. Trade Agent of Primorsky Krai project. Supplier search is free for buyers; buyers contract and pay suppliers directly. Contact: andrey@rusphiltrade.com.",
     "rules": [
         "Answer from these facts when they cover the question, and give the page URL.",
         "Say clearly when a fact is not published (price, MOQ, specification) and offer to request it from the manufacturer.",
