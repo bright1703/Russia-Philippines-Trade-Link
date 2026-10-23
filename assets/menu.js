@@ -1,6 +1,6 @@
 /* Мобильное меню rusphiltrade.com: панель справа на экранах до 1100px.
    Пункты берутся из меню страницы, поэтому на каждой странице свои.
-   Снаружи остаются «Для российских поставщиков» (.nav-ru) и «Новости» (.nav-news). */
+   Снаружи остаются «Для российских поставщиков» (.nav-ru) и «Новости» (.nav-news); раздел для поставщиков есть и в панели. */
 (function () {
   'use strict';
   var nav = document.querySelector('.site-header .nav-links');
@@ -24,6 +24,7 @@
     '.menu-list{display:flex;flex-direction:column;padding:8px 0;overflow-y:auto}',
     '.menu-list a{display:flex;align-items:center;min-height:52px;padding:0 22px;border-bottom:1px solid #e3ebe6;color:var(--ink,#123f35);font-size:17px}',
     '.menu-list a:hover,.menu-list a:focus-visible{background:var(--mint,#e5f0eb)}',
+    '.menu-list a.menu-ru{padding-top:10px;padding-bottom:10px;line-height:1.3;color:var(--green,#0d5042);font-weight:600}',
     '.menu-cta{margin:auto 22px 24px;display:flex;align-items:center;justify-content:center;gap:9px;min-height:50px;background:var(--green,#0d5042);color:#fff!important;font-size:16px;font-weight:600}',
     '}',
     '@media (max-width:1100px) and (min-width:641px){.js-menu .nav-ru .nav-ru-full{display:inline}.js-menu .nav-ru .nav-ru-short{display:none}}',
@@ -82,10 +83,17 @@
   list.setAttribute('aria-label', T.title);
   var cta = null;
   Array.prototype.forEach.call(nav.querySelectorAll(':scope > a'), function (a) {
-    if (a.classList.contains('nav-ru') || a.classList.contains('nav-news')) return;
+    if (a.classList.contains('nav-news')) return;
     var item = document.createElement('a');
     item.href = a.getAttribute('href');
     item.textContent = a.textContent.trim();
+    if (a.classList.contains('nav-ru')) {
+      // В панели — полное название раздела для российских поставщиков.
+      var full = a.querySelector('.nav-ru-full');
+      item.textContent = full ? full.textContent.trim() : item.textContent;
+      item.setAttribute('lang', 'ru');
+      item.className = 'menu-ru';
+    }
     if (a.classList.contains('nav-cta')) {
       item.className = 'menu-cta';
       item.textContent = item.textContent + ' →';
