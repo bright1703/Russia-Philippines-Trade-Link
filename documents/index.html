@@ -100,7 +100,7 @@
   <style>
     :root {
       --ink: #123f35;
-      --ink-soft: #56736b;
+      --ink-soft: #4a655d;
       --green: #0d5042;
       --green-dark: #0a493c;
       --cream: #f4f2eb;
@@ -140,11 +140,11 @@
     .faq-list details p { margin: 0 0 24px; max-width: 760px; color: var(--ink-soft); font-size: 16px; }
     @media (max-width: 640px) { .faq-section { padding: 72px 0 75px; } .faq-list summary { font-size: 19px; } }
     .article-hero { width: min(1180px, calc(100% - 72px)); margin: 0 auto; padding: 60px 0 70px; }
-    .breadcrumbs { margin: 0 0 30px; color: #7e9289; font-size: 14px; }
-    .breadcrumbs a { color: var(--green); }
+    .breadcrumbs { margin: 0 0 30px; color: #5a6d66; font-size: 14px; }
+    .breadcrumbs a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
     .article-hero h1 { max-width: 900px; margin: 0 0 28px; font-size: clamp(42px, 5.4vw, 68px); }
     .article-hero .hero-lead { max-width: 720px; margin-bottom: 30px; }
-    .article-meta { margin-top: 26px; color: #7e9289; font-size: 13px; }
+    .article-meta { margin-top: 26px; color: #5a6d66; font-size: 13px; }
     .article-body { width: min(1180px, calc(100% - 72px)); margin: 0 auto; padding: 0 0 90px; display: grid; grid-template-columns: minmax(0, 760px); }
     .article-body h2 { margin: 64px 0 22px; font-size: clamp(32px, 3.6vw, 44px); line-height: 1.05; }
     .article-body p, .article-body li { color: var(--ink-soft); font-size: 17px; line-height: 1.65; }
@@ -202,7 +202,7 @@
     .hero { position: relative; width: min(1240px, calc(100% - 72px)); min-height: 470px; margin: 0 auto; display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 50px; overflow: hidden; }
     .hero::after { content: ""; position: absolute; z-index: -1; top: 0; right: -12%; width: 58%; height: 100%; background: #efede5; clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%); }
     .hero-copy { padding: 64px 0 78px 3%; max-width: 610px; }
-    .eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 22px; color: #82958d; font-size: 12px; font-weight: 700; letter-spacing: .16em; }
+    .eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 22px; color: #5a6d66; font-size: 12px; font-weight: 700; letter-spacing: .16em; }
     .eyebrow-line { width: 29px; height: 1px; background: #a9bfb5; }
     h1, h2, h3, p { margin-top: 0; }
     h1, h2 { letter-spacing: -.055em; line-height: .98; }
@@ -216,9 +216,9 @@
     .button-primary:hover { background: var(--green-dark); }
     .button-outline { border-color: #a9c4b7; color: var(--ink); }
     .button-outline:hover { background: var(--green); color: #fff; }
-    .text-link, .card-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: #56736b; font-size: 15px; font-weight: 600; }
+    .text-link, .card-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: #4a655d; font-size: 15px; font-weight: 600; }
     .text-link .icon, .card-link .icon { width: 14px; }
-    .hero-note { display: flex; align-items: center; gap: 9px; margin-top: 39px; color: #56736b; font-size: 13px; }
+    .hero-note { display: flex; align-items: center; gap: 9px; margin-top: 39px; color: #4a655d; font-size: 13px; }
     .hero-note .icon { color: var(--green); width: 16px; }
     .hero-panel { justify-self: end; width: min(420px, 100%); margin-right: 4%; padding: 30px 34px 27px; background: rgba(251,250,246,.7); border: 1px solid #e1e3da; box-shadow: 15px 15px 0 rgba(205,211,202,.28); }
     .panel-topline, .panel-bottom { display: flex; justify-content: space-between; gap: 24px; }
@@ -244,7 +244,7 @@
     h2 { margin-bottom: 0; font-size: clamp(41px, 5vw, 61px); font-weight: 500; }
     .section-intro > p:last-child { max-width: 405px; margin: 0 0 3px; color: var(--ink-soft); font-size: 16px; }
     .opportunity-filters { display: flex; flex-wrap: wrap; gap: 8px; margin: -26px 0 43px; }
-    .filter-button { min-height: 44px; padding: 8px 12px; border: 1px solid #c7d9d0; background: transparent; color: #56736b; font: inherit; font-size: 13px; cursor: pointer; }
+    .filter-button { min-height: 44px; padding: 8px 12px; border: 1px solid #c7d9d0; background: transparent; color: #4a655d; font: inherit; font-size: 13px; cursor: pointer; }
     .filter-button:hover, .filter-button.is-active { border-color: var(--green); background: var(--green); color: #fff; }
     .opportunity-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
     .opportunity-card { min-height: 390px; padding: 25px 24px 25px 0; border-right: 1px solid var(--line); }
@@ -257,12 +257,13 @@
     .opportunity-meta { display: grid; gap: 8px; margin: 0 0 19px; color: #688077; font-size: 14px; line-height: 1.4; }
     .opportunity-meta strong { color: var(--ink); font-size: 14px; font-weight: 700; }
     .opportunity-meta span { display: block; }
-    .disclaimer-strip { margin-top: 37px; padding: 17px 20px; border-left: 2px solid var(--accent); background: #f0eee6; color: #6d8279; font-size: 13px; line-height: 1.45; }
-    .card-number, .step-number { color: #9bb2a8; font-size: 12px; font-weight: 700; letter-spacing: .1em; }
+    .disclaimer-strip { margin-top: 37px; padding: 17px 20px; border-left: 2px solid var(--accent); background: #f0eee6; color: #566a62; font-size: 13px; line-height: 1.45; }
+    .card-number { color: #5a6d66; font-size: 12px; font-weight: 700; letter-spacing: .1em; }
+    .step-number { color: #b5c9c0; font-size: 12px; font-weight: 700; letter-spacing: .1em; }
     .product-card h3 { min-height: 45px; margin: 20px 0 15px; font-family: var(--serif); font-size: 22px; font-weight: 400; line-height: 1.05; }
     .product-card p { min-height: 91px; margin-bottom: 18px; color: var(--ink-soft); font-size: 16px; line-height: 1.45; }
     .tag-list { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 20px; }
-    .tag-list span { padding: 4px 7px; border: 1px solid #d5e2db; color: #56736b; font-size: 12px; }
+    .tag-list span { padding: 4px 7px; border: 1px solid #d5e2db; color: #4a655d; font-size: 12px; }
     .card-link { color: var(--green); font-size: 14px; }
     .dark-section { display: grid; grid-template-columns: .9fr 1.1fr; gap: 86px; padding: 96px max(36px, calc((100vw - 1180px) / 2)); background: var(--green); color: #fff; }
     .eyebrow-light { color: #a8c7b8; }
@@ -292,7 +293,7 @@
     .exporter-benefit .icon-box { flex: 0 0 25px; width: 25px; height: 25px; border-color: #b7cec1; }
     .exporter-benefit .icon-box .icon { width: 15px; height: 15px; }
     .exporter-accent { margin: 24px 0 15px; padding: 15px 18px; border-left: 2px solid var(--accent); background: #f0eee6; color: var(--ink); font-family: var(--serif); font-size: 17px; line-height: 1.32; }
-    .exporter-note { max-width: 620px; margin-bottom: 26px; color: #84968e; font-size: 13px; line-height: 1.5; }
+    .exporter-note { max-width: 620px; margin-bottom: 26px; color: #5a6d66; font-size: 13px; line-height: 1.5; }
     .exporter-cta { min-height: 49px; padding-left: 21px; padding-right: 21px; }
     .due-diligence-section { width: 100%; margin: 0; padding: 102px max(36px, calc((100vw - 1180px) / 2)); background: #edf4ef; }
     .due-diligence-inner { width: min(1180px, 100%); margin: 0 auto; display: grid; grid-template-columns: .92fr 1.08fr; gap: 82px; align-items: start; }
@@ -310,16 +311,16 @@
     .due-form { display: grid; gap: 16px; }
     .due-form h3 { margin: 0 0 3px; color: var(--ink); font-family: var(--serif); font-size: 26px; font-weight: 400; }
     .due-form-intro { margin: 0 0 6px; color: #71877e; font-size: 15px; line-height: 1.45; }
-    .due-form label { display: grid; gap: 7px; color: #56736b; font-size: 14px; }
+    .due-form label { display: grid; gap: 7px; color: #4a655d; font-size: 14px; }
     .due-form input, .due-form textarea { width: 100%; padding: 10px 0; border: 0; border-bottom: 1px solid #b9ccc3; outline: none; background: transparent; color: var(--ink); font: inherit; font-size: 16px; resize: vertical; }
     .due-form input:focus, .due-form textarea:focus, .inquiry-form select:focus { border-color: var(--green); }
     .due-form input::placeholder, .due-form textarea::placeholder { color: #9cafa7; }
     .due-form .button { justify-self: start; margin-top: 7px; }
-    .due-form small { color: #7e9289; font-size: 13px; line-height: 1.45; }
-    .due-sources { margin-top: 27px; padding-top: 22px; border-top: 1px solid #cbdcd3; color: #6d8379; font-size: 14px; line-height: 1.45; }
+    .due-form small { color: #5a6d66; font-size: 13px; line-height: 1.45; }
+    .due-sources { margin-top: 27px; padding-top: 22px; border-top: 1px solid #cbdcd3; color: #566a62; font-size: 14px; line-height: 1.45; }
     .due-sources strong { display: block; margin-bottom: 9px; color: var(--ink); font-family: var(--serif); font-size: 18px; font-weight: 400; }
     .due-sources ul { display: grid; gap: 6px; margin: 0; padding-left: 17px; }
-    .due-sources p { margin: 13px 0 0; color: #84968e; font-size: 13px; }
+    .due-sources p { margin: 13px 0 0; color: #5a6d66; font-size: 13px; }
     .contact-section { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; padding: 98px max(36px, calc((100vw - 1180px) / 2)); background: var(--mint); }
     .contact-copy h2 { margin-bottom: 25px; }
     .contact-copy > p { max-width: 415px; color: var(--ink-soft); font-size: 16px; }
@@ -328,13 +329,13 @@
     .contact-details a { min-height: 44px; }
     .contact-details .icon { width: 16px; }
     .inquiry-form { display: grid; gap: 17px; align-content: start; }
-    .inquiry-form label { display: grid; gap: 7px; color: #56736b; font-size: 14px; }
+    .inquiry-form label { display: grid; gap: 7px; color: #4a655d; font-size: 14px; }
     .inquiry-form input, .inquiry-form textarea, .inquiry-form select { width: 100%; padding: 10px 0; border: 0; border-bottom: 1px solid #b9ccc3; outline: none; background: transparent; color: var(--ink); font: inherit; font-size: 16px; resize: vertical; }
     .inquiry-form input:focus, .inquiry-form textarea:focus, .inquiry-form select:focus { border-color: var(--green); }
     .inquiry-form input::placeholder, .inquiry-form textarea::placeholder { color: #9cafa7; }
     .inquiry-form .button { justify-self: start; margin-top: 10px; }
-    .inquiry-form small { color: #56736b; font-size: 13px; line-height: 1.4; }
-    .site-footer { display: flex; justify-content: space-between; gap: 34px; width: min(1180px, calc(100% - 72px)); margin: 0 auto; padding: 28px 0 31px; color: #56736b; font-size: 13px; }
+    .inquiry-form small { color: #4a655d; font-size: 13px; line-height: 1.4; }
+    .site-footer { display: flex; justify-content: space-between; gap: 34px; width: min(1180px, calc(100% - 72px)); margin: 0 auto; padding: 28px 0 31px; color: #4a655d; font-size: 13px; }
     .footer-brand { display: flex; align-items: center; gap: 9px; color: var(--ink); }
     .footer-brand .brand-mark { width: 25px; height: 25px; }
     .footer-brand .brand-mark .icon { width: 15px; }
@@ -410,7 +411,7 @@
     .rpt-form-inner > div > p { color: var(--ink-soft); font-size: 17px; line-height: 1.6; }
     .rpt-form { display: grid; gap: 15px; padding: 26px; border: 1px solid #c5d9cf; background: rgba(251,250,246,.9); }
     .rpt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-    .rpt-form label { display: grid; gap: 6px; color: #56736b; font-size: 14px; }
+    .rpt-form label { display: grid; gap: 6px; color: #4a655d; font-size: 14px; }
     .rpt-form input, .rpt-form select, .rpt-form textarea { width: 100%; padding: 10px 12px; border: 1px solid #b9ccc3; background: #fff; color: var(--ink); font: inherit; font-size: 16px; }
     .rpt-form input:focus, .rpt-form select:focus, .rpt-form textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
     .rpt-form [aria-invalid="true"] { border-color: #a33b2b; }
@@ -427,7 +428,13 @@
     .todo { padding: 0 4px; background: #fff1b8; color: #6b4e00; font-weight: 600; }
     .doc-card { margin: 0 0 26px; padding: 20px 22px; border: 1px solid #cbd9d2; background: #fff; }
     .doc-card h3 { margin: 0 0 10px; }
-    .doc-note { margin: 8px 0 0; font-size: 13px; opacity: .75; }
+    .doc-note { margin: 8px 0 0; font-size: 13px; color: #566a62; }
+    .doc-tr { margin-top: 14px; border-top: 1px solid #cbd9d2; }
+    .doc-tr summary { padding: 12px 0; color: var(--green); font-weight: 600; cursor: pointer; }
+    .doc-tr-body { padding: 4px 0 6px; }
+    .doc-tr-body p, .doc-tr-body li { font-size: 15px; line-height: 1.6; }
+    .doc-tr-body h4 { margin: 18px 0 6px; font-size: 15px; }
+    .doc-tr-title { color: var(--ink); }
   </style>
 </head>
 <body>
@@ -466,32 +473,100 @@
       <h2>How we are paid</h2>
       <p>Our work as a trade agent is supported under a program of the Primorsky Krai Entrepreneurship Support Center, so buyers pay nothing for supplier matching. Separately, we offer paid consulting, such as a <a href="/russian-company-background-check/">public-records review of a Russian company</a>. If a supplier signs a separate commission agreement with us, we tell the buyer.</p>
       <h2>Documents</h2>
+      <p>Below are our English translations of the documents. The Russian originals are kept by the parties and are not published on this site. To confirm them, contact the Center directly (see below).</p>
       <div class="doc-card"><h3>Cooperation agreement, 10 July 2026</h3>
         <table class="source-table spec-table"><tbody>
           <tr><td>Parties</td><td>Ministry of International and Foreign Economic Relations of Primorsky Krai; Primorsky Krai Entrepreneurship Support Center (autonomous non-profit organisation); Andrey V. Subich</td></tr>
           <tr><td>What it confirms</td><td>Cooperation to help Primorsky Krai businesses enter the Philippine market: information, analytical and consulting support, market research and help with preparing export contracts</td></tr>
           <tr><td>Term</td><td>In force from signing, no fixed end date. Can be terminated with 30 days' written notice</td></tr>
           <tr><td>Note</td><td>The agreement creates no financial obligations between the parties and is not a joint-activity contract</td></tr>
-        </tbody></table><p class="doc-note">Unofficial English summary of a Russian-language document.</p><p>Scan: <span class="todo">[TODO: scan with personal data hidden]</span></p></div>
+        </tbody></table><details class="doc-tr"><summary>Read the full English translation</summary><div class="doc-tr-body"><p class="doc-tr-title"><b>AGREEMENT</b><br>on cooperation between the Ministry of International and Foreign Economic Relations of Primorsky Krai, the autonomous non-profit organisation "Primorsky Krai Entrepreneurship Support Center" and Andrey Vladimirovich Subich, citizen of the Russian Federation</p>
+<p>Vladivostok, 10 July 2026</p>
+<p>The Ministry of International and Foreign Economic Relations of Primorsky Krai, represented by the Minister, Konstantin Gennadyevich Sidorenko, acting on the basis of the Regulations on the Ministry of International and Foreign Economic Relations of Primorsky Krai approved by Resolution of the Government of Primorsky Krai No. 949-pp of 27 December 2024;</p>
+<p>the autonomous non-profit organisation "Primorsky Krai Entrepreneurship Support Center", represented by its General Director, Ivan Aleksandrovich Mashunin, acting on the basis of the Charter of the autonomous non-profit organisation "Primorsky Krai Entrepreneurship Support Center";</p>
+<p>and Andrey Vladimirovich Subich, citizen of the Russian Federation, acting as an individual under the special tax regime "Professional Income Tax",</p>
+<p>hereinafter referred to as the "Parties", have concluded this agreement (the "Agreement") as follows.</p>
+<h4>Article 1</h4>
+<p>The subject of the Agreement is cooperation between the Parties to assist entrepreneurs of Primorsky Krai in entering the market of the Republic of the Philippines.</p>
+<h4>Article 2</h4>
+<p>Within their competence and in accordance with applicable law, the Parties intend to cooperate on the following matters related to the subject of this Agreement:</p>
+<ul><li>raising the awareness of Primorsky Krai entrepreneurs of opportunities to enter the market of the Republic of the Philippines;</li>
+<li>providing analytical, consulting, reference and information support on matters within the Parties' sphere of activity;</li>
+<li>providing information, consulting and other support to Primorsky Krai entrepreneurs;</li>
+<li>research of the market and the competitive environment of the Republic of the Philippines;</li>
+<li>assistance in preparing and concluding export contracts.</li></ul>
+<h4>Article 3</h4>
+<p>The Parties will cooperate in the following main areas:</p>
+<ul><li>information, methodological and consulting interaction aimed at involving Primorsky Krai entrepreneurs in entering the market of the Republic of the Philippines;</li>
+<li>organising joint events, including conferences, seminars and other public events focused on the Philippines;</li>
+<li>developing agreed proposals on creating favourable conditions for Primorsky Krai entrepreneurs doing business in the market of the Republic of the Philippines;</li>
+<li>monitoring the conditions for doing business in the market of the Republic of the Philippines;</li>
+<li>increasing the activity of Primorsky Krai entrepreneurs in developing trade with the Republic of the Philippines and building a positive public view of promoting products on a foreign market;</li>
+<li>exchanging information on business matters and on the current and planned activities of the Parties.</li></ul>
+<h4>Article 4</h4>
+<p>The Agreement enters into force when signed by the Parties.</p>
+<p>The Agreement may be supplemented and amended by mutual consent of the Parties by signing an additional agreement. All supplements and amendments form an integral part of the Agreement, are made in writing and must be signed by duly authorised representatives of the Parties.</p>
+<p>The Agreement may be terminated by agreement of the Parties by signing an additional agreement. It may also be terminated unilaterally at the initiative of one of the Parties by written notice to the other Parties sent no later than 30 (thirty) calendar days before the termination date. In that case the Parties' obligations under contracts and agreements concluded in connection with the implementation of this Agreement remain in force for the term and on the conditions set by those contracts and agreements.</p>
+<h4>Article 5</h4>
+<p>In all matters not provided for by the Agreement, the Parties are guided by applicable law.</p>
+<p>The Parties undertake not to disclose confidential information that became known to them in the course of cooperation, except as provided by applicable law.</p>
+<p>The Agreement does not create any financial or other property obligations for the Parties. The Agreement is not a preliminary contract, an agreement on the conduct of negotiations or a joint activity contract. The Parties do not undertake to conclude other contracts (agreements) on its basis in the future and may not compel each other to do so in court.</p>
+<p>The Parties acknowledge that neither at the time of signing nor in the future does this Agreement restrict them from signing contracts (agreements) with subjects and purposes similar to this Agreement, either between the Parties or with any organisations operating in the Russian Federation or abroad, public law entities or other legal persons.</p>
+<p>The Agreement will be implemented in accordance with the principles of open competition. It is not aimed at restricting the Parties' cooperation with other persons and does not seek to restrict the activities of other organisations or persons.</p>
+<p>The Agreement does not affect the rights and obligations of the Parties under other agreements (contracts) to which they are party.</p>
+<p>The Parties intend to resolve all disputes and disagreements arising from the implementation of the Agreement through negotiations.</p>
+<p>The Agreement is made in 3 (three) copies of equal legal force, one original for each Party.</p>
+<h4>Signatures of the Parties</h4>
+<ul><li>Ministry of International and Foreign Economic Relations of Primorsky Krai, 22 Svetlanskaya St, Vladivostok 690110. Minister K.G. Sidorenko [signature and seal not reproduced]</li>
+<li>Autonomous non-profit organisation "Primorsky Krai Entrepreneurship Support Center", 7a Fontannaya St, Vladivostok 690090. General Director I.A. Mashunin [signature and seal not reproduced]</li>
+<li>Citizen of the Russian Federation Andrey Vladimirovich Subich [passport details, address, contact details and signature not reproduced]</li></ul></div></details><p class="doc-note">Unofficial English translation of a Russian-language document. The Russian original is not published. Signatures, seals and personal data are not reproduced.</p></div>
       <div class="doc-card"><h3>Letter No. 918 of 19 August 2026 to the Embassy of the Russian Federation in the Philippines</h3>
         <table class="source-table spec-table"><tbody>
           <tr><td>Issued by</td><td>Primorsky Krai Entrepreneurship Support Center</td></tr>
           <tr><td>What it confirms</td><td>Informs the Embassy about the cooperation agreement and that Andrey Subich leads the Philippine direction under the "Trade Agent of Primorsky Krai" project</td></tr>
-        </tbody></table><p class="doc-note">Unofficial English summary of a Russian-language document.</p><p>Scan: <span class="todo">[TODO: scan]</span></p></div>
+        </tbody></table><details class="doc-tr"><summary>Read the full English translation</summary><div class="doc-tr-body"><p class="doc-tr-title">Autonomous non-profit organisation "Primorsky Krai Entrepreneurship Support Center" ("Moy Biznes", Primorsky Krai business development institutions)<br>7a Fontannaya St, Vladivostok 690090. Phone: 8-800-555-09-33. Email: mb.office@cpp25.ru<br>OGRN 1132500002007, INN/KPP 2543970855 / 254001001<br><b>No. 918 of 19 August 2026</b></p>
+<p>To: Embassy of the Russian Federation in the Republic of the Philippines</p>
+<p>Dear colleagues,</p>
+<p>We inform you that on 10 July 2026 a cooperation agreement was signed between the Ministry of International and Foreign Economic Relations of Primorsky Krai, the autonomous non-profit organisation "Primorsky Krai Entrepreneurship Support Center" and Andrey Vladimirovich Subich, citizen of the Russian Federation. Under this agreement, assistance to Primorsky Krai entrepreneurs in entering the market of the Republic of the Philippines has been organised.</p>
+<p>The agreement provides for joint work in the Philippine direction: analytical, consulting and information support for entrepreneurs, study of the market and the competitive environment of the Philippines, and help in preparing and concluding export contracts.</p>
+<p>Andrey Vladimirovich Subich leads this direction under the "Trade Agent of Primorsky Krai" project and provides practical support to Primorsky Krai companies that are looking for partners in the Republic of the Philippines, assessing market opportunities and preparing to enter the local market.</p>
+<p>His tasks include:</p>
+<ul><li>analysing the prospects for supplying products of Primorsky Krai enterprises to the Philippine market;</li>
+<li>searching for importers, distributors and business partners;</li>
+<li>preliminary assessment of Philippine companies' interest in cooperation;</li>
+<li>organising business contacts and negotiations;</li>
+<li>exchanging information on regulation, industry specifics and business practice in the market of the Republic of the Philippines.</li></ul>
+<p>We would be grateful for working interaction with Andrey Vladimirovich Subich on promoting the products and services of Primorsky Krai companies on the Philippine market, and on other matters of developing trade and economic cooperation.</p>
+<p>Contacts: tel. +63 926 747 8759; email [personal email not reproduced].</p>
+<p>General Director I.A. Mashunin [signature and seal not reproduced]</p></div></details><p class="doc-note">Unofficial English translation of a Russian-language document. The Russian original is not published. Signatures, seals and personal data are not reproduced.</p></div>
       <div class="doc-card"><h3>Letter No. 919 of 19 August 2026 to the Trade Representation of the Russian Federation in the Philippines</h3>
         <table class="source-table spec-table"><tbody>
           <tr><td>Issued by</td><td>Primorsky Krai Entrepreneurship Support Center</td></tr>
           <tr><td>What it confirms</td><td>The same information for the Trade Representation</td></tr>
-        </tbody></table><p class="doc-note">Unofficial English summary of a Russian-language document.</p><p>Scan: <span class="todo">[TODO: scan]</span></p></div>
+        </tbody></table><details class="doc-tr"><summary>Read the full English translation</summary><div class="doc-tr-body"><p class="doc-tr-title">Autonomous non-profit organisation "Primorsky Krai Entrepreneurship Support Center" ("Moy Biznes", Primorsky Krai business development institutions)<br>7a Fontannaya St, Vladivostok 690090. Phone: 8-800-555-09-33. Email: mb.office@cpp25.ru<br>OGRN 1132500002007, INN/KPP 2543970855 / 254001001<br><b>No. 919 of 19 August 2026</b></p>
+<p>To: Trade Representation of the Russian Federation in the Republic of the Philippines</p>
+<p>Dear colleagues,</p>
+<p>We inform you that on 10 July 2026 a cooperation agreement was signed between the Ministry of International and Foreign Economic Relations of Primorsky Krai, the autonomous non-profit organisation "Primorsky Krai Entrepreneurship Support Center" and Andrey Vladimirovich Subich, citizen of the Russian Federation. Under this agreement, assistance to Primorsky Krai entrepreneurs in entering the market of the Republic of the Philippines has been organised.</p>
+<p>The agreement provides for joint work in the Philippine direction: analytical, consulting and information support for entrepreneurs, study of the market and the competitive environment of the Philippines, and help in preparing and concluding export contracts.</p>
+<p>Andrey Vladimirovich Subich leads this direction under the "Trade Agent of Primorsky Krai" project and provides practical support to Primorsky Krai companies that are looking for partners in the Republic of the Philippines, assessing market opportunities and preparing to enter the local market.</p>
+<p>His tasks include:</p>
+<ul><li>analysing the prospects for supplying products of Primorsky Krai enterprises to the Philippine market;</li>
+<li>searching for importers, distributors and business partners;</li>
+<li>preliminary assessment of Philippine companies' interest in cooperation;</li>
+<li>organising business contacts and negotiations;</li>
+<li>exchanging information on regulation, industry specifics and business practice in the market of the Republic of the Philippines.</li></ul>
+<p>We would be grateful for working interaction with Andrey Vladimirovich Subich on promoting the products and services of Primorsky Krai companies on the Philippine market, and on other matters of developing trade and economic cooperation.</p>
+<p>Contacts: tel. +63 926 747 8759; email [personal email not reproduced].</p>
+<p>General Director I.A. Mashunin [signature and seal not reproduced]</p></div></details><p class="doc-note">Unofficial English translation of a Russian-language document. The Russian original is not published. Signatures, seals and personal data are not reproduced.</p></div>
       <h2>Verify with the Center</h2>
-      <p><span class="todo">[TODO: official contact at the Center that confirms the status]</span></p>
+      <p>You can ask the Primorsky Krai Entrepreneurship Support Center ("Moy Biznes" centre) directly about the cooperation agreement of 10 July 2026 with Andrey V. Subich. General email: <a href="mailto:mb.office@cpp25.ru">mb.office@cpp25.ru</a>. Official website: <a href="https://xn--25-9kcqjffxnf3b.xn--p1ai/" rel="noopener" lang="ru">мойбизнес25.рф</a>. The Center replies in Russian.</p>
       <h2>Related products and guides</h2>
       <div class="related"><a href="/russian-company-background-check/">Public-records review of a Russian company</a><a href="/guides/is-it-legal-to-import-from-russia/">Guide: is it legal to import from Russia?</a><a href="/guides/how-to-check-a-russian-company/">Guide: how to check a Russian company</a><a href="/#products">All supplier directions</a></div>
     </article>
     <section class="rpt-form-section" id="inquiry"><div class="rpt-form-inner"><div><p class="eyebrow">QUESTIONS ABOUT OUR STATUS</p><h2>Need a document or a confirmation?</h2><p>Write to <a href="mailto:andrey@rusphiltrade.com">andrey@rusphiltrade.com</a> or use the <a href="/#contact">contact form</a>.</p></div></div></section>
   </main>
 
-  <footer class="site-footer"><div class="footer-brand"><span class="brand-mark"><svg class="icon"><use href="#earth"></use></svg></span><span>Russia–Philippines <b>Trade Link</b></span></div><p>Russia–Philippines Trade Link is an independent, non-government website of a trade agent working within the "Trade Agent of Primorsky Krai" export support program. It is not an official website of the Government of Primorsky Krai or the Russian Federation. We do not sell goods or accept payments for them.</p><span>© 2026 · <a href="/philippine-trade-news/">Trade news</a> · <a href="/#how-it-works">How it works</a> · <a href="/business-car-manila/">Car with driver in Manila</a> · <a href="/for-russian-suppliers/" lang="ru">Для российских поставщиков</a> · <a href="https://www.linkedin.com/in/andrey-subich-09b696435/" rel="noopener">LinkedIn</a> · <a href="/terms/">Terms of Service</a> · <a href="/privacy/">Privacy Policy</a></span></footer>
+  <footer class="site-footer"><div class="footer-brand"><span class="brand-mark"><svg class="icon"><use href="#earth"></use></svg></span><span>Russia–Philippines <b>Trade Link</b></span></div><p>Russia–Philippines Trade Link is an independent, non-government website of a trade agent working within the "Trade Agent of Primorsky Krai" export support program. It is not an official website of the Government of Primorsky Krai or the Russian Federation. We do not sell goods or accept payments for them.</p><span>© 2026 · <a href="https://wa.me/639215884430" rel="noopener">WhatsApp / Telegram +63 921 588 4430</a> · <a href="/philippine-trade-news/">Trade news</a> · <a href="/#how-it-works">How it works</a> · <a href="/business-car-manila/">Car with driver in Manila</a> · <a href="/for-russian-suppliers/" lang="ru">Для российских поставщиков</a> · <a href="https://www.linkedin.com/in/andrey-subich-09b696435/" rel="noopener">LinkedIn</a> · <a href="/terms/">Terms of Service</a> · <a href="/privacy/">Privacy Policy</a></span></footer>
   <button class="to-top" type="button" aria-label="Наверх / Back to top" title="Наверх / Back to top"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
   <script>
     (() => {

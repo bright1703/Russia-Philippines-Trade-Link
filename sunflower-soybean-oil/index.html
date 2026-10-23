@@ -148,7 +148,7 @@
   <style>
     :root {
       --ink: #123f35;
-      --ink-soft: #56736b;
+      --ink-soft: #4a655d;
       --green: #0d5042;
       --green-dark: #0a493c;
       --cream: #f4f2eb;
@@ -188,11 +188,11 @@
     .faq-list details p { margin: 0 0 24px; max-width: 760px; color: var(--ink-soft); font-size: 16px; }
     @media (max-width: 640px) { .faq-section { padding: 72px 0 75px; } .faq-list summary { font-size: 19px; } }
     .article-hero { width: min(1180px, calc(100% - 72px)); margin: 0 auto; padding: 60px 0 70px; }
-    .breadcrumbs { margin: 0 0 30px; color: #7e9289; font-size: 14px; }
-    .breadcrumbs a { color: var(--green); }
+    .breadcrumbs { margin: 0 0 30px; color: #5a6d66; font-size: 14px; }
+    .breadcrumbs a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
     .article-hero h1 { max-width: 900px; margin: 0 0 28px; font-size: clamp(42px, 5.4vw, 68px); }
     .article-hero .hero-lead { max-width: 720px; margin-bottom: 30px; }
-    .article-meta { margin-top: 26px; color: #7e9289; font-size: 13px; }
+    .article-meta { margin-top: 26px; color: #5a6d66; font-size: 13px; }
     .article-body { width: min(1180px, calc(100% - 72px)); margin: 0 auto; padding: 0 0 90px; display: grid; grid-template-columns: minmax(0, 760px); }
     .article-body h2 { margin: 64px 0 22px; font-size: clamp(32px, 3.6vw, 44px); line-height: 1.05; }
     .article-body p, .article-body li { color: var(--ink-soft); font-size: 17px; line-height: 1.65; }
@@ -250,7 +250,7 @@
     .hero { position: relative; width: min(1240px, calc(100% - 72px)); min-height: 470px; margin: 0 auto; display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 50px; overflow: hidden; }
     .hero::after { content: ""; position: absolute; z-index: -1; top: 0; right: -12%; width: 58%; height: 100%; background: #efede5; clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%); }
     .hero-copy { padding: 64px 0 78px 3%; max-width: 610px; }
-    .eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 22px; color: #82958d; font-size: 12px; font-weight: 700; letter-spacing: .16em; }
+    .eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 22px; color: #5a6d66; font-size: 12px; font-weight: 700; letter-spacing: .16em; }
     .eyebrow-line { width: 29px; height: 1px; background: #a9bfb5; }
     h1, h2, h3, p { margin-top: 0; }
     h1, h2 { letter-spacing: -.055em; line-height: .98; }
@@ -264,9 +264,9 @@
     .button-primary:hover { background: var(--green-dark); }
     .button-outline { border-color: #a9c4b7; color: var(--ink); }
     .button-outline:hover { background: var(--green); color: #fff; }
-    .text-link, .card-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: #56736b; font-size: 15px; font-weight: 600; }
+    .text-link, .card-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: #4a655d; font-size: 15px; font-weight: 600; }
     .text-link .icon, .card-link .icon { width: 14px; }
-    .hero-note { display: flex; align-items: center; gap: 9px; margin-top: 39px; color: #56736b; font-size: 13px; }
+    .hero-note { display: flex; align-items: center; gap: 9px; margin-top: 39px; color: #4a655d; font-size: 13px; }
     .hero-note .icon { color: var(--green); width: 16px; }
     .hero-panel { justify-self: end; width: min(420px, 100%); margin-right: 4%; padding: 30px 34px 27px; background: rgba(251,250,246,.7); border: 1px solid #e1e3da; box-shadow: 15px 15px 0 rgba(205,211,202,.28); }
     .panel-topline, .panel-bottom { display: flex; justify-content: space-between; gap: 24px; }
@@ -292,7 +292,7 @@
     h2 { margin-bottom: 0; font-size: clamp(41px, 5vw, 61px); font-weight: 500; }
     .section-intro > p:last-child { max-width: 405px; margin: 0 0 3px; color: var(--ink-soft); font-size: 16px; }
     .opportunity-filters { display: flex; flex-wrap: wrap; gap: 8px; margin: -26px 0 43px; }
-    .filter-button { min-height: 44px; padding: 8px 12px; border: 1px solid #c7d9d0; background: transparent; color: #56736b; font: inherit; font-size: 13px; cursor: pointer; }
+    .filter-button { min-height: 44px; padding: 8px 12px; border: 1px solid #c7d9d0; background: transparent; color: #4a655d; font: inherit; font-size: 13px; cursor: pointer; }
     .filter-button:hover, .filter-button.is-active { border-color: var(--green); background: var(--green); color: #fff; }
     .opportunity-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
     .opportunity-card { min-height: 390px; padding: 25px 24px 25px 0; border-right: 1px solid var(--line); }
@@ -305,12 +305,13 @@
     .opportunity-meta { display: grid; gap: 8px; margin: 0 0 19px; color: #688077; font-size: 14px; line-height: 1.4; }
     .opportunity-meta strong { color: var(--ink); font-size: 14px; font-weight: 700; }
     .opportunity-meta span { display: block; }
-    .disclaimer-strip { margin-top: 37px; padding: 17px 20px; border-left: 2px solid var(--accent); background: #f0eee6; color: #6d8279; font-size: 13px; line-height: 1.45; }
-    .card-number, .step-number { color: #9bb2a8; font-size: 12px; font-weight: 700; letter-spacing: .1em; }
+    .disclaimer-strip { margin-top: 37px; padding: 17px 20px; border-left: 2px solid var(--accent); background: #f0eee6; color: #566a62; font-size: 13px; line-height: 1.45; }
+    .card-number { color: #5a6d66; font-size: 12px; font-weight: 700; letter-spacing: .1em; }
+    .step-number { color: #b5c9c0; font-size: 12px; font-weight: 700; letter-spacing: .1em; }
     .product-card h3 { min-height: 45px; margin: 20px 0 15px; font-family: var(--serif); font-size: 22px; font-weight: 400; line-height: 1.05; }
     .product-card p { min-height: 91px; margin-bottom: 18px; color: var(--ink-soft); font-size: 16px; line-height: 1.45; }
     .tag-list { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 20px; }
-    .tag-list span { padding: 4px 7px; border: 1px solid #d5e2db; color: #56736b; font-size: 12px; }
+    .tag-list span { padding: 4px 7px; border: 1px solid #d5e2db; color: #4a655d; font-size: 12px; }
     .card-link { color: var(--green); font-size: 14px; }
     .dark-section { display: grid; grid-template-columns: .9fr 1.1fr; gap: 86px; padding: 96px max(36px, calc((100vw - 1180px) / 2)); background: var(--green); color: #fff; }
     .eyebrow-light { color: #a8c7b8; }
@@ -340,7 +341,7 @@
     .exporter-benefit .icon-box { flex: 0 0 25px; width: 25px; height: 25px; border-color: #b7cec1; }
     .exporter-benefit .icon-box .icon { width: 15px; height: 15px; }
     .exporter-accent { margin: 24px 0 15px; padding: 15px 18px; border-left: 2px solid var(--accent); background: #f0eee6; color: var(--ink); font-family: var(--serif); font-size: 17px; line-height: 1.32; }
-    .exporter-note { max-width: 620px; margin-bottom: 26px; color: #84968e; font-size: 13px; line-height: 1.5; }
+    .exporter-note { max-width: 620px; margin-bottom: 26px; color: #5a6d66; font-size: 13px; line-height: 1.5; }
     .exporter-cta { min-height: 49px; padding-left: 21px; padding-right: 21px; }
     .due-diligence-section { width: 100%; margin: 0; padding: 102px max(36px, calc((100vw - 1180px) / 2)); background: #edf4ef; }
     .due-diligence-inner { width: min(1180px, 100%); margin: 0 auto; display: grid; grid-template-columns: .92fr 1.08fr; gap: 82px; align-items: start; }
@@ -358,16 +359,16 @@
     .due-form { display: grid; gap: 16px; }
     .due-form h3 { margin: 0 0 3px; color: var(--ink); font-family: var(--serif); font-size: 26px; font-weight: 400; }
     .due-form-intro { margin: 0 0 6px; color: #71877e; font-size: 15px; line-height: 1.45; }
-    .due-form label { display: grid; gap: 7px; color: #56736b; font-size: 14px; }
+    .due-form label { display: grid; gap: 7px; color: #4a655d; font-size: 14px; }
     .due-form input, .due-form textarea { width: 100%; padding: 10px 0; border: 0; border-bottom: 1px solid #b9ccc3; outline: none; background: transparent; color: var(--ink); font: inherit; font-size: 16px; resize: vertical; }
     .due-form input:focus, .due-form textarea:focus, .inquiry-form select:focus { border-color: var(--green); }
     .due-form input::placeholder, .due-form textarea::placeholder { color: #9cafa7; }
     .due-form .button { justify-self: start; margin-top: 7px; }
-    .due-form small { color: #7e9289; font-size: 13px; line-height: 1.45; }
-    .due-sources { margin-top: 27px; padding-top: 22px; border-top: 1px solid #cbdcd3; color: #6d8379; font-size: 14px; line-height: 1.45; }
+    .due-form small { color: #5a6d66; font-size: 13px; line-height: 1.45; }
+    .due-sources { margin-top: 27px; padding-top: 22px; border-top: 1px solid #cbdcd3; color: #566a62; font-size: 14px; line-height: 1.45; }
     .due-sources strong { display: block; margin-bottom: 9px; color: var(--ink); font-family: var(--serif); font-size: 18px; font-weight: 400; }
     .due-sources ul { display: grid; gap: 6px; margin: 0; padding-left: 17px; }
-    .due-sources p { margin: 13px 0 0; color: #84968e; font-size: 13px; }
+    .due-sources p { margin: 13px 0 0; color: #5a6d66; font-size: 13px; }
     .contact-section { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; padding: 98px max(36px, calc((100vw - 1180px) / 2)); background: var(--mint); }
     .contact-copy h2 { margin-bottom: 25px; }
     .contact-copy > p { max-width: 415px; color: var(--ink-soft); font-size: 16px; }
@@ -376,13 +377,13 @@
     .contact-details a { min-height: 44px; }
     .contact-details .icon { width: 16px; }
     .inquiry-form { display: grid; gap: 17px; align-content: start; }
-    .inquiry-form label { display: grid; gap: 7px; color: #56736b; font-size: 14px; }
+    .inquiry-form label { display: grid; gap: 7px; color: #4a655d; font-size: 14px; }
     .inquiry-form input, .inquiry-form textarea, .inquiry-form select { width: 100%; padding: 10px 0; border: 0; border-bottom: 1px solid #b9ccc3; outline: none; background: transparent; color: var(--ink); font: inherit; font-size: 16px; resize: vertical; }
     .inquiry-form input:focus, .inquiry-form textarea:focus, .inquiry-form select:focus { border-color: var(--green); }
     .inquiry-form input::placeholder, .inquiry-form textarea::placeholder { color: #9cafa7; }
     .inquiry-form .button { justify-self: start; margin-top: 10px; }
-    .inquiry-form small { color: #56736b; font-size: 13px; line-height: 1.4; }
-    .site-footer { display: flex; justify-content: space-between; gap: 34px; width: min(1180px, calc(100% - 72px)); margin: 0 auto; padding: 28px 0 31px; color: #56736b; font-size: 13px; }
+    .inquiry-form small { color: #4a655d; font-size: 13px; line-height: 1.4; }
+    .site-footer { display: flex; justify-content: space-between; gap: 34px; width: min(1180px, calc(100% - 72px)); margin: 0 auto; padding: 28px 0 31px; color: #4a655d; font-size: 13px; }
     .footer-brand { display: flex; align-items: center; gap: 9px; color: var(--ink); }
     .footer-brand .brand-mark { width: 25px; height: 25px; }
     .footer-brand .brand-mark .icon { width: 15px; }
@@ -458,7 +459,7 @@
     .rpt-form-inner > div > p { color: var(--ink-soft); font-size: 17px; line-height: 1.6; }
     .rpt-form { display: grid; gap: 15px; padding: 26px; border: 1px solid #c5d9cf; background: rgba(251,250,246,.9); }
     .rpt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-    .rpt-form label { display: grid; gap: 6px; color: #56736b; font-size: 14px; }
+    .rpt-form label { display: grid; gap: 6px; color: #4a655d; font-size: 14px; }
     .rpt-form input, .rpt-form select, .rpt-form textarea { width: 100%; padding: 10px 12px; border: 1px solid #b9ccc3; background: #fff; color: var(--ink); font: inherit; font-size: 16px; }
     .rpt-form input:focus, .rpt-form select:focus, .rpt-form textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
     .rpt-form [aria-invalid="true"] { border-color: #a33b2b; }
@@ -563,7 +564,7 @@
       </form></div></section>
   </main>
 
-  <footer class="site-footer"><div class="footer-brand"><span class="brand-mark"><svg class="icon"><use href="#earth"></use></svg></span><span>Russia–Philippines <b>Trade Link</b></span></div><p>Russia–Philippines Trade Link is an independent, non-government website of a trade agent working within the "Trade Agent of Primorsky Krai" export support program. It is not an official website of the Government of Primorsky Krai or the Russian Federation. We do not sell goods or accept payments for them.</p><span>© 2026 · <a href="/philippine-trade-news/">Trade news</a> · <a href="/#how-it-works">How it works</a> · <a href="/business-car-manila/">Car with driver in Manila</a> · <a href="/for-russian-suppliers/" lang="ru">Для российских поставщиков</a> · <a href="https://www.linkedin.com/in/andrey-subich-09b696435/" rel="noopener">LinkedIn</a> · <a href="/terms/">Terms of Service</a> · <a href="/privacy/">Privacy Policy</a></span></footer>
+  <footer class="site-footer"><div class="footer-brand"><span class="brand-mark"><svg class="icon"><use href="#earth"></use></svg></span><span>Russia–Philippines <b>Trade Link</b></span></div><p>Russia–Philippines Trade Link is an independent, non-government website of a trade agent working within the "Trade Agent of Primorsky Krai" export support program. It is not an official website of the Government of Primorsky Krai or the Russian Federation. We do not sell goods or accept payments for them.</p><span>© 2026 · <a href="https://wa.me/639215884430" rel="noopener">WhatsApp / Telegram +63 921 588 4430</a> · <a href="/philippine-trade-news/">Trade news</a> · <a href="/#how-it-works">How it works</a> · <a href="/business-car-manila/">Car with driver in Manila</a> · <a href="/for-russian-suppliers/" lang="ru">Для российских поставщиков</a> · <a href="https://www.linkedin.com/in/andrey-subich-09b696435/" rel="noopener">LinkedIn</a> · <a href="/terms/">Terms of Service</a> · <a href="/privacy/">Privacy Policy</a></span></footer>
   <button class="to-top" type="button" aria-label="Наверх / Back to top" title="Наверх / Back to top"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
   <script>
     (() => {
