@@ -9,7 +9,7 @@ says instead of deflecting. Run from the repository root after editing pages:
 import glob, html, json, re
 
 SITE = "https://rusphiltrade.com"
-SKIP = ("thank-you", "privacy", "terms", "philippine-trade-news", "novosti-filippin", "guides/index.html")
+SKIP = ("business-car-manila", "thank-you", "privacy", "terms", "philippine-trade-news", "novosti-filippin", "guides/index.html")
 
 
 def text(fragment):
