@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /knowledge/
 
 Sitemap: https://rusphiltrade.com/sitemap.xml

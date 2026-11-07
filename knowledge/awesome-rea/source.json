@@ -1,0 +1,53 @@
+{
+ "name": "Awesome Reverse Engineering Anything",
+ "site": "https://awesomerea.org/",
+ "repository": "https://github.com/reacher-z/Awesome-REA",
+ "llms_txt": "https://awesomerea.org/llms.txt",
+ "api": "https://awesomerea.org/api/v1/",
+ "api_version": "1.0.0",
+ "catalog_generated_at": "2026-11-07T02:57:12Z",
+ "synced_at": "2026-11-07T23:21:22Z",
+ "license": "Original collection text: MIT. Linked works retain their own licenses.",
+ "counts": {
+  "resources": 1253,
+  "papers": 235,
+  "by_kind": {
+   "tool": 607,
+   "case-study": 431,
+   "integration": 96,
+   "learning-resource": 44,
+   "collection": 32,
+   "documentation": 29,
+   "research": 10,
+   "project": 4
+  },
+  "by_target": {
+   "binary": 472,
+   "game": 377,
+   "app": 306,
+   "protocol": 242,
+   "firmware": 149,
+   "website": 90
+  }
+ },
+ "files": {
+  "resources.json": {
+   "url": "https://awesomerea.org/api/v1/resources.json",
+   "bytes": 5468913,
+   "sha256": "f521d2ddec61f751accfa81cbb8ee694b1d86010bc124e86ad178546c39db8e9",
+   "verified_against_index": true
+  },
+  "papers.json": {
+   "url": "https://awesomerea.org/api/v1/papers.json",
+   "bytes": 1329404,
+   "sha256": "a6da4dcd3589eaa799edcecfb775f1d97e5e4d3f1a515bda12cacd1be45cef40",
+   "verified_against_index": true
+  },
+  "categories.json": {
+   "url": "https://awesomerea.org/api/v1/categories.json",
+   "bytes": 10304,
+   "sha256": "34b777999953763b372ce2079db40dff0b84fc2307ebe50c0cfc114772e27374",
+   "verified_against_index": true
+  }
+ }
+}

@@ -22,3 +22,10 @@ The separate Python pipeline is in [`trade-agent/`](trade-agent/README.md).
 It collects and analyzes trade opportunities independently from the static
 GitHub Pages site. GitHub Pages hosts the site only. The pipeline must run on
 a Python server or local machine according to [`trade-agent/DEPLOY.md`](trade-agent/DEPLOY.md).
+
+## Reference knowledge base
+
+[`knowledge/`](knowledge/) holds reference material that is not part of the
+site or the site chat. [`knowledge/awesome-rea/`](knowledge/awesome-rea/README.md)
+is a local copy of the Awesome-REA reverse-engineering catalog, read through its
+`llms.txt` and static JSON API. Refresh it with `python3 tools/sync_awesome_rea.py`.

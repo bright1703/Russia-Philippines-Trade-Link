@@ -1,0 +1,107 @@
+# Awesome Reverse Engineering Anything
+
+> AwesomeREA.org is a bilingual collection of reverse-engineering tools, projects, integrations, case studies, and references for websites, games, apps, native binaries, firmware, and communication protocols.
+
+The collection contains 1253 source-reviewed curated resources and a published selection of 3500 captured repository records, of which 3309 are browsable. The 187 scope-excluded records and 4 whose upstream repository is no longer available remain in the published selection. The bibliography lists 235 research papers.
+
+Source review checks descriptions against primary documentation. Repository descriptions have AI-assisted English and Simplified Chinese translations; description_original retains available upstream text. New oversized descriptions are omitted with length and SHA-256 evidence in description_omission. Upstream content keeps its own license.
+
+Every listing, category and entry page has a Markdown version named `index.md` beside it, linked from the page with `<link rel="alternate" type="text/markdown">`. Entry pages also have a bilingual `record.json`, and category pages an `index.json`. The links below point to the Markdown versions.
+
+## Collections
+
+- [Curated resources](https://awesomerea.org/resources/index.md): All curated entries by section, each linking its own Markdown page with requirements, evidence links and review dates.
+- [Case studies](https://awesomerea.org/cases/index.md): 431 documented cases, a subset of the curated resources, with full descriptions and source evidence.
+- [Research papers](https://awesomerea.org/papers/index.md): A separate research bibliography, each paper linking its own Markdown page.
+- [Repository directory](https://awesomerea.org/browse/index.md): Static categories of automatically discovered public repositories (unreviewed).
+- [Editorial survey](https://awesomerea.org/survey/): A bilingual, separately versioned synthesis of the collection’s evidence, methods and limits.
+- [About and provenance](https://awesomerea.org/about/): Scope, source methods, counts, translations, and licenses.
+- [Contribute to Awesome REA](https://awesomerea.org/contribute/): Submission forms, primary-evidence requirements and the PR workflow for humans and agents.
+
+## Repository categories
+
+- [Websites](https://awesomerea.org/browse/web-analysis/index.md): 217 automatically discovered repositories (unreviewed); Chinese: https://awesomerea.org/zh/browse/web-analysis/index.md
+- [Games](https://awesomerea.org/browse/game-analysis/index.md): 491 automatically discovered repositories (unreviewed); Chinese: https://awesomerea.org/zh/browse/game-analysis/index.md
+- [Apps · Android](https://awesomerea.org/browse/android/index.md): 482 automatically discovered repositories (unreviewed); Chinese: https://awesomerea.org/zh/browse/android/index.md
+- [Apps · Managed code](https://awesomerea.org/browse/managed-code/index.md): 135 automatically discovered repositories (unreviewed); Chinese: https://awesomerea.org/zh/browse/managed-code/index.md
+- [Native binaries](https://awesomerea.org/browse/native-analysis/index.md): 837 automatically discovered repositories (unreviewed); Chinese: https://awesomerea.org/zh/browse/native-analysis/index.md
+- [Runtime and debugging](https://awesomerea.org/browse/dynamic-analysis/index.md): 152 automatically discovered repositories (unreviewed); Chinese: https://awesomerea.org/zh/browse/dynamic-analysis/index.md
+- [Firmware](https://awesomerea.org/browse/firmware/index.md): 228 automatically discovered repositories (unreviewed); Chinese: https://awesomerea.org/zh/browse/firmware/index.md
+- [Protocols](https://awesomerea.org/browse/protocol-analysis/index.md): 113 automatically discovered repositories (unreviewed); Chinese: https://awesomerea.org/zh/browse/protocol-analysis/index.md
+- [General tools and collections](https://awesomerea.org/browse/reverse-engineering/index.md): 654 automatically discovered repositories (unreviewed); Chinese: https://awesomerea.org/zh/browse/reverse-engineering/index.md
+
+## 简体中文
+
+- [精选资源](https://awesomerea.org/zh/resources/index.md): 精选条目、使用条件、来源链接与复核日期。
+- [案例合集](https://awesomerea.org/zh/cases/index.md): 431 个案例，是精选资源的子集，保留完整说明与来源证据。
+- [研究论文](https://awesomerea.org/zh/papers/index.md): 单独维护的研究文献目录。
+- [仓库目录](https://awesomerea.org/zh/browse/index.md): 自动发现的公开仓库分类（未审核）。
+- [专题综述](https://awesomerea.org/zh/survey/): 综合比较证据、方法与边界的双语编辑性综述，单独版本化。
+- [关于与来源](https://awesomerea.org/zh/about/): 收录范围、来源方法、数量、翻译与许可。
+- [投稿与参与贡献](https://awesomerea.org/zh/contribute/): 人工与 Agent 的提交表单、一手证据要求和 PR 流程。
+- [静态 API 说明](https://awesomerea.org/zh/api/index.md): 端点、字段与更新频率。
+
+## API and feeds
+
+- [API guide](https://awesomerea.org/api/index.md): Endpoints, fields, update frequency and versioning of the static JSON and CSV API.
+- [Resources JSON](https://awesomerea.org/api/v1/resources.json): Every curated resource with stable IDs, bilingual text, requirements, evidence and review dates; CSV at https://awesomerea.org/api/v1/resources.csv.
+- [Papers JSON](https://awesomerea.org/api/v1/papers.json): The bibliography with identifiers, dates and limits; CSV at https://awesomerea.org/api/v1/papers.csv.
+- [Categories JSON](https://awesomerea.org/api/v1/categories.json): Curated categories, sections, kinds and targets with counts, plus the repository categories.
+- [Candidates JSON](https://awesomerea.org/api/v1/candidates.json): Unreviewed automated discoveries and followed-source leads.
+- [Changes JSON](https://awesomerea.org/api/v1/changes.json): Additions, source reviews and discovery batches of the last 30 days.
+- [JSON Schema](https://awesomerea.org/api/v1/schema.json): The schema every API file declares.
+- [Atom feed](https://awesomerea.org/feed.xml) and [JSON Feed](https://awesomerea.org/feed.json): Newly added entries; Chinese at https://awesomerea.org/zh/feed.xml and https://awesomerea.org/zh/feed.json.
+
+## Contribute with an agent
+
+- [Repository agent instructions](https://github.com/reacher-z/Awesome-REA/blob/main/AGENTS.md): Start here before editing the repository.
+- [Agent contribution guide](https://github.com/reacher-z/Awesome-REA/blob/main/docs/agent-contributing.md): Deduplicate, review primary sources, edit the right data, run checks and submit an authenticated GitHub PR.
+- [Agent 投稿指南](https://github.com/reacher-z/Awesome-REA/blob/main/docs/agent-contributing.zh-CN.md): 中文提交、证据和校验说明。
+- [Catalog schema](https://github.com/reacher-z/Awesome-REA/blob/main/data/README.md): Authoritative resource and paper fields and classification vocabulary.
+- [Choose an issue form](https://github.com/reacher-z/Awesome-REA/issues/new/choose): Suggest a resource, case, paper or correction.
+
+## Public data and sources
+
+- [Data manifest](https://awesomerea.org/data-manifest.json): Curated resources and papers only, with separate counts, file URLs, sizes and SHA-256 checksums; repository-discovery exports are listed separately below.
+- [Clone the public catalog](https://github.com/reacher-z/Awesome-REA): Run `git clone https://github.com/reacher-z/Awesome-REA.git`, then read `data/README.md` for the curated JSON source files and Chinese translations. No installation or build is required to read the data.
+- [Curated records JSONL](https://awesomerea.org/downloads/records.jsonl): One resource or paper per line; preserves source evidence, bilingual descriptions and limitations.
+- [Curated catalog JSON](https://awesomerea.org/catalog.json): Curated descriptions and source evidence.
+- [Published repository selection JSON](https://awesomerea.org/source-published.json): Published records, original descriptions, translations, hashes, exclusions and per-source capture totals; omit scope_status=excluded when reconstructing the browse list.
+- [Canonical capture baseline JSON](https://awesomerea.org/source-index.json): The preserved original complete canonical scan export.
+- [Browsable repository JSON](https://awesomerea.org/source-browser.json): Compact visible records. Follow `meta.full_export` for the complete companion and verify `meta.full_export_sha256`; the metadata selects the preserved baseline or a ready published selection.
+- [Paper metadata JSON](https://awesomerea.org/papers.json): The separate research bibliography.
+- [Hugging Face dataset mirror](https://huggingface.co/datasets/AgPerry/awesome-rea): Read-only Parquet and JSONL mirror of these exports, one config per record type (resources, papers, cases, repositories, discoveries, leads), refreshed every 2 hours; repositories, discoveries and leads are unreviewed.
+- [Public source repository](https://github.com/reacher-z/Awesome-REA): Bilingual READMEs, contribution rules, code, and data definitions.
+- [Scan methodology](https://github.com/reacher-z/Awesome-REA/blob/main/docs/source-scan.md): Collection and scope-review methods.
+
+## Recently discovered repositories (unreviewed)
+
+Unreviewed automated README scans that passed capture checks and a reverse-engineering topic screen. 5,994 are listed; last ingest 2026-11-07T02:57:12Z from scan run 42328498809.
+
+- [Recently discovered (unreviewed)](https://awesomerea.org/discoveries/): The newest 100 discoveries with upstream links.
+- [Discovery queue JSON](https://awesomerea.org/discoveries.json): The newest 1,000 records with review_status=unreviewed, batch provenance and capture hashes; batches[].records_url lists every record of each batch.
+- [Discovery Atom feed](https://awesomerea.org/discoveries/feed.xml): The newest 100 discoveries.
+- [Ingest status JSON](https://awesomerea.org/discoveries/status.json): last_successful_ingest_at and the scan run.
+- [nanpuhaha/WzComparerR2-Rust](https://github.com/nanpuhaha/WzComparerR2-Rust): MapleStory WZ archive toolkit in Rust — parser, diff, avatar/map renderer, CLI and GUI (unreviewed automated discovery)
+- [RD-Tarun/js-malware-deob](https://github.com/RD-Tarun/js-malware-deob): Deobfuscators for JavaScript malware analysis: deobfio for obfuscator.io and dejsconfuser for JS-Confuser 2.0-2.1.0. Decodes strings, unflattens control flow and strips anti-analysis code without runn (unreviewed automated discovery)
+- [LuoStickmin/D750-QEMU](https://github.com/LuoStickmin/D750-QEMU): D750 firmware research: QEMU validation prototype (M0), LCD dump, 1080p 64/60 Mbps bitrate patcher, bilingual docs (unreviewed automated discovery)
+- [haxsd/reverse-skills](https://github.com/haxsd/reverse-skills): 逆向工程 agent 技能包（精简）：路由/授权/分诊 + Android/APK + JS + 二进制。Lean RE agent skills: routing, auth, triage, Android/APK, JS, native binary. (unreviewed automated discovery)
+- [Wsolitary/RA2-LiveController](https://github.com/Wsolitary/RA2-LiveController): ???????2:??????????????????????????(???????Bug???????????AI??????) (unreviewed automated discovery)
+- [ztancrell/gamebooster-rs](https://github.com/ztancrell/gamebooster-rs): Small Windows CLI that boosts your PC for gaming and undoes every change on restore. Auto-boosts when a game starts. No kernel driver, no snake oil: every tweak is researched and explained. (unreviewed automated discovery)
+- [z0orb/arel-wars-1-fan-revival](https://github.com/z0orb/arel-wars-1-fan-revival): Arel Wars (Gamevil, 2012) patched to run fully offline on modern Android. Download the APK from Releases. (unreviewed automated discovery)
+- [47Hunter47/vb6decompiler](https://github.com/47Hunter47/vb6decompiler): Evidence-based recovery of native-compiled VB6 programs: procedure table, BSTR literals, SQL stitching, form blobs, DataReport layouts (unreviewed automated discovery)
+- [Orohal/ClawSearchOro](https://github.com/Orohal/ClawSearchOro): A memory scanner plugin for x64dbg, inspired by Cheat Engine. (unreviewed automated discovery)
+- [lulitaxu/overflow-lab-kit](https://github.com/lulitaxu/overflow-lab-kit): Buffer overflow lab kit — pattern, offset and bad-char tooling plus crash-verified vulnerable targets for authorized exploit development practice. (unreviewed automated discovery)
+## Followed-source leads (unreviewed)
+
+Links that registered public reverse-engineering lists, registries, topic searches, survey bibliographies, an arXiv query and Hugging Face searches list; not reviewed, curated, translated or run. 12,048 are listed; last collection 2026-11-07T01:14:17Z.
+
+- [Lead queue JSON](https://awesomerea.org/discoveries/leads.json): The newest 1,000 leads with review_status=unreviewed, pinned listing evidence and batch provenance; batches[].records_url lists every lead of each batch.
+
+## Optional
+
+- [Full catalog in Markdown](https://awesomerea.org/llms-full.txt): Every curated resource and paper in one file, with requirements, limits and sources.
+- [完整目录（Markdown）](https://awesomerea.org/zh/llms-full.txt): 全部精选资源与论文的中文版。
+- [Sitemap index](https://awesomerea.org/sitemap.xml): Every canonical page, with its languages and data-derived modification dates.
+
+This file is a navigation aid. Crawl policy is published in [robots.txt](https://awesomerea.org/robots.txt).
