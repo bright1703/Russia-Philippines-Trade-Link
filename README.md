@@ -22,3 +22,10 @@ The separate Python pipeline is in [`trade-agent/`](trade-agent/README.md).
 It collects and analyzes trade opportunities independently from the static
 GitHub Pages site. GitHub Pages hosts the site only. The pipeline must run on
 a Python server or local machine according to [`trade-agent/DEPLOY.md`](trade-agent/DEPLOY.md).
+
+## AI Chief of Staff
+
+`CLAUDE.md` and `.claude/skills/` set up Claude Code as the owner's chief of
+staff: `/brief`, `/inbox`, `/lead`, `/weekly`, `/news-issue`, `/new-page` and
+`/site-check`. This repository is public, so private notes live in Notion,
+not here.
