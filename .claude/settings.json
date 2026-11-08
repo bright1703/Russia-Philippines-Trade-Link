@@ -1,0 +1,48 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Gmail__search_threads",
+      "mcp__Gmail__get_thread",
+      "mcp__Gmail__get_message",
+      "mcp__Gmail__list_labels",
+      "mcp__Gmail__list_drafts",
+      "mcp__Gmail__get_draft",
+      "mcp__Gmail__create_draft",
+      "mcp__Google_Calendar__list_calendars",
+      "mcp__Google_Calendar__list_events",
+      "mcp__Google_Calendar__search_events",
+      "mcp__Google_Calendar__get_event",
+      "mcp__Google_Calendar__suggest_time",
+      "mcp__Notion__notion-search",
+      "mcp__Notion__notion-fetch",
+      "mcp__Notion__notion-query-data-sources",
+      "mcp__Notion__notion-query-meeting-notes",
+      "mcp__Notion__notion-create-pages",
+      "mcp__Notion__notion-get-async-task",
+      "mcp__HubSpot__get_user_details",
+      "mcp__HubSpot__get_organization_details",
+      "mcp__HubSpot__get_properties",
+      "mcp__HubSpot__search_properties",
+      "mcp__HubSpot__search_crm_objects",
+      "mcp__HubSpot__get_crm_objects",
+      "mcp__HubSpot__query_crm_data",
+      "mcp__HubSpot__search_owners",
+      "mcp__Zoom_for_Claude__search",
+      "mcp__Zoom_for_Claude__my_notes_get_note_content",
+      "mcp__Zoom_for_Claude__get_meeting_assets"
+    ],
+    "deny": [
+      "mcp__Gmail__send_message",
+      "mcp__Gmail__reply",
+      "mcp__Gmail__forward",
+      "mcp__Gmail__trash_message",
+      "mcp__Gmail__trash_thread",
+      "mcp__Gmail__delete_draft",
+      "mcp__Gmail__mark_message_spam",
+      "mcp__Gmail__mark_thread_spam",
+      "mcp__Google_Calendar__delete_event",
+      "mcp__Notion__notion-delete-pages",
+      "mcp__Notion__notion-delete-databases"
+    ]
+  }
+}
