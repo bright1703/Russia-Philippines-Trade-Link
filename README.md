@@ -26,6 +26,6 @@ a Python server or local machine according to [`trade-agent/DEPLOY.md`](trade-ag
 ## AI Chief of Staff
 
 `CLAUDE.md` and `.claude/skills/` set up Claude Code as the owner's chief of
-staff: `/brief`, `/meeting`, `/inbox`, `/lead`, `/weekly`, `/news-issue`, `/new-page` and
+staff: `/brief`, `/meeting`, `/inbox`, `/lead`, `/quote`, `/sync`, `/weekly`, `/news-issue`, `/new-page` and
 `/site-check`. This repository is public, so private notes live in Notion,
 not here.
